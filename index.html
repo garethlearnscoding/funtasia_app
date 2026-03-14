@@ -49,6 +49,19 @@
       const sheetDesc = document.getElementById("sheet-desc");
       const closeBtn = document.getElementById("close-btn");
 
+      // === Global Variables ===
+      const mutedColors = {
+        "-1": 0xb9a6b9,
+        0: 0xd97c7c, // muted red
+        1: 0xe6a57e, // muted orange
+        2: 0x8fa7b3, // muted blue
+        3: 0x8fbf9f, // muted green
+        4: 0xe8e2a1, // muted yellow
+        5: 0xb9a6b9, // muted purple
+        6: 0xd6c1c8,
+        7: 0xb1b1b1,
+        8: 0xb0b0b0,
+      };
       // === Helper Functions ===
 
       // Get viewport size, using visualViewport if available
@@ -109,12 +122,9 @@
 
       // Background
       const textureLoader = new THREE.TextureLoader();
-      textureLoader.load(
-        "./assets/media/plain-background.jpeg",
-        (texture) => {
-          scene.background = texture;
-        },
-      );
+      textureLoader.load("./assets/media/plain-background.jpeg", (texture) => {
+        scene.background = texture;
+      });
 
       // Camera setup
       const viewportSize = getViewportSize();
@@ -148,7 +158,7 @@
       controls.minDistance = 3;
       controls.maxDistance = 200;
       controls.minPolarAngle = 0;
-      controls.maxPolarAngle = Math.PI / 2;
+      controls.maxPolarAngle = Math.PI / 4;
       controls.enableDamping = true;
       controls.dampingFactor = 0.05;
 
@@ -200,26 +210,13 @@
 
         // Camera framing
         controls.target.set(0, 0, 0);
-        camera.position.set(0, radius * 6, radius * -20);
-        controls.minDistance = radius * 0.3;
-        controls.maxDistance = radius * 90;
-        camera.near = radius / 10000;
-        camera.far = radius * 100000;
+        camera.position.set(0, radius * 1, radius * 1);
+        controls.minDistance = radius * 0.6;
+        controls.maxDistance = radius * 3;
+        camera.near = radius / 10;
+        camera.far = radius * 10000;
         camera.updateProjectionMatrix();
         controls.update();
-
-        // Color Dictionary
-        const mutedColors = {
-          0: 0xd97c7c, // muted red
-          1: 0xe6a57e, // muted orange
-          2: 0x8fa7b3, // muted blue
-          3: 0x8fbf9f, // muted green
-          4: 0xe8e2a1, // muted yellow
-          5: 0xb9a6b9, // muted purple
-          6: 0xd6c1c8,
-          7: 0xb1b1b1,
-          8: 0xb0b0b0,
-        };
 
         // Collect interactive meshes
         const objects = [];
@@ -240,47 +237,34 @@
             });
           }
 
-          if (!isInteractive) return; // 🚫 skip non-interactive meshes
-
-          // if (child.userData.GREY === true) {
-          //   child.material = new THREE.MeshStandardMaterial({
-          //     color: 0xb1b1b1,
-          //     roughness: 1,
-          //     metalness: 1,
-          //   });
-          // }
-          // if (child.userData?.FOOT === true) {
-          //   child.material = new THREE.MeshStandardMaterial({
-          //     color: 0xd6c1c8,
-          //     roughness: 1,
-          //     metalness: 0,
-          //   });
-          // }
-          // if (child.userData?.BASE === true) {
-          //   child.material = new THREE.MeshStandardMaterial({
-          //     color: 0xb0b0b0,
-          //     roughness: 1,
-          //     metalness: 0,
-          //   });
-          // }
+          if (child.userData.GREY === true) {
+            
+            child.material = new THREE.MeshStandardMaterial({
+              color: 0xffffff,
+              transparent: true,
+              opacity: 0.3,
+            });
+          }
+          if (child.userData?.FOOT === true) {
+            child.material = new THREE.MeshStandardMaterial({
+              color: 0x545454,
+              roughness: 1,
+              metalness: 0,
+            });
+          }
+          if (child.userData?.BASE === true) {
+            child.material = new THREE.MeshStandardMaterial({
+              color: 0x949494,
+              roughness: 1,
+              metalness: 0,
+            });
+          }
 
           // // Blender custom property → Three.js userData
 
           // child.castShadow = true;
           // child.receiveShadow = true;
-
-          // // Clone material only for interactive meshes
-          // child.material = child.material.clone();
-          // child.material.map = null;
-          // child.material.needsUpdate = true;
-          // // Ensure standard material features
-          // child.material = new THREE.MeshStandardMaterial({
-          //   color: 0xffffff,
-          //   emissive: 0x000000,
-          //   roughness: 1,
-          //   metalness: 0,
-          // });
-
+          if (!isInteractive) return;
           if (!child.name || child.name === "") {
             child.name = `${floorId}_Object_${objects.length + 1}`;
           }
@@ -327,7 +311,6 @@
       const floorPaths = {
         l1: "./assets/models/njc-b2.glb",
         l2: "./assets/models/njc-b3.glb",
-        l3: "",
       };
       let loadingCount = 0;
       const totalFloors = Object.keys(floorPaths).length;
@@ -429,7 +412,9 @@
         hovered = target;
 
         if (hovered) {
-          hovered.material.emissive.setHex(0xff6b00);
+          const baseColor = new THREE.Color(mutedColors[hovered.userData.ZONE]);
+          const emissiveColor = baseColor.clone().multiplyScalar(1);
+          hovered.material.emissive.copy(emissiveColor);
           document.body.style.cursor = "pointer";
           if (infoLabel) infoLabel.textContent = `Hovering: ${hovered.name}`;
         } else {

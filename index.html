@@ -15,9 +15,8 @@
 
     <!-- Floor Selector UI -->
     <div id="floor-selector">
-      <button class="floor-btn" data-floor="l1">Floor 1</button>
-      <button class="floor-btn" data-floor="l2">Floor 2</button>
-      <button class="floor-btn" data-floor="l3">Floor 3</button>
+      <button class="floor-btn" data-floor="b3">Basement 3</button>
+      <button class="floor-btn" data-floor="b2">Basement 2</button>
     </div>
 
     <!-- Bottom sheet popup -->
@@ -35,7 +34,7 @@
       }
     </script>
 
-    <script type="module">
+    <!-- <script type="module">
       // === Imports ===
       import * as THREE from "three";
       import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
@@ -158,7 +157,7 @@
       controls.minDistance = 3;
       controls.maxDistance = 200;
       controls.minPolarAngle = 0;
-      controls.maxPolarAngle = Math.PI / 4;
+      controls.maxPolarAngle = Math.PI / 2.3;
       controls.enableDamping = true;
       controls.dampingFactor = 0.05;
 
@@ -309,8 +308,8 @@
 
       // Load all floors
       const floorPaths = {
-        l1: "./assets/models/njc-b2.glb",
-        l2: "./assets/models/njc-b3.glb",
+        b2: "./assets/models/temp/njc-b2.glb",
+        b3: "./assets/models/temp/njc-b3.glb",
       };
       let loadingCount = 0;
       const totalFloors = Object.keys(floorPaths).length;
@@ -559,6 +558,7 @@
 
       // Usage example (call in console):
       // printModelInfo(floors['l1']);  // Replace 'l1' with your floor or any Object3D
-    </script>
+    </script> --> 
+    <script type="module" src="./js/main.js"></script>
   </body>
 </html>

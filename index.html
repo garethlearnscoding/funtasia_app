@@ -7,7 +7,7 @@
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
     <title>GLB Hover Interaction</title>
-    <link rel="stylesheet" href="./static/styles/final.css" />
+    <link rel="stylesheet" href="./css/main.css" />
   </head>
   <body>
     <div id="canvas-container"></div>
@@ -110,7 +110,7 @@
       // Background
       const textureLoader = new THREE.TextureLoader();
       textureLoader.load(
-        "./static/media/Funtasia-Background.png",
+        "./assets/media/plain-background.png",
         (texture) => {
           scene.background = texture;
         },
@@ -325,8 +325,8 @@
 
       // Load all floors
       const floorPaths = {
-        l1: "./static/models/final/njc-b2.glb",
-        l2: "./static/models/final/njc-b3.glb",
+        l1: "./assets/models/njc-b2.glb",
+        l2: "./assets/models/njc-b3.glb",
         l3: "",
       };
       let loadingCount = 0;

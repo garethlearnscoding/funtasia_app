@@ -49,7 +49,7 @@ export function setupScene() {
   };
   controls.target.set(0, 0, 0);
   controls.screenSpacePanning = false;
-  controls.minDistance = 3;
+  controls.minDistance = 10;
   controls.maxDistance = 200;
   controls.minPolarAngle = 0;
   controls.maxPolarAngle = Math.PI / 2.3;
@@ -60,6 +60,12 @@ export function setupScene() {
   const dirLight = new THREE.DirectionalLight(0xffffff, 5);
   dirLight.position.set(0, 5, 0);
   scene.add(dirLight);
+
+  // Setup event listener to cancel animation on user interaction
+  controls.addEventListener("start", () => {
+    // We dispatch a custom event which main.js can catch to update appState
+    window.dispatchEvent(new CustomEvent("camera-interaction-start"));
+  });
   
   function handleResize() {
     const viewportSize = getViewportSize();

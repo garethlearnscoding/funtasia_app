@@ -43,7 +43,7 @@ export function applyHover(target, appState, infoLabel) {
   }
 }
 
-export function handleInteraction(event, appState, raycaster, mouse, camera, infoLabel) {
+export function handleInteraction(event, appState, raycaster, mouse, camera, infoLabel, controls) {
   if (isPointerOverUI(event)) return;
 
   let targetObject = appState.hovered;
@@ -56,6 +56,41 @@ export function handleInteraction(event, appState, raycaster, mouse, camera, inf
     console.log(`Clicked on: ${targetObject.name}`);
     if (infoLabel) infoLabel.textContent = `Clicked: ${targetObject.name}`;
     showBottomSheet(targetObject.name);
+
+    // Camera animation logic
+    if (controls) {
+      // 1. Get object visual center (native Blender origin)
+      const objectCenter = targetObject.getWorldPosition(new THREE.Vector3());
+      
+      // Still compute bounds just to know how big it is for distance calculation
+      const box = new THREE.Box3().setFromObject(targetObject);
+      const objectSize = box.getSize(new THREE.Vector3());
+
+      // 2. Get current camera 2D direction
+      const camPos = camera.position.clone();
+      const controlsTarget = controls.target.clone();
+      
+      const direction = new THREE.Vector3().subVectors(camPos, controlsTarget);
+      direction.y = 0; // maintain horizontal direction
+      if (direction.lengthSq() < 0.001) {
+          direction.set(0, 0, 1); // fallback direction
+      }
+      direction.normalize();
+
+      // 3. Compute new camera position
+      // Push back based on object size, and push up slightly
+      const distance = Math.max(objectSize.length(), 2) * 1.2;
+      const heightOffset = objectSize.y * 1.5 + 2;
+      
+      const newCamPos = objectCenter.clone()
+        .add(direction.multiplyScalar(distance))
+        .add(new THREE.Vector3(0, heightOffset, 0));
+
+      // 4. Activate animation state
+      appState.cameraAnim.controlsTarget.copy(objectCenter);
+      appState.cameraAnim.cameraTarget.copy(newCamPos);
+      appState.cameraAnim.active = true;
+    }
   }
 }
 

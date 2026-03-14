@@ -5,7 +5,7 @@ import {
   updateMouseFromTouch 
 } from "./util.js";
 
-export function setupEventListeners(renderer, mouse, appState, raycaster, camera, infoLabel) {
+export function setupEventListeners(renderer, mouse, appState, raycaster, camera, infoLabel, controls) {
   window.addEventListener("mousemove", (event) => {
     if (isPointerOverUI(event)) return;
     updateMousePosition(event.clientX, event.clientY, renderer, mouse);
@@ -28,10 +28,16 @@ export function setupEventListeners(renderer, mouse, appState, raycaster, camera
     if (isPointerOverUI(event)) return;
     updateMouseFromTouch(event, renderer, mouse);
     event.preventDefault();
-    handleInteraction(event, appState, raycaster, mouse, camera, infoLabel);
+    handleInteraction(event, appState, raycaster, mouse, camera, infoLabel, controls);
   }, { passive: false });
 
   window.addEventListener("click", (event) => {
-    handleInteraction(event, appState, raycaster, mouse, camera, infoLabel);
+    handleInteraction(event, appState, raycaster, mouse, camera, infoLabel, controls);
+  });
+
+  window.addEventListener("camera-interaction-start", () => {
+    if (appState.cameraAnim && appState.cameraAnim.active) {
+      appState.cameraAnim.active = false;
+    }
   });
 }

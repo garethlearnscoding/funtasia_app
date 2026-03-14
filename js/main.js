@@ -15,7 +15,12 @@ const floorPaths = {
 let appState = {
   currentFloor: "b3", // default floor
   interactiveObjects: [],
-  hovered: null
+  hovered: null,
+  cameraAnim: {
+    active: false,
+    cameraTarget: new THREE.Vector3(),
+    controlsTarget: new THREE.Vector3(),
+  }
 };
 
 export const infoLabel = document.getElementById("info");
@@ -23,7 +28,7 @@ export const infoLabel = document.getElementById("info");
 const raycaster = new THREE.Raycaster();
 const mouse = new THREE.Vector2();
 
-setupEventListeners(renderer, mouse, appState, raycaster, camera, infoLabel);
+setupEventListeners(renderer, mouse, appState, raycaster, camera, infoLabel, controls);
 
 // Initializing the application
 async function initApp() {

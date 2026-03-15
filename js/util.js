@@ -77,10 +77,19 @@ export function handleInteraction(event, appState, raycaster, mouse, camera, inf
       }
       direction.normalize();
 
+      // Snap direction to the closest cardinal direction (X or Z axis)
+      if (Math.abs(direction.x) > Math.abs(direction.z)) {
+          direction.set(Math.sign(direction.x), 0, 0);
+      } else {
+          direction.set(0, 0, Math.sign(direction.z));
+      }
+
       // 3. Compute new camera position
-      // Push back based on object size, and push up slightly
-      const distance = Math.max(objectSize.length(), 2) * 1.2;
-      const heightOffset = objectSize.y * 1.5 + 2;
+      // Push back less to angle down more, and push up significantly
+      console.log(objectSize.length());
+      const distance = Math.max(objectSize.length(), 2) * 0.8;
+      console.log(objectSize.y);
+      const heightOffset = Math.max(objectSize.y, 1) * 1.5 + 5;
       
       const newCamPos = objectCenter.clone()
         .add(direction.multiplyScalar(distance))

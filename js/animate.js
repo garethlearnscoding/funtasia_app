@@ -21,6 +21,12 @@ export function startAnimationLoop(controls, renderer, scene, camera, mouse, app
     }
 
     controls.update();
+    
+    // Animate markers
+    if (appState.activeMarkers) {
+      const time = performance.now();
+      appState.activeMarkers.forEach(m => m.animate(time));
+    }
 
     renderer.render(scene, camera);
   }

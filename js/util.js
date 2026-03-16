@@ -25,36 +25,30 @@ export function performRaycast(appState, raycaster, mouse, camera) {
   return intersects.length > 0 ? intersects[0].object : null;
 }
 
-export function applyHover(target, appState, infoLabel) {
-  if (appState.hovered === target) return;
+export function applySelection(target, appState, infoLabel) {
+  if (appState.selected === target) return;
 
-  if (appState.hovered) appState.hovered.material.emissive.setHex(0x000000);
-  appState.hovered = target;
+  if (appState.selected) appState.selected.material.emissive.setHex(0x000000);
+  appState.selected = target;
 
-  if (appState.hovered) {
-    const baseColor = new THREE.Color(mutedColors[appState.hovered.userData.ZONE]);
+  if (appState.selected) {
+    const baseColor = new THREE.Color(mutedColors[appState.selected.userData.ZONE]);
     const emissiveColor = baseColor.clone().multiplyScalar(1);
-    appState.hovered.material.emissive.copy(emissiveColor);
-    document.body.style.cursor = "pointer";
-    if (infoLabel) infoLabel.textContent = `Hovering: ${appState.hovered.name}`;
+    appState.selected.material.emissive.copy(emissiveColor);
+    if (infoLabel) infoLabel.textContent = `Selected: ${appState.selected.name}`;
   } else {
-    document.body.style.cursor = "default";
-    if (infoLabel) infoLabel.textContent = "Hover over the model";
+    if (infoLabel) infoLabel.textContent = "Select a model";
   }
 }
 
 export function handleInteraction(event, appState, raycaster, mouse, camera, infoLabel, controls) {
   if (isPointerOverUI(event)) return;
 
-  let targetObject = appState.hovered;
-  if (!targetObject) {
-    targetObject = performRaycast(appState, raycaster, mouse, camera);
-    if (targetObject) applyHover(targetObject, appState, infoLabel);
-  }
+  const targetObject = performRaycast(appState, raycaster, mouse, camera);
+  applySelection(targetObject, appState, infoLabel);
 
   if (targetObject) {
     console.log(`Clicked on: ${targetObject.name}`);
-    if (infoLabel) infoLabel.textContent = `Clicked: ${targetObject.name}`;
     showBottomSheet(targetObject.name);
 
     // Camera animation logic

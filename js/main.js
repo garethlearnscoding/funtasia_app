@@ -8,6 +8,7 @@ import { startAnimationLoop } from "./animate.js";
 const { scene, camera, renderer, controls } = setupScene();
 
 const floorPaths = {
+  b1: "./assets/models/njc-b1.glb",
   b2: "./assets/models/njc-b2.glb",
   b3: "./assets/models/njc-b3.glb",
 };
@@ -15,7 +16,7 @@ const floorPaths = {
 let appState = {
   currentFloor: "b3", // default floor
   interactiveObjects: [],
-  hovered: null,
+  selected: null,
   cameraAnim: {
     active: false,
     cameraTarget: new THREE.Vector3(),

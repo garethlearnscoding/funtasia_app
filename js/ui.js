@@ -79,8 +79,8 @@ export function switchFloor(floorId, floors, floorObjects, currentState) {
     if (btn.dataset.floor === floorId) btn.classList.add("active");
   });
 
-  if (currentState.hovered) {
-    currentState.hovered.material.emissive.setHex(0x000000);
-    currentState.hovered = null;
+  if (currentState.selected) {
+    currentState.selected.material.emissive.setHex(0x000000);
+    currentState.selected = null;
   }
 }

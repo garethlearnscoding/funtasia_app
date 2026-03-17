@@ -1,10 +1,10 @@
 import * as THREE from "three";
 import { Floor } from "./floor.js";
+import { showToast } from "./ui.js";
 
 export class QRMarker {
 
-  constructor(scene, position, greyDelay = 10000) {
-
+  constructor(scene, position, greyDelay = 5*60000) {
     this.scene = scene;
 
     this.group = new THREE.Group();
@@ -12,28 +12,38 @@ export class QRMarker {
     // ----- materials -----
     this.activeMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000 });
     this.greyMaterial = new THREE.MeshBasicMaterial({ color: 0x777777 });
-
+    this.outlineMaterialActive = new THREE.LineBasicMaterial({ color: 0x550000 });
     // ----- ring -----
     this.ring = new THREE.Mesh(
-      new THREE.RingGeometry(0.4, 0.5, 32),
+      new THREE.RingGeometry(0.11, 0.14, 32),
       this.activeMaterial
     );
     this.ring.rotation.x = -Math.PI / 2;
+    this.ring.position.y = 0.02; // Slightly above floor
 
+    const ring_edges = new THREE.EdgesGeometry(this.ring.geometry);
+    this.ringOutline = new THREE.LineSegments(ring_edges, this.outlineMaterialActive);
+    this.ring.add(this.ringOutline);
     // ----- cone -----
+    const coneGeom = new THREE.ConeGeometry(0.1, 0.4, 4);
     this.cone = new THREE.Mesh(
-      new THREE.ConeGeometry(0.1, 0.4, 4),
+      coneGeom,
       this.activeMaterial
     );
+    
+    // Create an outline for the cone to make it more visible
+    const cone_edges = new THREE.EdgesGeometry(coneGeom);
+    this.coneOutline = new THREE.LineSegments(cone_edges, this.outlineMaterialActive);
+    this.cone.add(this.coneOutline);
+
     this.cone.rotation.x = Math.PI;
-    this.cone.position.y = 0.6;
+    this.cone.position.y = 1.3; // Float above floor
 
     this.group.add(this.ring);
     this.group.add(this.cone);
 
-    // position above QR
+    // position at QR
     this.group.position.copy(position);
-    this.group.position.y += 1;
 
     this.scene.add(this.group);
 
@@ -50,7 +60,7 @@ export class QRMarker {
     const t = time * 0.003;
 
     // floating cone only
-    this.cone.position.y = 0.6 + Math.sin(t) * 0.05;
+    this.cone.position.y = 1.3 + Math.sin(t) * 0.05;
 
     // spinning
     this.cone.rotation.y += 0.02;
@@ -64,6 +74,10 @@ export class QRMarker {
   greyOut() {
     this.ring.material = this.greyMaterial;
     this.cone.material = this.greyMaterial;
+    if (this.coneOutline) {
+      this.outlineMaterialGrey = new THREE.LineBasicMaterial({ color: 0x333333 });
+      this.coneOutline.material = this.outlineMaterialGrey;
+    }
     this.isGrey = true;
   }
 
@@ -72,6 +86,11 @@ export class QRMarker {
 
     this.ring.geometry.dispose();
     this.cone.geometry.dispose();
+    if (this.coneOutline) {
+      this.coneOutline.geometry.dispose();
+      if (this.outlineMaterialActive) this.outlineMaterialActive.dispose();
+      if (this.outlineMaterialGrey) this.outlineMaterialGrey.dispose();
+    }
 
     this.ring.material.dispose();
     this.cone.material.dispose();
@@ -83,7 +102,7 @@ export class QRMarker {
     const markerInfo = Floor.allMarkers[qrID];
     if (!markerInfo) {
       console.warn(`Marker ${qrID} not found.`);
-      return;
+      return false;
     }
 
     // Store in appState for persistence across floor switches
@@ -122,5 +141,22 @@ export class QRMarker {
     appState.cameraAnim.controlsTarget.copy(markerCenter);
     appState.cameraAnim.cameraTarget.copy(newCamPos);
     appState.cameraAnim.active = true;
+
+    return true;
+  }
+
+  static handleURLQR(scene, camera, controls, appState, switchFloorCb) {
+    const urlParams = new URLSearchParams(window.location.search);
+    const qrID = urlParams.get("qrID");
+    if (qrID) {
+      console.log(`URL/Popstate qrID: ${qrID}`);
+      const handled = QRMarker.handleQRID(qrID, scene, camera, controls, appState);
+      if (handled) return;
+
+      // Unhandled: meaning the marker wasn't found
+      showToast(`Marker "${qrID}" not found.`);
+    }
+    const defaultFloorId = "l1";
+    switchFloorCb(defaultFloorId);
   }
 }

@@ -1,23 +1,25 @@
 import * as THREE from "three";
 
 const miscColours = {
-  "BASE": 0x9c9fa5,
+  "BASE": 0x6e7176,
   "DRIVE": 0xa5ccd1,
   "FOOT":  0xE6c19f,
   "GRASS": 0x9dcb6f,
   "NONOBJECT": 0xc1c3c7,
-  "FTOILET": 0xb9a6b9,
-  "MTOILET": 0xd6c1c8,
-  "ATOILET": 0xb1b1b1,
+  "FTOILET": 0xff8afe  ,
+  "MTOILET": 0x1b17eb,
+  "ATOILET": 0x5ce1e6,
   "LIFT": 0xb0b0b0,
+  "MARKER":0xffffff,
+  "STAIRCASE":0xffffff
 };
 const zoneColours = {
-  "GREEN": 0x9c9fa5,
-  "BLUE": 0xa5ccd1,
-  "ORANGE":  0xE6c19f,
-  "PURPLE": 0x9dcb6f,
-  "YELLOW": 0xb9a6b9,
-  "RED": 0xd6c1c8,
+  "GREEN": 0x00ff00,
+  "BLUE": 0x0066ff,
+  "ORANGE":  0xff9900,
+  "PURPLE": 0x9900ff,
+  "YELLOW": 0xffff00,
+  "RED": 0xff0000,
 };
 
 let skybox = null;
@@ -52,9 +54,9 @@ export function parseModel(gltf, floorId, scene) {
   const cameraConfig = {
     initialPosition: new THREE.Vector3(0, radius * 1, radius * 1),
     target: new THREE.Vector3(0, 0, 0),
-    minDistance: radius * 0.6,
+    minDistance: radius * 0.06,
     maxDistance: radius * 3,
-    near: radius / 10,
+    near: radius / 1000,
     far: Math.max(radius * 10000, 2000), // Ensure at least default far
   };
 
@@ -63,28 +65,40 @@ export function parseModel(gltf, floorId, scene) {
   const icons = [];
   model.traverse((child) => {
     if (!child.isMesh) return;
-
+    // IDK if the following 2 lines are needed
+    child.castShadow = false;
+    child.receiveShadow = false;
+    if (child.userData.ROLE === undefined){
+      console.log("Undefined role:",child.name)
+    };
     const isInteractive = child.userData?.ROLE === "OBJECT";
+    // console.log(child.userData.ROLE)
     if (child.userData.ZONE == undefined) {child.userData.ZONE = 0};
     if (!isInteractive) {
+      // console.log(child.name,"Internal" + child.userData.ROLE);
+      // console.log("Mesh" + !child.isMesh);
+      const isGrey = child.userData.ROLE === "GREY";
       child.material = new THREE.MeshStandardMaterial({
         color: miscColours[child.userData.ROLE],
-        roughness: 1,
+        transparent: isGrey,
+        opacity: isGrey ? 0 : 1,
+        roughness: isGrey ? 0 : 1,
         metalness: 0,
       });
 
       // Collect Markers
       if (child.userData.ROLE === "MARKER") {
-        const markerId = child.userData.ID || child.name;
+        const markerId = child.userData.MARKERID || child.name;
         markers[markerId] = child.getWorldPosition(new THREE.Vector3());
       }
 
       // Collect Icons
       const iconTypes = ["ATOILET", "MTOILET", "FTOILET", "STAIRCASE", "LIFT"];
+      console.log(child.userData.ROLE)
       if (iconTypes.includes(child.userData.ROLE)) {
         icons.push({
           pos: child.getWorldPosition(new THREE.Vector3()),
-          type: child.userData.ROLE.toLowerCase().replace("toilet", "toilets"), // Normalize to your ICON_PATHS keys
+          type: child.userData.ROLE.toUpperCase(), // Normalize to your ICON_PATHS keys
         });
       }
     } else {

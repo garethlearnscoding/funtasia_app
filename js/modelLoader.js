@@ -30,6 +30,8 @@ export function loadModels(scene, camera, controls, floorPaths) {
           );
 
           console.log(`Loaded ${floorId}: ${result.interactiveObjects.length} interactive meshes.`);
+          console.log(`Icons: ${result.icons}`);
+          console.log(`Markers: ${result.markers}`);
           
           loadingCount++;
           if (loadingCount === totalFloors) {

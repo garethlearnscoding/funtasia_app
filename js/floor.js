@@ -87,7 +87,7 @@ export class Floor {
       target: new THREE.Vector3(0, 0, 0),
       minDistance: 0,
       maxDistance: 0,
-      near: 0.1,
+      near: 0.001,
       far: 2000,
     };
   }

@@ -63,26 +63,14 @@ async function initApp() {
   setupUI(floors, switchFloorCb);
 
   const handleURLQR = () => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const qrID = urlParams.get("qrID");
-    if (qrID) {
-      console.log(`URL/Popstate qrID: ${qrID}`);
-      QRMarker.handleQRID(qrID, scene, camera, controls, appState);
-    }
+    QRMarker.handleURLQR(scene, camera, controls, appState, switchFloorCb);
   };
 
   // Listen for URL changes (back/forward or manual scan)
   window.addEventListener("popstate", handleURLQR);
   
   // Initial check
-  const urlParams = new URLSearchParams(window.location.search);
-  const qrID = urlParams.get("qrID");
-  if (qrID) {
-    handleURLQR();
-  } else {
-    const defaultFloorId = "l1";
-    switchFloorCb(defaultFloorId);
-  }
+  handleURLQR();
 
   startAnimationLoop(controls, renderer, scene, camera, mouse, appState, raycaster, infoLabel);
 }

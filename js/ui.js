@@ -31,6 +31,22 @@ export function hideBottomSheet() {
   sheet.classList.remove("show");
 }
 
+export function showToast(message, duration = 3000) {
+  const toast = document.getElementById("toast-popup");
+  const toastMsg = document.getElementById("toast-message");
+  if (!toast || !toastMsg) return;
+
+  toastMsg.textContent = message;
+  toast.classList.add("show");
+
+  // Remove any existing timeout to reset the timer if called repeatedly
+  if (toast.hideTimeout) clearTimeout(toast.hideTimeout);
+
+  toast.hideTimeout = setTimeout(() => {
+    toast.classList.remove("show");
+  }, duration);
+}
+
 export function setupUI(floors, switchFloorCb) {
   closeBtn.addEventListener("click", (e) => {
     e.stopPropagation();

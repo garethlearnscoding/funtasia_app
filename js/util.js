@@ -33,7 +33,7 @@ export function applySelection(target, appState, infoLabel) {
 
   if (appState.selected) {
     const baseColor = new THREE.Color(mutedColors[appState.selected.userData.ZONE]);
-    const emissiveColor = baseColor.clone().multiplyScalar(1);
+    const emissiveColor = baseColor.clone().multiplyScalar(0.5);
     appState.selected.material.emissive.copy(emissiveColor);
     if (infoLabel) infoLabel.textContent = `Selected: ${appState.selected.name}`;
   } else {

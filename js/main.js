@@ -27,7 +27,8 @@ let appState = {
     controlsTarget: new THREE.Vector3(),
   },
   activeMarkers: [],
-  lastScannedInfo: null
+  lastScannedInfo: null,
+  pointerStartTime: 0
 };
 
 

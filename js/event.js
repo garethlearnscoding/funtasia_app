@@ -11,8 +11,13 @@ export function setupEventListeners(renderer, mouse, appState, raycaster, camera
     updateMousePosition(event.clientX, event.clientY, renderer, mouse);
   });
 
+  window.addEventListener("mousedown", () => {
+    appState.pointerStartTime = Date.now();
+  });
+
   window.addEventListener("touchstart", (event) => {
     if (isPointerOverUI(event)) return;
+    appState.pointerStartTime = Date.now();
     updateMouseFromTouch(event, renderer, mouse);
   }, { passive: false });
 

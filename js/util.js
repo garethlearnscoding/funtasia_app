@@ -32,6 +32,13 @@ export function applySelection(target, appState, infoLabel) {
 export function handleInteraction(event, appState, raycaster, mouse, camera, infoLabel, controls) {
   if (isPointerOverUI(event)) return;
 
+  // New: Differentiate between a simple tap and a long press/drag
+  const pressDuration = Date.now() - appState.pointerStartTime;
+  if (pressDuration > 100) {
+    console.log(`Interaction ignored (duration: ${pressDuration}ms)`);
+    return;
+  }
+
   const targetObject = performRaycast(appState, raycaster, mouse, camera);
   applySelection(targetObject, appState, infoLabel);
 

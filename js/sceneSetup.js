@@ -54,7 +54,7 @@ export function setupScene() {
   controls.minPolarAngle = 0;
   controls.maxPolarAngle = Math.PI / 2.3;
   controls.enableDamping = true;
-  controls.dampingFactor = 0.05;
+  controls.dampingFactor = 0.1;
 
   scene.add(new THREE.AmbientLight(0xffffff, 2));
   const dirLight = new THREE.DirectionalLight(0xffffff, 5);

@@ -11,10 +11,13 @@ import { loadFont } from "./font.js";
 const { scene, camera, renderer, controls } = setupScene();
 
 const floorPaths = {
+  l4: "./assets/models/njc-l1.glb",
+  l3: "./assets/models/njc-l1.glb",
+  l2: "./assets/models/njc-l1.glb",
   l1: "./assets/models/njc-l1.glb",
-  b1: "./assets/models/njc-b1.glb",
-  b2: "./assets/models/njc-b2.glb",
-  b3: "./assets/models/njc-b3.glb",
+  b1: "./assets/models/njc-l1.glb",
+  b2: "./assets/models/njc-l1.glb",
+  b3: "./assets/models/njc-l1.glb",
 };
 
 let appState = {

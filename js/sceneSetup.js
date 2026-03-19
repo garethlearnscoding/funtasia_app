@@ -58,7 +58,7 @@ export function setupScene() {
 
   scene.add(new THREE.AmbientLight(0xffffff, 2));
   const dirLight = new THREE.DirectionalLight(0xffffff, 5);
-  dirLight.position.set(0, 5, 0);
+  dirLight.position.set(0, 2, 0);
   scene.add(dirLight);
 
   // Setup event listener to cancel animation on user interaction
@@ -73,6 +73,7 @@ export function setupScene() {
     camera.updateProjectionMatrix();
     renderer.setSize(viewportSize.width, viewportSize.height);
   }
+  
 
   window.addEventListener("resize", handleResize);
 

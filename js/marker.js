@@ -167,7 +167,15 @@ export class QRMarker {
       this.textLabelGroup.quaternion.copy(camera.quaternion);
     }
     if (this.markerModel && camera) {
-      this.markerModel.quaternion.copy(camera.quaternion);
+      // Create a target point at camera level, but same height as model
+      const targetPos = new THREE.Vector3();
+      camera.getWorldPosition(targetPos);
+      
+      const modelPos = new THREE.Vector3();
+      this.markerModel.getWorldPosition(modelPos);
+      
+      targetPos.y = modelPos.y; // Keep target at same horizontal height
+      this.markerModel.lookAt(targetPos);
     }
 
     // grey-out timer

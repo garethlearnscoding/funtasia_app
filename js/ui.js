@@ -61,20 +61,83 @@ export function setupUI(floors) {
     hideBottomSheet();
   });
 
-  document.querySelectorAll(".floor-btn").forEach((btn) => {
-    btn.addEventListener("click", (e) => {
+  const floorSelector = document.getElementById("floor-selector");
+  const floorThumb = document.getElementById("floor-thumb");
+  const floorBtns = Array.from(document.querySelectorAll(".floor-btn"));
+
+  if (floorSelector && floorThumb && floorBtns.length > 0) {
+    let isDragging = false;
+    let activeIndex = 3; // Default to 'L1' which is at index 3 in the DOM
+    
+    function getCSSPadding() {
+      return window.innerWidth <= 768 ? 6 : 8;
+    }
+
+    function updateThumbUI(index) {
+      if (index < 0) index = 0;
+      if (index >= floorBtns.length) index = floorBtns.length - 1;
+      const buttonHeight = floorBtns[0].offsetHeight || 40;
+      const gap = 4;
+      const newTop = getCSSPadding() + (index * (buttonHeight + gap));
+      floorThumb.style.top = `${newTop}px`;
+    }
+
+    // Set initial position
+    updateThumbUI(activeIndex);
+
+    function processInteraction(clientY) {
+      const rect = floorSelector.getBoundingClientRect();
+      const relativeY = clientY - rect.top;
+      
+      const buttonHeight = floorBtns[0].offsetHeight || 40;
+      const step = buttonHeight + 4; // button height + gap
+      const offsetToCenter = getCSSPadding() + (buttonHeight / 2);
+      
+      let index = Math.round((relativeY - offsetToCenter) / step);
+      if (index < 0) index = 0;
+      if (index >= floorBtns.length) index = floorBtns.length - 1;
+      
+      if (index !== activeIndex) {
+        activeIndex = index;
+        updateThumbUI(index);
+        
+        const floorId = floorBtns[index].dataset.floor;
+        if (floors[floorId] && floors[floorId].isLoaded()) {
+           Floor.switchFloor(floorId);
+        }
+      }
+    }
+
+    floorSelector.addEventListener("pointerdown", (e) => {
+      isDragging = true;
+      floorSelector.setPointerCapture(e.pointerId);
+      processInteraction(e.clientY);
+      e.preventDefault();
       e.stopPropagation();
-      const floorId = btn.dataset.floor;
-      if (floors[floorId] && floors[floorId].isLoaded()) Floor.switchFloor(floorId);
+    });
+
+    floorSelector.addEventListener("pointermove", (e) => {
+      if (isDragging) {
+        processInteraction(e.clientY);
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    });
+
+    floorSelector.addEventListener("pointerup", (e) => {
+      if (isDragging) {
+        isDragging = false;
+        floorSelector.releasePointerCapture(e.pointerId);
+        e.preventDefault();
+        e.stopPropagation();
+      }
     });
     
-    btn.addEventListener("touchend", (e) => {
-      e.stopPropagation();
-      e.preventDefault();
-      const floorId = btn.dataset.floor;
-      if (floors[floorId] && floors[floorId].isLoaded()) Floor.switchFloor(floorId);
+    floorSelector.addEventListener("pointercancel", (e) => {
+        isDragging = false;
+        try { floorSelector.releasePointerCapture(e.pointerId); } catch(err) {}
     });
-  });
+  }
 }
 
 

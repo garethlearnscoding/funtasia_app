@@ -19,7 +19,7 @@ export function setupScene() {
   const scene = new THREE.Scene();
 
   const textureLoader = new THREE.TextureLoader();
-  textureLoader.load("./assets/media/galaxy-background.jpg", (texture) => {
+  textureLoader.load("./assets/media/dark-astro-abstract-background.jpg", (texture) => {
     scene.background = texture;
   });
 

@@ -17,7 +17,7 @@ export class Icon {
   };
 
   // State flag for all icons visibility
-  static iconsVisible = true;
+  static iconsVisible = false;
   
   // Track active level to only show icons for the current level
   static activeLevel = null;
@@ -62,7 +62,7 @@ export class Icon {
     this.sprite.scale.set(this.baseScale, this.baseScale, this.baseScale);
     
     // Elevate icon slightly above floor level
-    this.sprite.position.y = 1.0; 
+    this.sprite.position.y = 0.5; 
 
     this.group.add(this.sprite);
     this.group.position.copy(this.position);

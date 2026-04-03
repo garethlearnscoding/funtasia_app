@@ -9,17 +9,18 @@ import { QRMarker } from "./marker.js";
 import { loadFont } from "./font.js";
 import { Icon } from "./icon.js";
 import { AppState } from "./appState.js";
+import { SettingsController } from "./settings.js";
 
 const { scene, camera, renderer, controls } = setupScene();
 
 const floorPaths = {
-  l4: "./assets/models/njc-l1.glb",
-  l3: "./assets/models/njc-l1.glb",
-  l2: "./assets/models/njc-l2.glb",
-  l1: "./assets/models/njc-l1.glb",
-  b1: "./assets/models/njc-b1.glb",
-  b2: "./assets/models/njc-b2.glb",
-  b3: "./assets/models/njc-b3.glb",
+  l4: "./assets/models/v2-31-3/njc-l4-v2-31-3.glb",
+  l3: "./assets/models/v2-31-3/njc-l3-v2-31-3.glb",
+  l2: "./assets/models/v2-31-3/njc-l2-v2-31-3.glb",
+  l1: "./assets/models/v2-31-3/njc-l1-v2-31-3.glb",
+  b1: "./assets/models/v2-31-3/njc-b1-v2-31-3.glb",
+  b2: "./assets/models/v2-31-3/njc-b2-v2-31-3.glb",
+  b3: "./assets/models/v2-31-3/njc-b3-v2-31-3.glb",
 };
 
 const childModelPaths = {
@@ -64,23 +65,18 @@ async function initApp() {
   
   setupUI(floors);
 
-  // Temporary UI button for toggling icons
-  const toggleBtn = document.createElement("button");
-  toggleBtn.innerText = "Toggle Icons";
-  toggleBtn.style.position = "absolute";
-  toggleBtn.style.bottom = "20px";
-  toggleBtn.style.left = "20px";
-  toggleBtn.style.zIndex = "1000";
-  toggleBtn.style.padding = "10px";
-  toggleBtn.style.background = "rgba(255, 255, 255, 0.8)";
-  toggleBtn.style.border = "1px solid #ccc";
-  toggleBtn.style.borderRadius = "5px";
-  toggleBtn.style.cursor = "pointer";
-  
-  toggleBtn.onclick = () => {
-    Icon.state(!Icon.iconsVisible);
-  };
-  document.body.appendChild(toggleBtn);
+  // Initialize modular Settings menu
+  SettingsController.init('settings-content-area');
+  const visualsSection = SettingsController.addSection('Visual Preferences');
+  if (visualsSection) {
+    SettingsController.addToggle(
+      visualsSection,
+      'Show POI Icons',
+      'Toggle 3D points of interest markers',
+      (state) => { Icon.state(state); },
+      Icon.iconsVisible !== false
+    );
+  }
 
   const handleURLQR = () => {
     QRMarker.handleURLQR();

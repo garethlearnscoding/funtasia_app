@@ -161,63 +161,76 @@ body {
 /* === Floor Selector UI === */
 #floor-selector {
   position: fixed;
-  top: 10px;
-  right: 10px;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
   z-index: 10;
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  background: rgba(0, 0, 0, 0.7);
-  padding: 12px;
-  border-radius: 8px;
-  backdrop-filter: blur(10px);
+  gap: 4px;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 8px;
+  border-radius: 30px;
+  backdrop-filter: blur(8px);
+  touch-action: none; /* Disable map scrolling while dragging the floor bar */
+  user-select: none;
 }
 
-.floor-btn {
-  background: rgba(255, 255, 255, 0.1);
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  color: white;
-  padding: 10px 16px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-family: sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  transition: all 0.2s;
-  touch-action: manipulation;
-  -webkit-tap-highlight-color: transparent;
-  min-width: 100px;
-  text-align: center;
-}
-
-.floor-btn:hover {
-  background: rgba(255, 255, 255, 0.2);
-  border-color: rgba(255, 255, 255, 0.4);
-}
-
-.floor-btn.active {
+#floor-thumb {
+  position: absolute;
+  left: 8px;
+  width: 40px;
+  height: 40px;
   background: #ff6b00;
-  border-color: #ff6b00;
-  color: white;
+  border-radius: 50%;
+  z-index: -1;
+  transition: transform 0.15s cubic-bezier(0.2, 0, 0, 1);
   box-shadow: 0 2px 8px rgba(255, 107, 0, 0.4);
 }
 
+.floor-btn {
+  background: transparent;
+  border: none;
+  color: white;
+  padding: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  font-family: sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  transition: color 0.15s;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1; /* keep text above the sliding thumb */
+}
+
 .floor-btn:active {
-  transform: scale(0.95);
+  transform: scale(0.9);
 }
 
 @media (max-width: 768px) {
   #floor-selector {
-    top: 8px;
-    right: 8px;
-    padding: 8px;
-    gap: 6px;
+    right: 10px;
+    padding: 6px;
+    gap: 4px;
+  }
+
+  #floor-thumb {
+    left: 6px;
+    width: 36px;
+    height: 36px;
   }
 
   .floor-btn {
-    padding: 8px 12px;
     font-size: 12px;
-    min-width: 80px;
+    width: 36px;
+    height: 36px;
   }
 }
 

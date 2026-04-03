@@ -15,7 +15,7 @@ const miscColours = {
   "STAIRCASE":0xffffff
 };
 export const zoneColours = {
-  "NONE": 0x000000,
+  "NONE": 0xffe5e7,
   "GREEN": 0x00ff00,
   "BLUE": 0x0066ff,
   "ORANGE":  0xff7700,
@@ -133,6 +133,7 @@ export function parseModel(gltf, floorId, scene) {
     }
 
     if (!isInteractive) return;
+    if (child.userData.ZONE === "NONE") return;
     if (!child.name || child.name === "") {
       child.name = `${floorId}_Object_${objects.length + 1}`;
     }

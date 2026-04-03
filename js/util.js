@@ -4,7 +4,7 @@ import { zoneColours } from "./modelParser.js";
 import { Floor } from "./floor.js";
 
 export function isPointerOverUI(event) {
-  return !!event.target.closest("#bottom-sheet, #close-btn, #floor-selector");
+  return !!event.target.closest("#bottom-sheet, #close-btn, #floor-selector, #directory-modal-wrapper, #settings-modal-wrapper, button, input");
 }
 
 export function performRaycast(appState) {

@@ -1,0 +1,51 @@
+{
+  "Yellow": [
+    {
+      "booth": "Prize Booth",
+      "position": "",
+      "description": "Collect prizes"
+    }
+  ],
+  "Blue": [
+    {
+      "booth": "Dunking Booth",
+      "position": "",
+      "description": "Dunk people"
+    }
+  ],
+  "Red": [
+    {
+      "booth": "Balloon Pop",
+      "position": "",
+      "description": "Pop balloon for prizes"
+    }
+  ],
+  "Purple": [
+    {
+      "booth": "Sports Booth",
+      "position": "",
+      "description": "Learn more about the sports CCA offered in National Junior College"
+    }
+  ],
+  "Brown": [
+    {
+      "booth": "Old Chang Kee Food Truck",
+      "position": "",
+      "description": "Purchase authentic Old Chang Kee finger food"
+    }
+  ],
+  "Orange": [
+    {
+      "booth": "Cold Drinks",
+      "position": "",
+      "description": "Purchase refreshing cold drinks"
+    }
+  ],
+  "Green": [
+    {
+      "booth": "Laser Tag",
+      "position": "",
+      "description": "Participate in a game of laser tag to win some prizes"
+    }
+  ]
+}

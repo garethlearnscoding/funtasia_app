@@ -1,0 +1,44 @@
+Class Marker
+
+
+
+
+Class QRmarker(Marker)
+-- constructor(scene,position, font, greyDelay = 5*60000)
+
+Class Icon(Marker)
+-- constructor(type,position,level)
+
+Class DirectoryMarker(Marker)
+-- constructor(position,level)
+
+
+
+Class Floor
+-- Class Attributes(
+    appstate,
+    childModels,
+    floors,
+    currentFloor,
+    allMarkers  
+)
+-- constructor(id,modelPath,infoDataPath)
+    - sceneModel
+    - interactiveObjects
+    - cameraConfig
+    - markers
+    - icons
+
+
+
+QRmarker vs DirectoryMarker
+- "You are here" vs "<Location>"
+- Ring vs No ring
+- grey out vs no grey out
+
+Class AppState
+
+
+Global Variables
+- List of Icons -> defined in icon.js
+- List of Markers

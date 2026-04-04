@@ -4,78 +4,11 @@
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>The Cartographic Lens - Onboarding</title>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script type="module" src="/src/js/onboarding.js"></script>
+    <link rel="stylesheet" href="/src/css/input.css" />
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-    <script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "secondary-fixed-dim": "#abdf9e",
-                        "on-tertiary": "#fff0e9",
-                        "on-surface": "#242f44",
-                        "secondary-dim": "#2d5927",
-                        "on-error": "#ffefee",
-                        "on-secondary-container": "#2d5a27",
-                        "on-error-container": "#570008",
-                        "primary-dim": "#005861",
-                        "tertiary-fixed": "#ff9655",
-                        "error-dim": "#9f0519",
-                        "inverse-surface": "#030e22",
-                        "on-tertiary-container": "#532200",
-                        "tertiary": "#964300",
-                        "secondary": "#386631",
-                        "on-surface-variant": "#515c73",
-                        "surface-container-low": "#edf0ff",
-                        "tertiary-container": "#ff9655",
-                        "inverse-on-surface": "#929db7",
-                        "outline-variant": "#a2adc8",
-                        "on-tertiary-fixed": "#2d0f00",
-                        "surface": "#f5f6ff",
-                        "on-primary-fixed-variant": "#006771",
-                        "background": "#f5f6ff",
-                        "on-background": "#242f44",
-                        "primary-fixed": "#a1f2fe",
-                        "tertiary-fixed-dim": "#f6853b",
-                        "on-secondary-fixed-variant": "#376430",
-                        "on-secondary": "#d2ffc4",
-                        "on-secondary-fixed": "#1a4716",
-                        "surface-tint": "#00656f",
-                        "outline": "#6c7790",
-                        "error": "#b31b25",
-                        "error-container": "#fb5151",
-                        "surface-container": "#e0e8ff",
-                        "on-primary-container": "#005d65",
-                        "on-tertiary-fixed-variant": "#612900",
-                        "on-primary-fixed": "#004950",
-                        "primary-container": "#a1f2fe",
-                        "surface-container-high": "#d7e2ff",
-                        "surface-container-highest": "#cfddff",
-                        "secondary-container": "#b9eeab",
-                        "surface-container-lowest": "#ffffff",
-                        "tertiary-dim": "#843a00",
-                        "surface-variant": "#cfddff",
-                        "secondary-fixed": "#b9eeab",
-                        "surface-dim": "#c3d5fd",
-                        "on-primary": "#d4f9ff",
-                        "primary-fixed-dim": "#93e4ef",
-                        "inverse-primary": "#a1f2fe",
-                        "surface-bright": "#f5f6ff",
-                        "primary": "#00656f"
-                    },
-                    fontFamily: {
-                        "headline": ["Plus Jakarta Sans"],
-                        "body": ["Manrope"],
-                        "label": ["Manrope"]
-                    },
-                },
-            },
-        }
-    </script>
-    <style>
+        <style>
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
@@ -171,7 +104,7 @@
             >
                 <div class="swipe-hint-inner flex flex-col items-center gap-1.5 bg-white/80 backdrop-blur rounded-2xl px-4 py-3 shadow-lg border border-outline-variant/20">
                     <div class="swipe-hint-hand">
-                        <img src="misc/single-finger-click.svg" class="w-9 h-9 opacity-70" alt="swipe"/>
+                        <img src="/misc/single-finger-click.svg" class="w-9 h-9 opacity-70" alt="swipe"/>
                     </div>
                     <span class="font-label text-[11px] font-semibold text-on-surface-variant tracking-widest uppercase">Swipe</span>
                 </div>

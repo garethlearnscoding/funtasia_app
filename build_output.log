@@ -1,0 +1,17 @@
+[36mvite v6.4.1 [32mbuilding for production...[36m[39m
+transforming...
+[32m✓[39m 7 modules transformed.
+[31m✗[39m Build failed in 110ms
+[31merror during build:
+[31m[@tailwindcss/vite:generate:build] Can't resolve '../modal_directory.css' in 'C:\Users\goofy\Documents\School\Non Academics\Funtasia\funtasia_app\src\css'[31m
+file: [36mC:/Users/goofy/Documents/School/Non Academics/Funtasia/funtasia_app/src/css/input.css[31m
+    at finishWithoutResolve (C:\Users\goofy\Documents\School\Non Academics\Funtasia\funtasia_app\node_modules\enhanced-resolve\lib\Resolver.js:587:18)
+    at C:\Users\goofy\Documents\School\Non Academics\Funtasia\funtasia_app\node_modules\enhanced-resolve\lib\Resolver.js:679:14
+    at C:\Users\goofy\Documents\School\Non Academics\Funtasia\funtasia_app\node_modules\enhanced-resolve\lib\Resolver.js:740:5
+    at eval (eval at create (C:\Users\goofy\Documents\School\Non Academics\Funtasia\funtasia_app\node_modules\tapable\lib\HookCodeFactory.js:31:10), <anonymous>:15:1)
+    at C:\Users\goofy\Documents\School\Non Academics\Funtasia\funtasia_app\node_modules\enhanced-resolve\lib\Resolver.js:740:5
+    at eval (eval at create (C:\Users\goofy\Documents\School\Non Academics\Funtasia\funtasia_app\node_modules\tapable\lib\HookCodeFactory.js:31:10), <anonymous>:27:1)
+    at C:\Users\goofy\Documents\School\Non Academics\Funtasia\funtasia_app\node_modules\enhanced-resolve\lib\DescriptionFilePlugin.js:89:43
+    at C:\Users\goofy\Documents\School\Non Academics\Funtasia\funtasia_app\node_modules\enhanced-resolve\lib\Resolver.js:740:5
+    at eval (eval at create (C:\Users\goofy\Documents\School\Non Academics\Funtasia\funtasia_app\node_modules\tapable\lib\HookCodeFactory.js:31:10), <anonymous>:15:1)
+    at C:\Users\goofy\Documents\School\Non Academics\Funtasia\funtasia_app\node_modules\enhanced-resolve\lib\Resolver.js:740:5[39m

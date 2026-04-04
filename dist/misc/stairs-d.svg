@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+
+<svg
+   fill="#000000"
+   version="1.1"
+   id="Layer_1"
+   width="800px"
+   height="800px"
+   viewBox="0 0 256 222"
+   enable-background="new 0 0 256 222"
+   xml:space="preserve"
+   sodipodi:docname="stairs-d.svg"
+   inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"><defs
+   id="defs1" /><sodipodi:namedview
+   id="namedview1"
+   pagecolor="#ffffff"
+   bordercolor="#111111"
+   borderopacity="1"
+   inkscape:showpageshadow="0"
+   inkscape:pageopacity="0"
+   inkscape:pagecheckerboard="1"
+   inkscape:deskcolor="#d1d1d1"
+   inkscape:zoom="1.45875"
+   inkscape:cx="400.34276"
+   inkscape:cy="345.15853"
+   inkscape:window-width="2560"
+   inkscape:window-height="1369"
+   inkscape:window-x="-8"
+   inkscape:window-y="-8"
+   inkscape:window-maximized="1"
+   inkscape:current-layer="Layer_1" />
+<path
+   d="M 254,74.155 V 219.931 H 2 v -50.852 h 81.363 v -46.332 h 75.713 V 74.155 Z M 17.63,43.264 V 99.016 L 73.382,95.816 54.261,76.722 107.68,23.303 89.646,5.269 36.227,61.888 Z"
+   id="path1"
+   sodipodi:nodetypes="ccccccccccccccccc" />
+</svg>

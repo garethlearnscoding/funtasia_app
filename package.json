@@ -1,12 +1,22 @@
 {
-  "dependencies": {
-    "@tailwindcss/cli": "^4.2.2",
-    "@tailwindcss/container-queries": "^0.1.1",
-    "@tailwindcss/forms": "^0.5.11",
-    "tailwindcss": "^4.2.2"
-  },
+  "name": "funtasia-app",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
   "scripts": {
-    "build:css": "tailwindcss -i ./css/input.css -o ./css/output.css",
-    "watch:css": "tailwindcss -i ./css/input.css -o ./css/output.css --watch"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "three": "^0.172.0",
+    "alpinejs": "^3.14.8"
+  },
+  "devDependencies": {
+    "vite": "^6.0.0",
+    "tailwindcss": "^4.2.2",
+    "@tailwindcss/vite": "^4.2.2",
+    "@tailwindcss/forms": "^0.5.11",
+    "@tailwindcss/container-queries": "^0.1.1"
   }
 }

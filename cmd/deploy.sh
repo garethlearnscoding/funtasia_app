@@ -1,30 +1,41 @@
 #!/bin/bash
 
+set -e  # exit on any error
+
 VERSION=$1
 
-# update version
-npm version $VERSION
+if [ -z "$VERSION" ]; then
+  echo "Usage: ./cmd/deploy.sh <version>"
+  exit 1
+fi
 
-# build
-npm run build
-
-# commit changes
-git add .
-git commit -m "update"
-
-# tag version
-git tag v1.3.0
-git push origin main
-git push origin v1.3.0
-
-# build
-npm run build
-
-# deploy
-git checkout gh-pages
-rm -rf *
-cp -r dist/* .
-git add .
-git commit -m "deploy v1.3.0"
-git push
+# --- MAIN BRANCH: bump version, build, commit, tag, push ---
 git checkout main
+
+npm version "$VERSION" --no-git-tag-version
+npm run build
+
+git add .
+git commit -m "release v$VERSION"
+git tag "v$VERSION"
+git push origin main
+git push origin "v$VERSION"
+
+# --- GH-PAGES BRANCH: replace contents with dist/ ---
+# dist/ is gitignored so it persists after branch switch
+git checkout gh-pages
+
+# Remove all tracked files (leaves untracked dist/ alone)
+git rm -rf .
+
+# Copy built output to root
+cp -r dist/. .
+
+git add .
+git commit -m "deploy v$VERSION"
+git push origin gh-pages
+
+# --- Return to main ---
+git checkout main
+
+echo "✅ Deployed v$VERSION"

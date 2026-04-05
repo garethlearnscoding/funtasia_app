@@ -9,6 +9,8 @@ if [ -z "$VERSION" ]; then
   exit 1
 fi
 
+cd "$(git rev-parse --show-toplevel)"
+
 # --- MAIN BRANCH: bump version, build, commit, tag, push ---
 git checkout main
 

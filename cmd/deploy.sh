@@ -30,8 +30,14 @@ git checkout gh-pages
 # Remove all tracked files (leaves untracked dist/ alone)
 git rm -rf .
 
+# Restore .gitignore so it persists on this branch
+git checkout HEAD -- .gitignore 2>/dev/null || true
+
 # Copy built output to root
 cp -r dist/. .
+
+# Remove the now-redundant dist folder (it's untracked/ignored)
+rm -rf dist/
 
 git add .
 git commit -m "deploy v$VERSION"

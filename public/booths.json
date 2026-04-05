@@ -1,0 +1,22 @@
+{
+  "level_1": [
+    {
+    "booth_id": "w",
+    "booth_name": "wq",
+    "zone": "wq",
+    "position": "qw",
+    "description": "qw",
+    "category": "qw"
+  }
+  ],
+  "level_2": [
+  {
+    "booth_id": "wq",
+    "booth_name": "qwwq",
+    "zone": "qw",
+    "position": "qw",
+    "description": "qw",
+    "category": "qw"
+  }
+  ]
+}

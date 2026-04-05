@@ -27,10 +27,8 @@ git push origin "v$VERSION"
 # dist/ is gitignored so it persists after branch switch
 git checkout gh-pages
 
-# Remove all tracked files (leaves untracked dist/ alone)
+# Remove all tracked files but keep .gitignore
 git rm -rf .
-
-# Restore .gitignore so it persists on this branch
 git checkout HEAD -- .gitignore 2>/dev/null || true
 
 # Copy built output to root

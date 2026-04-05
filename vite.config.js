@@ -5,6 +5,7 @@ import { fileURLToPath, URL } from 'node:url';
 import { resolve } from 'path';
 
 export default defineConfig({
+  base:"/funtasia_app/",  
   plugins: [
     tailwindcss(),
     VitePWA({

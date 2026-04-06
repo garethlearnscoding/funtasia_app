@@ -25,7 +25,7 @@ export default defineConfig({
   },
   assetsInclude: ['**/*.glb'],
   server: {
-    port:3000,
+    port:5317,
     allowedHosts: ["chunky-toaster.seagull-hippocampus.ts.net"]
   },
   build: {

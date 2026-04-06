@@ -232,8 +232,9 @@
     </script>
     <script type="module" src="/src/js/base/main.js"></script>
     <script type="module">
-        import settingsIcon from "@/assets/icons/settings.svg";
-        import directoryDocIcon from "@/assets/icons/directory_button.svg";
+        const BASE = `https://cdn.jsdelivr.net/gh/garethlearnscoding/funtasia_app@${__APP_VERSION__}/public`;
+        const settingsIcon = `${BASE}/icons/settings.svg`;
+        const directoryDocIcon = `${BASE}/icons/directory_button.svg`;
         document.getElementById('settings-icon-img').src = settingsIcon;
         document.getElementById('directory-icon-img').src = directoryDocIcon;
     </script>

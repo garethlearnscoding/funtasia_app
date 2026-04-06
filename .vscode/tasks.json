@@ -27,7 +27,7 @@
     {
       "label": "Tailscale Funnel",
       "type": "shell",
-      "command": "until curl -s -o /dev/null localhost:3000; do sleep 1; done; tailscale funnel 3000",
+      "command": "until curl -s -o /dev/null localhost:5317; do sleep 1; done; tailscale funnel 5317",
       "isBackground": true,
       "presentation": {
         "group": "funtasia-servers",

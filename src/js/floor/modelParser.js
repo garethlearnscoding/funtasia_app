@@ -18,10 +18,10 @@ export const zoneColours = {
   "NONE": 0xffe5e7,
   "GREEN": 0x00ff00,
   "BLUE": 0x0066ff,
-  "ORANGE":  0xff7700,
+  "ORANGE":  0xfab387,
   "PURPLE": 0x9900ff,
-  "YELLOW": 0xffff00,
-  "RED": 0xff0000,
+  "YELLOW": 0xf9e2af,
+  "RED": 0xf38ba8,
 };
 
 let skybox = null;

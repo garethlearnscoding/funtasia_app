@@ -45,6 +45,10 @@ body { min-height: 100dvh; }
     justify-content: center;
 }
 
+div.slide-icon span.material-symbols-outlined {
+    font-size: 45px;
+}
+
 /* Dot indicator — themed with CSS variables */
 .dot {
     width: 8px;

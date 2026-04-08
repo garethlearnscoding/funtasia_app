@@ -71,6 +71,7 @@ export function parseModel(gltf, floorId, scene) {
 
   const objects = [];
   model.traverse((child) => {
+    console.log(child.name)
     console.log(child.geometry)
     if (!child.isMesh) return;
     // IDK if the following 2 lines are needed

@@ -26,7 +26,7 @@ const floorDefs = {
   l4: "models/njc-l4-v2-31-3.glb",
   l3: "models/njc-l3-v2-31-3.glb",
   l2: "models/njc-l2-v2-31-3.glb",
-  l1: "models/test/njc-l1.glb",
+  l1: "models/test/wall.glb",
   b1: "models/njc-b1-v2-31-3.glb",
   b2: "models/njc-b2-v2-31-3.glb",
   b3: "models/njc-b3-v2-31-3.glb",

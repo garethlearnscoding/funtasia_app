@@ -26,7 +26,7 @@ const floorDefs = {
   l4: "models/njc-l4-v2-31-3.glb",
   l3: "models/njc-l3-v2-31-3.glb",
   l2: "models/njc-l2-v2-31-3.glb",
-  l1: "models/test/wall.glb",
+  l1: "models/njc-l1-v2-31-3.glb",
   b1: "models/njc-b1-v2-31-3.glb",
   b2: "models/njc-b2-v2-31-3.glb",
   b3: "models/njc-b3-v2-31-3.glb",
@@ -45,7 +45,7 @@ const mouse = new THREE.Vector2();
 
 export const infoLabel = document.getElementById("info");
 
-const appState = new AppState();
+const appState = new AppState(  );
 appState.scene = scene;
 appState.camera = camera;
 appState.renderer = renderer;

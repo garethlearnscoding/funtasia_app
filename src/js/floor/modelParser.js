@@ -71,9 +71,13 @@ export function parseModel(gltf, floorId, scene) {
 
   const objects = [];
   model.traverse((child) => {
-    console.log(child.name)
-    console.log(child.geometry)
     if (!child.isMesh) return;
+    // console.log(child.name,child.material);
+    if (Array.isArray(child.material)) {
+      console.log(child.material.length);
+    } else {
+      console.log(1); // only one material
+    }
     // IDK if the following 2 lines are needed
     child.castShadow = false;
     child.receiveShadow = false;

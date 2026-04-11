@@ -1,16 +1,7 @@
 import * as THREE from "three";
-import { LocationMarker } from "./marker.js";
 import { LocationMarker } from "@/js/marker/marker.js";
 
-export class QRMarker extends LocationMarker {
-  static knownMarkers = {};
 
-  static storeMarker(qrID, pos, floorId) {
-    QRMarker.knownMarkers[qrID] = { pos, floorId };
-  }
-
-  constructor(position, level, greyDelay = 5 * 60000) {
-    super(position, level, true); // true for text label
 export class QRMarker extends LocationMarker {
   // Static class attribute initialized in main.js
   static appState = null;

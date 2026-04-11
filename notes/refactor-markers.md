@@ -9,7 +9,7 @@ class IconMarker(Marker):
 - indicator overriden by icon sprite
 
 class LocationMarker(Marker):
-- indicator overriden by function that returns (glb, ring & text group)
+- indicator utilises createMarkerGroup
 
 class QRMarker(LocationMarker):
 - indicator renders (glb, ring & text group)

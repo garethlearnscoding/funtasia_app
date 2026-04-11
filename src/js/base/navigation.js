@@ -92,7 +92,7 @@ export class Navigation {
       const now = performance.now();
       
       if (now - startTime < greyDelay) {
-        const marker = new QRMarker(appState.scene, appState.lastScannedInfo.pos, QRMarker.font, greyDelay);
+        const marker = new QRMarker(appState.lastScannedInfo.pos, floorId, greyDelay);
         marker.startTime = startTime;
         appState.activeMarkers.push(marker);
       }
@@ -100,7 +100,7 @@ export class Navigation {
   }
 
   static handleQRID(qrID) {
-    const markerInfo = Floor.allMarkers[qrID];
+    const markerInfo = QRMarker.knownMarkers[qrID];
     if (!markerInfo) {
       console.warn(`Marker ${qrID} not found.`);
       return false;
@@ -118,7 +118,7 @@ export class Navigation {
     Navigation.switchFloor(markerInfo.floorId);
 
     // switchFloor clears activeMarkers, so we add the new one back
-    const marker = new QRMarker(Navigation.appState.scene, markerInfo.pos, QRMarker.font);
+    const marker = new QRMarker(markerInfo.pos, markerInfo.floorId);
     Navigation.appState.activeMarkers = [marker]; // Ensure it's the only one
 
     // Camera animation logic

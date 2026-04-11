@@ -46,9 +46,10 @@ export function startAnimationLoop(appState) {
 
     /*
     Animate icons
-    ?: Icon.animate only animates that level or all icons 
     */
-    Icon.allIcons.forEach(icon => icon.animate(time, appState.camera));
+    Object.values(Icon.iconsByLevel).forEach(levelIcons => {
+      levelIcons.forEach(icon => icon.animate(time, appState.camera));
+    });
     
     appState.renderer.render(appState.scene, appState.camera);
   }

@@ -4,6 +4,7 @@ import { setupUI } from "@/js/base/ui.js";
 import { setupEventListeners } from "@/js/base/event.js";
 import { startAnimationLoop } from "@/js/base/animate.js";
 import { Floor } from "@/js/floor/floor.js";
+import { Marker } from "@/js/marker/marker.js";
 import { QRMarker } from "@/js/marker/qrmarker.js";
 import { loadFont } from "@/js/helper/font.js";
 import { Icon } from "@/js/marker/icon.js";
@@ -54,9 +55,8 @@ appState.raycaster = raycaster;
 appState.mouse = mouse;
 appState.infoLabel = infoLabel;
 
-QRMarker.appState = appState;
+Marker.appState = appState;
 Floor.appState = appState;
-Icon.appState = appState;
 
 Navigation.init(appState);
 
@@ -71,7 +71,7 @@ async function initApp() {
   console.log(`Font: ${font}`);
 
   // Set font as a class attribute so handleURLQR etc. don't need it passed
-  QRMarker.font = font;
+  Marker.font = font;
 
   // No pre-loading — floors are fetched on-demand in Navigation.switchFloor()
   setupUI(Floor.floors, appState);

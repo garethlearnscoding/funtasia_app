@@ -5,8 +5,34 @@ const BASE = ASSETS_BASE_URL;
 const googleMapIconUrl = `${BASE}/icons/google-map-icon.glb`;
 
 export class Marker {
-  constructor() {
-    // Barebone structure
+  static appState = null;
+  static scene = null;
+  static font = null;
+
+  constructor(position, level) {
+    this.appState = Marker.appState;
+    this.scene = Marker.scene || (this.appState ? this.appState.scene : null);
+    
+    this.position = position ? position.clone() : new THREE.Vector3();
+    this.level = level;
+
+    this.group = new THREE.Group();
+    this.group.position.copy(this.position);
+
+    this.indicator = null; // To be populated by subclasses
+
+    if (this.scene) {
+      this.scene.add(this.group);
+    }
+  }
+
+  clear() {
+    if (this.scene) {
+      this.scene.remove(this.group);
+    }
+    
+    // Subclasses should handle disposing geometries and materials of `this.indicator`
+    this.group = null;
   }
 }
 

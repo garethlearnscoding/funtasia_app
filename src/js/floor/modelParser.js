@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import { Icon } from "@/js/marker/icon.js";
 import { Floor } from "@/js/floor/floor.js";
+import { QRMarker } from "@/js/marker/qrmarker.js";
 const miscColours = {
   "BASE": 0x6e7176,
   "DRIVE": 0xa5ccd1,
@@ -88,8 +89,9 @@ export function parseModel(gltf, floorId, scene) {
     if (child.userData.ZONE == undefined) {child.userData.ZONE = "NONE"};
     if (!isInteractive) {
       const isGrey = child.userData.ROLE === "GREY";
+      const colorVal = miscColours[child.userData.ROLE] !== undefined ? miscColours[child.userData.ROLE] : 0xc1c3c7; // default
       child.material = new THREE.MeshStandardMaterial({
-        color: miscColours[child.userData.ROLE],
+        color: colorVal,
         transparent: false,
         opacity: isGrey ? 0 : 1,
         roughness: isGrey ? 0 : 1,
@@ -99,10 +101,8 @@ export function parseModel(gltf, floorId, scene) {
       // Register Markers globally
       if (child.userData.ROLE === "MARKER") {
         const markerId = child.userData.MARKERID;
-        Floor.allMarkers[markerId] = { 
-          pos: child.getWorldPosition(new THREE.Vector3()), 
-          floorId: floorId 
-        };
+        const pos = child.getWorldPosition(new THREE.Vector3());
+        QRMarker.storeMarker(markerId, pos, floorId);
       }
 
       // Collect Icons

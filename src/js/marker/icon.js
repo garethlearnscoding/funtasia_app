@@ -1,11 +1,9 @@
 import * as THREE from "three";
+import { Marker } from "./marker.js";
 
 const BASE = ASSETS_BASE_URL;
 
-export class Icon {
-  // Static class attributes initialized in main.js
-  static appState = null;
-
+export class Icon extends Marker {
   // Class attribute dictionary matching icontype to file path
   // The path points to a folder in assets called icon
   static iconPaths = {
@@ -24,21 +22,14 @@ export class Icon {
   // Track active level to only show icons for the current level
   static activeLevel = null;
 
-  // Track all instances to easily update visibility later
-  static allIcons = [];
-
-  // Static scene to be set once
-  static scene = null;
+  // Track icons mapped by their level
+  static iconsByLevel = {};
 
   constructor(type, position, level) {
-    this.icontype = type;
+    super(position, level);
     
+    this.icontype = type;
     this.iconPath = Icon.iconPaths[this.icontype]; 
-
-    this.position = position.clone();
-    this.level = level;
-
-    this.group = new THREE.Group();
 
     // Use TextureLoader to load high quality PNGs
     const textureLoader = new THREE.TextureLoader();
@@ -52,33 +43,29 @@ export class Icon {
     texture.anisotropy = 16; 
 
     // Using SpriteMaterial / Sprite so the icon always faces the camera (billboarding)
-    // similar to the text in marker.js
     this.material = new THREE.SpriteMaterial({ 
       map: texture, 
       transparent: true,
       depthTest: true // Enable depth test so it can be occluded by walls, or set false to see through walls
     });
 
-    this.sprite = new THREE.Sprite(this.material);
+    this.indicator = new THREE.Sprite(this.material);
     this.baseScale = 0.8;
-    this.sprite.scale.set(this.baseScale, this.baseScale, this.baseScale);
+    this.indicator.scale.set(this.baseScale, this.baseScale, this.baseScale);
     
     // Elevate icon slightly above floor level
-    this.sprite.position.y = 0.5; 
+    this.indicator.position.y = 0.5; 
 
-    this.group.add(this.sprite);
-    this.group.position.copy(this.position);
-    if (Icon.appState && Icon.appState.scene) {
-      Icon.appState.scene.add(this.group);
-    } else {
-      console.warn("Icon.appState.scene is not set. Icon group not added to scene.");
-    }
+    this.group.add(this.indicator);
 
     // Apply the current global visibility state
     this.group.visible = Icon.iconsVisible && this.level === Icon.activeLevel;
 
-    // Track this instance for collective updates
-    Icon.allIcons.push(this);
+    // Track this instance by its level
+    if (!Icon.iconsByLevel[this.level]) {
+      Icon.iconsByLevel[this.level] = [];
+    }
+    Icon.iconsByLevel[this.level].push(this);
   }
 
   // Class method to control visibility state of all icons
@@ -93,22 +80,25 @@ export class Icon {
     Icon.updateVisibility();
   }
 
-  // Helper method to sync visibility across instances
+  // Helper method to sync visibility across instances, optimized for levels
   static updateVisibility() {
-    for (const icon of Icon.allIcons) {
-      if (icon.group) {
-        icon.group.visible = Icon.iconsVisible && icon.level === Icon.activeLevel;
-      }
-    }
+    Object.keys(Icon.iconsByLevel).forEach((level) => {
+      const isLevelActive = (level === Icon.activeLevel);
+      Icon.iconsByLevel[level].forEach((icon) => {
+        if (icon.group) {
+          icon.group.visible = Icon.iconsVisible && isLevelActive;
+        }
+      });
+    });
   }
 
   // Animate method to handle dynamic scaling
   animate(time, camera) {
-    if (!this.group) return;
+    if (!this.group || !this.indicator) return;
 
     // Calculate distance and update scale
     const worldPos = new THREE.Vector3();
-    this.sprite.getWorldPosition(worldPos);
+    this.indicator.getWorldPosition(worldPos);
     const distance = camera.position.distanceTo(worldPos);
     
     const factor = 0.08; 
@@ -123,27 +113,25 @@ export class Icon {
     
     this.group.visible = isVisible;
     if (isVisible) {
-      this.sprite.scale.set(finalScale, finalScale, 1);
+      this.indicator.scale.set(finalScale, finalScale, 1);
     }
   }
 
-  // Cleanup to prevent memory leaks, similar to marker.js
+  // Cleanup to prevent memory leaks
   clear() {
-    if (Icon.appState && Icon.appState.scene) {
-      Icon.appState.scene.remove(this.group);
-    }
+    super.clear(); // handles removing group from scene
 
     if (this.material) {
       if (this.material.map) this.material.map.dispose();
       this.material.dispose();
     }
 
-    // Remove from the static tracking array
-    const index = Icon.allIcons.indexOf(this);
-    if (index > -1) {
-      Icon.allIcons.splice(index, 1);
+    // Remove from the static tracking dictionary
+    if (Icon.iconsByLevel[this.level]) {
+      const index = Icon.iconsByLevel[this.level].indexOf(this);
+      if (index > -1) {
+        Icon.iconsByLevel[this.level].splice(index, 1);
+      }
     }
-
-    this.group = null;
   }
 }

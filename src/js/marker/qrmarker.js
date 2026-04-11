@@ -1,6 +1,16 @@
 import * as THREE from "three";
+import { LocationMarker } from "./marker.js";
 import { LocationMarker } from "@/js/marker/marker.js";
 
+export class QRMarker extends LocationMarker {
+  static knownMarkers = {};
+
+  static storeMarker(qrID, pos, floorId) {
+    QRMarker.knownMarkers[qrID] = { pos, floorId };
+  }
+
+  constructor(position, level, greyDelay = 5 * 60000) {
+    super(position, level, true); // true for text label
 export class QRMarker extends LocationMarker {
   // Static class attribute initialized in main.js
   static appState = null;
@@ -21,6 +31,7 @@ export class QRMarker extends LocationMarker {
     this.startTime = performance.now();
     this.greyDelay = greyDelay;
     this.isGrey = false;
+    this.markerHeight = 0.8;
   }
 
   /**
@@ -29,8 +40,35 @@ export class QRMarker extends LocationMarker {
    * @param {THREE.Camera} camera - The active camera.
    */
   animate(time, camera) {
-    if (!this.group) return;
+    if (!this.group || !this.indicator) return;
 
+    const t = time * 0.003;
+    const markerModel = this.indicator.getObjectByName("markerModel");
+    const textLabelGroup = this.indicator.getObjectByName("textLabelGroup");
+
+    // floating effect
+    if (markerModel) {
+      markerModel.position.y = this.markerHeight + Math.sin(t*0.5) * 0.05;
+    }
+
+    // Billboarding text
+    if (textLabelGroup && camera) {
+      textLabelGroup.quaternion.copy(camera.quaternion);
+    }
+
+    if (markerModel && camera) {
+      // Create a target point at camera level, but same height as model
+      const targetPos = new THREE.Vector3();
+      camera.getWorldPosition(targetPos);
+      
+      const modelPos = new THREE.Vector3();
+      markerModel.getWorldPosition(modelPos);
+      
+      targetPos.y = modelPos.y; // Keep target at same horizontal height
+      markerModel.lookAt(targetPos);
+    }
+
+    // grey-out timer
     super.animate(time, camera);
 
     if (!this.isGrey && time - this.startTime > this.greyDelay) {

@@ -1,18 +1,22 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
-    <title>GLB Hover Interaction</title>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Funtasia 3D Map</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-    <script type="module" crossorigin src="/funtasia_app/assets/map-DGFsSFFM.js"></script>
-    <link rel="modulepreload" crossorigin href="/funtasia_app/assets/input-hP_5oCvb.js">
-    <link rel="stylesheet" crossorigin href="/funtasia_app/assets/input-OjNgCif_.css">
-    <link rel="stylesheet" crossorigin href="/funtasia_app/assets/map-BJur2Iaa.css">
+    <link rel="icon" type="image/vnd.microsoft.icon" href="favicon/favicon.ico"/>
+    <link rel="apple-touch-icon" href="favicon/apple-touch-icon.png">
+    <script type="module" crossorigin src="/funtasia_app/assets/map-DqEqRTWe.js"></script>
+    <link rel="modulepreload" crossorigin href="/funtasia_app/assets/input-BnuY4YPf.js">
+    <link rel="modulepreload" crossorigin href="/funtasia_app/assets/vendor-B6PPP97j.js">
+    <link rel="modulepreload" crossorigin href="/funtasia_app/assets/vendor-three-C4d1l51_.js">
+    <link rel="stylesheet" crossorigin href="/funtasia_app/assets/input-CkOIGQD1.css">
+    <link rel="stylesheet" crossorigin href="/funtasia_app/assets/map-CQH1fyXh.css">
   <link rel="manifest" href="/funtasia_app/manifest.webmanifest"></head>
   <body>
     <div id="canvas-container"></div>
@@ -32,6 +36,7 @@
 
     <!-- Bottom sheet popup -->
     <div id="bottom-sheet">
+      <div id="sheet-handle"></div>
       <button id="close-btn">&times;</button>
       <h2 id="sheet-title">Location Title</h2>
       <p id="sheet-desc">Location description will appear here.</p>
@@ -43,13 +48,23 @@
     </div>
 
     <!-- Settings Open Button -->
-    <button id="open-settings-btn" style="position: fixed; bottom: 96px; right: 20px; z-index: 9999; background: #004b53; width: 64px; height: 64px; border-radius: 50%; cursor: pointer; border: none; box-shadow: 0 4px 12px rgba(0,0,0,0.2); display: flex; align-items: center; justify-content: center; padding: 14px;">
-      <img id="settings-icon-img" alt="Settings" style="width: 100%; height: 100%; object-fit: contain;" />
+    <button id="open-settings-btn" class="fab-btn fab-btn--settings">
+      <span class="material-symbols-outlined text-[20px]">settings</span>
     </button>
 
     <!-- Directory Open Button -->
-    <button id="open-directory-btn" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999; background: #004b53; width: 64px; height: 64px; border-radius: 50%; cursor: pointer; border: none; box-shadow: 0 4px 12px rgba(0,0,0,0.2); display: flex; align-items: center; justify-content: center; padding: 14px;">
-      <img id="directory-icon-img" alt="Directory" style="width: 100%; height: 100%; object-fit: contain;" />
+    <button id="open-directory-btn" class="fab-btn fab-btn--directory">
+      <span class="material-symbols-outlined text-[20px]">menu_book</span>
+    </button>
+
+    <!-- QR Code Scanning Button -->
+     <button id="open-qr-btn" class="fab-btn fab-btn--qr">
+      <span class="material-symbols-outlined text-[20px]">qr_code_scanner</span>
+    </button>
+
+    <!-- Info Button -->
+     <button id="open-info-btn" class="fab-btn fab-btn--info">
+      <span class="material-symbols-outlined text-[20px]">info_i</span>
     </button>
 
     <!-- Settings Modal Wrapper -->
@@ -98,7 +113,7 @@
           <!-- Content Area -->
           <div class="modal-content">
             <!-- Section: IP Open House -->
-            <div class="px-2 mb-6">
+            <div class="px-4 mb-6">
               <div class="modal-search-wrapper">
                 <div class="modal-search-icon-wrapper">
                   <span class="modal-search-icon">search</span>
@@ -107,7 +122,7 @@
               </div>
             </div>
             <section>
-              <div class="px-2 mb-4">
+              <div class="px-4 mb-4">
                 <h2 class="modal-section-title">IP Open House</h2>
               </div>
               <div class="space-y-3">
@@ -144,33 +159,8 @@
               <div class="px-2 mb-4">
                 <h2 class="modal-section-title">Funtasia</h2>
               </div>
-              <div class="space-y-3">
-                <!-- Carousel Item -->
-                <div class="modal-list-item">
-                  <div class="modal-item-icon-wrapper bg-amber-50 text-amber-600">
-                    <span class="material-symbols-outlined" data-icon="toys">toys</span>
-                  </div>
-                  <!-- Accent Bar -->
-                  <div class="modal-item-accent-bar bg-amber-400"></div>
-                  <div class="modal-item-content">
-                    <h3 class="modal-item-title">Carousel</h3>
-                    <p class="modal-item-subtitle">Classic vintage whimsical ride</p>
-                  </div>
-                  <span class="modal-item-chevron">chevron_right</span>
-                </div>
-                <!-- Rollercoaster Item -->
-                <div class="modal-list-item">
-                  <div class="modal-item-icon-wrapper bg-rose-50 text-rose-600">
-                    <span class="material-symbols-outlined" data-icon="rocket">rocket</span>
-                  </div>
-                  <!-- Accent Bar -->
-                  <div class="modal-item-accent-bar bg-rose-500"></div>
-                  <div class="modal-item-content">
-                    <h3 class="modal-item-title">Rollercoaster</h3>
-                    <p class="modal-item-subtitle">High-speed adrenaline circuit</p>
-                  </div>
-                  <span class="modal-item-chevron">chevron_right</span>
-                </div>
+              <div id="funtasia-directory-list" class="space-y-6">
+                <!-- Dynamically populated via directory.js -->
               </div>
             </section>
           </div>
@@ -180,56 +170,82 @@
       </div>
     </div>
 
-    <script>
-      const openDirBtn = document.getElementById('open-directory-btn');
-      const closeDirBtn = document.getElementById('close-directory-btn');
-      const dirModal = document.getElementById('directory-modal-wrapper');
-      const dirBackdrop = document.getElementById('directory-modal-backdrop');
+    <!-- QR Scanner Modal Wrapper -->
+    <div id="qr-modal-wrapper" style="display: none; position: fixed; inset: 0; z-index: 200;">
+      <div class="modal-container" style="position: fixed; inset: 0;">
+        <div class="modal-backdrop" id="qr-modal-backdrop"></div>
+        <div class="modal-card">
+          <!-- Header Section -->
+          <div class="modal-header">
+            <div>
+              <h1 class="modal-title">Scan Location QR</h1>
+              <p class="modal-subtitle">Identify your location</p>
+            </div>
+            <button class="modal-close-btn" id="close-qr-btn">
+              <span class="material-symbols-outlined text-[20px]">close</span>
+            </button>
+          </div>
+          <!-- Content Area -->
+          <div class="modal-content" style="display: flex; flex-direction: column; align-items: center; padding: 24px;">
+            
+            <!-- Toggle Buttons -->
+            <div style="display: flex; width: 100%; max-width: 300px; background: color-mix(in srgb, var(--color-surface-container) 100%, transparent); padding: 6px; border-radius: 12px; margin-bottom: 32px; border: 1px solid color-mix(in srgb, var(--color-on-surface) 10%, transparent);">
+              <button id="qr-toggle-btn" style="flex: 1; padding: 10px; border-radius: 8px; font-weight: 700; font-family: 'JetBrains Mono', monospace; font-size: 13px; display: flex; align-items: center; justify-content: center; gap: 8px; background: var(--color-primary); color: var(--color-on-surface); border: none; transition: all 0.2s;">
+                <span class="material-symbols-outlined text-[18px]">qr_code_scanner</span>
+                QR Code
+              </button>
+              <button id="text-toggle-btn" style="flex: 1; padding: 10px; border-radius: 8px; font-weight: 600; font-family: 'JetBrains Mono', monospace; font-size: 13px; display: flex; align-items: center; justify-content: center; gap: 8px; background: transparent; color: var(--color-on-surface-variant); border: none; transition: all 0.2s;">
+                <span class="material-symbols-outlined text-[18px]">keyboard</span>
+                Text Input
+              </button>
+            </div>
 
-      const openSettingsBtn = document.getElementById('open-settings-btn');
-      const closeSettingsBtn = document.getElementById('close-settings-btn');
-      const settingsModal = document.getElementById('settings-modal-wrapper');
-      const settingsBackdrop = document.getElementById('settings-modal-backdrop');
+            <!-- QR Scanner View -->
+            <div id="qr-scanner-view" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+              <p style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-on-surface-variant); margin-bottom: 12px;">Align within frame</p>
+              <!-- Scanner Placeholder Square -->
+              <div id="qrcode_scanner" style="width: 220px; height: 220px; border: 2px dashed color-mix(in srgb, var(--color-primary) 50%, transparent); border-radius: 16px; display: flex; align-items: center; justify-content: center; background: color-mix(in srgb, var(--color-surface-container-low) 50%, transparent); box-shadow: inset 0 0 20px color-mix(in srgb, var(--color-on-surface) 5%, transparent); margin-bottom: 24px; overflow: hidden; position: relative;">
+                <span class="material-symbols-outlined" style="font-size: 48px; color: var(--color-on-surface-variant); opacity: 0.4;">qr_code_scanner</span>
+              </div>
+              
+              <style>
+                #qrcode_scanner video {
+                  width: 100% !important;
+                  height: 100% !important;
+                  object-fit: cover !important;
+                  border-radius: 16px !important;
+                }
+              </style>
+              
+              <button id="qr-flash-btn" style="width: 100%; max-width: 300px; padding: 14px; border-radius: 12px; background: color-mix(in srgb, var(--color-primary) 15%, transparent); color: var(--color-primary); font-weight: 700; font-family: 'JetBrains Mono', monospace; font-size: 14px; border: 1px solid color-mix(in srgb, var(--color-primary) 30%, transparent); display: flex; justify-content: center; align-items: center; gap: 8px; cursor: pointer; transition: background 0.2s;">
+                <span class="material-symbols-outlined text-[20px]" id="qr-flash-icon">flashlight_off</span>
+                Toggle Flash
+              </button>
+            </div>
 
-      function hideFabButtons() {
-        openDirBtn.style.display = 'none';
-        openSettingsBtn.style.display = 'none';
-      }
+            <!-- Text Input View (Hidden by default) -->
+            <div id="text-input-view" style="width: 100%; display: none; flex-direction: column; align-items: center;">
+              <p style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-on-surface-variant); margin-bottom: 20px;">Enter location code</p>
+              
+              <!-- Funtasia Input Fields -->
+              <div style="display: flex; gap: 8px; margin-bottom: 32px; justify-content: center; width: 100%; align-items: center;">
+                <div style="width: 44px; height: 56px; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 700; border-radius: 10px; background: color-mix(in srgb, var(--color-on-surface) 10%, transparent); color: var(--color-on-surface-variant); font-family: 'JetBrains Mono', monospace;">L</div>
+                <input class="qr-code-input"  inputmode="numeric" maxlength="1" type="text" style="width: 44px; height: 56px; text-align: center; font-size: 24px; font-weight: 700; border-radius: 10px; border: 1px solid color-mix(in srgb, var(--color-primary) 30%, transparent); background: var(--color-surface-container-high); color: var(--color-primary); font-family: 'JetBrains Mono', monospace; outline: none;" />
+                <span style="font-size: 24px; color: var(--color-on-surface-variant); font-weight: 700; margin: 0 4px;">-</span>
+                <div style="width: 44px; height: 56px; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 700; border-radius: 10px; background: color-mix(in srgb, var(--color-on-surface) 10%, transparent); color: var(--color-on-surface-variant); font-family: 'JetBrains Mono', monospace;">M</div>
+                <input class="qr-code-input" inputmode="numeric" maxlength="2" type="text" style="width: 72px; height: 56px; text-align: center; font-size: 24px; font-weight: 700; border-radius: 10px; border: 1px solid color-mix(in srgb, var(--color-primary) 30%, transparent); background: var(--color-surface-container-high); color: var(--color-primary); font-family: 'JetBrains Mono', monospace; outline: none;" />
+              </div>
+              
+              <button id="qr-continue-btn" style="width: 100%; max-width: 300px; padding: 14px; border-radius: 12px; background: color-mix(in srgb, var(--color-surface-container-high) 100%, transparent); color: var(--color-primary); font-weight: 700; font-family: 'JetBrains Mono', monospace; font-size: 14px; border: 1px solid color-mix(in srgb, var(--color-primary) 30%, transparent); display: flex; justify-content: center; align-items: center; gap: 8px; cursor: pointer; transition: background 0.2s;">
+                Continue
+              </button>
+            </div>
 
-      function showFabButtons() {
-        openDirBtn.style.display = 'flex';
-        openSettingsBtn.style.display = 'flex';
-      }
-
-      openDirBtn.addEventListener('click', () => {
-        dirModal.style.display = 'block';
-        hideFabButtons();
-      });
-
-      closeDirBtn.addEventListener('click', () => {
-        dirModal.style.display = 'none';
-        showFabButtons();
-      });
-
-      dirBackdrop.addEventListener('click', () => {
-        dirModal.style.display = 'none';
-        showFabButtons();
-      });
-
-      openSettingsBtn.addEventListener('click', () => {
-        settingsModal.style.display = 'block';
-        hideFabButtons();
-      });
-
-      closeSettingsBtn.addEventListener('click', () => {
-        settingsModal.style.display = 'none';
-        showFabButtons();
-      });
-
-      settingsBackdrop.addEventListener('click', () => {
-        settingsModal.style.display = 'none';
-        showFabButtons();
-      });
-    </script>
+          </div>
+          <div class="modal-footer-fade"></div>
+        </div>
+      </div>
+    </div>
+
   </body>
 </html>

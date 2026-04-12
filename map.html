@@ -246,6 +246,9 @@
 
     <script type="module">
       import { startScanner, stopScanner, toggleTorch } from '/src/js/helper/qrScanner.js';
+      import { Navigation } from '/src/js/base/navigation.js';
+      import { QRMarker } from '/src/js/marker/qrmarker.js';
+      import { showToast } from '/src/js/base/ui.js';
       const openDirBtn = document.getElementById('open-directory-btn');
       const closeDirBtn = document.getElementById('close-directory-btn');
       const dirModal = document.getElementById('directory-modal-wrapper');
@@ -302,10 +305,8 @@
                   currentUrl.searchParams.set('qrID', qrID);
                   window.history.pushState({}, '', currentUrl.toString());
                   
-                  // Dynamically import and trigger navigation
-                  import('/src/js/base/navigation.js').then(({ Navigation }) => {
-                      Navigation.handleQRID(qrID);
-                  });
+                  // Trigger navigation
+                  Navigation.handleQRID(qrID);
                   
                   // Close modal
                   document.getElementById('qr-modal-wrapper').style.display = 'none';
@@ -434,9 +435,6 @@
             console.log(`Manual input qrID: ${qrID}`);
             
             try {
-              const { QRMarker } = await import('/src/js/marker/qrmarker.js');
-              const { Navigation } = await import('/src/js/base/navigation.js');
-              const { showToast } = await import('/src/js/base/ui.js');
               
               let targetID = qrID;
               

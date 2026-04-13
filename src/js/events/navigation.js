@@ -2,7 +2,7 @@ import * as THREE from "three";
 import { Floor } from "@/js/floor/floor.js";
 import { QRMarker } from "@/js/marker/qrmarker.js";
 import { Icon } from "@/js/marker/icon.js";
-import { updateFloorUI, showToast, hideToast } from "@/js/base/ui.js";
+import { updateFloorUI, showToast, hideToast } from "@/js/ui_ux/ui.js";
 
 export class Navigation {
   static appState = null;

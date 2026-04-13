@@ -11,4 +11,4 @@ Certain devices do not expose camera tracks to their web apps, for those that ca
 4. If no camera has flash capabilities, swap the flash button with a string of text informing the user that "Flash is unavailable"
 
 # Take Note
-1. I have tested this on an iphone. The toggle first allows the flash to turn on, however, it breaks when 
+1. I have tested this on an iphone. The toggle first allows the flash to turn on, however, it breaks when the ios version is older than 17.2 but does not work reliably until 18.4

@@ -12,8 +12,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
     <link href="/src/css/input.css" rel="stylesheet"/>
     <script type="module" src="/src/js/helper/pwa.js"></script>
-    <link rel="icon" type="image/vnd.microsoft.icon" href="favicon/favicon.ico"/>
-    <link rel="apple-touch-icon" href="favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon/favicon.ico"/>
+    <link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png">
   </head>
   <body>
     <div id="canvas-container"></div>
@@ -246,9 +246,9 @@
 
     <script type="module">
       import { startScanner, stopScanner, toggleTorch } from '/src/js/helper/qrScanner.js';
-      import { Navigation } from '/src/js/base/navigation.js';
+      import { Navigation } from '/src/js/events/navigation.js';
       import { QRMarker } from '/src/js/marker/qrmarker.js';
-      import { showToast } from '/src/js/base/ui.js';
+      import { showToast } from '/src/js/ui_ux/ui.js';
       const openDirBtn = document.getElementById('open-directory-btn');
       const closeDirBtn = document.getElementById('close-directory-btn');
       const dirModal = document.getElementById('directory-modal-wrapper');

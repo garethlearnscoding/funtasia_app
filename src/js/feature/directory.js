@@ -1,6 +1,6 @@
 import funtasiaData from "@/assets/funtasia_data.json";
-import { Navigation } from "@/js/base/navigation.js";
-import { hideBottomSheet } from "@/js/base/ui.js";
+import { Navigation } from "@/js/events/navigation.js";
+import { hideBottomSheet } from "@/js/ui_ux/ui.js";
 
 export function initDirectory() {
   const container = document.getElementById("funtasia-directory-list");

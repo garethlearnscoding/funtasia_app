@@ -1,8 +1,8 @@
 import * as THREE from "three";
 import { setupScene } from "@/js/base/sceneSetup.js";
-import { setupUI } from "@/js/base/ui.js";
-import { setupEventListeners } from "@/js/base/event.js";
-import { startAnimationLoop } from "@/js/base/animate.js";
+import { setupUI } from "@/js/ui_ux/ui.js";
+import { setupEventListeners } from "@/js/events/event.js";
+import { startAnimationLoop } from "@/js/ui_ux/animate.js";
 import { Floor } from "@/js/floor/floor.js";
 import { Marker } from "@/js/marker/marker.js";
 import { QRMarker } from "@/js/marker/qrmarker.js";
@@ -10,8 +10,8 @@ import { loadFont } from "@/js/helper/font.js";
 import { Icon } from "@/js/marker/icon.js";
 import { AppState } from "@/js/base/appState.js";
 import { SettingsController } from "@/js/base/settings.js";
-import { Navigation } from "@/js/base/navigation.js";
-import { initDirectory } from "@/js/base/directory.js";
+import { Navigation } from "@/js/events/navigation.js";
+import { initDirectory } from "@/js/feature/directory.js";
 
 // Initialize theme from localStorage on page load
 const savedTheme = localStorage.getItem('funtasia-theme');

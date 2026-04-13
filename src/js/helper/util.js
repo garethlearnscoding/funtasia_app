@@ -1,7 +1,7 @@
 import * as THREE from "three";
-import { showBottomSheet } from "@/js/base/ui.js";
+import { showBottomSheet } from "@/js/ui_ux/ui.js";
 import { zoneColours } from "@/js/floor/modelParser.js";
-import { Navigation } from "@/js/base/navigation.js";
+import { Navigation } from "@/js/events/navigation.js";
 
 export function isPointerOverUI(event) {
   return !!event.target.closest("#bottom-sheet, #close-btn, #floor-selector, #directory-modal-wrapper, #settings-modal-wrapper, button, input");

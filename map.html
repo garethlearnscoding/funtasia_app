@@ -1,6 +1,13 @@
 <!doctype html>
 <html lang="en" data-theme="dark">
   <head>
+    <script>
+      // Immediate theme sync to avoid flashing
+      const savedTheme = localStorage.getItem('funtasia-theme');
+      if (savedTheme) {
+        document.documentElement.dataset.theme = savedTheme;
+      }
+    </script>
     <meta charset="UTF-8" />
     <meta
       name="viewport"

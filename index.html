@@ -1,6 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
+    <script>
+      // Immediate theme sync to avoid flashing
+      const savedTheme = localStorage.getItem('funtasia-theme');
+      if (savedTheme) {
+        document.documentElement.dataset.theme = savedTheme;
+      }
+    </script>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>Funtasia 3D Map - Onboarding</title>

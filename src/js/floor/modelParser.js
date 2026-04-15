@@ -73,7 +73,7 @@ export function parseModel(gltf, floorId, scene) {
   const objects = [];
   model.traverse((child) => {
     if (!child.isMesh) return;
-    // console.log(child.name,child.material);
+    // console.log(child.);
     if (Array.isArray(child.material)) {
       console.log(child.material.length);
     } else {

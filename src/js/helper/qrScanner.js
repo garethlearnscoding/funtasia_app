@@ -15,7 +15,7 @@ function hasStaleSettingsBug() {
 }
 
 // Function to cycle cameras and find the best one with torch capabilities
-async function findBestCamera() {
+async function  findBestCamera() {
     if (cachedCameraSetup) return cachedCameraSetup;
 
     try {
@@ -113,10 +113,10 @@ export async function startScanner(successCallback) {
 
     // Cycle through cameras per notes
     const bestCamera = await findBestCamera();
-    let startConfig = { facingMode: "environment" };
+    let startConfig = { facingMode: {exact:"environment"}};
     
     if (bestCamera && bestCamera.deviceId) {
-        startConfig = bestCamera.deviceId;
+        startConfig = { deviceId: {exact: bestCamera.deviceId}};
     }
     
     torchSupported = bestCamera ? bestCamera.hasTorch : false;
@@ -152,6 +152,7 @@ export async function startScanner(successCallback) {
     
     try {
         await html5QrCode.start(
+            // {facingmode:"environment"},
             startConfig, 
             config, 
             (decodedText, decodedResult) => {

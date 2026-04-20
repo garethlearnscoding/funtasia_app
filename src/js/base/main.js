@@ -26,8 +26,8 @@ const { scene, camera, renderer, controls } = setupScene();
 const floorDefs = {
   l4: "models/v2-31-3/njc-l4-v2-31-3.glb",
   l3: "models/v2-31-3/njc-l3-v2-31-3.glb",
-  l2: "models/v2-31-3/njc-l2-v2-31-3.glb",
-  l1: "models/v3-11-3/njc-l1-v2-31-3.glb",
+  l2: "models/v3-11-4/njc-l2.glb",
+  l1: "models/v3-11-4/njc-l1.glb",
   b1: "models/v2-31-3/njc-b1-v2-31-3.glb",
   b2: "models/v2-31-3/njc-b2-v2-31-3.glb",
   b3: "models/v2-31-3/njc-b3-v2-31-3.glb",

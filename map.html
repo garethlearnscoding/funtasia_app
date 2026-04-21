@@ -44,7 +44,13 @@
       <button id="close-btn">&times;</button>
       <h2 id="sheet-title">Location Title</h2>
       <p id="sheet-desc">Location description will appear here.</p>
+      <button id="enter-child-btn" style="display:none; width:100%; padding: 14px; margin-top: 20px; border-radius: 12px; background: color-mix(in srgb, var(--color-primary) 15%, transparent); color: var(--color-primary); font-weight: 700; font-family: 'JetBrains Mono', monospace; font-size: 14px; border: 1px solid color-mix(in srgb, var(--color-primary) 30%, transparent); cursor: pointer; transition: background 0.2s;">Enter Level</button>
     </div>
+
+    <!-- Exit Button for Child Models -->
+    <button id="exit-child-btn" style="display:none; position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%); z-index: 200; padding: 12px 24px; border-radius: 24px; background: var(--color-surface-container-highest); color: var(--color-on-surface); font-weight: bold; font-family: 'JetBrains Mono', monospace; font-size: 14px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); border: 1px solid color-mix(in srgb, var(--color-on-surface) 10%, transparent); align-items: center; justify-content: center; gap: 8px; cursor: pointer;">
+      <span class="material-symbols-outlined text-[18px]">logout</span> Exit Level
+    </button>
 
     <!-- Toast Notification -->
     <div id="toast-popup" class="toast">
@@ -233,11 +239,9 @@
               
               <!-- Funtasia Input Fields -->
               <div style="display: flex; gap: 8px; margin-bottom: 32px; justify-content: center; width: 100%; align-items: center;">
-                <div style="width: 44px; height: 56px; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 700; border-radius: 10px; background: color-mix(in srgb, var(--color-on-surface) 10%, transparent); color: var(--color-on-surface-variant); font-family: 'JetBrains Mono', monospace;">L</div>
-                <input class="qr-code-input"  inputmode="numeric" maxlength="1" type="text" style="width: 44px; height: 56px; text-align: center; font-size: 24px; font-weight: 700; border-radius: 10px; border: 1px solid color-mix(in srgb, var(--color-primary) 30%, transparent); background: var(--color-surface-container-high); color: var(--color-primary); font-family: 'JetBrains Mono', monospace; outline: none;" />
+                <input class="qr-code-input" inputmode="numeric" maxlength="2" type="text" placeholder="00" style="width: 72px; height: 56px; text-align: center; font-size: 24px; font-weight: 700; border-radius: 10px; border: 1px solid color-mix(in srgb, var(--color-primary) 30%, transparent); background: var(--color-surface-container-high); color: var(--color-primary); font-family: 'JetBrains Mono', monospace; outline: none;" />
                 <span style="font-size: 24px; color: var(--color-on-surface-variant); font-weight: 700; margin: 0 4px;">-</span>
-                <div style="width: 44px; height: 56px; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 700; border-radius: 10px; background: color-mix(in srgb, var(--color-on-surface) 10%, transparent); color: var(--color-on-surface-variant); font-family: 'JetBrains Mono', monospace;">M</div>
-                <input class="qr-code-input" inputmode="numeric" maxlength="2" type="text" style="width: 72px; height: 56px; text-align: center; font-size: 24px; font-weight: 700; border-radius: 10px; border: 1px solid color-mix(in srgb, var(--color-primary) 30%, transparent); background: var(--color-surface-container-high); color: var(--color-primary); font-family: 'JetBrains Mono', monospace; outline: none;" />
+                <input class="qr-code-input" inputmode="numeric" maxlength="2" type="text" placeholder="00" style="width: 72px; height: 56px; text-align: center; font-size: 24px; font-weight: 700; border-radius: 10px; border: 1px solid color-mix(in srgb, var(--color-primary) 30%, transparent); background: var(--color-surface-container-high); color: var(--color-primary); font-family: 'JetBrains Mono', monospace; outline: none;" />
               </div>
               
               <button id="qr-continue-btn" style="width: 100%; max-width: 300px; padding: 14px; border-radius: 12px; background: color-mix(in srgb, var(--color-surface-container-high) 100%, transparent); color: var(--color-primary); font-weight: 700; font-family: 'JetBrains Mono', monospace; font-size: 14px; border: 1px solid color-mix(in srgb, var(--color-primary) 30%, transparent); display: flex; justify-content: center; align-items: center; gap: 8px; cursor: pointer; transition: background 0.2s;">
@@ -418,8 +422,8 @@
           // Allow only numbers
           e.target.value = e.target.value.replace(/[^0-9]/g, '');
           
-          if (index === 0 && e.target.value.length === 1) {
-            inputs[1].focus();
+          if (e.target.value.length === 2 && index < inputs.length - 1) {
+            inputs[index + 1].focus();
           }
         });
         input.addEventListener('keydown', (e) => {
@@ -433,12 +437,16 @@
       const continueBtn = document.getElementById('qr-continue-btn');
       if (continueBtn) {
         continueBtn.addEventListener('click', async () => {
-          const levelVal = inputs[0].value.trim();
-          const markerVal = inputs[1].value.trim();
+          const firstVal = inputs[0].value.trim();
+          const secondVal = inputs[1].value.trim();
           
-          if (levelVal && markerVal) {
-            // Construct the ID: l<level>-m<id>
-            const qrID = `l${levelVal}-m${markerVal}`;
+          if (firstVal && secondVal) {
+            // Transform first input: leading 0 → "b", leading 1 → "l"
+            const firstDigit = firstVal.charAt(0);
+            const restDigits = firstVal.slice(1);
+            const prefix = firstDigit === '0' ? 'b' : firstDigit === '1' ? 'l' : firstDigit;
+            const floorPart = `${prefix}${restDigits}`;
+            const qrID = `${floorPart}-m${secondVal}`;
             console.log(`Manual input qrID: ${qrID}`);
             
             try {

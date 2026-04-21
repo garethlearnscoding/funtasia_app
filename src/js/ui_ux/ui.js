@@ -23,10 +23,25 @@ function getLocationInfo(objectName) {
 
 let currentAppState = null;
 
-export function showBottomSheet(objectName) {
+export function showBottomSheet(objectName, childFloorId = null) {
   const locationInfo = getLocationInfo(objectName);
   sheetTitle.textContent = locationInfo.title;
   sheetDesc.textContent = locationInfo.description;
+  
+  const enterBtn = document.getElementById("enter-child-btn");
+  if (enterBtn) {
+    if (childFloorId) {
+      enterBtn.style.display = "block";
+      enterBtn.onclick = () => {
+        Navigation.switchFloor(childFloorId);
+        hideBottomSheet();
+      };
+    } else {
+      enterBtn.style.display = "none";
+      enterBtn.onclick = null;
+    }
+  }
+
   sheet.classList.add("show");
   if (currentAppState) currentAppState.isBottomSheetOpen = true;
 }

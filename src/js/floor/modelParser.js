@@ -71,79 +71,110 @@ export function parseModel(gltf, floorId, scene) {
   };
 
   const objects = [];
+
   model.traverse((child) => {
-    if (!child.isMesh) return;
+    let isSplitChild = false;
+    let logicalNode = child;
 
-    // IDK if the following 2 lines are needed
-    // child.castShadow = false;
-    // child.receiveShadow = false;
-    if (child.userData.ROLE === undefined){
-      console.log("Undefined role:",child.name)
-    };
+    // Resolve userData from parent Group for split meshes
+    if (child.isMesh && (child.name.endsWith("_1") || child.name.endsWith("_2")) && child.parent) {
+      isSplitChild = true;
+      logicalNode = child.parent;
+      if (Object.keys(child.userData).length === 0 && logicalNode.userData) {
+        Object.assign(child.userData, logicalNode.userData);
+      }
+      child.userData.logicalParent = logicalNode;
+    }
+
+    if (child.userData.ROLE === undefined) return;
+
     const isInteractive = child.userData?.ROLE === "OBJECT";
-    if (child.userData.ZONE == undefined) {child.userData.ZONE = "NONE"};
-    if (!isInteractive) {
-      const isGrey = child.userData.ROLE === "GREY";
-      const colorVal = miscColours[child.userData.ROLE] !== undefined ? miscColours[child.userData.ROLE] : 0xc1c3c7; // default
-      child.material = new THREE.MeshBasicMaterial({
-        color: colorVal,
-        transparent: isGrey ? true : false,
-        opacity:isGrey ? 0 : 1,
-      });
+    if (child.userData.ZONE == undefined) { child.userData.ZONE = "NONE"; }
 
-      // Register Markers globally
-      if (child.userData.ROLE === "MARKER") {
-        const markerId = String(child.userData.MARKERID);
-        const pos = child.getWorldPosition(new THREE.Vector3());
-        const entry = { pos, floorId };
-        Floor.allMarkers[markerId] = entry;
-        QRMarker.allMarkers[markerId] = entry;
+    if (!isInteractive) {
+      if (child.isMesh) {
+        const isGrey = child.userData.ROLE === "GREY";
+        const colorVal = miscColours[child.userData.ROLE] !== undefined ? miscColours[child.userData.ROLE] : 0xc1c3c7;
+        child.material = new THREE.MeshBasicMaterial({
+          color: colorVal,
+          transparent: isGrey ? true : false,
+          opacity: isGrey ? 0 : 1,
+        });
       }
 
-      // Collect Icons
-      if (Object.keys(roledict).includes(child.userData.ROLE)) {
-        let normalisedRole = roledict[child.userData.ROLE];
-        if (normalisedRole === "staircase") {
-          switch(child.userData?.STAIRCASEDIRECTION){
-            case "U":
-              normalisedRole = "stair-u";
-              break;
-            case "D":
-              normalisedRole = "stair-d";
-              break;
-            case "UD":
-              normalisedRole = "stair-ud";
-              break;
-            default:
-              normalisedRole = "stair-ud";
-              break;
-          }
-        }
-        if (normalisedRole) {
+      // Only register abstract objects like Markers and Icons at the logical node level
+      // to avoid double registration for split meshes.
+      if (!isSplitChild) {
+        // Register Markers globally
+        if (child.userData.ROLE === "MARKER") {
+          const markerId = String(child.userData.MARKERID);
           const pos = child.getWorldPosition(new THREE.Vector3());
-          new Icon(normalisedRole, pos, floorId);
+          const entry = { pos, floorId };
+          Floor.allMarkers[markerId] = entry;
+          QRMarker.allMarkers[markerId] = entry;
+        }
+
+        // Collect Icons
+        if (Object.keys(roledict).includes(child.userData.ROLE)) {
+          let normalisedRole = roledict[child.userData.ROLE];
+          if (normalisedRole === "staircase") {
+            switch(child.userData?.STAIRCASEDIRECTION){
+              case "U":
+                normalisedRole = "stair-u";
+                break;
+              case "D":
+                normalisedRole = "stair-d";
+                break;
+              case "UD":
+                normalisedRole = "stair-ud";
+                break;
+              default:
+                normalisedRole = "stair-ud";
+                break;
+            }
+          }
+          if (normalisedRole) {
+            const pos = child.getWorldPosition(new THREE.Vector3());
+            new Icon(normalisedRole, pos, floorId);
+          }
         }
       }
     } else {
-      child.material = new THREE.MeshBasicMaterial({
-        color: zoneColours[child.userData.ZONE],
-      });
-      child.userData.material = child.material;
+      if (child.isMesh) {
+        let colorVal = zoneColours[child.userData.ZONE];
+
+        // Derived brightened top colour for `_2` meshes
+        if (child.name.endsWith("_2")) {
+          const baseColor = new THREE.Color(colorVal);
+          baseColor.multiplyScalar(1.2);
+          baseColor.r = Math.min(1.0, baseColor.r);
+          baseColor.g = Math.min(1.0, baseColor.g);
+          baseColor.b = Math.min(1.0, baseColor.b);
+          colorVal = baseColor.getHex();
+        }
+
+        child.material = new THREE.MeshBasicMaterial({
+          color: colorVal,
+        });
+        child.userData.material = child.material;
+      }
     }
 
     if (!isInteractive) return;
     if (child.userData.ZONE === "NONE") return;
-    if (!child.name || child.name === "") {
-      child.name = `${floorId}_Object_${objects.length + 1}`;
+
+    if (!logicalNode.name || logicalNode.name === "") {
+      logicalNode.name = `${floorId}_Object_${objects.length + 1}`;
     }
 
-    if (Floor.childModels && Floor.childModels[child.name]) {
-      child.userData.child = Floor.childModels[child.name];
+    if (Floor.childModels && Floor.childModels[logicalNode.name]) {
+      logicalNode.userData.child = Floor.childModels[logicalNode.name];
     }
 
-    objects.push(child);
+    if (!objects.includes(logicalNode)) {
+      objects.push(logicalNode);
+    }
   });
   
   return { model, interactiveObjects: objects, cameraConfig };
 }
-atriu ghoy tr                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      gityitmzmkvgit add .status

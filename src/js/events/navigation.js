@@ -47,16 +47,45 @@ export class Navigation {
     const isSameFloor = appState.currentFloor && appState.currentFloor.id === floorId;
 
     if (!isSameFloor) {
+      // Store the active selected object to enable deep-back resuming
+      const savedSelection = appState.selected;
+
       // Clear any selected state and camera animations when starting a switch
       if (appState.cameraAnim) {
         appState.cameraAnim.active = false;
       }
 
       if (appState.selected) {
-        if (appState.selected.material && appState.selected.material.emissive) {
-            appState.selected.material.emissive.setHex(0x000000);
-        }
+        appState.selected.traverse((child) => {
+          if (child.isMesh && child.userData.material) {
+            child.material = child.userData.material;
+          }
+        });
         appState.selected = null;
+      }
+
+      const isChildFloor = Object.values(Floor.childModels || {}).includes(floorId);
+      if (appState.currentFloor && !Object.values(Floor.childModels || {}).includes(appState.currentFloor.id)) {
+        appState.previousMainFloorId = appState.currentFloor.id;
+        appState.previousSelectedObject = savedSelection;
+      }
+      
+      const exitBtn = document.getElementById("exit-child-btn");
+      if (exitBtn) {
+        if (isChildFloor) {
+          exitBtn.style.display = "flex";
+          exitBtn.onclick = async () => {
+             const prevObj = appState.previousSelectedObject;
+             await Navigation.switchFloor(appState.previousMainFloorId || "l1");
+             
+             if (prevObj) {
+                const util = await import("@/js/helper/util.js");
+                util.focusOnObject(prevObj, Navigation.appState);
+             }
+          };
+        } else {
+          exitBtn.style.display = "none";
+        }
       }
 
       // Hide all floors first

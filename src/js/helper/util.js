@@ -11,13 +11,26 @@ export function performRaycast(appState) {
   if (!appState.interactiveObjects || appState.interactiveObjects.length === 0) return null;
   appState.raycaster.setFromCamera(appState.mouse, appState.camera);
   const intersects = appState.raycaster.intersectObjects(appState.interactiveObjects, true);
-  return intersects.length > 0 ? intersects[0].object : null;
+  if (intersects.length > 0) {
+    const hit = intersects[0].object;
+    // Resolve child mesh to parent Group if applicable
+    return hit.userData.logicalParent || hit;
+  }
+  return null;
 }
 
 export function applySelection(target, appState) {
   if (appState.selected === target) return;
   
-  if (appState.selected) appState.selected.material = appState.selected.userData.material;
+  if (appState.selected) {
+    // Restore materials on all mesh children
+    appState.selected.traverse((child) => {
+      if (child.isMesh && child.userData.material) {
+        child.material = child.userData.material;
+      }
+    });
+  }
+  
   appState.selected = target;
 
   if (appState.selected) {
@@ -26,35 +39,28 @@ export function applySelection(target, appState) {
     const highlightMaterial = new THREE.MeshBasicMaterial({
       color: emissiveColor,
     });
-    appState.selected.material = highlightMaterial;
+    
+    // Apply highlight to all mesh children
+    appState.selected.traverse((child) => {
+      if (child.isMesh && child.userData.material) {
+        child.material = highlightMaterial;
+      }
+    });
+
     if (appState.infoLabel) appState.infoLabel.textContent = `Selected: ${appState.selected.name}`;
   } else {
     if (appState.infoLabel) appState.infoLabel.textContent = "Select a model";
   }
 }
 
-export function handleInteraction(event, appState) {
-  if (isPointerOverUI(event)) return;
-
-  // New: Differentiate between a simple tap and a long press/drag
-  const pressDuration = Date.now() - appState.pointerStartTime;
-  if (pressDuration > 100) {
-    console.log(`Interaction ignored (duration: ${pressDuration}ms)`);
-    return;
-  }
-
-  const targetObject = performRaycast(appState);
+export function focusOnObject(targetObject, appState) {
   applySelection(targetObject, appState);
 
   if (targetObject) {
-    console.log(`Clicked on: ${targetObject.name}`);
+    console.log(`Focused on: ${targetObject.name}`);
 
-    if (targetObject.userData.child) {
-      Navigation.switchFloor(targetObject.userData.child);
-      return;
-    }
-
-    showBottomSheet(targetObject.name);
+    // Pass the child floor ID if it exists so the UI can show an "Enter" button
+    showBottomSheet(targetObject.name, targetObject.userData.child);
 
     // Camera animation logic
     if (appState.controls) {
@@ -85,9 +91,7 @@ export function handleInteraction(event, appState) {
 
       // 3. Compute new camera position
       // Push back less to angle down more, and push up significantly
-      console.log(objectSize.length());
       const distance = Math.max(objectSize.length(), 2) * 0.8;
-      console.log(objectSize.y);
       const heightOffset = Math.max(objectSize.y, 1) * 1.5 + 5;
       
       const newCamPos = objectCenter.clone()
@@ -99,6 +103,24 @@ export function handleInteraction(event, appState) {
       appState.cameraAnim.cameraTarget.copy(newCamPos);
       appState.cameraAnim.active = true;
     }
+  }
+}
+
+export function handleInteraction(event, appState) {
+  if (isPointerOverUI(event)) return;
+
+  // New: Differentiate between a simple tap and a long press/drag
+  const pressDuration = Date.now() - appState.pointerStartTime;
+  if (pressDuration > 100) {
+    console.log(`Interaction ignored (duration: ${pressDuration}ms)`);
+    return;
+  }
+
+  const targetObject = performRaycast(appState);
+  if (!targetObject) {
+    applySelection(null, appState);
+  } else {
+    focusOnObject(targetObject, appState);
   }
 }
 

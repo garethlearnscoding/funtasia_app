@@ -8,25 +8,21 @@
         document.documentElement.dataset.theme = savedTheme;
       }
     </script>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <title>Funtasia 3D Map</title>
-    <link rel="stylesheet" href="/src/css/main.css" />
+    <link rel="stylesheet" href="/src/css/main.css"/>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
     <link href="/src/css/input.css" rel="stylesheet"/>
     <script type="module" src="/src/js/helper/pwa.js"></script>
-    <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg"/>  
-    <link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg"/>
+    <link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png"/>
   </head>
   <body>
     <div id="canvas-container"></div>
     <div id="info">Hover over the model</div>
 
-    <!-- Floor Selector UI -->
     <div id="floor-selector">
       <div id="floor-thumb"></div>
       <button class="floor-btn" data-floor="l4">L4</button>
@@ -38,7 +34,6 @@
       <button class="floor-btn" data-floor="b3">B3</button>
     </div>
 
-    <!-- Bottom sheet popup -->
     <div id="bottom-sheet">
       <div id="sheet-handle"></div>
       <button id="close-btn">&times;</button>
@@ -47,42 +42,33 @@
       <button id="enter-child-btn" style="display:none; width:100%; padding: 14px; margin-top: 20px; border-radius: 12px; background: color-mix(in srgb, var(--color-primary) 15%, transparent); color: var(--color-primary); font-weight: 700; font-family: 'JetBrains Mono', monospace; font-size: 14px; border: 1px solid color-mix(in srgb, var(--color-primary) 30%, transparent); cursor: pointer; transition: background 0.2s;">Enter Level</button>
     </div>
 
-    <!-- Exit Button for Child Models -->
     <button id="exit-child-btn" style="display:none; position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%); z-index: 200; padding: 12px 24px; border-radius: 24px; background: var(--color-surface-container-highest); color: var(--color-on-surface); font-weight: bold; font-family: 'JetBrains Mono', monospace; font-size: 14px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); border: 1px solid color-mix(in srgb, var(--color-on-surface) 10%, transparent); align-items: center; justify-content: center; gap: 8px; cursor: pointer;">
       <span class="material-symbols-outlined text-[18px]">logout</span> Exit Level
     </button>
 
-    <!-- Toast Notification -->
     <div id="toast-popup" class="toast">
       <span id="toast-message"></span>
     </div>
 
-    <!-- Settings Open Button -->
     <button id="open-settings-btn" class="fab-btn fab-btn--settings">
       <span class="material-symbols-outlined text-[20px]">settings</span>
     </button>
 
-    <!-- Directory Open Button -->
     <button id="open-directory-btn" class="fab-btn fab-btn--directory">
       <span class="material-symbols-outlined text-[20px]">menu_book</span>
     </button>
 
-    <!-- QR Code Scanning Button -->
      <button id="open-qr-btn" class="fab-btn fab-btn--qr">
       <span class="material-symbols-outlined text-[20px]">qr_code_scanner</span>
     </button>
 
-    <!-- Info Button -->
      <button id="open-info-btn" class="fab-btn fab-btn--info">
       <span class="material-symbols-outlined text-[20px]">info_i</span>
     </button>
 
-    <!-- Settings Modal Wrapper -->
     <div id="settings-modal-wrapper" style="display: none; position: fixed; inset: 0; z-index: 200;">
       <div class="modal-container" style="position: fixed; inset: 0;">
-        <!-- Overlay Backdrop -->
         <div class="modal-backdrop" id="settings-modal-backdrop"></div>
-        <!-- Pop-up Card -->
         <div class="modal-card">
           <!-- Header Section -->
           <div class="modal-header">
@@ -97,18 +83,14 @@
           <!-- Content Area -->
           <div class="modal-content" id="settings-content-area">
           </div>
-          <!-- Footer Action Fade -->
           <div class="modal-footer-fade"></div>
         </div>
       </div>
     </div>
 
-    <!-- Directory Modal Wrapper -->
     <div id="directory-modal-wrapper" style="display: none; position: fixed; inset: 0; z-index: 200;">
       <div class="modal-container" style="position: fixed; inset: 0;">
-        <!-- Overlay Backdrop -->
         <div class="modal-backdrop" id="directory-modal-backdrop"></div>
-        <!-- Pop-up Card -->
         <div class="modal-card">
           <!-- Header Section -->
           <div class="modal-header">
@@ -179,7 +161,6 @@
       </div>
     </div>
 
-    <!-- QR Scanner Modal Wrapper -->
     <div id="qr-modal-wrapper" style="display: none; position: fixed; inset: 0; z-index: 200;">
       <div class="modal-container" style="position: fixed; inset: 0;">
         <div class="modal-backdrop" id="qr-modal-backdrop"></div>

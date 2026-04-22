@@ -179,35 +179,25 @@
           <div class="modal-content" style="display: flex; flex-direction: column; align-items: center; padding: 24px;">
             
             <!-- Toggle Buttons -->
-            <div style="display: flex; width: 100%; max-width: 300px; background: color-mix(in srgb, var(--color-surface-container) 100%, transparent); padding: 6px; border-radius: 12px; margin-bottom: 32px; border: 1px solid color-mix(in srgb, var(--color-on-surface) 10%, transparent);">
-              <button id="qr-toggle-btn" style="flex: 1; padding: 10px; border-radius: 8px; font-weight: 700; font-family: 'JetBrains Mono', monospace; font-size: 13px; display: flex; align-items: center; justify-content: center; gap: 8px; background: var(--color-ctp-mauve); color: var(--color-on-surface); border: none; transition: all 0.2s;">
+            <div id="qr-toggle-selector-container">
+              <button id="qr-toggle-btn" class="qr-toggle-selector" style="background: var(--color-ctp-mauve);">
                 <span class="material-symbols-outlined text-[18px]">qr_code_scanner</span>
                 QR Code
               </button>
-              <button id="text-toggle-btn" style="flex: 1; padding: 10px; border-radius: 8px; font-weight: 600; font-family: 'JetBrains Mono', monospace; font-size: 13px; display: flex; align-items: center; justify-content: center; gap: 8px; background: transparent; color: var(--color-on-surface-variant); border: none; transition: all 0.2s;">
+              <button id="text-toggle-btn" class="qr-toggle-selector">
                 <span class="material-symbols-outlined text-[18px]">keyboard</span>
                 Text Input
               </button>
             </div>
 
             <!-- QR Scanner View -->
-            <div id="qr-scanner-view" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
-              <p style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-on-surface-variant); margin-bottom: 12px;">Align within frame</p>
+            <div id="qr-scanner-view">
+              <p>Align within frame</p>
               <!-- Scanner Placeholder Square -->
-              <div id="qrcode_scanner" style="width: 220px; height: 220px; border: 2px dashed color-mix(in srgb, var(--color-ctp-mauve) 50%, transparent); border-radius: 16px; display: flex; align-items: center; justify-content: center; background: color-mix(in srgb, var(--color-surface-container-low) 50%, transparent); box-shadow: inset 0 0 20px color-mix(in srgb, var(--color-on-surface) 5%, transparent); margin-bottom: 24px; overflow: hidden; position: relative;">
+              <div id="qrcode_scanner">
                 <span class="material-symbols-outlined" style="font-size: 48px; color: var(--color-on-surface-variant); opacity: 0.4;">qr_code_scanner</span>
               </div>
-              
-              <style>
-                #qrcode_scanner video {
-                  width: 100% !important;
-                  height: 100% !important;
-                  object-fit: cover !important;
-                  border-radius: 16px !important;
-                }
-              </style>
-              
-              <button id="qr-flash-btn" style="width: 100%; max-width: 300px; padding: 14px; border-radius: 12px; background: color-mix(in srgb, var(--color-ctp-mauve) 15%, transparent); color: var(--color-ctp-mauve); font-weight: 700; font-family: 'JetBrains Mono', monospace; font-size: 14px; border: 1px solid color-mix(in srgb, var(--color-ctp-mauve) 30%, transparent); display: flex; justify-content: center; align-items: center; gap: 8px; cursor: pointer; transition: background 0.2s;">
+              <button id="qr-flash-btn">
                 <span class="material-symbols-outlined text-[20px]" id="qr-flash-icon">flashlight_off</span>
                 Toggle Flash
               </button>
@@ -362,13 +352,8 @@
         textInputView.style.display = 'none';
         
         qrToggleBtn.style.background = 'var(--color-ctp-mauve)';
-        qrToggleBtn.style.color = 'var(--color-on-surface)';
-        qrToggleBtn.style.fontWeight = '700';
 
         textToggleBtn.style.background = 'transparent';
-        textToggleBtn.style.color = 'var(--color-on-surface-variant)';
-        textToggleBtn.style.fontWeight = '600';
-        
         startScanner(handleQRSuccess);
         clearTextInputs();
       });
@@ -378,13 +363,8 @@
         textInputView.style.display = 'flex';
 
         textToggleBtn.style.background = 'var(--color-ctp-mauve)';
-        textToggleBtn.style.color = 'var(--color-on-surface)';
-        textToggleBtn.style.fontWeight = '700';
 
         qrToggleBtn.style.background = 'transparent';
-        qrToggleBtn.style.color = 'var(--color-on-surface-variant)';
-        qrToggleBtn.style.fontWeight = '600';
-        
         stopScanner();
       });
       

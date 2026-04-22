@@ -9,7 +9,7 @@
         @apply relative z-50 flex flex-col h-full items-center justify-center p-4;
     }
     .modal-backdrop {
-        @apply fixed inset-0 backdrop-blur-[4px];
+        @apply fixed inset-0 backdrop-blur-xs;
         background: color-mix(in srgb, var(--color-on-surface) 40%, transparent);
     }
     .modal-card {

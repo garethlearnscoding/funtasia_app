@@ -32,30 +32,8 @@
 }
 
 
-/*
- * Tailwind v4 @ theme — values reference CSS custom properties from theme.css
- * so utilities auto-switch between Latte (light) and Mocha (dark).
- *
- * The actual hex values here are the LIGHT defaults. When data-theme="dark"
- * is set, theme.css overrides every --color-* variable and Tailwind utilities
- * automatically pick up the new values.
- */
+/* Tailwind v4 @ theme — values reference CSS custom properties */
 @theme {
-  /* ── Outline ───────────────────────────────── */
-  --color-outline:                   var(--color-outline);
-  --color-outline-variant:           var(--color-outline-variant);
-
-  /* ── Error ─────────────────────────────────── */
-  --color-error:                     var(--color-error);
-  --color-on-error:                  var(--color-on-error);
-  --color-error-container:           var(--color-error-container);
-  --color-on-error-container:        var(--color-on-error-container);
-
-  /* ── Inverse ───────────────────────────────── */
-  --color-inverse-surface:           var(--color-inverse-surface);
-  --color-inverse-on-surface:        var(--color-inverse-on-surface);
-  --color-inverse-primary:           var(--color-inverse-primary);
-
   /* ── Typography ────────────────────────────── */
   --font-headline: "JetBrains Mono", monospace;
   --font-body: "JetBrains Mono", monospace;

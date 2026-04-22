@@ -2,7 +2,6 @@
 @plugin "@tailwindcss/forms";
 @plugin "@tailwindcss/container-queries";
 
-/* @import "./theme.css"; */
 @import "@catppuccin/tailwindcss/mocha.css";
 @import "./modal.css";
 

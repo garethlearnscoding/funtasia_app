@@ -14,7 +14,6 @@
     }
     .modal-card {
         @apply relative w-[85vw] h-[90vh] backdrop-blur-[20px] overflow-hidden flex flex-col bg-ctp-surface0 text-ctp-text;
-        /* background: color-mix(in srgb, var(--color-surface-container) 92%, transparent); */
         border-radius: 2rem;
         /* Ghost border per §4 — outline-variant at 15% opacity */
         border: 1px solid color-mix(in srgb, var(--color-outline-variant) 15%, transparent);

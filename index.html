@@ -18,8 +18,8 @@
     <div x-data="onboarding" class="flex flex-col h-full">
         <header class="shrink-0 flex items-center justify-between px-6 h-16">
             <div class="flex items-center gap-2">
-                <span class="material-symbols-outlined text-primary">map</span>
-                <span class="font-headline font-bold text-lg text-primary">Funtasia 3D Map</span>
+                <img class="h-6" alt="logo" src="/favicon/favicon.svg">
+                <span class="font-headline font-bold text-lg text-ctp-text">Funtasia 3D Map</span>
             </div>
             <button
                 x-show="current < total - 1"
@@ -74,68 +74,78 @@
                             <div class="swipe-hint-hand">
                                 <img id="swipe-hint-img" class="w-9 h-9 opacity-70" alt="swipe"/>
                             </div>
-                            <span class="font-label text-[11px] font-semibold text-on-surface-variant tracking-widest uppercase">Swipe</span>
+                            <span class="font-label text-[11px] font-semibold text-ctp-subtext1 tracking-widest uppercase">Swipe</span>
                         </div>
                     </div>
                     <h2 class="slide-title">Welcome to</h2>
                     <div id="logo-container"></div>
-                    <p class="slide-desc">Discover the fun game booths and shop booths with this 3D Digital Map!</p>
+                    <p class="slide-desc">Discover the fun game booths and shop booths with this 3D digital map!</p>
                 </div>
                 <!-- Card 2 -->
                 <div class="slide-card">
-                    <div class="slide-icon bg-secondary-container">
-                        <span class="material-symbols-outlined text-secondary text-5xl" style="font-variation-settings:'FILL' 1">qr_code_scanner</span>
+                    <div class="slide-icon bg-ctp-mauve-200">
+                        <span class="material-symbols-outlined text-ctp-text text-5xl">qr_code_scanner</span>
                     </div>
                     <div>
                         <h2 class="slide-title">QR Markers</h2>
-                        <p class="slide-desc">Scan the QR markers placed around Funtasia to find out where you are!</p>
+                        <p class="slide-desc">Use the built in QR scanners to scan the QR markers placed around NJC to find out where you are!</p>
                     </div>
                 </div>
                 <!-- Card 3 -->
                 <div class="slide-card">
-                    <div class="slide-icon bg-tertiary-container">
-                        <span class="material-symbols-outlined text-on-tertiary-container text-5xl" style="font-variation-settings:'FILL' 1">arrows_output</span>
+                    <div class="slide-icon bg-ctp-blue-200">
+                        <span class="material-symbols-outlined text-ctp-text text-5xl">arrows_output</span>
                     </div>
                     <div>
                         <h2 class="slide-title">Movement</h2>
-                        <p class="slide-desc">Use 1 finger to move around and 2 fingers to zoom</p>
+                        <p class="slide-desc">Use 1 finger to pan and 2 fingers to zoom.</p>
                     </div>
                 </div>
                 <!-- Card 4 -->
                 <div class="slide-card">
-                    <div class="slide-icon bg-primary-fixed-dim">
-                        <span class="material-symbols-outlined text-on-primary-fixed text-5xl" style="font-variation-settings:'FILL' 1">settings</span>
+                    <div class="slide-icon bg-ctp-surface1">
+                        <span class="material-symbols-outlined text-ctp-text text-5xl">settings</span>
                     </div>
                     <div>
                         <h2 class="slide-title">Settings</h2>
-                        <p class="slide-desc">Click the settings button on the bottom right for settings, including theme</p>
+                        <p class="slide-desc">Click <span class="material-symbols-outlined inline-icon">settings</span> on the bottom right for settings, including light/dark mode.</p>
                     </div>
                 </div>
                 <!-- Card 5 -->
                 <div class="slide-card">
-                    <div class="slide-icon bg-secondary-fixed-dim">
-                        <span class="material-symbols-outlined text-on-secondary-fixed text-5xl" style="font-variation-settings:'FILL' 1">list</span>
+                    <div class="slide-icon bg-ctp-green-200">
+                        <span class="material-symbols-outlined text-on-secondary-fixed text-5xl">menu_book</span>
                     </div>
                     <div>
                         <h2 class="slide-title">Directory</h2>
-                        <p class="slide-desc">Find booths in the directory by clicking the <span class="material-symbols-outlined">search</span> in the bottom right corner</p>
+                        <p class="slide-desc">Find booths in the directory by clicking <span class="material-symbols-outlined inline-icon">menu_book</span> in the bottom right corner.</p>
                     </div>
                 </div>
-                <!-- Card 6 — Final (non-swipeable) -->
+                <!-- Card 6 -->
                 <div class="slide-card">
-                    <div class="relative p-8 bg-surface-container rounded-full">
-                        <div class="absolute inset-0 bg-primary/10 rounded-full animate-ping opacity-25"></div>
-                        <span class="material-symbols-outlined text-primary text-6xl relative z-10" style="font-variation-settings:'FILL' 1">rocket_launch</span>
+                    <div class="slide-icon bg-ctp-lavender-200">
+                        <span class="material-symbols-outlined text-on-secondary-fixed text-5xl">stairs</span>
+                    </div>
+                    <div>
+                        <h2 class="slide-title">Level selector</h2>
+                        <p class="slide-desc">Use the level selector on the right to switch between levels.</p>
+                    </div>
+                </div>
+                <!-- Card 7 — Final (non-swipeable) -->
+                <div class="slide-card">
+                    <div class="relative p-8 bg-ctp-mauve-50 w-22 h-22 items-center justify-center rounded-full">
+                        <div class="absolute inset-0 bg-ctp-surface0 rounded-full animate-ping opacity-25"></div>
+                        <span class="material-symbols-outlined text-ctp-text text-6xl relative z-10"  style="font-variation-settings:'FILL' 1">rocket_launch</span>
                     </div>
                     <div>
                         <h2 class="slide-title">Ready to Explore?</h2>
-                        <p class="slide-desc">The world is waiting. Let's start the journey.</p>
+                        <p class="slide-desc">Funtasia is waiting! Let's go!</p>
                     </div>
                     <button
                         @click="goTo('map')"
-                        class="w-full max-w-xs bg-primary text-on-primary font-headline font-bold py-4 rounded-full shadow-lg shadow-primary/20 flex items-center justify-center gap-2 active:scale-95 transition-transform"
+                        class="w-full max-w-xs bg-ctp-mauve text-ctp-base font-headline font-bold py-4 rounded-full shadow-lg flex items-center justify-center gap-2 active:scale-95 transition-transform"
                     >
-                        Enter Map App
+                        Go to map
                         <span class="material-symbols-outlined">arrow_forward</span>
                     </button>
                 </div>

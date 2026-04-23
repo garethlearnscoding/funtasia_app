@@ -7,7 +7,7 @@ window.Alpine = Alpine;
 // Canonical Alpine v3 component registration
 Alpine.data('onboarding', () => ({
     current: 0,
-    total: 6,
+    total: 7,
     dragging: false,
     startX: 0,
     dragX: 0,

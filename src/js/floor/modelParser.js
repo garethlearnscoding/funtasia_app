@@ -3,36 +3,32 @@ import { Icon } from "@/js/marker/icon.js";
 import { Floor } from "@/js/floor/floor.js";
 import { QRMarker } from "@/js/marker/qrmarker.js";
 
-function getColor(colorName, defaultColor) {
+function getColor(colorName) {
   const documentStyle = getComputedStyle(document.documentElement);
-  let colorString = documentStyle.getPropertyValue(colorName)
-  if (colorString) {
-    return Number("0x" + colorString.slice(1))
-  } else {
-    return defaultColor
-  }
+  let colorString = documentStyle.getPropertyValue(colorName);
+  return Number("0x" + colorString.slice(1))
 }
 
 const miscSchema = {
-  "BASE":      ['--color-ctp-base', 0x1e1e2e],
-  "DRIVE":     ['--color-ctp-surface2', 0xa5ccd1],
-  "FOOT":      ['--color-ctp-flamingo', 0xe6c19f],
-  "GRASS":     ['--color-ctp-green-900', 0x9dcb6f],
-  "NONOBJECT": ['--color-ctp-flamingo-950', 0xc1c3c7],
-  "FTOILET":   ['--color-ctp-pink', 0xff8afe],
-  "MTOILET":   ['--color-ctp-lavender', 0x1b17eb],
-  "ATOILET":   ['--color-ctp-sky', 0x5ce1e6],
-  "LIFT":      ['--colot-ctp-overlay1', 0xb0b0b0],
+  "BASE":      '--color-ctp-surface0',
+  "DRIVE":     '--color-ctp-surface2',
+  "FOOT":      '--color-ctp-flamingo',
+  "GRASS":     '--color-ctp-green-900',
+  "NONOBJECT": '--color-ctp-flamingo-950',
+  "FTOILET":   '--color-ctp-pink',
+  "MTOILET":   '--color-ctp-lavender',
+  "ATOILET":   '--color-ctp-sky',
+  "LIFT":      '--colot-ctp-overlay1',
 };
 
 const zoneSchema = {
-  "NONE":   ['--color-ctp-rosewater-700', 0xffe5e7],
-  "GREEN":  ['--color-ctp-green-300', 0x00ff00],
-  "BLUE":   ['--color-ctp-blue-600', 0x0066ff],
-  "ORANGE": ['--color-ctp-peach-400', 0xfab387],
-  "PURPLE": ['--color-ctp-mauve', 0x9900ff],
-  "YELLOW": ['--color-ctp-yellow', 0xf9e2af],
-  "RED":    ['--color-ctp-red', 0xf38ba8],
+  "NONE":   '--color-ctp-rosewater-700',
+  "GREEN":  '--color-ctp-green-300',
+  "BLUE":   '--color-ctp-blue-600',
+  "ORANGE": '--color-ctp-peach-400',
+  "PURPLE": '--color-ctp-mauve',
+  "YELLOW": '--color-ctp-yellow',
+  "RED":    '--color-ctp-red',
 };
 
 // Maps for runtime color lookup, initialized with static colors.
@@ -41,8 +37,8 @@ export const zoneColours = {};
 
 // Helper to update color maps from schemas.
 function refreshPalette(target, schema) {
-  for (const [key, [cssVar, fallback]] of Object.entries(schema)) {
-    target[key] = getColor(cssVar, fallback);
+  for (const [key, cssVar] of Object.entries(schema)) {
+    target[key] = getColor(cssVar);
   }
 }
 

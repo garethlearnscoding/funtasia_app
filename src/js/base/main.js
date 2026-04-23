@@ -13,12 +13,6 @@ import { SettingsController } from "@/js/base/settings.js";
 import { Navigation } from "@/js/events/navigation.js";
 import { initDirectory, fetchDirectoryData, setDirectoryData } from "@/js/feature/directory.js";
 
-// Initialize theme from localStorage on page load
-const savedTheme = localStorage.getItem('funtasia-theme');
-if (savedTheme) {
-  document.documentElement.dataset.theme = savedTheme;
-}
-
 const { scene, camera, renderer, controls } = setupScene();
 
 // Register all floors with their relative CDN paths (no static imports needed).

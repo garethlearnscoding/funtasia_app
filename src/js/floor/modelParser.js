@@ -28,7 +28,7 @@ export const zoneColours = {
 let skybox = null;
 let maxRadius = 0;
 
-export function parseModel(gltf, floorId, scene) {
+export function parseModel(gltf, floorId, scene, funtasiaData) {
   const roledict = {
     "ATOILET": "atoilet",
     "MTOILET": "mtoilet",
@@ -71,6 +71,7 @@ export function parseModel(gltf, floorId, scene) {
   };
 
   const objects = [];
+  model.updateMatrixWorld(true);
 
   model.traverse((child) => {
     let isSplitChild = false;
@@ -165,6 +166,17 @@ export function parseModel(gltf, floorId, scene) {
 
     if (!logicalNode.name || logicalNode.name === "") {
       logicalNode.name = `${floorId}_Object_${objects.length + 1}`;
+    }
+
+    if (funtasiaData && funtasiaData[floorId] && funtasiaData[floorId][logicalNode.name]) {
+        const entry = funtasiaData[floorId][logicalNode.name];
+        if (entry["Booth Name"] && entry["Booth Name"] !== "-") {
+            logicalNode.name = entry["Booth Name"];
+        }
+        if (entry["Booth Description"]) {
+            logicalNode.userData.boothDescription = entry["Booth Description"];
+        }
+        entry["Location"] = logicalNode.getWorldPosition(new THREE.Vector3());
     }
 
     if (Floor.childModels && Floor.childModels[logicalNode.name]) {

@@ -23,10 +23,10 @@ function getLocationInfo(objectName) {
 
 let currentAppState = null;
 
-export function showBottomSheet(objectName, childFloorId = null) {
+export function showBottomSheet(objectName, childFloorId = null, description = null) {
   const locationInfo = getLocationInfo(objectName);
   sheetTitle.textContent = locationInfo.title;
-  sheetDesc.textContent = locationInfo.description;
+  sheetDesc.textContent = description ? description : locationInfo.description;
   
   const enterBtn = document.getElementById("enter-child-btn");
   if (enterBtn) {
@@ -49,6 +49,7 @@ export function showBottomSheet(objectName, childFloorId = null) {
 export function hideBottomSheet() {
   sheet.classList.remove("show");
   if (currentAppState) currentAppState.isBottomSheetOpen = false;
+  window.dispatchEvent(new Event('bottomsheetclose'));
 }
 
 export function hideToast() {

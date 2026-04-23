@@ -2,7 +2,8 @@ import {
   isPointerOverUI, 
   handleInteraction, 
   updateMousePosition, 
-  updateMouseFromTouch 
+  updateMouseFromTouch,
+  applySelection
 } from "@/js/helper/util.js";
 
 export function setupEventListeners(appState) {
@@ -137,5 +138,9 @@ export function setupEventListeners(appState) {
     if (appState.cameraAnim && appState.cameraAnim.active) {
       appState.cameraAnim.active = false;
     }
+  });
+
+  window.addEventListener("bottomsheetclose", () => {
+    applySelection(null, appState);
   });
 }

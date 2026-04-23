@@ -1,127 +1,92 @@
 {
-  "l1": [
-    {
-      "Level": "l1",
-      "Booth ID": "O1",
+  "l1": {
+    "O1": {
       "Booth Name": "Go Kart",
       "Tags": "Game",
       "Zone": "Orange",
       "Booth Description": "Feel the thrill of the track",
       "Location": ""
     },
-    {
-      "Level": "l1",
-      "Booth ID": "O2",
+    "O2": {
       "Booth Name": "PA Busking Booth",
       "Tags": "Performance",
       "Zone": "Orange",
       "Booth Description": "Show off your talent or cheer local performers",
       "Location": ""
     },
-    {
-      "Level": "l1",
-      "Booth ID": "O3",
+    "O3": {
       "Booth Name": "First Aid Station 2",
       "Tags": "",
       "Zone": "Orange",
       "Booth Description": "Here to help with bumps and scrapes",
       "Location": ""
     },
-    {
-      "Level": "l1",
-      "Booth ID": "O4",
+    "O4": {
       "Booth Name": "Info Counter",
       "Tags": "",
       "Zone": "Orange",
       "Booth Description": "Your one-stop for event questions and maps",
       "Location": ""
     },
-    {
-      "Level": "l1",
-      "Booth ID": "O5",
+    "O5": {
       "Booth Name": "Ticket Counter",
       "Tags": "",
       "Zone": "Orange",
       "Booth Description": "Grab your tickets here",
       "Location": ""
     }
-  ],
-  "l2": [
-    {
-      "Level": "l2",
-      "Booth ID": "TA11",
+  },
+  "l2": {
+    "TA11": {
       "Booth Name": "Just Dance",
       "Tags": "Game",
       "Zone": "Yellow",
       "Booth Description": "Bust a move and follow the on-screen choreography",
       "Location": ""
     },
-    {
-      "Level": "l2",
-      "Booth ID": "TA12",
+    "TA12": {
       "Booth Name": "LA Booth",
       "Tags": "Acad",
       "Zone": "Yellow",
       "Booth Description": "Discover interactive learning activities",
       "Location": ""
     },
-    {
-      "Level": "l2",
-      "Booth ID": "TA13",
+    "TA13": {
       "Booth Name": "Mathematics Booth",
       "Tags": "Acad",
       "Zone": "Yellow",
       "Booth Description": "Solve puzzles and number games for prizes",
       "Location": ""
     },
-    {
-      "Level": "l2",
-      "Booth ID": "TA14",
+    "TA14": {
       "Booth Name": "Aesthetics Booth",
       "Tags": "Acad",
       "Zone": "Yellow",
       "Booth Description": "Explore art, design, and creative expression",
       "Location": ""
     },
-    {
-      "Level": "l2",
-      "Booth ID": "TA15",
+    "TA15": {
       "Booth Name": "Humanities Booth",
       "Tags": "Acad",
       "Zone": "Yellow",
       "Booth Description": "Dive into history, culture, and big ideas",
       "Location": ""
     },
-    {
-      "Level": "l2",
-      "Booth ID": "TA16",
+    "TA16": {
       "Booth Name": "Science Booth",
       "Tags": "Acad",
       "Zone": "Yellow",
       "Booth Description": "Hands-on experiments and cool demonstrations",
       "Location": ""
     },
-    {
-      "Level": "l2",
-      "Booth ID": "TA17",
+    "TA17": {
       "Booth Name": "Mother Tongue Booth",
       "Tags": "Acad",
       "Zone": "Yellow",
       "Booth Description": "Celebrate languages and cultural stories",
       "Location": ""
     },
-    {
-      "Level": "l2",
-      "Booth ID": "TA18",
-      "Booth Name": "Popsicles and Ice Cream",
-      "Tags": "Food",
-      "Zone": "Yellow",
-      "Booth Description": "Cool, sweet treats on a stick or in a cone",
-      "Location": ""
-    },
-    {
-      "Level": "l2",
-      "Booth ID": "TA18",
+    "TA18": {
       "Booth Name": "Bracelet Making and Drinks",
       "Tags": [
         "Merch",
@@ -131,27 +96,21 @@
       "Booth Description": "Craft custom accessories and sip refreshments",
       "Location": ""
     },
-    {
-      "Level": "l2",
-      "Booth ID": "LT1A",
+    "LT1A": {
       "Booth Name": "JH201 Balloonatics",
       "Tags": "Game",
       "Zone": "Yellow",
       "Booth Description": "Twisted balloon art and wacky creations",
       "Location": ""
     },
-    {
-      "Level": "l2",
-      "Booth ID": "LT1B",
+    "LT1B": {
       "Booth Name": "Slime Selling",
       "Tags": "Merch",
       "Zone": "Yellow",
       "Booth Description": "Gooey, stretchy slime in every color",
       "Location": ""
     },
-    {
-      "Level": "l2",
-      "Booth ID": "LT1C",
+    "LT1C": {
       "Booth Name": "Snacks and Drinks",
       "Tags": [
         "Food",
@@ -161,176 +120,131 @@
       "Booth Description": "Quick bites and beverages to fuel your day",
       "Location": ""
     },
-    {
-      "Level": "l2",
-      "Booth ID": "LT12A",
+    "LT12A": {
       "Booth Name": "Peg Dolls",
       "Tags": "Merch",
       "Zone": "Yellow",
       "Booth Description": "Decorate tiny wooden peg characters",
       "Location": ""
     },
-    {
-      "Level": "l2",
-      "Booth ID": "LT12B",
+    "LT12B": {
       "Booth Name": "Photo Booth",
       "Tags": "Photos",
       "Zone": "Yellow",
       "Booth Description": "Snap silly or stylish instant photos",
       "Location": ""
     },
-    {
-      "Level": "l2",
-      "Booth ID": "LT5A",
-      "Booth Name": "Gachapon",
-      "Tags": "Merch",
-      "Zone": "Yellow",
-      "Booth Description": "Twist for a surprise capsule toy",
-      "Location": ""
-    },
-    {
-      "Level": "l2",
-      "Booth ID": "LT5A",
+    "LT5A": {
       "Booth Name": "Jang and Fox Postcard",
       "Tags": "Merch",
       "Zone": "Yellow",
       "Booth Description": "Adorable illustrated postcards to send or keep",
       "Location": ""
     },
-    {
-      "Level": "l2",
-      "Booth ID": "LT5B",
+    "LT5B": {
       "Booth Name": "Pipe cleaner flowers and animals",
       "Tags": "Merch",
       "Zone": "Yellow",
       "Booth Description": "Bend and twist into fuzzy crafts",
       "Location": ""
     },
-    {
-      "Level": "l2",
-      "Booth ID": "LT1",
+    "LT1": {
       "Booth Name": "Rest Zone",
       "Tags": "",
       "Zone": "Yellow",
       "Booth Description": "Quiet area to sit, recharge, and relax",
       "Location": ""
     },
-    {
-      "Level": "l2",
-      "Booth ID": "LT5",
+    "LT5": {
       "Booth Name": "IP OH CCA Performances",
       "Tags": "Performance",
       "Zone": "Yellow",
       "Booth Description": "Student showcases of music, dance, and drama",
       "Location": ""
     },
-    {
-      "Level": "l2",
-      "Booth ID": "LB1",
+    "LB1": {
       "Booth Name": "Info Counter",
       "Tags": "",
       "Zone": "Yellow",
       "Booth Description": "Your one-stop for event questions and maps",
       "Location": ""
     },
-    {
-      "Level": "l2",
-      "Booth ID": "LB2",
+    "LB2": {
       "Booth Name": "Ticket Counter",
       "Tags": "",
       "Zone": "Yellow",
       "Booth Description": "Grab your tickets here",
       "Location": ""
     },
-    {
-      "Level": "l2",
-      "Booth ID": "LIB1",
+    "LIB1": {
       "Booth Name": "Central Prize Booth",
       "Tags": "",
       "Zone": "Yellow",
       "Booth Description": "Exchange stamps for awesome prizes",
       "Location": ""
     },
-    {
-      "Level": "l2",
-      "Booth ID": "LIB2",
+    "LIB2": {
       "Booth Name": "Photo Booth",
       "Tags": "Game",
       "Zone": "Yellow",
       "Booth Description": "Freeze fun moments with props and prints",
       "Location": ""
     },
-    {
-      "Level": "l2",
-      "Booth ID": "LBCP1",
+    "LBCP1": {
       "Booth Name": "Corndog Live station",
       "Tags": "Food",
       "Zone": "Brown",
       "Booth Description": "Hot, crispy corndogs made fresh on the spot",
       "Location": ""
     },
-    {
-      "Level": "l2",
-      "Booth ID": "LBCP2",
+    "LBCP2": {
       "Booth Name": "Tteokbokki",
       "Tags": "Food",
       "Zone": "Brown",
       "Booth Description": "Spicy Korean rice cakes in rich gochujang sauce",
       "Location": ""
     },
-    {
-      "Level": "l2",
-      "Booth ID": "LBCP3",
+    "LBCP3": {
       "Booth Name": "Each a Cup",
       "Tags": "Drinks",
       "Zone": "Brown",
       "Booth Description": "Build-your-own dessert cups with toppings",
       "Location": ""
     },
-    {
-      "Level": "l2",
-      "Booth ID": "LBCP4",
+    "LBCP4": {
       "Booth Name": "Ice Cream Cart",
       "Tags": "Food",
       "Zone": "Brown",
       "Booth Description": "Rolling refreshment with classic ice cream treats",
       "Location": ""
     },
-    {
-      "Level": "l2",
-      "Booth ID": "LBCP5",
+    "LBCP5": {
       "Booth Name": "Crepe",
       "Tags": "Food",
       "Zone": "Brown",
       "Booth Description": "Thin, warm French-style crepes with fillings",
       "Location": ""
     },
-    {
-      "Level": "l2",
-      "Booth ID": "LBCP6",
+    "LBCP6": {
       "Booth Name": "Grilled Satay Live Station",
       "Tags": "Food",
       "Zone": "Brown",
       "Booth Description": "Smoky skewers of meat with peanut sauce",
       "Location": ""
     },
-    {
-      "Level": "l2",
-      "Booth ID": "LBCP7",
+    "LBCP7": {
       "Booth Name": "Taiwanese-style Fried Chicken Chop",
       "Tags": "Food",
       "Zone": "Brown",
       "Booth Description": "Crispy, juicy chicken cutlet with seasoning",
       "Location": ""
     },
-    {
-      "Level": "l2",
-      "Booth ID": "LBCP8910",
+    "LBCP8910": {
       "Booth Name": "Old Chang Kee Food Truck",
       "Tags": "Food",
       "Zone": "Brown",
       "Booth Description": "Famous curry puffs and hot snacks on wheels",
       "Location": ""
     }
-  ]
+  }
 }

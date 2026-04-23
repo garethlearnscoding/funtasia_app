@@ -62,11 +62,11 @@ export class Floor {
    * @param {import("@/js/base/appState.js").AppState} appState
    * @returns {Promise<void>}
    */
-  async load(appState) {
+  async load(appState, funtasiaData) {
     if (this.isLoaded()) return;
 
     const gltf = await loadModel(this.modelPath);
-    const result = parseModel(gltf, this.id, appState.scene);
+    const result = parseModel(gltf, this.id, appState.scene, funtasiaData);
     this.attachParsedData(result.model, result.interactiveObjects, result.cameraConfig);
     
     window.dispatchEvent(new CustomEvent("floorReady", { detail: { floorId: this.id } }));

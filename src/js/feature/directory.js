@@ -1,5 +1,6 @@
 import { Navigation } from "@/js/events/navigation.js";
 import { hideBottomSheet } from "@/js/ui_ux/ui.js";
+import * as THREE from "three";
 
 let cachedFuntasiaData = null;
 let dataLoadingPromise = null;
@@ -41,21 +42,46 @@ const filterState = {
 
 /* ── Data Fetching ───────────────────────────────────────── */
 
-async function fetchDirectoryData() {
-  if (dataLoadingPromise) return dataLoadingPromise;
-
-  dataLoadingPromise = (async () => {
-    try {
-      const response = await fetch(`${ASSETS_BASE_URL}/json/funtasia_data.json`);
-      cachedFuntasiaData = await response.json();
-      return cachedFuntasiaData;
-    } catch (e) {
-      console.error("Failed to fetch directory data:", e);
-      throw e;
+export async function fetchDirectoryData() {
+  try {
+    const response = await fetch(`${ASSETS_BASE_URL}/json/funtasia_data.json`);
+    const rawData = await response.json();
+    
+    // Normalize data: convert array format to object format keyed by "Booth ID"
+    // This ensures compatibility whether the CDN serves the old array or new object format.
+    const normalizedData = {};
+    for (const [level, items] of Object.entries(rawData)) {
+      if (Array.isArray(items)) {
+        normalizedData[level] = {};
+        items.forEach(item => {
+          if (item["Booth ID"]) {
+            normalizedData[level][item["Booth ID"]] = item;
+          }
+        });
+      } else {
+        normalizedData[level] = items;
+      }
     }
-  })();
+    
+    return normalizedData;
+  } catch (e) {
+    console.error("Failed to fetch directory data:", e);
+    throw e;
+  }
+}
 
-  return dataLoadingPromise;
+export function setDirectoryData(processedData) {
+  cachedFuntasiaData = processedData;
+  const container = document.getElementById("funtasia-directory-list");
+  if (container) {
+    // Re-populate tags and re-render with the latest processed data
+    populateTagChips(cachedFuntasiaData);
+    applyFilters();
+  }
+}
+
+export function getDirectoryData() {
+  return cachedFuntasiaData;
 }
 
 /* ── Tag Helpers ─────────────────────────────────────────── */
@@ -72,8 +98,8 @@ function collectAllTags(funtasiaData) {
   const tags = new Set();
   const levels = Object.keys(funtasiaData);
   levels.forEach(level => {
-    if (!Array.isArray(funtasiaData[level])) return;
-    funtasiaData[level].forEach(item => {
+    if (typeof funtasiaData[level] !== 'object' || funtasiaData[level] === null) return;
+    Object.values(funtasiaData[level]).forEach(item => {
       parseTags(item["Tags"]).forEach(t => tags.add(t));
     });
   });
@@ -105,8 +131,8 @@ function getFilteredData(funtasiaData) {
     : Object.keys(funtasiaData);
 
   levelsToSearch.forEach(level => {
-    if (!Array.isArray(funtasiaData[level])) return;
-    funtasiaData[level].forEach(item => {
+    if (typeof funtasiaData[level] !== 'object' || funtasiaData[level] === null) return;
+    Object.entries(funtasiaData[level]).forEach(([boothId, item]) => {
       // Zone filter
       if (filterState.zone) {
         const itemZone = (item["Zone"] || "").trim();
@@ -125,11 +151,12 @@ function getFilteredData(funtasiaData) {
         const q = filterState.search.toLowerCase();
         const name = (item["Booth Name"] || "").toLowerCase();
         const desc = (item["Booth Description"] || "").toLowerCase();
-        const id   = (item["Booth ID"] || "").toLowerCase();
+        const id   = (boothId || "").toLowerCase();
         if (!name.includes(q) && !desc.includes(q) && !id.includes(q)) return;
       }
 
-      results.push({ item, level });
+      // We inject Booth ID here for rendering later
+      results.push({ item: { ...item, "Booth ID": boothId }, level });
     });
   });
 
@@ -207,18 +234,83 @@ function renderDirectory(container, funtasiaData) {
           return `<span class="tag-pill" style="--pill-color: ${color};">${tag}</span>`;
         }).join("");
 
-        itemEl.onclick = () => {
-          Navigation.switchFloor(level);
+        itemEl.onclick = async () => {
+          // Navigation
+          await Navigation.switchFloor(level);
           hideBottomSheet();
+
+          // Clear previous directory marker if it exists
+          if (appStateRef && appStateRef.activeDirectoryMarker) {
+             appStateRef.activeDirectoryMarker.clear();
+             appStateRef.activeDirectoryMarker = null;
+          }
+
+          // Get latest item data directly from cache to ensure Location is populated
+          // This is critical because switchFloor may have just loaded the floor and injected the Location.
+          const latestItem = cachedFuntasiaData[level][boothNum] || item;
+
+          // Spawn new directory marker
+          if (appStateRef && latestItem["Location"]) {
+            import('@/js/marker/directorymarker.js').then(({ DirectoryMarker }) => {
+              const marker = new DirectoryMarker(latestItem["Location"], level);
+              appStateRef.activeDirectoryMarker = marker;
+              appStateRef.activeMarkers.push(marker);
+
+              // Setup camera animation
+              const objectCenter = latestItem["Location"].clone().add(new THREE.Vector3(0, 1, 0));
+              const camPos = appStateRef.camera.position.clone();
+              const controlsTarget = appStateRef.controls.target.clone();
+
+              const direction = new THREE.Vector3().subVectors(camPos, controlsTarget);
+              direction.y = 0; // maintain horizontal direction
+              if (direction.lengthSq() < 0.001) {
+                  direction.set(0, 0, 1); // fallback direction
+              }
+              direction.normalize();
+
+              // Snap direction to the closest cardinal direction (X or Z axis)
+              if (Math.abs(direction.x) > Math.abs(direction.z)) {
+                  direction.set(Math.sign(direction.x), 0, 0);
+              } else {
+                  direction.set(0, 0, Math.sign(direction.z));
+              }
+
+              const distance = 8;
+              const heightOffset = 6;
+              const newCamPos = objectCenter.clone()
+                .add(direction.multiplyScalar(distance))
+                .add(new THREE.Vector3(0, heightOffset, 0));
+
+              appStateRef.cameraAnim.controlsTarget.copy(objectCenter);
+              appStateRef.cameraAnim.cameraTarget.copy(newCamPos);
+              appStateRef.cameraAnim.active = true;
+            });
+          }
+
+          // Trigger interaction
           window.parent.postMessage({ type: 'selectPOI', id: boothNum, floor: level }, '*');
 
+          // UI updates
           const dirModalOuter = document.getElementById("directory-modal-wrapper");
           if(dirModalOuter) dirModalOuter.style.display = 'none';
-          
+
           const openDirBtn = document.getElementById('open-directory-btn');
           const openSettingsBtn = document.getElementById('open-settings-btn');
+          const openQrBtn = document.getElementById('open-qr-btn');
+          const openInfoBtn = document.getElementById('open-info-btn');
+          
           if(openDirBtn) openDirBtn.style.display = 'flex';
           if(openSettingsBtn) openSettingsBtn.style.display = 'flex';
+          if(openQrBtn) openQrBtn.style.display = 'flex';
+          if(openInfoBtn) openInfoBtn.style.display = 'flex';
+
+          import('@/js/ui_ux/ui.js').then(({ showBottomSheet }) => {
+             showBottomSheet(boothName, null, boothDesc);
+          });
+          
+          // Show dismiss button
+          const dismissBtn = document.getElementById('clear-directory-marker-btn');
+          if (dismissBtn) dismissBtn.style.display = 'flex';
         };
 
         itemEl.innerHTML = `
@@ -343,7 +435,10 @@ function bindFilterEvents() {
 
 /* ── Public Init ─────────────────────────────────────────── */
 
-export function initDirectory() {
+let appStateRef = null;
+
+export function initDirectory(appState) {
+  appStateRef = appState;
   const container = document.getElementById("funtasia-directory-list");
   if (!container) return;
 
@@ -353,14 +448,6 @@ export function initDirectory() {
     populateTagChips(cachedFuntasiaData);
     renderDirectory(container, cachedFuntasiaData);
   } else {
-    container.innerHTML = "Loading directory..."; 
-    fetchDirectoryData()
-        .then(data => {
-          populateTagChips(data);
-          renderDirectory(container, data);
-        })
-        .catch(e => {
-            container.innerHTML = "Failed to load directory data.";
-        });
+    container.innerHTML = "Loading directory data..."; 
   }
 }

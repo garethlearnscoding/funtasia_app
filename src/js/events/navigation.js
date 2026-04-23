@@ -22,8 +22,14 @@ export class Navigation {
   static clearActiveMarkers() {
     const appState = Navigation.appState;
     if (appState.activeMarkers && appState.activeMarkers.length > 0) {
-      appState.activeMarkers.forEach(m => m.clear());
-      appState.activeMarkers = [];
+      appState.activeMarkers.forEach(m => {
+        // Skip directory marker, we handle its persistence manually
+        if (m !== appState.activeDirectoryMarker) {
+            m.clear();
+        }
+      });
+      // Filter out cleared markers, keeping the directory marker if it exists
+      appState.activeMarkers = appState.activeMarkers.filter(m => m === appState.activeDirectoryMarker);
     }
   }
 
@@ -103,8 +109,14 @@ export class Navigation {
         if (!isPreloaded) showToast(`Loading ${floorId.toUpperCase()}…`, 15000);
         
         try {
-          await targetFloor.load(appState);
+          await targetFloor.load(appState, appState.rawData);
           appState.loadedAssets.add(targetFloor.modelPath);
+          
+          // Once all main floors are loaded (or as they load), cache the data
+          // Actually, we can just cache it immediately after parsing since the data object is shared
+          import('@/js/feature/directory.js').then(({ setDirectoryData }) => {
+             setDirectoryData(appState.rawData);
+          });
         } catch (err) {
           console.error(`Failed to load floor ${floorId}:`, err);
           showToast(`Error: ${floorId.toUpperCase()} failed.`);
@@ -129,6 +141,20 @@ export class Navigation {
     // Always handle markers (clear previous and potentially restore current)
     Navigation.clearActiveMarkers();
     Navigation.restoreLastMarker(floorId);
+    
+    // Restore directory marker if it belongs to this floor
+    if (appState.activeDirectoryMarker && appState.activeDirectoryMarker.level === floorId) {
+      if (!appState.activeMarkers.includes(appState.activeDirectoryMarker)) {
+        appState.activeMarkers.push(appState.activeDirectoryMarker);
+      }
+      // Make sure it's added to the current scene
+      if (appState.scene && appState.activeDirectoryMarker.group) {
+        appState.scene.add(appState.activeDirectoryMarker.group);
+      }
+    } else if (appState.activeDirectoryMarker && appState.activeDirectoryMarker.group && appState.scene) {
+      // Hide it if on a different floor
+      appState.scene.remove(appState.activeDirectoryMarker.group);
+    }
   }
 
   static async handleQRID(qrID, suppressWarning = false) {

@@ -42,7 +42,7 @@ export class LocationMarker extends Marker {
    * @param {THREE.Vector3} position - World position of the marker.
    * @param {boolean} text - Whether to include the "You are here!" text label.
    */
-  constructor(scene, position, text = false) {
+  constructor(scene, position, text = false, showRing = true) {
     super();
     this.scene = scene;
     this.markerHeight = 0.8;
@@ -53,17 +53,19 @@ export class LocationMarker extends Marker {
     const outlineMaterialActive = new THREE.LineBasicMaterial({ color: 0x550000 });
 
     // ----- ring -----
-    const ring = new THREE.Mesh(
-      new THREE.RingGeometry(0.11, 0.14, 32),
-      activeMaterial
-    );
-    ring.rotation.x = -Math.PI / 2;
-    ring.position.y = 0.02;
+    if (showRing) {
+      const ring = new THREE.Mesh(
+        new THREE.RingGeometry(0.11, 0.14, 32),
+        activeMaterial
+      );
+      ring.rotation.x = -Math.PI / 2;
+      ring.position.y = 0.02;
 
-    const ringEdges = new THREE.EdgesGeometry(ring.geometry);
-    const ringOutline = new THREE.LineSegments(ringEdges, outlineMaterialActive);
-    ring.add(ringOutline);
-    this.group.add(ring);
+      const ringEdges = new THREE.EdgesGeometry(ring.geometry);
+      const ringOutline = new THREE.LineSegments(ringEdges, outlineMaterialActive);
+      ring.add(ringOutline);
+      this.group.add(ring);
+    }
 
     // ----- 3D Model -----
     // Stored on the instance so animate() can reference it after the async load

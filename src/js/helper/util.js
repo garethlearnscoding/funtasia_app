@@ -60,7 +60,8 @@ export function focusOnObject(targetObject, appState) {
     console.log(`Focused on: ${targetObject.name}`);
 
     // Pass the child floor ID if it exists so the UI can show an "Enter" button
-    showBottomSheet(targetObject.name, targetObject.userData.child);
+    // Also pass the boothDescription stored in userData
+    showBottomSheet(targetObject.name, targetObject.userData.child, targetObject.userData.boothDescription);
 
     // Camera animation logic
     if (appState.controls) {
@@ -117,9 +118,7 @@ export function handleInteraction(event, appState) {
   }
 
   const targetObject = performRaycast(appState);
-  if (!targetObject) {
-    applySelection(null, appState);
-  } else {
+  if (targetObject) {
     focusOnObject(targetObject, appState);
   }
 }

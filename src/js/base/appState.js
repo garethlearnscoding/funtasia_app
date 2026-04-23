@@ -17,6 +17,7 @@ export class AppState {
       speed: 1.5,
     };
     this.activeMarkers = [];
+    this.activeDirectoryMarker = null; // Stores the active directory marker
     this.lastScannedInfo = null;
     this.pointerStartTime = 0;
     this.isBottomSheetOpen = false;

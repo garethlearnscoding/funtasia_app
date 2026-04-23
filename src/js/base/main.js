@@ -11,7 +11,7 @@ import { Icon } from "@/js/marker/icon.js";
 import { AppState } from "@/js/base/appState.js";
 import { SettingsController } from "@/js/base/settings.js";
 import { Navigation } from "@/js/events/navigation.js";
-import { initDirectory } from "@/js/feature/directory.js";
+import { initDirectory, fetchDirectoryData, setDirectoryData } from "@/js/feature/directory.js";
 
 // Initialize theme from localStorage on page load
 const savedTheme = localStorage.getItem('funtasia-theme');
@@ -75,9 +75,22 @@ async function initApp() {
   // Set font as a class attribute so handleURLQR etc. don't need it passed
   Marker.font = font;
 
+  // 1. Fetch raw data
+  const rawData = await fetchDirectoryData();
+
   // No pre-loading — floors are fetched on-demand in Navigation.switchFloor()
+  // 2. Set up UI
   setupUI(Floor.floors, appState);
-  initDirectory();
+
+  // 3. Make raw data accessible globally for parsing later (handled via switchFloor param injection down the line)
+  // Wait, the instructions say to pass `rawData` to floor pipeline...
+  // But floor pipeline is lazy-loaded via switchFloor -> targetFloor.load()
+  // I need to ensure switchFloor passes this data. Let me handle that in navigation.js
+  // For now, let's keep rawData here and inject it into floor loading. Actually, I will pass it to Navigation.init
+  // or store it on appState.
+  appState.rawData = rawData;
+  
+  initDirectory(appState);
 
   // Initialize modular Settings menu
   SettingsController.init('settings-content-area');

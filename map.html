@@ -21,7 +21,7 @@
   </head>
   <body>
     <div id="canvas-container"></div>
-    <div id="info">Hover over the model</div>
+    <!-- <div id="info">Hover over the model</div> -->
 
     <div id="floor-selector">
       <div id="floor-thumb"></div>
@@ -64,6 +64,11 @@
 
      <button id="open-info-btn" class="fab-btn fab-btn--info">
       <span class="material-symbols-outlined text-[20px]">info_i</span>
+    </button>
+
+    <!-- Clear Directory Marker Button (hidden by default) -->
+    <button id="clear-directory-marker-btn" style="display:none; position: fixed; top: 16px; left: 16px; z-index: 300; width: 44px; height: 44px; border-radius: 50%; background: var(--color-surface-container-highest); color: var(--color-on-surface); box-shadow: 0 4px 12px rgba(0,0,0,0.2); border: 1px solid color-mix(in srgb, var(--color-on-surface) 10%, transparent); align-items: center; justify-content: center; cursor: pointer;">
+      <span class="material-symbols-outlined text-[20px]">close</span>
     </button>
 
     <div id="settings-modal-wrapper" class="modal-wrapper">
@@ -445,6 +450,28 @@
         });
       }
       
+      // Clear Directory Marker Button Logic
+      const clearDirMarkerBtn = document.getElementById('clear-directory-marker-btn');
+      if (clearDirMarkerBtn) {
+        clearDirMarkerBtn.addEventListener('click', async () => {
+           // We need to clear the active directory marker from the global app state
+           // Since appState isn't globally exposed on window, we can dispatch an event or import it
+           // Let's import the global appState reference or just find the module
+           const { Navigation } = await import('/src/js/events/navigation.js');
+           const appState = Navigation.appState;
+           if (appState && appState.activeDirectoryMarker) {
+               appState.activeDirectoryMarker.clear();
+               appState.activeDirectoryMarker = null;
+               appState.activeMarkers = appState.activeMarkers.filter(m => m !== null);
+           }
+           clearDirMarkerBtn.style.display = 'none';
+
+           // Also close the bottom sheet if it happens to be open
+           const { hideBottomSheet } = await import('/src/js/ui_ux/ui.js');
+           hideBottomSheet();
+        });
+      }
+
       // Expose for external modules if needed later
       window.openQRModal = () => openQrBtn.click();
     </script>

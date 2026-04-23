@@ -16,18 +16,18 @@
     <title>Funtasia 3D Map</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-    <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon/favicon.ico"/>
+    <link rel="icon" type="image/svg+xml" href="/funtasia_app/favicon/favicon.svg"/>  
     <link rel="apple-touch-icon" href="/funtasia_app/favicon/apple-touch-icon.png">
-    <script type="module" crossorigin src="/funtasia_app/assets/map-CF7NvLql.js"></script>
-    <link rel="modulepreload" crossorigin href="/funtasia_app/assets/input-D0BnPRXI.js">
+    <script type="module" crossorigin src="/funtasia_app/assets/map-BHUEdXT6.js"></script>
+    <link rel="modulepreload" crossorigin href="/funtasia_app/assets/input-B06AtLlU.js">
     <link rel="modulepreload" crossorigin href="/funtasia_app/assets/vendor-B6PPP97j.js">
     <link rel="modulepreload" crossorigin href="/funtasia_app/assets/vendor-three-C4d1l51_.js">
-    <link rel="stylesheet" crossorigin href="/funtasia_app/assets/input-C6_Agzvp.css">
+    <link rel="stylesheet" crossorigin href="/funtasia_app/assets/input-DpqMcu5u.css">
     <link rel="stylesheet" crossorigin href="/funtasia_app/assets/map-D1JIHDlz.css">
   <link rel="manifest" href="/funtasia_app/manifest.webmanifest"></head>
   <body>
     <div id="canvas-container"></div>
-    <div id="info">Hover over the model</div>
+    <!-- <div id="info">Hover over the model</div> -->
 
     <!-- Floor Selector UI -->
     <div id="floor-selector">
@@ -47,7 +47,13 @@
       <button id="close-btn">&times;</button>
       <h2 id="sheet-title">Location Title</h2>
       <p id="sheet-desc">Location description will appear here.</p>
+      <button id="enter-child-btn" style="display:none; width:100%; padding: 14px; margin-top: 20px; border-radius: 12px; background: color-mix(in srgb, var(--color-primary) 15%, transparent); color: var(--color-primary); font-weight: 700; font-family: 'JetBrains Mono', monospace; font-size: 14px; border: 1px solid color-mix(in srgb, var(--color-primary) 30%, transparent); cursor: pointer; transition: background 0.2s;">Enter Level</button>
     </div>
+
+    <!-- Exit Button for Child Models -->
+    <button id="exit-child-btn" style="display:none; position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%); z-index: 200; padding: 12px 24px; border-radius: 24px; background: var(--color-surface-container-highest); color: var(--color-on-surface); font-weight: bold; font-family: 'JetBrains Mono', monospace; font-size: 14px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); border: 1px solid color-mix(in srgb, var(--color-on-surface) 10%, transparent); align-items: center; justify-content: center; gap: 8px; cursor: pointer;">
+      <span class="material-symbols-outlined text-[18px]">logout</span> Exit Level
+    </button>
 
     <!-- Toast Notification -->
     <div id="toast-popup" class="toast">
@@ -72,6 +78,11 @@
     <!-- Info Button -->
      <button id="open-info-btn" class="fab-btn fab-btn--info">
       <span class="material-symbols-outlined text-[20px]">info_i</span>
+    </button>
+
+    <!-- Clear Directory Marker Button (hidden by default) -->
+    <button id="clear-directory-marker-btn" style="display:none; position: fixed; top: 16px; left: 16px; z-index: 300; width: 44px; height: 44px; border-radius: 50%; background: var(--color-surface-container-highest); color: var(--color-on-surface); box-shadow: 0 4px 12px rgba(0,0,0,0.2); border: 1px solid color-mix(in srgb, var(--color-on-surface) 10%, transparent); align-items: center; justify-content: center; cursor: pointer;">
+      <span class="material-symbols-outlined text-[20px]">close</span>
     </button>
 
     <!-- Settings Modal Wrapper -->
@@ -119,53 +130,52 @@
           </div>
           <!-- Content Area -->
           <div class="modal-content">
-            <!-- Section: IP Open House -->
-            <div class="px-4 mb-6">
+            <!-- Search -->
+            <div class="px-4 mb-4">
               <div class="modal-search-wrapper">
                 <div class="modal-search-icon-wrapper">
                   <span class="modal-search-icon">search</span>
                 </div>
-                <input class="modal-search-input" placeholder="Search for a location..." type="text"/>
+                <input id="directory-search-input" class="modal-search-input" placeholder="Search for a location..." type="text"/>
               </div>
             </div>
+
+            <!-- Filter Section (always visible) -->
+            <div class="filter-section" id="directory-filter-section">
+              <div class="filter-header">
+                <span class="filter-label">Filters</span>
+                <button class="filter-clear-btn" id="filter-clear-all-btn">Clear All</button>
+              </div>
+              <!-- Level & Zone dropdowns -->
+              <div class="filter-row">
+                <select id="filter-level" class="filter-dropdown">
+                  <option value="">All Levels</option>
+                  <option value="b3">B3</option>
+                  <option value="b2">B2</option>
+                  <option value="b1">B1</option>
+                  <option value="l1">L1</option>
+                  <option value="l2">L2</option>
+                </select>
+                <select id="filter-zone" class="filter-dropdown">
+                  <option value="">All Zones</option>
+                  <option value="Yellow">Yellow</option>
+                  <option value="Green">Green</option>
+                  <option value="Blue">Blue</option>
+                  <option value="Red">Red</option>
+                  <option value="Purple">Purple</option>
+                  <option value="Orange">Orange</option>
+                  <option value="Brown">Brown</option>
+                </select>
+              </div>
+              <!-- Tag chips (dynamically populated) -->
+              <div class="filter-chips-container" id="filter-tags-container">
+                <!-- Chips inserted by directory.js -->
+              </div>
+            </div>
+            <div class="filter-divider"></div>
+
+            <!-- Section: Funtasia Directory -->
             <section>
-              <div class="px-4 mb-4">
-                <h2 class="modal-section-title">IP Open House</h2>
-              </div>
-              <div class="space-y-3">
-                <!-- Creative Lab Item -->
-                <div class="modal-list-item">
-                  <div class="modal-item-icon-wrapper bg-blue-50 text-blue-600">
-                    <span class="material-symbols-outlined" data-icon="science">science</span>
-                  </div>
-                  <!-- Accent Bar -->
-                  <div class="modal-item-accent-bar bg-blue-500"></div>
-                  <div class="modal-item-content">
-                    <h3 class="modal-item-title">Creative Lab</h3>
-                    <p class="modal-item-subtitle">Interactive prototyping and design</p>
-                  </div>
-                  <span class="modal-item-chevron">chevron_right</span>
-                </div>
-                <!-- VR Garden Item -->
-                <div class="modal-list-item">
-                  <div class="modal-item-icon-wrapper bg-purple-50 text-purple-600">
-                    <span class="material-symbols-outlined" data-icon="vr_panoramic">vrpano</span>
-                  </div>
-                  <!-- Accent Bar -->
-                  <div class="modal-item-accent-bar bg-purple-500"></div>
-                  <div class="modal-item-content">
-                    <h3 class="modal-item-title">VR Garden</h3>
-                    <p class="modal-item-subtitle">Immersive digital flora experience</p>
-                  </div>
-                  <span class="modal-item-chevron">chevron_right</span>
-                </div>
-              </div>
-            </section>
-            <!-- Section: Funtasia -->
-            <section>
-              <div class="px-2 mb-4">
-                <h2 class="modal-section-title">Funtasia</h2>
-              </div>
               <div id="funtasia-directory-list" class="space-y-6">
                 <!-- Dynamically populated via directory.js -->
               </div>
@@ -236,11 +246,9 @@
               
               <!-- Funtasia Input Fields -->
               <div style="display: flex; gap: 8px; margin-bottom: 32px; justify-content: center; width: 100%; align-items: center;">
-                <div style="width: 44px; height: 56px; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 700; border-radius: 10px; background: color-mix(in srgb, var(--color-on-surface) 10%, transparent); color: var(--color-on-surface-variant); font-family: 'JetBrains Mono', monospace;">L</div>
-                <input class="qr-code-input"  inputmode="numeric" maxlength="1" type="text" style="width: 44px; height: 56px; text-align: center; font-size: 24px; font-weight: 700; border-radius: 10px; border: 1px solid color-mix(in srgb, var(--color-primary) 30%, transparent); background: var(--color-surface-container-high); color: var(--color-primary); font-family: 'JetBrains Mono', monospace; outline: none;" />
+                <input class="qr-code-input" inputmode="numeric" maxlength="2" type="text" placeholder="00" style="width: 72px; height: 56px; text-align: center; font-size: 24px; font-weight: 700; border-radius: 10px; border: 1px solid color-mix(in srgb, var(--color-primary) 30%, transparent); background: var(--color-surface-container-high); color: var(--color-primary); font-family: 'JetBrains Mono', monospace; outline: none;" />
                 <span style="font-size: 24px; color: var(--color-on-surface-variant); font-weight: 700; margin: 0 4px;">-</span>
-                <div style="width: 44px; height: 56px; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 700; border-radius: 10px; background: color-mix(in srgb, var(--color-on-surface) 10%, transparent); color: var(--color-on-surface-variant); font-family: 'JetBrains Mono', monospace;">M</div>
-                <input class="qr-code-input" inputmode="numeric" maxlength="2" type="text" style="width: 72px; height: 56px; text-align: center; font-size: 24px; font-weight: 700; border-radius: 10px; border: 1px solid color-mix(in srgb, var(--color-primary) 30%, transparent); background: var(--color-surface-container-high); color: var(--color-primary); font-family: 'JetBrains Mono', monospace; outline: none;" />
+                <input class="qr-code-input" inputmode="numeric" maxlength="2" type="text" placeholder="00" style="width: 72px; height: 56px; text-align: center; font-size: 24px; font-weight: 700; border-radius: 10px; border: 1px solid color-mix(in srgb, var(--color-primary) 30%, transparent); background: var(--color-surface-container-high); color: var(--color-primary); font-family: 'JetBrains Mono', monospace; outline: none;" />
               </div>
               
               <button id="qr-continue-btn" style="width: 100%; max-width: 300px; padding: 14px; border-radius: 12px; background: color-mix(in srgb, var(--color-surface-container-high) 100%, transparent); color: var(--color-primary); font-weight: 700; font-family: 'JetBrains Mono', monospace; font-size: 14px; border: 1px solid color-mix(in srgb, var(--color-primary) 30%, transparent); display: flex; justify-content: center; align-items: center; gap: 8px; cursor: pointer; transition: background 0.2s;">

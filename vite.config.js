@@ -46,7 +46,8 @@ export default defineConfig({
   assetsInclude: ['**/*.glb'],
   server: {
     port:5317,
-    allowedHosts: ["chunky-toaster.seagull-hippocampus.ts.net","broken-toaster.seagull-hippocampus.ts.net"]
+    allowedHosts: ["chunky-toaster.seagull-hippocampus.ts.net","broken-toaster.seagull-hippocampus.ts.net"],
+    host:true,
   },
   build: {
     rollupOptions: {

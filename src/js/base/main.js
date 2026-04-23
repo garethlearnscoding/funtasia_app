@@ -11,6 +11,7 @@ import { Icon } from "@/js/marker/icon.js";
 import { AppState } from "@/js/base/appState.js";
 import { SettingsController } from "@/js/base/settings.js";
 import { Navigation } from "@/js/events/navigation.js";
+import { applyThemeToScene } from "@/js/floor/modelParser.js";
 import { initDirectory, fetchDirectoryData, setDirectoryData } from "@/js/feature/directory.js";
 
 const { scene, camera, renderer, controls } = setupScene();
@@ -107,7 +108,8 @@ async function initApp() {
             root.classList.add('latte');
             root.classList.remove('mocha');
             localStorage.setItem('funtasia-theme', 'latte');
-          }
+          };
+          applyThemeToScene(appState); // update scene
         },
         document.documentElement.classList.contains('mocha') // Check if current mode is mocha
     );

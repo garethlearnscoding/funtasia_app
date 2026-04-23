@@ -3,9 +3,8 @@ import { Icon } from "@/js/marker/icon.js";
 import { Floor } from "@/js/floor/floor.js";
 import { QRMarker } from "@/js/marker/qrmarker.js";
 
-const documentStyle = getComputedStyle(document.documentElement)
-
 function getColor(colorName, defaultColor) {
+  const documentStyle = getComputedStyle(document.documentElement);
   let colorString = documentStyle.getPropertyValue(colorName)
   if (colorString) {
     return Number("0x" + colorString.slice(1))
@@ -14,28 +13,85 @@ function getColor(colorName, defaultColor) {
   }
 }
 
-const miscColours = {
-  "BASE": getColor('--color-ctp-base', 0x1e1e2e),
-  "DRIVE": getColor('--color-ctp-surface2', 0xa5ccd1),
-  "FOOT":  getColor('--color-ctp-flamingo', 0xe6c19f),
-  "GRASS": getColor('--color-ctp-green-900', 0x9dcb6f),
-  "NONOBJECT": getColor('--color-ctp-flamingo-950', 0xc1c3c7),
-  "FTOILET": getColor('--color-ctp-pink', 0xff8afe),
-  "MTOILET": getColor('--color-ctp-lavender', 0x1b17eb),
-  "ATOILET": getColor('--color-ctp-sky', 0x5ce1e6),
-  "LIFT": getColor('--colot-ctp-overlay1', 0xb0b0b0),
-  "MARKER": 0xffffff,
-  "STAIRCASE":0xffffff
+const miscSchema = {
+  "BASE":      ['--color-ctp-base', 0x1e1e2e],
+  "DRIVE":     ['--color-ctp-surface2', 0xa5ccd1],
+  "FOOT":      ['--color-ctp-flamingo', 0xe6c19f],
+  "GRASS":     ['--color-ctp-green-900', 0x9dcb6f],
+  "NONOBJECT": ['--color-ctp-flamingo-950', 0xc1c3c7],
+  "FTOILET":   ['--color-ctp-pink', 0xff8afe],
+  "MTOILET":   ['--color-ctp-lavender', 0x1b17eb],
+  "ATOILET":   ['--color-ctp-sky', 0x5ce1e6],
+  "LIFT":      ['--colot-ctp-overlay1', 0xb0b0b0],
 };
-export const zoneColours = {
-  "NONE": getColor('--color-ctp-rosewater-700', 0xffe5e7),
-  "GREEN": getColor('--color-ctp-green-300', 0x00ff00),
-  "BLUE": getColor('--color-ctp-blue-600', 0x0066ff),
-  "ORANGE": getColor('--color-ctp-peach-400', 0xfab387),
-  "PURPLE": getColor('--color-ctp-mauve', 0x9900ff),
-  "YELLOW": getColor('--color-ctp-yellow', 0xf9e2af),
-  "RED": getColor('--color-ctp-red', 0xf38ba8),
+
+const zoneSchema = {
+  "NONE":   ['--color-ctp-rosewater-700', 0xffe5e7],
+  "GREEN":  ['--color-ctp-green-300', 0x00ff00],
+  "BLUE":   ['--color-ctp-blue-600', 0x0066ff],
+  "ORANGE": ['--color-ctp-peach-400', 0xfab387],
+  "PURPLE": ['--color-ctp-mauve', 0x9900ff],
+  "YELLOW": ['--color-ctp-yellow', 0xf9e2af],
+  "RED":    ['--color-ctp-red', 0xf38ba8],
 };
+
+// Maps for runtime color lookup, initialized with static colors.
+export const miscColours = { "MARKER": 0xffffff, "STAIRCASE": 0xffffff };
+export const zoneColours = {};
+
+// Helper to update color maps from schemas.
+function refreshPalette(target, schema) {
+  for (const [key, [cssVar, fallback]] of Object.entries(schema)) {
+    target[key] = getColor(cssVar, fallback);
+  }
+}
+
+// Re-reads CSS variables and updates the color dictionaries.
+export function updateThemeColors() {
+  refreshPalette(miscColours, miscSchema);
+  refreshPalette(zoneColours, zoneSchema);
+}
+
+// Update theme colors immediately on module load
+updateThemeColors();
+
+// Updates the Three.js scene background and all mesh materials to match the current theme.
+export function applyThemeToScene(appState) {
+  updateThemeColors();
+
+  const bgColor = getComputedStyle(document.documentElement).getPropertyValue('--color-ctp-base');
+  if (bgColor && appState.scene) appState.scene.background.set(bgColor);
+
+  appState.scene.traverse((child) => {
+    if (child.isMesh && child.userData.ROLE) {
+      const role = child.userData.ROLE;
+      let colorVal;
+
+      if (role === "OBJECT") {
+        colorVal = zoneColours[child.userData.ZONE || "NONE"];
+        if (child.name.endsWith("_2")) {
+          const c = new THREE.Color(colorVal);
+          c.multiplyScalar(1.2);
+          colorVal = c.getHex();
+        }
+      } else {
+        colorVal = miscColours[role] !== undefined ? miscColours[role] : 0xc1c3c7;
+      }
+
+      if (child.userData.material) child.userData.material.color.set(colorVal);
+      
+      if (child.material) {
+        if (child.material === child.userData.material) {
+          child.material.color.set(colorVal);
+        } else {
+          // If currently highlighted, update the highlight color as well
+          const highlightColor = new THREE.Color(colorVal).multiplyScalar(2);
+          child.material.color.copy(highlightColor);
+        }
+      }
+    }
+  });
+}
 
 let skybox = null;
 let maxRadius = 0;

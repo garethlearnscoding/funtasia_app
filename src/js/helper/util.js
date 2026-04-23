@@ -46,10 +46,6 @@ export function applySelection(target, appState) {
         child.material = highlightMaterial;
       }
     });
-
-    if (appState.infoLabel) appState.infoLabel.textContent = `Selected: ${appState.selected.name}`;
-  } else {
-    if (appState.infoLabel) appState.infoLabel.textContent = "Select a model";
   }
 }
 

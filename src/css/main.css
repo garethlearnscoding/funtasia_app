@@ -49,36 +49,6 @@ body {
   height: 100% !important;
 }
 
-/* === Info Label (Floating — Glassmorphism per §2) === */
-/* #info {
-  position: fixed;
-  top: 10px;
-  left: 10px;
-  color: var(--color-ctp-text);
-  font-family: "JetBrains Mono", monospace;
-  background: transparent;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  padding: 8px 12px;
-  border-radius: 1.5rem;
-  z-index: 5;
-  font-size: 14px;
-  max-width: calc(100vw - 20px);
-  word-wrap: break-word; */
-  /* Ambient shadow per §4 — 30-60px blur, 4-8% opacity, on-surface tint */
-  /* box-shadow: 0 8px 40px color-mix(in srgb, var(--color-ctp-text) 6%, transparent);
-  transition: background 0.3s ease, color 0.3s ease;
-}
-
-@media (max-width: 768px) {
-  #info {
-    font-size: 12px;
-    padding: 6px 10px;
-    top: 8px;
-    left: 8px;
-  }
-} */
-
 /* === Bottom Sheet (Floating — Glassmorphism per §2) === */
 #bottom-sheet {
   position: fixed;

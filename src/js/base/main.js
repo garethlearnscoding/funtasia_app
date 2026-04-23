@@ -44,8 +44,6 @@ Object.entries(childModelDefs).forEach(([id, path]) => new Floor(id, path));
 const raycaster = new THREE.Raycaster();
 const mouse = new THREE.Vector2();
 
-export const infoLabel = document.getElementById("info");
-
 const appState = new AppState(  );
 appState.scene = scene;
 appState.camera = camera;
@@ -53,9 +51,6 @@ appState.renderer = renderer;
 appState.controls = controls;
 appState.raycaster = raycaster;
 appState.mouse = mouse;
-appState.infoLabel = infoLabel;
-appState.mouse = mouse;
-appState.infoLabel = infoLabel;
 
 Marker.appState = appState;
 Floor.appState = appState;

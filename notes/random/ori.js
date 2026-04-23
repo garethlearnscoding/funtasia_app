@@ -5,7 +5,6 @@ import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 
 // === DOM References ===
 const container = document.getElementById("canvas-container");
-const infoLabel = document.getElementById("info");
 const sheet = document.getElementById("bottom-sheet");
 const sheetTitle = document.getElementById("sheet-title");
 const sheetDesc = document.getElementById("sheet-desc");
@@ -379,10 +378,8 @@ function applyHover(target) {
     const emissiveColor = baseColor.clone().multiplyScalar(1);
     hovered.material.emissive.copy(emissiveColor);
     document.body.style.cursor = "pointer";
-    if (infoLabel) infoLabel.textContent = `Hovering: ${hovered.name}`;
   } else {
     document.body.style.cursor = "default";
-    if (infoLabel) infoLabel.textContent = "Hover over the model";
   }
 }
 
@@ -397,7 +394,6 @@ function handleInteraction(event) {
 
   if (targetObject) {
     console.log(`Clicked on: ${targetObject.name}`);
-    if (infoLabel) infoLabel.textContent = `Clicked: ${targetObject.name}`;
     showBottomSheet(targetObject.name);
   }
 }

@@ -329,10 +329,8 @@ body {
   transform: scale(0.92);
 }
 
-.fab-btn img {
-  width: 80%;
-  height: 80%;
-  object-fit: contain;
+.fab-btn span {
+  font-size: 24px;
 }
 
 #open-directory-btn {

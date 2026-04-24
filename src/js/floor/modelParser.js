@@ -22,7 +22,7 @@ const miscSchema = {
 };
 
 const zoneSchema = {
-  "NONE":   '--color-ctp-rosewater-700',
+  "NONE":   '--color-ctp-overlay2',
   "GREEN":  '--color-ctp-green-300',
   "BLUE":   '--color-ctp-blue-600',
   "ORANGE": '--color-ctp-peach-400',

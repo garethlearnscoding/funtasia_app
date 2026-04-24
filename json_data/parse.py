@@ -1,7 +1,7 @@
 import json
 import csv
 
-with open("Booth Data - Sheet2.csv", "r") as file:
+with open("Booth Data - Booth Data.csv", "r") as file:
     data = list(csv.DictReader(file))
 
 print(data)
@@ -9,6 +9,7 @@ print(data)
 
 json_data = {}
 for i in data:
+    del i["sort_helper"]
     booth_id = i.pop("Booth ID")
     level = "l" + i.pop("Level")
     if "," in i["Tags"]:

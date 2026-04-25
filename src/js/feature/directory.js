@@ -202,7 +202,7 @@ function renderDirectory(container, funtasiaData) {
 
     const levelHeader = document.createElement("h3");
     levelHeader.className = "font-headline font-extrabold text-xl text-primary mb-4 px-4 tracking-tight border-b-2 border-primary/20 pb-2";
-    levelHeader.textContent = `Level ${level.replace("l", "").replace("b", "B")}`;
+    levelHeader.textContent = level;
     levelSection.appendChild(levelHeader);
 
     for (const [zone, items] of Object.entries(grouped[level])) {

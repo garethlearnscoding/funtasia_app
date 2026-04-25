@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Amenities Modal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#dcc0bb",
+                        "on-secondary": "#212c62",
+                        "surface": "#12121c",
+                        "on-error": "#690005",
+                        "surface-container-lowest": "#0d0d17",
+                        "primary-container": "#cba6f7",
+                        "error-container": "#93000a",
+                        "surface-container-high": "#292934",
+                        "surface-variant": "#34343f",
+                        "surface-dim": "#12121c",
+                        "on-secondary-fixed": "#09154c",
+                        "on-tertiary-fixed-variant": "#56423e",
+                        "tertiary": "#e8cbc5",
+                        "surface-container-highest": "#34343f",
+                        "on-primary": "#3f1e66",
+                        "primary": "#e2c7ff",
+                        "secondary-fixed-dim": "#bac3ff",
+                        "on-tertiary-fixed": "#271814",
+                        "inverse-on-surface": "#302f3a",
+                        "inverse-surface": "#e4e1ef",
+                        "primary-fixed-dim": "#d9b9ff",
+                        "on-primary-container": "#57377f",
+                        "on-secondary-fixed-variant": "#38437a",
+                        "surface-container-low": "#1b1b25",
+                        "outline-variant": "#4a444f",
+                        "surface-bright": "#393843",
+                        "error": "#ffb4ab",
+                        "primary-fixed": "#eedbff",
+                        "on-tertiary": "#3e2c28",
+                        "secondary-fixed": "#dee0ff",
+                        "tertiary-fixed": "#f9dcd6",
+                        "secondary": "#bac3ff",
+                        "on-surface-variant": "#cdc3d1",
+                        "outline": "#968e9a",
+                        "inverse-primary": "#704f98",
+                        "on-tertiary-container": "#56433e",
+                        "surface-container": "#1f1f29",
+                        "surface-tint": "#d9b9ff",
+                        "on-secondary-container": "#abb5f4",
+                        "on-error-container": "#ffdad6",
+                        "background": "#12121c",
+                        "on-primary-fixed-variant": "#57377f",
+                        "tertiary-container": "#cbb0aa",
+                        "on-surface": "#e4e1ef",
+                        "on-background": "#e4e1ef",
+                        "secondary-container": "#3b457c",
+                        "on-primary-fixed": "#290350"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px",
+                        "2xl": "1rem",
+                        "3xl": "1.5rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk", "sans-serif"],
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                        "label": ["Space Grotesk", "monospace"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom scrollbar to match editorial feel */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #34343f;
+            border-radius: 4px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body antialiased min-h-screen flex items-center justify-center p-4 selection:bg-primary-container selection:text-on-primary-container">
+<!-- Ambient Overlay Blur -->
+<div class="fixed inset-0 bg-background/80 backdrop-blur-md z-40"></div>
+<!-- Modal Container -->
+<main class="relative z-50 w-full max-w-[380px] bg-surface-container rounded-3xl shadow-[0_32px_64px_rgba(9,9,15,0.6)] flex overflow-hidden min-h-[480px] border border-outline-variant/10">
+<!-- Close Action (TopAppBar logic applied contextually) -->
+<button aria-label="Close modal" class="absolute top-4 right-4 z-20 text-on-surface-variant hover:text-primary bg-surface-container-highest/40 hover:bg-surface-container-highest backdrop-blur-md p-2 rounded-full transition-all duration-200">
+<span class="material-symbols-outlined text-[20px]" data-icon="close">close</span>
+</button>
+<!-- Left Vertical Navigation (NavigationDrawer logic) -->
+<nav aria-label="Modal Navigation" class="w-[100px] bg-surface-container-lowest flex flex-col p-2 gap-2 pt-16 z-10 relative shadow-[16px_0_32px_rgba(9,9,15,0.2)]">
+<!-- Tab: Info -->
+<button class="flex flex-col items-center justify-center gap-1.5 text-on-surface-variant/70 px-2 py-4 hover:bg-surface-container hover:text-on-surface rounded-2xl transition-all w-full text-center group">
+<span class="material-symbols-outlined text-[22px] group-hover:scale-110 transition-transform" data-icon="info">info</span>
+<span class="font-label text-[9px] uppercase tracking-widest font-medium">Info</span>
+</button>
+<!-- Tab: Schedule -->
+<button class="flex flex-col items-center justify-center gap-1.5 text-on-surface-variant/70 px-2 py-4 hover:bg-surface-container hover:text-on-surface rounded-2xl transition-all w-full text-center group">
+<span class="material-symbols-outlined text-[22px] group-hover:scale-110 transition-transform" data-icon="calendar_today">calendar_today</span>
+<span class="font-label text-[9px] uppercase tracking-widest font-medium">Schedule</span>
+</button>
+<!-- Tab: Amenities (Active State) -->
+<button class="flex flex-col items-center justify-center gap-1.5 text-surface bg-gradient-to-br from-primary to-primary-container rounded-2xl px-2 py-4 w-full text-center font-bold shadow-[0_8px_24px_rgba(203,166,247,0.2)] scale-105 transform origin-left relative">
+<!-- Subtle active glow -->
+<div class="absolute inset-0 bg-primary/20 blur-md rounded-2xl -z-10"></div>
+<span class="material-symbols-outlined text-[24px]" data-icon="layers" data-weight="fill" style="font-variation-settings: 'FILL' 1;">layers</span>
+<span class="font-label text-[9px] uppercase tracking-widest font-bold">Amenities</span>
+</button>
+</nav>
+<!-- Right Content Canvas -->
+<section class="flex-1 bg-surface relative flex flex-col h-full w-[calc(100%-100px)]">
+<!-- Decorative gradient orb -->
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/4 pointer-events-none"></div>
+<div class="p-6 pt-16 overflow-y-auto flex-1 flex flex-col gap-5">
+<header class="mb-2">
+<h1 class="font-headline text-2xl font-semibold tracking-tight text-on-surface">Facilities</h1>
+<p class="font-body text-xs text-on-surface-variant mt-1 leading-relaxed">Available services and locations within the atelier.</p>
+</header>
+<!-- Amenity List (No standard dividers, using tonal layering) -->
+<!-- Service 1 -->
+<article class="bg-surface-container-low hover:bg-surface-container transition-colors duration-300 p-4 rounded-[20px] flex flex-col gap-3 group">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="bg-surface-container-highest/50 text-primary p-2 rounded-full flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="medical_services">medical_services</span>
+</div>
+<h2 class="font-body text-sm font-semibold text-on-surface tracking-wide">First Aid Station</h2>
+</div>
+</div>
+<div class="pl-12">
+<span class="inline-flex items-center bg-secondary-container/40 text-on-secondary-container font-label text-[9px] uppercase tracking-[0.15em] px-2.5 py-1.5 rounded-full">
+                            Zone B • Level 1
+                        </span>
+</div>
+</article>
+<!-- Service 2 -->
+<article class="bg-surface-container-low hover:bg-surface-container transition-colors duration-300 p-4 rounded-[20px] flex flex-col gap-3 group">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="bg-surface-container-highest/50 text-primary p-2 rounded-full flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="wc">wc</span>
+</div>
+<h2 class="font-body text-sm font-semibold text-on-surface tracking-wide">Restrooms</h2>
+</div>
+</div>
+<div class="pl-12">
+<span class="inline-flex items-center bg-secondary-container/40 text-on-secondary-container font-label text-[9px] uppercase tracking-[0.15em] px-2.5 py-1.5 rounded-full">
+                            All Zones
+                        </span>
+</div>
+</article>
+<!-- Service 3 -->
+<article class="bg-surface-container-low hover:bg-surface-container transition-colors duration-300 p-4 rounded-[20px] flex flex-col gap-3 group mb-4">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="bg-surface-container-highest/50 text-primary p-2 rounded-full flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="support_agent">support_agent</span>
+</div>
+<h2 class="font-body text-sm font-semibold text-on-surface tracking-wide">Information Counter</h2>
+</div>
+</div>
+<div class="pl-12">
+<span class="inline-flex items-center bg-secondary-container/40 text-on-secondary-container font-label text-[9px] uppercase tracking-[0.15em] px-2.5 py-1.5 rounded-full">
+                            Main Atrium
+                        </span>
+</div>
+</article>
+</div>
+</section>
+</main>
+</body></html>

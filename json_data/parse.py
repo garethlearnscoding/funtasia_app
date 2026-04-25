@@ -11,7 +11,7 @@ json_data = {}
 for i in data:
     del i["sort_helper"]
     booth_id = i.pop("Booth ID")
-    level = "l" + i.pop("Level")
+    level = i.pop("Level")
     if "," in i["Tags"]:
         i["Tags"] = i["Tags"].split(",")
     if level not in json_data:
@@ -20,3 +20,4 @@ for i in data:
 
 with open("funtasia_data.json", "w") as file:
     json.dump(json_data, file, indent=2)
+k

@@ -1,5 +1,5 @@
 {
-  "B3": {
+  "b3": {
     "BG1": {
       "Booth Name": "Ping Pong Minigame",
       "Tags": "Game",
@@ -137,7 +137,7 @@
       "Location": ""
     }
   },
-  "B2": {
+  "b2": {
     "Gym": {
       "Booth Name": "Laser Tag",
       "Tags": "Game",
@@ -146,7 +146,7 @@
       "Location": ""
     }
   },
-  "L1": {
+  "l1": {
     "Amphi": {
       "Booth Name": "Water Dunk Tank",
       "Tags": "Game",
@@ -484,7 +484,7 @@
       "Location": ""
     }
   },
-  "L2": {
+  "l2": {
     "LBCP1": {
       "Booth Name": "Corndog Live station",
       "Tags": "Food",

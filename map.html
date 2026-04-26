@@ -1,35 +1,30 @@
 <!doctype html>
-<html lang="en" data-theme="dark">
+<html lang="en" class="mocha"> <!--Default to dark theme which follows the script-->
   <head>
     <script>
       // Immediate theme sync to avoid flashing
-      const savedTheme = localStorage.getItem('funtasia-theme');
-      if (savedTheme) {
-        document.documentElement.dataset.theme = savedTheme;
-      }
+      const savedTheme = localStorage.getItem('funtasia-theme') || 'mocha'; // Default to mocha
+      document.documentElement.classList.remove('mocha');
+      document.documentElement.classList.remove('latte');
+      document.documentElement.classList.add(savedTheme);
     </script>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <title>Funtasia 3D Map</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-    <link rel="icon" type="image/svg+xml" href="/funtasia_app/favicon/favicon.svg"/>  
-    <link rel="apple-touch-icon" href="/funtasia_app/favicon/apple-touch-icon.png">
-    <script type="module" crossorigin src="/funtasia_app/assets/map-EysJPPqD.js"></script>
-    <link rel="modulepreload" crossorigin href="/funtasia_app/assets/input-Ct16Lf38.js">
+    <link rel="icon" type="image/svg+xml" href="/funtasia_app/favicon/favicon.svg"/>
+    <link rel="apple-touch-icon" href="/funtasia_app/favicon/apple-touch-icon.png"/>
+    <script type="module" crossorigin src="/funtasia_app/assets/map-R_GQ3MSO.js"></script>
+    <link rel="modulepreload" crossorigin href="/funtasia_app/assets/input-CPMzc-h0.js">
     <link rel="modulepreload" crossorigin href="/funtasia_app/assets/vendor-Bz-JYute.js">
-    <link rel="modulepreload" crossorigin href="/funtasia_app/assets/vendor-three-BJNCJkSR.js">
-    <link rel="stylesheet" crossorigin href="/funtasia_app/assets/input-D2bGEnlj.css">
-    <link rel="stylesheet" crossorigin href="/funtasia_app/assets/map-D1JIHDlz.css">
+    <link rel="modulepreload" crossorigin href="/funtasia_app/assets/vendor-three-0_8A-LSn.js">
+    <link rel="stylesheet" crossorigin href="/funtasia_app/assets/input-CPgCbPKF.css">
+    <link rel="stylesheet" crossorigin href="/funtasia_app/assets/map-DNW0f8eQ.css">
   <link rel="manifest" href="/funtasia_app/manifest.webmanifest"></head>
   <body>
     <div id="canvas-container"></div>
-    <!-- <div id="info">Hover over the model</div> -->
 
-    <!-- Floor Selector UI -->
     <div id="floor-selector">
       <div id="floor-thumb"></div>
       <button class="floor-btn" data-floor="l2">L2</button>
@@ -39,56 +34,46 @@
       <button class="floor-btn" data-floor="b3">B3</button>
     </div>
 
-    <!-- Bottom sheet popup -->
     <div id="bottom-sheet">
       <div id="sheet-handle"></div>
       <button id="close-btn">&times;</button>
       <h2 id="sheet-title">Location Title</h2>
       <p id="sheet-desc">Location description will appear here.</p>
-      <button id="enter-child-btn" style="display:none; width:100%; padding: 14px; margin-top: 20px; border-radius: 12px; background: color-mix(in srgb, var(--color-primary) 15%, transparent); color: var(--color-primary); font-weight: 700; font-family: 'JetBrains Mono', monospace; font-size: 14px; border: 1px solid color-mix(in srgb, var(--color-primary) 30%, transparent); cursor: pointer; transition: background 0.2s;">Enter Level</button>
+      <button class="bg-ctp-surface1 text-ctp-text" id="enter-child-btn">Enter Area</button>
     </div>
 
-    <!-- Exit Button for Child Models -->
-    <button id="exit-child-btn" style="display:none; position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%); z-index: 200; padding: 12px 24px; border-radius: 24px; background: var(--color-surface-container-highest); color: var(--color-on-surface); font-weight: bold; font-family: 'JetBrains Mono', monospace; font-size: 14px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); border: 1px solid color-mix(in srgb, var(--color-on-surface) 10%, transparent); align-items: center; justify-content: center; gap: 8px; cursor: pointer;">
-      <span class="material-symbols-outlined text-[18px]">logout</span> Exit Level
+    <button class="bg-ctp-surface1 text-ctp-text" id="exit-child-btn">
+      <span class="material-symbols-outlined text-[18px]">logout</span> Exit Area
     </button>
 
-    <!-- Toast Notification -->
     <div id="toast-popup" class="toast">
       <span id="toast-message"></span>
     </div>
 
-    <!-- Settings Open Button -->
-    <button id="open-settings-btn" class="fab-btn fab-btn--settings">
-      <span class="material-symbols-outlined text-[20px]">settings</span>
+    <button id="open-settings-btn" class="fab-btn">
+      <span class="material-symbols-outlined">settings</span>
     </button>
 
-    <!-- Directory Open Button -->
-    <button id="open-directory-btn" class="fab-btn fab-btn--directory">
-      <span class="material-symbols-outlined text-[20px]">menu_book</span>
+    <button id="open-directory-btn" class="fab-btn">
+      <span class="material-symbols-outlined">menu_book</span>
     </button>
 
-    <!-- QR Code Scanning Button -->
-     <button id="open-qr-btn" class="fab-btn fab-btn--qr">
-      <span class="material-symbols-outlined text-[20px]">qr_code_scanner</span>
+     <button id="open-qr-btn" class="fab-btn">
+      <span class="material-symbols-outlined">qr_code_scanner</span>
     </button>
 
-    <!-- Info Button -->
-     <button id="open-info-btn" class="fab-btn fab-btn--info">
-      <span class="material-symbols-outlined text-[20px]">info_i</span>
+     <button id="open-info-btn" class="fab-btn">
+      <span class="material-symbols-outlined">info_i</span>
     </button>
 
     <!-- Clear Directory Marker Button (hidden by default) -->
-    <button id="clear-directory-marker-btn" style="display:none; position: fixed; top: 16px; left: 16px; z-index: 300; width: 44px; height: 44px; border-radius: 50%; background: var(--color-surface-container-highest); color: var(--color-on-surface); box-shadow: 0 4px 12px rgba(0,0,0,0.2); border: 1px solid color-mix(in srgb, var(--color-on-surface) 10%, transparent); align-items: center; justify-content: center; cursor: pointer;">
-      <span class="material-symbols-outlined text-[20px]">close</span>
+    <button id="clear-directory-marker-btn" class="fab-btn" style="display: none;">
+      <span class="material-symbols-outlined">close</span>
     </button>
 
-    <!-- Settings Modal Wrapper -->
-    <div id="settings-modal-wrapper" style="display: none; position: fixed; inset: 0; z-index: 200;">
+    <div id="settings-modal-wrapper" class="modal-wrapper">
       <div class="modal-container" style="position: fixed; inset: 0;">
-        <!-- Overlay Backdrop -->
         <div class="modal-backdrop" id="settings-modal-backdrop"></div>
-        <!-- Pop-up Card -->
         <div class="modal-card">
           <!-- Header Section -->
           <div class="modal-header">
@@ -103,18 +88,37 @@
           <!-- Content Area -->
           <div class="modal-content" id="settings-content-area">
           </div>
-          <!-- Footer Action Fade -->
           <div class="modal-footer-fade"></div>
         </div>
       </div>
     </div>
 
-    <!-- Directory Modal Wrapper -->
-    <div id="directory-modal-wrapper" style="display: none; position: fixed; inset: 0; z-index: 200;">
+    <div id="info-modal-wrapper" class="modal-wrapper">
       <div class="modal-container" style="position: fixed; inset: 0;">
-        <!-- Overlay Backdrop -->
+        <div class="modal-backdrop" id="info-modal-backdrop"></div>
+        <div class="modal-card">
+          <!-- Header Section -->
+          <div class="modal-header">
+            <div>
+              <h1 class="modal-title">Information</h1>
+              <p class="modal-subtitle">How to use this web app</p>
+            </div>
+            <button class="modal-close-btn" id="close-info-btn">
+              <span class="material-symbols-outlined text-[20px]">close</span>
+            </button>
+          </div>
+          <!-- Content Area -->
+          <div class="modal-content" id="info-content-area">
+            <p>Uhh honestly idk man, try it out yourself or go back to onboarding</p>
+          </div>
+          <div class="modal-footer-fade"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="directory-modal-wrapper" class="modal-wrapper">
+      <div class="modal-container" style="position: fixed; inset: 0;">
         <div class="modal-backdrop" id="directory-modal-backdrop"></div>
-        <!-- Pop-up Card -->
         <div class="modal-card">
           <!-- Header Section -->
           <div class="modal-header">
@@ -185,9 +189,8 @@
       </div>
     </div>
 
-    <!-- QR Scanner Modal Wrapper -->
-    <div id="qr-modal-wrapper" style="display: none; position: fixed; inset: 0; z-index: 200;">
-      <div class="modal-container" style="position: fixed; inset: 0;">
+    <div id="qr-modal-wrapper" class="modal-wrapper">
+      <div class="modal-container fixed inset-0">
         <div class="modal-backdrop" id="qr-modal-backdrop"></div>
         <div class="modal-card">
           <!-- Header Section -->
@@ -201,57 +204,44 @@
             </button>
           </div>
           <!-- Content Area -->
-          <div class="modal-content" style="display: flex; flex-direction: column; align-items: center; padding: 24px;">
+          <div class="modal-content flex flex-col items-center p-6">
             
             <!-- Toggle Buttons -->
-            <div style="display: flex; width: 100%; max-width: 300px; background: color-mix(in srgb, var(--color-surface-container) 100%, transparent); padding: 6px; border-radius: 12px; margin-bottom: 32px; border: 1px solid color-mix(in srgb, var(--color-on-surface) 10%, transparent);">
-              <button id="qr-toggle-btn" style="flex: 1; padding: 10px; border-radius: 8px; font-weight: 700; font-family: 'JetBrains Mono', monospace; font-size: 13px; display: flex; align-items: center; justify-content: center; gap: 8px; background: var(--color-primary); color: var(--color-on-surface); border: none; transition: all 0.2s;">
+            <div id="qr-toggle-selector-container">
+              <button id="qr-toggle-btn" class="qr-toggle-selector" style="background: var(--color-ctp-mauve); color: var(--color-ctp-base)">
                 <span class="material-symbols-outlined text-[18px]">qr_code_scanner</span>
                 QR Code
               </button>
-              <button id="text-toggle-btn" style="flex: 1; padding: 10px; border-radius: 8px; font-weight: 600; font-family: 'JetBrains Mono', monospace; font-size: 13px; display: flex; align-items: center; justify-content: center; gap: 8px; background: transparent; color: var(--color-on-surface-variant); border: none; transition: all 0.2s;">
+              <button id="text-toggle-btn" class="qr-toggle-selector">
                 <span class="material-symbols-outlined text-[18px]">keyboard</span>
                 Text Input
               </button>
             </div>
 
             <!-- QR Scanner View -->
-            <div id="qr-scanner-view" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
-              <p style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-on-surface-variant); margin-bottom: 12px;">Align within frame</p>
+            <div id="qr-scanner-view">
+              <p>Align within frame</p>
               <!-- Scanner Placeholder Square -->
-              <div id="qrcode_scanner" style="width: 220px; height: 220px; border: 2px dashed color-mix(in srgb, var(--color-primary) 50%, transparent); border-radius: 16px; display: flex; align-items: center; justify-content: center; background: color-mix(in srgb, var(--color-surface-container-low) 50%, transparent); box-shadow: inset 0 0 20px color-mix(in srgb, var(--color-on-surface) 5%, transparent); margin-bottom: 24px; overflow: hidden; position: relative;">
-                <span class="material-symbols-outlined" style="font-size: 48px; color: var(--color-on-surface-variant); opacity: 0.4;">qr_code_scanner</span>
+              <div id="qrcode_scanner">
+                <span class="material-symbols-outlined" style="font-size: 48px; opacity: 0.4;">qr_code_scanner</span>
               </div>
-              
-              <style>
-                #qrcode_scanner video {
-                  width: 100% !important;
-                  height: 100% !important;
-                  object-fit: cover !important;
-                  border-radius: 16px !important;
-                }
-              </style>
-              
-              <button id="qr-flash-btn" style="width: 100%; max-width: 300px; padding: 14px; border-radius: 12px; background: color-mix(in srgb, var(--color-primary) 15%, transparent); color: var(--color-primary); font-weight: 700; font-family: 'JetBrains Mono', monospace; font-size: 14px; border: 1px solid color-mix(in srgb, var(--color-primary) 30%, transparent); display: flex; justify-content: center; align-items: center; gap: 8px; cursor: pointer; transition: background 0.2s;">
+              <button id="qr-flash-btn">
                 <span class="material-symbols-outlined text-[20px]" id="qr-flash-icon">flashlight_off</span>
                 Toggle Flash
               </button>
             </div>
 
             <!-- Text Input View (Hidden by default) -->
-            <div id="text-input-view" style="width: 100%; display: none; flex-direction: column; align-items: center;">
-              <p style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-on-surface-variant); margin-bottom: 20px;">Enter location code</p>
+            <div id="text-input-view" class="hidden flex-col items-center" style="width: 100%;">
+              <p class="uppercase font-bold mb-5" style="font-size: 11px; letter-spacing: 0.1em;">Enter location code</p>
               
-              <!-- Funtasia Input Fields -->
-              <div style="display: flex; gap: 8px; margin-bottom: 32px; justify-content: center; width: 100%; align-items: center;">
-                <input class="qr-code-input" inputmode="numeric" maxlength="2" type="text" placeholder="00" style="width: 72px; height: 56px; text-align: center; font-size: 24px; font-weight: 700; border-radius: 10px; border: 1px solid color-mix(in srgb, var(--color-primary) 30%, transparent); background: var(--color-surface-container-high); color: var(--color-primary); font-family: 'JetBrains Mono', monospace; outline: none;" />
-                <span style="font-size: 24px; color: var(--color-on-surface-variant); font-weight: 700; margin: 0 4px;">-</span>
-                <input class="qr-code-input" inputmode="numeric" maxlength="2" type="text" placeholder="00" style="width: 72px; height: 56px; text-align: center; font-size: 24px; font-weight: 700; border-radius: 10px; border: 1px solid color-mix(in srgb, var(--color-primary) 30%, transparent); background: var(--color-surface-container-high); color: var(--color-primary); font-family: 'JetBrains Mono', monospace; outline: none;" />
+              <!-- Location Code Input Fields -->
+              <div class="flex mb-8 gap-2 justify-center items-center" style="width: 100%;">
+                <input class="qr-code-input" inputmode="numeric" maxlength="2" type="text" placeholder="00"/>
+                <span class="font-bold" style="font-size: 24px;">-</span>
+                <input class="qr-code-input" inputmode="numeric" maxlength="2" type="text" placeholder="00"/>
               </div>
-              
-              <button id="qr-continue-btn" style="width: 100%; max-width: 300px; padding: 14px; border-radius: 12px; background: color-mix(in srgb, var(--color-surface-container-high) 100%, transparent); color: var(--color-primary); font-weight: 700; font-family: 'JetBrains Mono', monospace; font-size: 14px; border: 1px solid color-mix(in srgb, var(--color-primary) 30%, transparent); display: flex; justify-content: center; align-items: center; gap: 8px; cursor: pointer; transition: background 0.2s;">
-                Continue
-              </button>
+              <button id="qr-go-btn">Visit location</button>
             </div>
 
           </div>

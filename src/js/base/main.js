@@ -28,6 +28,9 @@ const floorDefs = {
 
 const childModelDefs = {
   canteen: `models/${VERSION}/njc-l1-canteen-${VERSION}.glb`,
+  ish: `models/${VERSION}/njc-b3-ish-${VERSION}.glb`,
+  sanctuary: `models/${VERSION}/njc-l1-sanctuary-${VERSION}.glb`,
+  hall: `models/${VERSION}/njc-l2-hall-${VERSION}.glb`
 };
 
 // Instantiate Floor objects — they self-register into Floor.floors

@@ -138,7 +138,7 @@ export function parseModel(gltf, floorId, scene, funtasiaData) {
 
   const objects = [];
   model.updateMatrixWorld(true);
-
+  console.log(model)
   model.traverse((child) => {
     let isSplitChild = false;
     let logicalNode = child;
@@ -229,8 +229,6 @@ export function parseModel(gltf, floorId, scene, funtasiaData) {
 
     if (!isInteractive) return;
     if (child.userData.ZONE === "NONE") return;
-    console.log(funtasiaData)
-    console.log(floorId)
     const lookupName = logicalNode.name;
     if (!logicalNode.name || logicalNode.name === "") {
       logicalNode.name = `${floorId}_Object_${objects.length + 1}`;

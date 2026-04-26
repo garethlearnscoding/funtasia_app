@@ -36,7 +36,7 @@ export default defineConfig({
     })
   ],
   define: {
-    ASSETS_BASE_URL: JSON.stringify('https://cdn.jsdelivr.net/gh/garethlearnscoding/funtasia_assets'),
+    ASSETS_BASE_URL: JSON.stringify('https://cdn.jsdelivr.net/gh/garethlearnscoding/funtasia_assets@main'),
     VERSION: JSON.stringify('v3-11-4')
   },
   resolve: {

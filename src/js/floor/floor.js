@@ -12,7 +12,10 @@ export class Floor {
 
   // Static dictionary for mapping object names to child model floor IDs
   static childModels = {
-    Canteen: "canteen"
+    Canteen: "canteen",
+    Sanctuary: "sanctuary",
+    Hall: "hall",
+    ISH: "ish",
   };
 
   // Static dictionary of all loaded floors

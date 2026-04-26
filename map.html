@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="en" class="mocha"> <!--Default to dark theme which follows the script-->
+<html lang="en">
   <head>
     <script>
       // Immediate theme sync to avoid flashing
-      const savedTheme = localStorage.getItem('funtasia-theme') || 'mocha'; // Default to mocha
+      const savedTheme = localStorage.getItem('funtasia-theme') || 'latte'; // Default to latte
       document.documentElement.classList.remove('mocha');
       document.documentElement.classList.remove('latte');
       document.documentElement.classList.add(savedTheme);
@@ -15,12 +15,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
     <link rel="icon" type="image/svg+xml" href="/funtasia_app/favicon/favicon.svg"/>
     <link rel="apple-touch-icon" href="/funtasia_app/favicon/apple-touch-icon.png"/>
-    <script type="module" crossorigin src="/funtasia_app/assets/map-R_GQ3MSO.js"></script>
-    <link rel="modulepreload" crossorigin href="/funtasia_app/assets/input-CPMzc-h0.js">
+    <script type="module" crossorigin src="/funtasia_app/assets/map-Bsk5DzkB.js"></script>
+    <link rel="modulepreload" crossorigin href="/funtasia_app/assets/input-VwdCvokw.js">
     <link rel="modulepreload" crossorigin href="/funtasia_app/assets/vendor-Bz-JYute.js">
     <link rel="modulepreload" crossorigin href="/funtasia_app/assets/vendor-three-0_8A-LSn.js">
-    <link rel="stylesheet" crossorigin href="/funtasia_app/assets/input-CPgCbPKF.css">
-    <link rel="stylesheet" crossorigin href="/funtasia_app/assets/map-DNW0f8eQ.css">
+    <link rel="stylesheet" crossorigin href="/funtasia_app/assets/input-D6fjDLTQ.css">
+    <link rel="stylesheet" crossorigin href="/funtasia_app/assets/map-D5Yz7FpN.css">
   <link rel="manifest" href="/funtasia_app/manifest.webmanifest"></head>
   <body>
     <div id="canvas-container"></div>
@@ -66,6 +66,10 @@
       <span class="material-symbols-outlined">info_i</span>
     </button>
 
+     <button id="open-events-btn" class="fab-btn">
+      <span class="material-symbols-outlined">event</span>
+    </button>  
+
     <!-- Clear Directory Marker Button (hidden by default) -->
     <button id="clear-directory-marker-btn" class="fab-btn" style="display: none;">
       <span class="material-symbols-outlined">close</span>
@@ -110,6 +114,46 @@
           <!-- Content Area -->
           <div class="modal-content" id="info-content-area">
             <p>Uhh honestly idk man, try it out yourself or go back to onboarding</p>
+          </div>
+          <div class="modal-footer-fade"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="events-modal-wrapper" class="modal-wrapper">
+      <div class="modal-container" style="position: fixed; inset: 0;">
+        <div class="modal-backdrop" id="events-modal-backdrop"></div>
+        <div class="modal-card">
+          <div class="modal-header">
+            <div>
+              <h1 class="modal-title">Events</h1>
+              <p class="modal-subtitle">Timeline of events</p>
+            </div>
+            <button class="modal-close-btn" id="close-events-btn">
+              <span class="material-symbols-outlined text-[20px]">close</span>
+            </button>
+          </div>
+          <!-- Content Area -->
+          <div class="modal-content flex flex-col items-center p-6" id="events-content-area">
+            <!-- Toggle Buttons -->
+            <div class="toggle-selector-container max-w-xl">
+              <button id="events-cca-toggle-btn" class="toggle-selector" style="background: var(--color-ctp-mauve); color: var(--color-ctp-base)">
+                <span class="material-symbols-outlined text-[18px]">theater_comedy</span>
+                CCA Performances
+              </button>
+              <button id="events-dunklist-toggle-btn" class="toggle-selector">
+                <span class="material-symbols-outlined text-[18px]">falling</span>
+                Dunk list
+              </button>
+              <button id="events-pabusking-toggle-btn" class="toggle-selector">
+                <span class="material-symbols-outlined text-[18px]">music_note_2</span>
+                PA Busking
+              </button>
+            </div>
+            <!-- Dynamic Content Area -->
+            <div id="events-list-container" class="w-full mt-6 space-y-4">
+              <!-- Items injected by script -->
+            </div>
           </div>
           <div class="modal-footer-fade"></div>
         </div>
@@ -206,13 +250,13 @@
           <!-- Content Area -->
           <div class="modal-content flex flex-col items-center p-6">
             
-            <!-- Toggle Buttons -->
-            <div id="qr-toggle-selector-container">
-              <button id="qr-toggle-btn" class="qr-toggle-selector" style="background: var(--color-ctp-mauve); color: var(--color-ctp-base)">
+            <!-- Selector Buttons -->
+            <div class="toggle-selector-container max-w-80">
+              <button id="qr-toggle-btn" class="toggle-selector" style="background: var(--color-ctp-mauve); color: var(--color-ctp-base)">
                 <span class="material-symbols-outlined text-[18px]">qr_code_scanner</span>
                 QR Code
               </button>
-              <button id="text-toggle-btn" class="qr-toggle-selector">
+              <button id="text-toggle-btn" class="toggle-selector">
                 <span class="material-symbols-outlined text-[18px]">keyboard</span>
                 Text Input
               </button>

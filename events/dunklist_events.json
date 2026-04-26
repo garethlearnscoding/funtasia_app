@@ -1,0 +1,47 @@
+{
+  "subtitle": "Dunking of Teachers Schedule",
+  "endText": "End of Dunking Events",
+  "events": [
+    {
+      "time": "12:00 PM",
+      "title": "Round 1",
+      "description": "The first batch of teachers faces the water!",
+      "location": "Concourse",
+      "isSessionHeader": true
+    },
+    {
+      "time": "12:15 PM",
+      "title": "Mr. Smith",
+      "description": "Physics teacher steps up.",
+      "location": "Concourse",
+      "tags": [
+        { "icon": "water_drop", "text": "Dunk" }
+      ]
+    },
+    {
+      "time": "12:30 PM",
+      "title": "Ms. Johnson",
+      "description": "Math teacher takes the plunge.",
+      "location": "Concourse",
+      "tags": [
+        { "icon": "water_drop", "text": "Dunk" }
+      ]
+    },
+    {
+      "time": "02:30 PM",
+      "title": "Round 2",
+      "description": "More teachers, more splashing.",
+      "location": "Concourse",
+      "isSessionHeader": true
+    },
+    {
+      "time": "02:45 PM",
+      "title": "Mr. Lee",
+      "description": "PE teacher's turn.",
+      "location": "Concourse",
+      "tags": [
+        { "icon": "water_drop", "text": "Dunk" }
+      ]
+    }
+  ]
+}

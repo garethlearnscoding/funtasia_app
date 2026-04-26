@@ -1,0 +1,1 @@
+import{L as s,M as e}from"./map-Bsk5DzkB.js";import"./input-VwdCvokw.js";import"./vendor-Bz-JYute.js";import"./vendor-three-0_8A-LSn.js";class n extends s{constructor(r,t){const a=e.appState?e.appState.scene:null;super(a,r,!1,!1),this.level=t}}export{n as DirectoryMarker};

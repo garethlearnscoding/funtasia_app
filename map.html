@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="en" class="mocha"> <!--Default to dark theme which follows the script-->
+<html lang="en">
   <head>
     <script>
       // Immediate theme sync to avoid flashing
-      const savedTheme = localStorage.getItem('funtasia-theme') || 'mocha'; // Default to mocha
+      const savedTheme = localStorage.getItem('funtasia-theme') || 'latte'; // Default to latte
       document.documentElement.classList.remove('mocha');
       document.documentElement.classList.remove('latte');
       document.documentElement.classList.add(savedTheme);
@@ -63,6 +63,10 @@
       <span class="material-symbols-outlined">info_i</span>
     </button>
 
+     <button id="open-events-btn" class="fab-btn">
+      <span class="material-symbols-outlined">event</span>
+    </button>  
+
     <!-- Clear Directory Marker Button (hidden by default) -->
     <button id="clear-directory-marker-btn" class="fab-btn" style="display: none;">
       <span class="material-symbols-outlined">close</span>
@@ -107,6 +111,42 @@
           <!-- Content Area -->
           <div class="modal-content" id="info-content-area">
             <p>Uhh honestly idk man, try it out yourself or go back to onboarding</p>
+          </div>
+          <div class="modal-footer-fade"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="events-modal-wrapper" class="modal-wrapper">
+      <div class="modal-container" style="position: fixed; inset: 0;">
+        <div class="modal-backdrop" id="events-modal-backdrop"></div>
+        <div class="modal-card">
+          <div class="modal-header">
+            <div>
+              <h1 class="modal-title">Events</h1>
+              <p class="modal-subtitle">Timeline of events</p>
+            </div>
+            <button class="modal-close-btn" id="close-events-btn">
+              <span class="material-symbols-outlined text-[20px]">close</span>
+            </button>
+          </div>
+          <!-- Content Area -->
+          <div class="modal-content flex flex-col items-center p-6" id="events-content-area">
+            <!-- Toggle Buttons -->
+            <div class="toggle-selector-container max-w-xl">
+              <button id="events-cca-toggle-btn" class="toggle-selector" style="background: var(--color-ctp-mauve); color: var(--color-ctp-base)">
+                <span class="material-symbols-outlined text-[18px]">theater_comedy</span>
+                CCA Performances
+              </button>
+              <button id="events-dunklist-toggle-btn" class="toggle-selector">
+                <span class="material-symbols-outlined text-[18px]">falling</span>
+                Dunk list
+              </button>
+              <button id="events-pabusking-toggle-btn" class="toggle-selector">
+                <span class="material-symbols-outlined text-[18px]">music_note_2</span>
+                PA Busking
+              </button>
+            </div>            
           </div>
           <div class="modal-footer-fade"></div>
         </div>
@@ -203,13 +243,13 @@
           <!-- Content Area -->
           <div class="modal-content flex flex-col items-center p-6">
             
-            <!-- Toggle Buttons -->
-            <div id="qr-toggle-selector-container">
-              <button id="qr-toggle-btn" class="qr-toggle-selector" style="background: var(--color-ctp-mauve); color: var(--color-ctp-base)">
+            <!-- Selector Buttons -->
+            <div class="toggle-selector-container max-w-80">
+              <button id="qr-toggle-btn" class="toggle-selector" style="background: var(--color-ctp-mauve); color: var(--color-ctp-base)">
                 <span class="material-symbols-outlined text-[18px]">qr_code_scanner</span>
                 QR Code
               </button>
-              <button id="text-toggle-btn" class="qr-toggle-selector">
+              <button id="text-toggle-btn" class="toggle-selector">
                 <span class="material-symbols-outlined text-[18px]">keyboard</span>
                 Text Input
               </button>
@@ -262,6 +302,11 @@
       const settingsModal = document.getElementById('settings-modal-wrapper');
       const settingsBackdrop = document.getElementById('settings-modal-backdrop');
 
+      const openEventsBtn = document.getElementById('open-events-btn');
+      const closeEventsBtn = document.getElementById('close-events-btn');
+      const eventsModal = document.getElementById('events-modal-wrapper');
+      const eventsBackdrop = document.getElementById('events-modal-backdrop');
+
       const openInfoBtn = document.getElementById('open-info-btn');
       const closeInfoBtn = document.getElementById('close-info-btn');
       const infoModal = document.getElementById('info-modal-wrapper');
@@ -285,6 +330,7 @@
         openSettingsBtn.style.display = 'none';
         openQrBtn.style.display = 'none';
         openInfoBtn.style.display = 'none';
+        openEventsBtn.style.display = 'none';
       }
 
       function showFabButtons() {
@@ -292,6 +338,7 @@
         openSettingsBtn.style.display = 'flex';
         openQrBtn.style.display = 'flex';
         openInfoBtn.style.display = 'flex';
+        openEventsBtn.style.display = 'flex';
       }
 
       function clearTextInputs() {
@@ -350,6 +397,19 @@
         settingsModal.style.removeProperty('display');
         showFabButtons();
       });
+
+      openEventsBtn.addEventListener('click', () => {
+        eventsModal.style.display = 'block';
+        hideFabButtons();
+      });
+      closeEventsBtn.addEventListener('click', () => {
+        eventsModal.style.removeProperty('display');
+        showFabButtons();
+      });
+      eventsBackdrop.addEventListener('click', () => {
+        eventsModal.style.removeProperty('display');
+        showFabButtons();
+      });      
 
       openInfoBtn.addEventListener('click', () => {
         infoModal.style.display = 'block';

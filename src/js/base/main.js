@@ -27,15 +27,22 @@ const floorDefs = {
 };
 
 const childModelDefs = {
-  canteen: `models/${VERSION}/njc-l1-canteen-${VERSION}.glb`,
-  ish: `models/${VERSION}/njc-b3-ish-${VERSION}.glb`,
-  sanctuary: `models/${VERSION}/njc-l1-sanctuary-${VERSION}.glb`,
-  hall: `models/${VERSION}/njc-l2-hall-${VERSION}.glb`
+  canteen:   { floorId: "l1", nodeName: "Canteen",   path: `models/${VERSION}/njc-l1-canteen-${VERSION}.glb` },
+  sanctuary: { floorId: "l1", nodeName: "Sanctuary", path: `models/${VERSION}/njc-l1-sanctuary-${VERSION}.glb` },
+  hall:      { floorId: "l2", nodeName: "Hall",      path: `models/${VERSION}/njc-l2-hall-${VERSION}.glb` },
+  ish:       { floorId: "b3", nodeName: "ISH",       path: `models/${VERSION}/njc-b3-ish-${VERSION}.glb` },
 };
 
 // Instantiate Floor objects — they self-register into Floor.floors
 Object.entries(floorDefs).forEach(([id, path]) => new Floor(id, path));
-Object.entries(childModelDefs).forEach(([id, path]) => new Floor(id, path));
+Object.entries(childModelDefs).forEach(([id, config]) => {
+  const floor = new Floor(id, config.path);
+  floor.parentFloorId = config.floorId;
+  
+  // Populate the lookup map for the parser (Parent ID -> { NodeName -> ChildID })
+  if (!Floor.childModels[config.floorId]) Floor.childModels[config.floorId] = {};
+  Floor.childModels[config.floorId][config.nodeName] = id;
+});
 
 const raycaster = new THREE.Raycaster();
 const mouse = new THREE.Vector2();

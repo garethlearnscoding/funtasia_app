@@ -11,12 +11,8 @@ export class Floor {
   static appState = null;
 
   // Static dictionary for mapping object names to child model floor IDs
-  static childModels = {
-    Canteen: "canteen",
-    Sanctuary: "sanctuary",
-    Hall: "hall",
-    ISH: "ish",
-  };
+  // Populated dynamically in main.js
+  static childModels = {};
 
   // Static dictionary of all loaded floors
   static floors = {};
@@ -36,6 +32,7 @@ export class Floor {
     this.id = id;
     this.modelPath = modelPath;
     this.infoDataPath = infoDataPath;
+    this.parentFloorId = null; // Set dynamically if this is a child model
 
     this.sceneModel = null;
     this.interactiveObjects = [];
@@ -68,7 +65,8 @@ export class Floor {
     if (this.isLoaded()) return;
 
     const gltf = await loadModel(this.modelPath);
-    const result = parseModel(gltf, this.id, appState.scene, funtasiaData);
+    const parsingId = this.parentFloorId || this.id;
+    const result = parseModel(gltf, this.id, appState.scene, funtasiaData, parsingId);
     this.attachParsedData(result.model, result.interactiveObjects, result.cameraConfig);
     
     window.dispatchEvent(new CustomEvent("floorReady", { detail: { floorId: this.id } }));

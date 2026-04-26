@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Digital Atelier - Schedule Modal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-container": "#abb5f4",
+                        "tertiary-fixed-dim": "#dcc0bb",
+                        "on-surface": "#e4e1ef",
+                        "secondary-container": "#3b457c",
+                        "on-tertiary": "#3e2c28",
+                        "on-error-container": "#ffdad6",
+                        "surface": "#12121c",
+                        "on-primary-fixed": "#290350",
+                        "on-primary": "#3f1e66",
+                        "surface-bright": "#393843",
+                        "error-container": "#93000a",
+                        "surface-container": "#1f1f29",
+                        "on-secondary-fixed": "#09154c",
+                        "surface-container-lowest": "#0d0d17",
+                        "surface-tint": "#d9b9ff",
+                        "inverse-on-surface": "#302f3a",
+                        "on-primary-container": "#57377f",
+                        "on-secondary": "#212c62",
+                        "on-tertiary-container": "#56433e",
+                        "tertiary": "#e8cbc5",
+                        "surface-container-high": "#292934",
+                        "on-surface-variant": "#cdc3d1",
+                        "secondary-fixed-dim": "#bac3ff",
+                        "on-tertiary-fixed": "#271814",
+                        "primary-container": "#cba6f7",
+                        "on-background": "#e4e1ef",
+                        "on-tertiary-fixed-variant": "#56423e",
+                        "tertiary-container": "#cbb0aa",
+                        "surface-dim": "#12121c",
+                        "surface-container-low": "#1b1b25",
+                        "surface-variant": "#34343f",
+                        "secondary": "#bac3ff",
+                        "background": "#12121c",
+                        "outline": "#968e9a",
+                        "on-error": "#690005",
+                        "on-secondary-fixed-variant": "#38437a",
+                        "outline-variant": "#4a444f",
+                        "on-primary-fixed-variant": "#57377f",
+                        "inverse-primary": "#704f98",
+                        "primary-fixed-dim": "#d9b9ff",
+                        "primary": "#e2c7ff",
+                        "primary-fixed": "#eedbff",
+                        "inverse-surface": "#e4e1ef",
+                        "surface-container-highest": "#34343f",
+                        "error": "#ffb4ab",
+                        "secondary-fixed": "#dee0ff",
+                        "tertiary-fixed": "#f9dcd6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk", "sans-serif"],
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                        "label": ["Space Grotesk", "monospace"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .font-headline { font-family: 'Space Grotesk', sans-serif; }
+        .font-display { font-family: 'Space Grotesk', sans-serif; }
+        .font-label { font-family: 'Space Grotesk', monospace; }
+        
+        /* Ambient shadow utility */
+        .shadow-ambient {
+            box-shadow: 0 32px 64px rgba(9, 9, 15, 0.4);
+        }
+        
+        /* Hide scrollbar for clean look */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface antialiased min-h-screen flex items-center justify-center p-4 md:p-8">
+<!-- Modal Overlay Backdrop -->
+<div class="fixed inset-0 bg-surface/80 backdrop-blur-md z-40"></div>
+<!-- Modal Container -->
+<div class="relative z-50 w-full max-w-4xl max-h-[795px] bg-surface-container rounded-xl shadow-ambient flex flex-col md:flex-row overflow-hidden ring-1 ring-outline-variant/15">
+<!-- Close Button (Mobile Absolute Top Right, Desktop Absolute Top Right) -->
+<button aria-label="Close" class="absolute top-4 right-4 z-50 p-2 text-on-surface-variant hover:text-on-surface bg-surface-container-highest/50 backdrop-blur-sm rounded-full transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+<!-- Left Sidebar Navigation -->
+<div class="w-full md:w-64 bg-surface-container-lowest flex-shrink-0 border-b md:border-b-0 md:border-r border-outline-variant/15 flex flex-row md:flex-col p-6">
+<div class="hidden md:block mb-12">
+<h2 class="font-headline text-2xl font-bold tracking-tighter text-primary-container">Atelier</h2>
+</div>
+<nav class="flex md:flex-col flex-row w-full gap-2 overflow-x-auto no-scrollbar md:overflow-visible">
+<!-- Tab: Info -->
+<button class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant opacity-70 hover:bg-surface-container hover:opacity-100 transition-all duration-300 ease-out flex-shrink-0">
+<span class="material-symbols-outlined text-lg" data-icon="info">info</span>
+<span class="font-label uppercase tracking-widest text-[10px] font-medium">Info</span>
+</button>
+<!-- Tab: Schedule (Active) -->
+<button class="flex items-center gap-3 px-4 py-3 rounded-lg bg-gradient-to-r from-primary to-primary-container text-surface flex-shrink-0 transition-all duration-300 ease-out">
+<span class="material-symbols-outlined text-lg" data-icon="calendar_today" data-weight="fill" style="font-variation-settings: 'FILL' 1;">calendar_today</span>
+<span class="font-label uppercase tracking-widest text-[10px] font-bold">Schedule</span>
+</button>
+<!-- Tab: Amenities -->
+<button class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant opacity-70 hover:bg-surface-container hover:opacity-100 transition-all duration-300 ease-out flex-shrink-0">
+<span class="material-symbols-outlined text-lg" data-icon="local_cafe">local_cafe</span>
+<span class="font-label uppercase tracking-widest text-[10px] font-medium">Amenities</span>
+</button>
+</nav>
+</div>
+<!-- Main Content Area (Timeline) -->
+<div class="flex-1 overflow-y-auto no-scrollbar p-6 md:p-10 relative">
+<header class="mb-10">
+<h1 class="font-headline text-3xl md:text-[3.5rem] font-bold tracking-tight text-on-surface leading-none mb-2">Schedule</h1>
+<p class="text-on-surface-variant font-body text-sm">Day 1 • Curated Masterclasses &amp; Experiences</p>
+</header>
+<!-- Vertical Timeline -->
+<div class="relative pl-6 md:pl-8 before:content-[''] before:absolute before:left-0 before:top-2 before:bottom-2 before:w-[2px] before:bg-surface-container-highest">
+<!-- Timeline Item 1 -->
+<div class="relative mb-12 group">
+<!-- Timeline Node -->
+<div class="absolute -left-6 md:-left-8 top-1 w-3 h-3 bg-primary rounded-full ring-4 ring-surface-container z-10"></div>
+<div class="flex flex-col gap-1 mb-3">
+<span class="font-label text-primary-container text-[10px] uppercase tracking-widest">09:00 AM</span>
+<h3 class="font-headline text-xl font-medium text-on-surface">Opening Ceremony</h3>
+</div>
+<div class="bg-surface-container-low p-6 rounded-xl relative overflow-hidden ring-1 ring-outline-variant/15 hover:bg-surface-container-highest/50 transition-colors duration-300">
+<p class="font-body text-sm text-on-surface-variant mb-4 leading-relaxed">
+                            Welcome address and introductory keynote mapping out the overarching themes of this year's digital symposium.
+                        </p>
+<div class="flex items-center gap-2">
+<span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full font-label text-[10px] uppercase tracking-widest flex items-center gap-1 w-fit">
+<span class="material-symbols-outlined text-[12px]" data-icon="location_on">location_on</span>
+                                Main Stage
+                            </span>
+</div>
+</div>
+</div>
+<!-- Timeline Item 2 -->
+<div class="relative mb-12 group">
+<!-- Timeline Node -->
+<div class="absolute -left-6 md:-left-8 top-1 w-3 h-3 bg-surface-container-highest rounded-full ring-4 ring-surface-container z-10 group-hover:bg-primary-container transition-colors duration-300"></div>
+<div class="flex flex-col gap-1 mb-3">
+<span class="font-label text-on-surface-variant text-[10px] uppercase tracking-widest">11:30 AM</span>
+<h3 class="font-headline text-xl font-medium text-on-surface">The Future of Interaction Design</h3>
+</div>
+<div class="bg-surface-container-low p-6 rounded-xl relative overflow-hidden ring-1 ring-outline-variant/15 hover:bg-surface-container-highest/50 transition-colors duration-300">
+<div class="flex flex-col md:flex-row gap-6">
+<div class="w-full md:w-24 h-24 rounded-lg overflow-hidden flex-shrink-0 bg-surface-container-highest">
+<img alt="Speaker portrait" class="w-full h-full object-cover grayscale opacity-80 mix-blend-luminosity" data-alt="close up portrait of a speaker in dim dramatic lighting with purple hues" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWNWoSZRz_f_NjxOR4ZbQNn7gOVWM62ZeraV-Vn0-2yyVVsu9S3o3IlOwDHZsjfsoJMw3O_QKitqwAP3HS7_CInhkAsXuz4o90MagG7inz3YA57XNKlNkVgf_Hna62hNSATeGiaNa0syOgggOmKwiC4SBBJqeLREPEYqmi92B_JSPKA0LsWCXyk9YvPcPruqgpo7mmSoQJ_9QmbIA--t2r5HLxbkbZkkUzZ2hgS8zMUsmoAR9a-UAqn49iLgxEkjO0FKoR4n4uywA"/>
+</div>
+<div>
+<p class="font-body text-sm text-on-surface-variant mb-4 leading-relaxed">
+                                    A deep dive into spatial computing, gestural interfaces, and breaking away from the flat screen paradigm. Hosted by Dr. Aris Thorne.
+                                </p>
+<div class="flex items-center gap-2 flex-wrap">
+<span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full font-label text-[10px] uppercase tracking-widest flex items-center gap-1 w-fit">
+<span class="material-symbols-outlined text-[12px]" data-icon="location_on">location_on</span>
+                                        Studio Alpha
+                                    </span>
+<span class="border border-outline-variant/30 text-on-surface-variant px-3 py-1 rounded-full font-label text-[10px] uppercase tracking-widest flex items-center gap-1 w-fit">
+<span class="material-symbols-outlined text-[12px]" data-icon="mic">mic</span>
+                                        Panel
+                                    </span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Timeline Item 3 -->
+<div class="relative mb-12 group">
+<!-- Timeline Node -->
+<div class="absolute -left-6 md:-left-8 top-1 w-3 h-3 bg-surface-container-highest rounded-full ring-4 ring-surface-container z-10 group-hover:bg-primary-container transition-colors duration-300"></div>
+<div class="flex flex-col gap-1 mb-3">
+<span class="font-label text-on-surface-variant text-[10px] uppercase tracking-widest">02:00 PM</span>
+<h3 class="font-headline text-xl font-medium text-on-surface">Immersive Typography Workshop</h3>
+</div>
+<div class="bg-surface-container-low p-6 rounded-xl relative overflow-hidden ring-1 ring-outline-variant/15 hover:bg-surface-container-highest/50 transition-colors duration-300">
+<p class="font-body text-sm text-on-surface-variant mb-4 leading-relaxed">
+                            Hands-on session exploring variable fonts and kinetic typography in 3D web environments. Requires pre-installed software suite.
+                        </p>
+<div class="flex items-center gap-2">
+<span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full font-label text-[10px] uppercase tracking-widest flex items-center gap-1 w-fit">
+<span class="material-symbols-outlined text-[12px]" data-icon="location_on">location_on</span>
+                                Lab 04
+                            </span>
+</div>
+</div>
+</div>
+<!-- End Node -->
+<div class="relative">
+<div class="absolute -left-6 md:-left-8 top-1 w-3 h-3 bg-surface-container-highest rounded-full ring-4 ring-surface-container z-10"></div>
+<span class="font-label text-on-surface-variant text-[10px] uppercase tracking-widest block pt-0.5">End of Day 1</span>
+</div>
+</div>
+</div>
+</div>
+</body></html>

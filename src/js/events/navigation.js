@@ -2,7 +2,7 @@ import * as THREE from "three";
 import { Floor } from "@/js/floor/floor.js";
 import { QRMarker } from "@/js/marker/qrmarker.js";
 import { Icon } from "@/js/marker/icon.js";
-import { updateFloorUI, showToast, hideToast } from "@/js/ui_ux/ui.js";
+import { updateFloorUI, showToast, hideToast, hideBottomSheet } from "@/js/ui_ux/ui.js";
 
 export class Navigation {
   static appState = null;
@@ -62,6 +62,8 @@ export class Navigation {
         appState.cameraAnim.active = false;
       }
 
+      hideBottomSheet();
+
       if (appState.selected) {
         appState.selected.traverse((child) => {
           if (child.isMesh && child.userData.material) {
@@ -71,8 +73,14 @@ export class Navigation {
         appState.selected = null;
       }
 
-      const isChildFloor = Object.values(Floor.childModels || {}).includes(floorId);
-      if (appState.currentFloor && !Object.values(Floor.childModels || {}).includes(appState.currentFloor.id)) {
+      const targetFloor = Floor.floors[floorId];
+      if (!targetFloor) {
+        console.warn(`Floor ${floorId} not found`);
+        return;
+      }
+
+      const isChildFloor = !!targetFloor.parentFloorId;
+      if (appState.currentFloor && !appState.currentFloor.parentFloorId) {
         appState.previousMainFloorId = appState.currentFloor.id;
         appState.previousSelectedObject = savedSelection;
       }
@@ -97,12 +105,6 @@ export class Navigation {
 
       // Hide all floors first
       Object.values(Floor.floors).forEach((floor) => floor.hide());
-
-      const targetFloor = Floor.floors[floorId];
-      if (!targetFloor) {
-        console.warn(`Floor ${floorId} not found`);
-        return;
-      }
 
       // Lazy load
       if (!targetFloor.isLoaded()) {

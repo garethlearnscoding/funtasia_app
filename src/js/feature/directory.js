@@ -1,6 +1,7 @@
 import { Navigation } from "@/js/events/navigation.js";
-import { hideBottomSheet } from "@/js/ui_ux/ui.js";
+import { hideBottomSheet, clearStoredBottomSheet } from "@/js/ui_ux/ui.js";
 import * as THREE from "three";
+import { Floor } from "@/js/floor/floor.js";
 
 let cachedFuntasiaData = null;
 
@@ -235,7 +236,16 @@ function renderDirectory(container, funtasiaData) {
 
         itemEl.onclick = async () => {
           // Navigation
-          await Navigation.switchFloor(level);
+          let targetFloorId = level;
+          const boothName = item["Booth Name"];
+
+          // Centralized Redirect: If this booth has a child model, go straight to it
+          if (Floor.childModels[level] && Floor.childModels[level][boothName]) {
+            targetFloorId = Floor.childModels[level][boothName];
+          }
+
+          await Navigation.switchFloor(targetFloorId);
+          clearStoredBottomSheet();
           hideBottomSheet();
 
           // Clear previous directory marker if it exists

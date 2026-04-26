@@ -94,7 +94,7 @@ export function applyThemeToScene(appState) {
 let skybox = null;
 let maxRadius = 0;
 
-export function parseModel(gltf, floorId, scene, funtasiaData) {
+export function parseModel(gltf, floorId, scene, funtasiaData, dataFloorId = floorId) {
   const roledict = {
     "ATOILET": "atoilet",
     "MTOILET": "mtoilet",
@@ -234,8 +234,8 @@ export function parseModel(gltf, floorId, scene, funtasiaData) {
       logicalNode.name = `${floorId}_Object_${objects.length + 1}`;
     }
 
-    if (funtasiaData && funtasiaData[floorId] && funtasiaData[floorId][lookupName]) {
-        const entry = funtasiaData[floorId][lookupName];
+    if (funtasiaData && funtasiaData[dataFloorId] && funtasiaData[dataFloorId][lookupName]) {
+        const entry = funtasiaData[dataFloorId][lookupName];
         if (entry["Booth Name"] && entry["Booth Name"] !== "-") {
             logicalNode.name = entry["Booth Name"];
         }
@@ -245,8 +245,8 @@ export function parseModel(gltf, floorId, scene, funtasiaData) {
         entry["Location"] = logicalNode.getWorldPosition(new THREE.Vector3());
     }
 
-    if (Floor.childModels && Floor.childModels[logicalNode.name]) {
-      logicalNode.userData.child = Floor.childModels[logicalNode.name];
+    if (Floor.childModels && Floor.childModels[dataFloorId] && Floor.childModels[dataFloorId][logicalNode.name]) {
+      logicalNode.userData.child = Floor.childModels[dataFloorId][logicalNode.name];
     }
 
     if (!objects.includes(logicalNode)) {

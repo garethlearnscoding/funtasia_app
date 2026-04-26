@@ -1,0 +1,48 @@
+{
+  "subtitle": "Day 1 • Student Performances",
+  "endText": "End of Performances",
+  "events": [
+    {
+      "time": "09:00 AM",
+      "title": "Morning Showcase",
+      "description": "Kick-off performances for the day.",
+      "location": "Main Stage",
+      "isSessionHeader": true
+    },
+    {
+      "time": "09:30 AM",
+      "title": "Modern Dance",
+      "description": "A spectacular performance by the Modern Dance club.",
+      "location": "Main Stage",
+      "tags": [
+        { "icon": "mic", "text": "Performance" }
+      ]
+    },
+    {
+      "time": "10:15 AM",
+      "title": "Symphonic Band",
+      "description": "Enjoy a repertoire of classic and contemporary pieces.",
+      "location": "Concert Hall",
+      "tags": [
+        { "icon": "music_note", "text": "Music" },
+        { "icon": "group", "text": "Large Ensemble" }
+      ]
+    },
+    {
+      "time": "01:00 PM",
+      "title": "Afternoon Session",
+      "description": "More exciting performances.",
+      "location": "Various Locations",
+      "isSessionHeader": true
+    },
+    {
+      "time": "01:30 PM",
+      "title": "Drama Club Skit",
+      "description": "A short, hilarious play written by the students.",
+      "location": "Studio Alpha",
+      "tags": [
+        { "icon": "theater_comedy", "text": "Drama" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "subtitle": "PA Busking Sessions",
+  "endText": "End of Busking",
+  "events": [
+    {
+      "time": "10:30 AM",
+      "title": "Morning Acoustic Set",
+      "description": "Relaxing tunes to start the day.",
+      "location": "ISH (B3)",
+      "isSessionHeader": true
+    },
+    {
+      "time": "10:45 AM",
+      "title": "Pop Covers",
+      "description": "Acoustic covers of popular hits.",
+      "location": "ISH (B3)",
+      "tags": [
+        { "icon": "music_note", "text": "Acoustic" }
+      ]
+    },
+    {
+      "time": "01:30 PM",
+      "title": "Afternoon Jazz",
+      "description": "Smooth jazz performances.",
+      "location": "Stairs Area",
+      "isSessionHeader": true
+    },
+    {
+      "time": "01:45 PM",
+      "title": "Jazz Duo",
+      "description": "Saxophone and guitar duo.",
+      "location": "Stairs Area",
+      "endTime": "02:30 PM",
+      "tags": [
+        { "icon": "music_note", "text": "Jazz" }
+      ]
+    }
+  ]
+}

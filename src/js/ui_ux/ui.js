@@ -22,8 +22,11 @@ function getLocationInfo(objectName) {
 }
 
 let currentAppState = null;
+let storedBottomSheetState = null;
 
 export function showBottomSheet(objectName, childFloorId = null, description = null) {
+  // Store the current state so it can be restored later
+  storedBottomSheetState = { objectName, childFloorId, description };
   const locationInfo = getLocationInfo(objectName);
   sheetTitle.textContent = locationInfo.title;
   sheetDesc.textContent = description ? description : locationInfo.description;
@@ -46,10 +49,34 @@ export function showBottomSheet(objectName, childFloorId = null, description = n
   if (currentAppState) currentAppState.isBottomSheetOpen = true;
 }
 
-export function hideBottomSheet() {
+export function hideBottomSheet(clearState = true) {
   sheet.classList.remove("show");
   if (currentAppState) currentAppState.isBottomSheetOpen = false;
+  if (clearState) {
+    storedBottomSheetState = null;
+  }
   window.dispatchEvent(new Event('bottomsheetclose'));
+}
+
+export function storeAndHideBottomSheet() {
+  if (currentAppState && currentAppState.isBottomSheetOpen) {
+    // Hide without clearing the stored state
+    hideBottomSheet(false);
+  } else {
+    // If it wasn't open, ensure no stale state is stored
+    storedBottomSheetState = null;
+  }
+}
+
+export function reopenStoredBottomSheet() {
+  if (storedBottomSheetState) {
+    const { objectName, childFloorId, description } = storedBottomSheetState;
+    showBottomSheet(objectName, childFloorId, description);
+  }
+}
+
+export function clearStoredBottomSheet() {
+  storedBottomSheetState = null;
 }
 
 export function hideToast() {

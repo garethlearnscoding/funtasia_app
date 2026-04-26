@@ -1,49 +1,54 @@
 {
-  "subtitle": "Day 1 • Student Performances",
-  "endText": "End of Performances",
+  "subtitle": "Session 1",
+  "endText": "End of Session 1",
   "events": [
     {
-      "time": "09:00 AM",
-      "title": "Morning Showcase",
-      "description": "Kick-off performances for the day.",
-      "location": "Main Stage",
+      "time": "04:00 PM",
+      "title": "Emcee Opening",
       "isSessionHeader": true
     },
     {
-      "time": "09:30 AM",
-      "title": "Modern Dance",
-      "description": "A spectacular performance by the Modern Dance club.",
-      "location": "Main Stage",
+      "time": "04:05 PM",
+      "title": "Malay Dance",
       "tags": [
         { "icon": "mic", "text": "Performance" }
       ]
     },
     {
-      "time": "10:15 AM",
-      "title": "Symphonic Band",
-      "description": "Enjoy a repertoire of classic and contemporary pieces.",
-      "location": "Concert Hall",
+      "time": "04:10 PM",
+      "title": "Chinese Dance",
       "tags": [
-        { "icon": "music_note", "text": "Music" },
-        { "icon": "group", "text": "Large Ensemble" }
+        { "icon": "mic", "text": "Performance" }
       ]
     },
     {
-      "time": "01:00 PM",
-      "title": "Afternoon Session",
-      "description": "More exciting performances.",
-      "location": "Various Locations",
-      "isSessionHeader": true
+      "time": "04:15 PM",
+      "title": "Indian Dance",
+      "tags": [
+        { "icon": "mic", "text": "Performance" }
+      ]
     },
     {
-      "time": "01:30 PM",
-      "title": "Drama Club Skit",
-      "description": "A short, hilarious play written by the students.",
-      "location": "Studio Alpha",
-      "endTime": "02:30 PM",
+      "time": "04:20 PM",
+      "title": "Western Dance",
       "tags": [
-        { "icon": "theater_comedy", "text": "Drama" }
+        { "icon": "mic", "text": "Performance" }
       ]
+    },
+    {
+      "time": "04:25 PM",
+      "title": "Choir",
+      "tags": [
+        { "icon": "mic", "text": "Performance" }
+      ]
+    },
+    {
+      "time": "04:35 PM",
+      "title": "String Orchestra",
+      "tags": [
+        { "icon": "music_note", "text": "Music" }
+      ],
+      "endTime": "04:45 PM"
     }
   ]
 }

@@ -4,7 +4,11 @@ import { zoneColours } from "@/js/floor/modelParser.js";
 import { Navigation } from "@/js/events/navigation.js";
 
 export function isPointerOverUI(event) {
-  return !!event.target.closest("#bottom-sheet, #close-btn, #floor-selector, .modal-wrapper, button, input");
+  try {
+    return !!event.target.closest("#bottom-sheet, #close-btn, #floor-selector, .modal-wrapper, button, input");
+  } catch {
+    return false
+  }
 }
 
 export function performRaycast(appState) {

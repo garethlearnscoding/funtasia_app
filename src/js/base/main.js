@@ -13,6 +13,9 @@ import { SettingsController } from "@/js/base/settings.js";
 import { Navigation } from "@/js/events/navigation.js";
 import { applyThemeToScene } from "@/js/floor/modelParser.js";
 import { initDirectory, fetchDirectoryData, setDirectoryData } from "@/js/feature/directory.js";
+import { navGraph, checkConnectivity, setConnectRadius, getRoute, runPathfindingTestCase, setLineOfSightCheck } from "@/js/pathfinding/pathfinding.js";
+import { debugDrawGraph, setupDebugToggle } from "@/js/pathfinding/pathDebug.js";
+import { renderRoute, clearRoute } from "@/js/pathfinding/pathRenderer.js";
 
 const { scene, camera, renderer, controls } = setupScene();
 
@@ -20,7 +23,7 @@ const { scene, camera, renderer, controls } = setupScene();
 // Models are fetched lazily from jsDelivr on first switchFloor() call.
 const floorDefs = {
   l2: `models/${VERSION}/njc-l2-${VERSION}.glb`,
-  l1: `models/${VERSION}/njc-l1-${VERSION}.glb`,
+  l1: `models/v3-5-pathfinding/njc-l1-v3-5-pathfinding.glb`,
   b1: `models/${VERSION}/njc-b1-${VERSION}.glb`,
   b2: `models/${VERSION}/njc-b2-${VERSION}.glb`,
   b3: `models/${VERSION}/njc-b3-${VERSION}.glb`,
@@ -58,9 +61,41 @@ appState.mouse = mouse;
 Marker.appState = appState;
 Floor.appState = appState;
 
+appState.navGraph = navGraph;
+
+// Inject physical line of sight checking into pathfinding
+setLineOfSightCheck((posA, posB, level) => {
+  const floor = Floor.floors[level];
+  if (!floor || !floor.sceneModel) return true; // fallback if floor not loaded
+  
+  // Lift the raycast slightly above the floor to avoid clipping the ground plane
+  const start = new THREE.Vector3(posA.x, posA.y + 0.5, posA.z);
+  const end = new THREE.Vector3(posB.x, posB.y + 0.5, posB.z);
+  
+  const dir = new THREE.Vector3().subVectors(end, start);
+  const dist = dir.length();
+  dir.normalize();
+  
+  raycaster.set(start, dir);
+  // intersectObject(object, recursive)
+  const intersects = raycaster.intersectObject(floor.sceneModel, true);
+  
+  for (const hit of intersects) {
+    // If we hit an object that is physically between nodeA and nodeB
+    if (hit.distance < dist - 0.2) {
+      // Ignore invisible helper meshes (like the FOOTNODEs themselves which are hidden during parse)
+      if (hit.object.visible !== false) {
+        return false; // Blocked by wall/object!
+      }
+    }
+  }
+  return true; // Clear line of sight
+});
+
 Navigation.init(appState);
 
 setupEventListeners(appState);
+setupDebugToggle();
 
 // Initializing the application
 async function initApp() {
@@ -142,6 +177,13 @@ async function initApp() {
       },
       appState.rotationLocked
     );
+    SettingsController.addToggle(
+      controlsSection,
+      'Accessibility Mode',
+      'Use lifts instead of stairs for navigation',
+      (isAccessible) => { appState.accessibilityMode = isAccessible; },
+      appState.accessibilityMode
+    );
   }
 
   const handleURLQR = () => {
@@ -167,3 +209,28 @@ window.printCurrentFloorInfo = function () {
 window.printAllMarkers = function () {
   console.log(QRMarker.allMarkers);
 };
+
+window.debugGraph = function() {
+  debugDrawGraph(navGraph, scene);
+};
+
+window.testRoute = function(startId, endId) {
+  const route = getRoute(startId, endId, { accessibilityMode: appState.accessibilityMode });
+  console.log(`[Pathfinding] Route from ${startId} to ${endId}:`, route);
+  if (route) {
+    renderRoute(route, appState);
+  } else {
+    clearRoute(appState);
+  }
+  return route;
+};
+
+window.setConnectRadius = setConnectRadius;
+window.runTestCase = runPathfindingTestCase;
+window.navGraph = navGraph;
+
+// Check connectivity in dev
+setTimeout(() => {
+  checkConnectivity(navGraph);
+  runPathfindingTestCase();
+}, 5000); // Give it some time to load

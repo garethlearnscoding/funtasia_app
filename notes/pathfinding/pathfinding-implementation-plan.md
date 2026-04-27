@@ -1075,7 +1075,9 @@ npm install ngraph.graph ngraph.path kdbush
 Create `objectIndex` and `markerIndex` with all your objects and markers defined.
 
 ### Step 2.5 — Parsing the model
-Loop through the model and find all objects with ROLE "door", "lift", "staircase", "toilet", "footnode","markers" and interactive objects to be added to the graph.
+Loop through the model and find all objects with ROLE "door", "lift", "staircase", "toilet", "footnode","markers" and interactive objects to be added to the graph. Utilise model in 'funtasia_assets/models/v3-5-pathfinding/njc-l1-v3-5-pathfinding.glb' to help identify objects via cdn link that has been defined in vite.config.js
+
+
 ### Step 3 — Add all nodes to the graph
 Add footpath nodes first, then door nodes, then staircase/lift pairs, then markers.
 Use consistent ID naming: `L{level}_{type}_{identifier}`.

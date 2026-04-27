@@ -3,6 +3,8 @@ import { Floor } from "@/js/floor/floor.js";
 import { QRMarker } from "@/js/marker/qrmarker.js";
 import { Icon } from "@/js/marker/icon.js";
 import { updateFloorUI, showToast, hideToast, hideBottomSheet } from "@/js/ui_ux/ui.js";
+import { getRoute } from "@/js/pathfinding/pathfinding.js";
+import { renderRoute, updateRouteVisibility, clearRoute } from "@/js/pathfinding/pathRenderer.js";
 
 export class Navigation {
   static appState = null;
@@ -136,6 +138,7 @@ export class Navigation {
       appState.interactiveObjects = targetFloor.interactiveObjects;
       appState.currentFloor = targetFloor;
       Icon.setLevel(floorId);
+      updateRouteVisibility(floorId);
       console.log(`Switched to floor: ${floorId}`);
     }
 
@@ -212,9 +215,37 @@ export class Navigation {
   static handleURLQR() {
     const urlParams = new URLSearchParams(window.location.search);
     const qrID = urlParams.get("qrID");
-    
+    const startNode = urlParams.get("start");
+    const endNode = urlParams.get("end");
+
+    if (startNode && endNode) {
+      console.log(`[Pathfinding] URL parameters start: ${startNode}, end: ${endNode}`);
+      // Wait for the floor to load so the graph is built
+      const executeAsyncPathCheck = async () => {
+        const targetFloorId = startNode.slice(0, 2);
+        
+        const onFloorReady = async () => {
+          setTimeout(() => {
+            const route = getRoute(startNode, endNode, { accessibilityMode: Navigation.appState.accessibilityMode });
+            console.log(`[Pathfinding] Route from ${startNode} to ${endNode}:`, route);
+            if (route) {
+              renderRoute(route, Navigation.appState);
+            } else {
+              clearRoute(Navigation.appState);
+            }
+            window.removeEventListener("floorReady", onFloorReady);
+          }, 500); // Give it half a second after floor load to ensure graph auto-connect is done
+        };
+        window.addEventListener("floorReady", onFloorReady);
+        await Navigation.switchFloor(targetFloorId);
+      };
+      executeAsyncPathCheck();
+      return;
+    }
+
     if (qrID) {
       console.log(`URL/Popstate qrID: ${qrID}`);
+      clearRoute(Navigation.appState);
       
       const executeAsyncCheck = async () => {
         // Attempt immediate handle (if already in registry)

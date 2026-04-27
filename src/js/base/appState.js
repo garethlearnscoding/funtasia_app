@@ -9,6 +9,8 @@ export class AppState {
     this.interactiveObjects = [];
     this.selected = null;
     this.rotationLocked = true;
+    this.navGraph = null;
+    this.accessibilityMode = false;
     this.cameraAnim = {
       active: false,
       cameraTarget: new THREE.Vector3(),

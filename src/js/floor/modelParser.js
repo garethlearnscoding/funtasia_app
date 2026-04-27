@@ -2,6 +2,7 @@ import * as THREE from "three";
 import { Icon } from "@/js/marker/icon.js";
 import { Floor } from "@/js/floor/floor.js";
 import { QRMarker } from "@/js/marker/qrmarker.js";
+import { addPathNode, addStaircaseNode, addLiftNode, addMarkerNode, autoConnectNodes, addManualLink } from "@/js/pathfinding/pathfinding.js";
 
 function getColor(colorName) {
   const documentStyle = getComputedStyle(document.documentElement);
@@ -153,7 +154,16 @@ export function parseModel(gltf, floorId, scene, funtasiaData, dataFloorId = flo
       child.userData.logicalParent = logicalNode;
     }
 
+    if (child.name && child.name.toUpperCase().includes("FOOT")) {
+      console.log(`[Pathfinding Debug] Node with FOOT in name: ${child.name}, ROLE: ${child.userData.ROLE}`);
+      if (child.userData.ROLE === undefined) {
+        child.userData.ROLE = "FOOTNODE";
+        console.log(`[Pathfinding Debug] Auto-assigned ROLE="FOOTNODE" to ${child.name}`);
+      }
+    }
+
     if (child.userData.ROLE === undefined) return;
+
 
     const isInteractive = child.userData?.ROLE === "OBJECT";
     if (child.userData.ZONE == undefined) { child.userData.ZONE = "NONE"; }
@@ -172,6 +182,39 @@ export function parseModel(gltf, floorId, scene, funtasiaData, dataFloorId = flo
       // Only register abstract objects like Markers and Icons at the logical node level
       // to avoid double registration for split meshes.
       if (!isSplitChild) {
+        if (child.userData.ROLE === "FOOTNODE") {
+          // If the user grouped the nodes in Blender and gave the parent the ROLE
+          if (child.isGroup && child.children.length > 0) {
+            console.log(`[Pathfinding Debug] Found FOOTNODE group. Registering ${child.children.length} children.`);
+            child.children.forEach((subChild, index) => {
+              const pos = subChild.getWorldPosition(new THREE.Vector3());
+              const nameUsed = subChild.name ? subChild.name : `Foot_${index}`;
+              const nodeId = `${floorId}_node_${nameUsed}`;
+              console.log(`[Pathfinding Debug] Registering FOOTNODE: ID: ${nodeId}`);
+              addPathNode(nodeId, floorId, pos);
+              subChild.visible = false;
+            });
+          } else if (child.isInstancedMesh) {
+            const matrix = new THREE.Matrix4();
+            const pos = new THREE.Vector3();
+            for (let i = 0; i < child.count; i++) {
+              child.getMatrixAt(i, matrix);
+              matrix.premultiply(child.matrixWorld);
+              pos.setFromMatrixPosition(matrix);
+              const nodeId = `${floorId}_node_${child.name}_${i}`;
+              console.log(`[Pathfinding Debug] Registering FOOTNODE Instance: ID: ${nodeId}`);
+              addPathNode(nodeId, floorId, pos.clone());
+            }
+          } else {
+            // Standard single object
+            const pos = child.getWorldPosition(new THREE.Vector3());
+            const nodeId = `${floorId}_node_${child.name || 'Unnamed'}`;
+            console.log(`[Pathfinding Debug] Registering FOOTNODE: ID: ${nodeId}`);
+            addPathNode(nodeId, floorId, pos);
+          }
+          child.visible = false;
+        }
+
         // Register Markers globally
         if (child.userData.ROLE === "MARKER") {
           const markerId = String(child.userData.MARKERID);
@@ -179,11 +222,37 @@ export function parseModel(gltf, floorId, scene, funtasiaData, dataFloorId = flo
           const entry = { pos, floorId };
           Floor.allMarkers[markerId] = entry;
           QRMarker.allMarkers[markerId] = entry;
+
+          const nodeId = `${floorId}_marker_${markerId}`;
+          addMarkerNode(nodeId, floorId, pos);
         }
 
-        // Collect Icons
+        // Collect Icons and pathfinding transitions
         if (Object.keys(roledict).includes(child.userData.ROLE)) {
           let normalisedRole = roledict[child.userData.ROLE];
+          
+          if (child.userData.ROLE === "STAIRCASE") {
+            const pos = child.getWorldPosition(new THREE.Vector3());
+            const nameUsed = child.name ? `${child.name}_${child.uuid}` : child.uuid;
+            const nodeId = `${floorId}_staircase_${nameUsed}`;
+            const pairId = child.userData.TRANSITIONPAIR;
+            addStaircaseNode(nodeId, floorId, pos, pairId);
+            if (pairId) {
+              addManualLink(nodeId, pairId, 5); // Add manual cross-floor links later if pair exists, or assume 5
+              addManualLink(pairId, nodeId, 5);
+            }
+          } else if (child.userData.ROLE === "LIFT") {
+            const pos = child.getWorldPosition(new THREE.Vector3());
+            const nameUsed = child.name ? `${child.name}_${child.uuid}` : child.uuid;
+            const nodeId = `${floorId}_lift_${nameUsed}`;
+            const pairId = child.userData.TRANSITIONPAIR;
+            addLiftNode(nodeId, floorId, pos, pairId);
+            if (pairId) {
+              addManualLink(nodeId, pairId, 5);
+              addManualLink(pairId, nodeId, 5);
+            }
+          }
+
           if (normalisedRole === "staircase") {
             switch(child.userData?.STAIRCASEDIRECTION){
               case "U":
@@ -253,6 +322,9 @@ export function parseModel(gltf, floorId, scene, funtasiaData, dataFloorId = flo
       objects.push(logicalNode);
     }
   });
+
+  // After parsing the model, auto-connect the graph nodes for this floor
+  autoConnectNodes();
   
   return { model, interactiveObjects: objects, cameraConfig };
 }

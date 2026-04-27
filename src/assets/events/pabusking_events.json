@@ -1,5 +1,5 @@
-{
-  "subtitle": "Busking Performances",
+[{
+  "title": "Busking Performances",
   "endText": "End of Performances",
   "location": "O2",
   "events": [
@@ -28,3 +28,4 @@
     }
   ]
 }
+]

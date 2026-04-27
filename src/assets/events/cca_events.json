@@ -1,5 +1,7 @@
+[
 {
-  "subtitle": "Session 1",
+  "title": "Session 1",
+  "subtitle": "4:00 PM - 4:45 PM",
   "endText": "End of Session 1",
   "location": "LT5",
   "events": [
@@ -10,28 +12,68 @@
     },
     {
       "time": "1605",
-      "title": "Malay Dance"
+      "title": "Malay Dance: Imbang",
+      "description": "\"Imbang\" is Malay for \"Balance\". This genre of Malay Dance originates from Indonesia and the piece incorporates plates as props. In this performance, the dancers present to you a lively, upbeat dance, as they balance golden plates on both hands!"
     },
     {
       "time": "1610",
-      "title": "Chinese Dance"
+      "title": "Chinese Dance: 春夜细雨 (chūn yè xì yǔ)",
+      "description": "A gentle drizzle falls on a spring night,<br>Beneath the moon, a graceful figure dances.<br><br>The breeze brushes past flowing sleeves, soft and whispering,<br>Her elegant movements reflecting a radiant face."
     },
     {
       "time": "1615",
-      "title": "Indian Dance"
+      "title": "Indian Dance: Kadhal Oonjal, Aye Aye",
+      "description": "Indian Dance consists of passionate dancers, who explore the different types of dances across India such as bharathanatyam, kalbeliya, and much more. Kadhal Oonjal is a semi-classical dance piece filled with elegant and fast-paced movements while Aye Aye is a high octane dance filled with fun!"
     },
     {
       "time": "1620",
-      "title": "Western Dance"
+      "title": "Western Dance: Chasing Cars",
+      "description": "A contemporary dance piece set to Chasing Cars self-choreographed by JH western dance, this performance explores themes of vulnerability and connection. This piece captures both fragility and strength that can be found in human relationships."
     },
     {
       "time": "1625",
-      "title": "Choir"
+      "title": "Choir: For Good, Butterfly",
+      "description": "Stephen Schwartz's For Good from the musical Wicked reflects on friendship, gratitude and how the people we meet can change us in meaningful ways. Butterfly, composed by Mia Makaroff, evokes the image of a butterfly—delicate, fleeting and ever in motion."
     },
     {
       "time": "1635",
-      "title": "String Orchestra",
-      "endTime": "1645"
+      "title": "String Orchestra: Bubble",
+      "endTime": "1645",
+      "description": "Bubble (Eve, arr. by Tristen Ng) was arranged by our own violinist who is in the Music Elective Programme."
+    }
+  ]
+},
+{
+  "title":"Session 2",
+  "subtitle": "5:00 PM - 5:45 PM",
+  "endText":"End of Session 2",
+  "location":"LT5",
+  "events":[
+    {
+      "time": "1700",
+      "title":"Emcee Opening",
+      "isSessionHeader": true
+    },
+    {
+      "time": "1705",
+      "title": "Guzheng: 翡翠 (Jade), 粉墨 (Fen Mo)",
+      "description": "Jade by Wang DanHong is a contemporary guzheng piece inspired by Miao and Dong folk music from southwest China, combining lively dance rhythms with lyrical melodies. Fen Mo by Zhao Mojia is a guzheng quintet piece inspired by Peking opera, featuring energetic, layered textures."
+    },
+    {
+      "time": "1715",
+      "title": "Guitar Ensemble: Bokura no eien (Our Eternity)",
+      "description": "Our Eternity is a Japanese indie pop song composed and performed by WEAVER, a Japanese rock trio band that was formed in 2004. It is a romantic J-pop piece written from the perspective of someone professing their undying love and desire to be by their lover's side forever."
+    },
+    {
+      "time": "1725",
+      "title": "Chinese Orchestra: 我们这一班 (wǒ men zhè yī bān)",
+      "description": "This song, arranged by our own conductor, Mr Sim Boon Yew, and composed by Billy Koh and Ng King Kang, is a 新谣/Singapore Chinese folk song which mainly tells the longing for school life and classmates' friendships after growing up. The melody evokes memories of the 1980s campus for many Singaporeans."
+    },
+    {
+      "time": "1735",
+      "title": "Symphonic Band: Selections from Encanto, Selections from La La Land",
+      "description": "[no description available]"
     }
   ]
 }
+]

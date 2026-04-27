@@ -1,5 +1,5 @@
-{
-  "subtitle": "Dunking of Teachers Schedule",
+[{
+  "title": "Dunking of Teachers Schedule",
   "endText": "End of Dunking Events",
   "location": "Amphi",
   "events": [
@@ -33,3 +33,4 @@
     }
   ]
 }
+]

@@ -178,7 +178,7 @@ ccaToggleBtn.addEventListener('click', () => switchEventCategory('cca'));
 dunklistToggleBtn.addEventListener('click', () => switchEventCategory('dunklist'));
 pabuskingToggleBtn.addEventListener('click', () => switchEventCategory('pabusking'));
 
-switchEventCategory('cca');
+window.switchEventCategory = switchEventCategory
 
 // Clear Directory Marker Button Logic
 const clearDirMarkerBtn = document.getElementById('clear-directory-marker-btn');

@@ -1,6 +1,6 @@
 import * as THREE from "three";
-import { Icon } from "@/js/marker/icon.js";
 import { Floor } from "@/js/floor/floor.js";
+import { Icon } from "@/js/marker/icon.js";
 import { QRMarker } from "@/js/marker/qrmarker.js";
 
 function getColor(colorName) {

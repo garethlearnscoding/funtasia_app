@@ -1,8 +1,7 @@
-import { Navigation } from "@/js/events/navigation.js";
-import { hideBottomSheet, clearStoredBottomSheet } from "@/js/ui_ux/ui.js";
 import * as THREE from "three";
+import { Navigation } from "@/js/events/navigation.js";
 import { Floor } from "@/js/floor/floor.js";
-import { mod } from "three/tsl";
+import { clearStoredBottomSheet, hideBottomSheet } from "@/js/ui_ux/ui.js";
 
 let cachedFuntasiaData = null;
 

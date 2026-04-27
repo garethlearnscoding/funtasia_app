@@ -1,6 +1,6 @@
-import Alpine from 'alpinejs';
-import swipeIcon from "@/misc/single-finger-click.svg";
 import logoSVG from "@/assets/Logo.svg?raw";
+import swipeIcon from "@/misc/single-finger-click.svg";
+import Alpine from 'alpinejs';
 
 window.Alpine = Alpine;
 

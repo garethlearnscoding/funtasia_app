@@ -2,10 +2,6 @@ import * as THREE from "three";
 import { loadModel } from "@/js/floor/modelLoader.js";
 import { parseModel } from "@/js/floor/modelParser.js";
 
-
-/**
- * 
- */
 export class Floor {
   // Static class attributes initialized in main.js
   static appState = null;

@@ -1,19 +1,19 @@
 import * as THREE from "three";
+import { AppState } from "@/js/base/appState.js";
+import { switchEventCategory } from "@/js/base/events.js";
 import { setupScene } from "@/js/base/sceneSetup.js";
-import { setupUI } from "@/js/ui_ux/ui.js";
+import { SettingsController } from "@/js/base/settings.js";
 import { setupEventListeners } from "@/js/events/event.js";
-import { startAnimationLoop } from "@/js/ui_ux/animate.js";
+import { Navigation } from "@/js/events/navigation.js";
+import { fetchDirectoryData, initDirectory } from "@/js/feature/directory.js";
 import { Floor } from "@/js/floor/floor.js";
-import { Marker } from "@/js/marker/marker.js";
-import { QRMarker } from "@/js/marker/qrmarker.js";
+import { applyThemeToScene } from "@/js/floor/modelParser.js";
 import { loadFont } from "@/js/helper/font.js";
 import { Icon } from "@/js/marker/icon.js";
-import { AppState } from "@/js/base/appState.js";
-import { SettingsController } from "@/js/base/settings.js";
-import { Navigation } from "@/js/events/navigation.js";
-import { applyThemeToScene } from "@/js/floor/modelParser.js";
-import { initDirectory, fetchDirectoryData, setDirectoryData } from "@/js/feature/directory.js";
-import { switchEventCategory } from "@/js/base/events.js";
+import { Marker } from "@/js/marker/marker.js";
+import { QRMarker } from "@/js/marker/qrmarker.js";
+import { startAnimationLoop } from "@/js/ui_ux/animate.js";
+import { setupUI } from "@/js/ui_ux/ui.js";
 
 const { scene, camera, renderer, controls } = setupScene();
 

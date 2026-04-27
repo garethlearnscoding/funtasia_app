@@ -1,7 +1,6 @@
 import * as THREE from "three";
 import { showBottomSheet } from "@/js/ui_ux/ui.js";
 import { zoneColours } from "@/js/floor/modelParser.js";
-import { Navigation } from "@/js/events/navigation.js";
 
 export function isPointerOverUI(event) {
   try {
@@ -25,7 +24,7 @@ export function performRaycast(appState) {
 
 export function applySelection(target, appState) {
   if (appState.selected === target) return;
-  
+
   if (appState.selected) {
     // Restore materials on all mesh children
     appState.selected.traverse((child) => {
@@ -34,7 +33,7 @@ export function applySelection(target, appState) {
       }
     });
   }
-  
+
   appState.selected = target;
 
   if (appState.selected) {
@@ -43,7 +42,7 @@ export function applySelection(target, appState) {
     const highlightMaterial = new THREE.MeshBasicMaterial({
       color: emissiveColor,
     });
-    
+
     // Apply highlight to all mesh children
     appState.selected.traverse((child) => {
       if (child.isMesh && child.userData.material) {
@@ -67,7 +66,7 @@ export function focusOnObject(targetObject, appState) {
     if (appState.controls) {
       // 1. Get object visual center (native Blender origin)
       const objectCenter = targetObject.getWorldPosition(new THREE.Vector3());
-      
+
       // Still compute bounds just to know how big it is for distance calculation
       const box = new THREE.Box3().setFromObject(targetObject);
       const objectSize = box.getSize(new THREE.Vector3());
@@ -75,26 +74,26 @@ export function focusOnObject(targetObject, appState) {
       // 2. Get current camera 2D direction
       const camPos = appState.camera.position.clone();
       const controlsTarget = appState.controls.target.clone();
-      
+
       const direction = new THREE.Vector3().subVectors(camPos, controlsTarget);
       direction.y = 0; // maintain horizontal direction
       if (direction.lengthSq() < 0.001) {
-          direction.set(0, 0, 1); // fallback direction
+        direction.set(0, 0, 1); // fallback direction
       }
       direction.normalize();
 
       // Snap direction to the closest cardinal direction (X or Z axis)
       if (Math.abs(direction.x) > Math.abs(direction.z)) {
-          direction.set(Math.sign(direction.x), 0, 0);
+        direction.set(Math.sign(direction.x), 0, 0);
       } else {
-          direction.set(0, 0, Math.sign(direction.z));
+        direction.set(0, 0, Math.sign(direction.z));
       }
 
       // 3. Compute new camera position
       // Push back less to angle down more, and push up significantly
       const distance = Math.max(objectSize.length(), 2) * 0.8;
       const heightOffset = Math.max(objectSize.y, 1) * 1.5 + 5;
-      
+
       const newCamPos = objectCenter.clone()
         .add(direction.multiplyScalar(distance))
         .add(new THREE.Vector3(0, heightOffset, 0));

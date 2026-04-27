@@ -1,9 +1,9 @@
+import { Navigation } from "@/js/events/navigation.js";
+
 const sheet = document.getElementById("bottom-sheet");
 const sheetTitle = document.getElementById("sheet-title");
 const sheetDesc = document.getElementById("sheet-desc");
 const closeBtn = document.getElementById("close-btn");
-import { Navigation } from "@/js/events/navigation.js";
-
 const locationData = {}; // Placeholder
 
 function getLocationInfo(objectName) {

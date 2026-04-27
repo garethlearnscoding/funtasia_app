@@ -12,18 +12,12 @@
     {
       "time": "12:15 PM",
       "title": "Mr. Smith",
-      "description": "Physics teacher steps up.",
-      "tags": [
-        { "icon": "water_drop", "text": "Dunk" }
-      ]
+      "description": "Physics teacher steps up."
     },
     {
       "time": "12:30 PM",
       "title": "Ms. Johnson",
-      "description": "Math teacher takes the plunge.",
-      "tags": [
-        { "icon": "water_drop", "text": "Dunk" }
-      ]
+      "description": "Math teacher takes the plunge."
     },
     {
       "time": "02:30 PM",
@@ -35,10 +29,7 @@
       "time": "02:45 PM",
       "title": "Mr. Lee",
       "description": "PE teacher's turn.",
-      "endTime": "03:15 PM",
-      "tags": [
-        { "icon": "water_drop", "text": "Dunk" }
-      ]
+      "endTime": "03:15 PM"
     }
   ]
 }

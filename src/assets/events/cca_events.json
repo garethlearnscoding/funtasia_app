@@ -10,45 +10,27 @@
     },
     {
       "time": "04:05 PM",
-      "title": "Malay Dance",
-      "tags": [
-        { "icon": "mic", "text": "Performance" }
-      ]
+      "title": "Malay Dance"
     },
     {
       "time": "04:10 PM",
-      "title": "Chinese Dance",
-      "tags": [
-        { "icon": "mic", "text": "Performance" }
-      ]
+      "title": "Chinese Dance"
     },
     {
       "time": "04:15 PM",
-      "title": "Indian Dance",
-      "tags": [
-        { "icon": "mic", "text": "Performance" }
-      ]
+      "title": "Indian Dance"
     },
     {
       "time": "04:20 PM",
-      "title": "Western Dance",
-      "tags": [
-        { "icon": "mic", "text": "Performance" }
-      ]
+      "title": "Western Dance"
     },
     {
       "time": "04:25 PM",
-      "title": "Choir",
-      "tags": [
-        { "icon": "mic", "text": "Performance" }
-      ]
+      "title": "Choir"
     },
     {
       "time": "04:35 PM",
       "title": "String Orchestra",
-      "tags": [
-        { "icon": "music_note", "text": "Music" }
-      ],
       "endTime": "04:45 PM"
     }
   ]

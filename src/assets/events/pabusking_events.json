@@ -12,10 +12,7 @@
     {
       "time": "10:45 AM",
       "title": "Pop Covers",
-      "description": "Acoustic covers of popular hits.",
-      "tags": [
-        { "icon": "music_note", "text": "Acoustic" }
-      ]
+      "description": "Acoustic covers of popular hits."
     },
     {
       "time": "01:30 PM",
@@ -27,10 +24,7 @@
       "time": "01:45 PM",
       "title": "Jazz Duo",
       "description": "Saxophone and guitar duo.",
-      "endTime": "02:30 PM",
-      "tags": [
-        { "icon": "music_note", "text": "Jazz" }
-      ]
+      "endTime": "02:30 PM"
     }
   ]
 }

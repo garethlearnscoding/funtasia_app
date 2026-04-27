@@ -169,6 +169,7 @@ window.printAllMarkers = function () {
   console.log(QRMarker.allMarkers);
 };
 
+// Events toggle buttons logic
 const ccaToggleBtn = document.getElementById('events-cca-toggle-btn');
 const dunklistToggleBtn = document.getElementById('events-dunklist-toggle-btn');
 const pabuskingToggleBtn = document.getElementById('events-pabusking-toggle-btn');
@@ -178,3 +179,27 @@ dunklistToggleBtn.addEventListener('click', () => switchEventCategory('dunklist'
 pabuskingToggleBtn.addEventListener('click', () => switchEventCategory('pabusking'));
 
 switchEventCategory('cca');
+
+// Clear Directory Marker Button Logic
+const clearDirMarkerBtn = document.getElementById('clear-directory-marker-btn');
+if (clearDirMarkerBtn) {
+  clearDirMarkerBtn.addEventListener('click', async () => {
+      // We need to clear the active directory marker from the global app state
+      // Since appState isn't globally exposed on window, we can dispatch an event or import it
+      // Let's import the global appState reference or just find the module
+      const { Navigation } = await import('/src/js/events/navigation.js');
+      const appState = Navigation.appState;
+      if (appState && appState.activeDirectoryMarker) {
+          appState.activeDirectoryMarker.clear();
+          appState.activeDirectoryMarker = null;
+          appState.activeMarkers = appState.activeMarkers.filter(m => m !== null);
+      }
+      clearDirMarkerBtn.style.display = 'none';
+
+      // Also close the bottom sheet if it happens to be open
+      const { hideBottomSheet } = await import('/src/js/ui_ux/ui.js');
+      hideBottomSheet();
+
+      window.setClearDirectoryMarkerVisible(false);
+  });
+}

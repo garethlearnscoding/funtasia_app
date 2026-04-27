@@ -253,22 +253,22 @@ export async function focusOnBooth(boothNum, levelHint = null) {
   window.parent.postMessage({ type: 'selectPOI', id: boothNum, floor: level }, '*');
 
   // 5. UI Cleanup/Update
+
+  // Update the global state so showFabButtons knows the marker UI is active
+  if (typeof window.setClearDirectoryMarkerVisible === 'function') {
+    window.setClearDirectoryMarkerVisible(true);
+  }
+
   document.querySelectorAll(".modal-wrapper").forEach(mod_wrapp => {
     mod_wrapp.style.display = 'none';
   });
-  // const dirModalOuter = document.getElementById("directory-modal-wrapper");
-  // dirModalOuter.style.display = 'none';
 
-  ['open-directory-btn', 'open-settings-btn', 'open-qr-btn', 'open-info-btn', 'open-events-btn'].forEach(id => {
-    const btn = document.getElementById(id)
-    if (btn) btn.style.display = 'flex';
-  });
+  if (typeof window.showFabButtons === 'function') {
+    window.showFabButtons();
+  }
 
   const { showBottomSheet: showBS } = await import('@/js/ui_ux/ui.js');
   showBS(boothName, null, boothDesc);
-
-  const dismissBtn = document.getElementById('clear-directory-marker-btn');
-  if (dismissBtn) dismissBtn.style.display = 'flex';
 }
 
 /* ── Rendering ───────────────────────────────────────────── */

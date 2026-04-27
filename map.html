@@ -328,6 +328,20 @@
       const qrFlashBtn = document.getElementById('qr-flash-btn');
       const qrFlashIcon = document.getElementById('qr-flash-icon');
       
+      let isClearDirectoryMarkerButtonOpen = false
+      const clearDirBtn = document.getElementById('clear-directory-marker-btn');
+
+      /**
+       * Global state setter for the clear directory marker button.
+       * This allows external modules to toggle the "active" state of the marker UI.
+       */
+      window.setClearDirectoryMarkerVisible = (visible) => {
+        isClearDirectoryMarkerButtonOpen = visible;
+        // Only update the DOM if the FAB layer is currently visible (no modals open)
+        if (openSettingsBtn && openSettingsBtn.style.display !== 'none') {
+          clearDirBtn.style.display = visible ? 'flex' : 'none';
+        }
+      };
 
       function hideFabButtons() {
         document.querySelectorAll(".fab-btn").forEach(btn => {
@@ -338,10 +352,18 @@
 
       function showFabButtons() {
         document.querySelectorAll(".fab-btn").forEach(btn => {
-          btn.style.display = 'flex';
+          if (btn.id === 'clear-directory-marker-btn') {
+            btn.style.display = isClearDirectoryMarkerButtonOpen ? 'flex' : 'none';
+          } else {
+            btn.style.display = 'flex';
+          }
         });
         reopenStoredBottomSheet();
       }
+
+      // Expose UI management functions globally
+      window.hideFabButtons = hideFabButtons;
+      window.showFabButtons = showFabButtons;
 
       function clearTextInputs() {
         const inputs = document.querySelectorAll('.qr-code-input');
@@ -549,29 +571,6 @@
           }
         });
       }
-      
-      // Clear Directory Marker Button Logic
-      const clearDirMarkerBtn = document.getElementById('clear-directory-marker-btn');
-      if (clearDirMarkerBtn) {
-        clearDirMarkerBtn.addEventListener('click', async () => {
-           // We need to clear the active directory marker from the global app state
-           // Since appState isn't globally exposed on window, we can dispatch an event or import it
-           // Let's import the global appState reference or just find the module
-           const { Navigation } = await import('/src/js/events/navigation.js');
-           const appState = Navigation.appState;
-           if (appState && appState.activeDirectoryMarker) {
-               appState.activeDirectoryMarker.clear();
-               appState.activeDirectoryMarker = null;
-               appState.activeMarkers = appState.activeMarkers.filter(m => m !== null);
-           }
-           clearDirMarkerBtn.style.display = 'none';
-
-           // Also close the bottom sheet if it happens to be open
-           const { hideBottomSheet } = await import('/src/js/ui_ux/ui.js');
-           hideBottomSheet();
-        });
-      }
-
       // Expose for external modules if needed later
       window.openQRModal = () => openQrBtn.click();
     </script>

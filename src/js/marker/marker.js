@@ -1,5 +1,6 @@
 import * as THREE from "three";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+import { Text } from "troika-three-text";
 
 const BASE = ASSETS_BASE_URL;
 const googleMapIconUrl = `${BASE}/icons/google-map-icon.glb`;
@@ -7,7 +8,6 @@ const googleMapIconUrl = `${BASE}/icons/google-map-icon.glb`;
 export class Marker {
   static appState = null;
   static scene = null;
-  static font = null;
 
   constructor(position, level) {
     this.appState = Marker.appState;
@@ -95,28 +95,22 @@ export class LocationMarker extends Marker {
 
     // ----- text label group -----
     this._textLabelGroup = null;
-    if (text && LocationMarker.font) {
+    if (text) {
       this._textLabelGroup = new THREE.Group();
 
-      const message = "You are here!";
-      const shapes = LocationMarker.font.generateShapes(message, 0.15);
-      const geometry = new THREE.ShapeGeometry(shapes);
-      geometry.computeBoundingBox();
-      const xMid = -0.5 * (geometry.boundingBox.max.x - geometry.boundingBox.min.x);
-      geometry.translate(xMid, 0, 0);
-
-      const textMaterialActive = new THREE.MeshBasicMaterial({
-        color: 0xff0000,
-        side: THREE.DoubleSide,
-        transparent: true,
-        opacity: 0.9
-      });
-      const textMesh = new THREE.Mesh(geometry, textMaterialActive);
+      const textMesh = new Text();
+      textMesh.text = "You are here!";
+      textMesh.fontSize = 0.15;
+      textMesh.font = "https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono@2.304/fonts/ttf/JetBrainsMono-Regular.ttf";
+      textMesh.color = 0xff0000;
+      textMesh.anchorX = 'center';
+      textMesh.anchorY = 'middle';
+      textMesh.sync();
 
       // Padded background behind the text
-      const padding = 0.05;
-      const bgWidth  = (geometry.boundingBox.max.x - geometry.boundingBox.min.x) + padding * 2;
-      const bgHeight = (geometry.boundingBox.max.y - geometry.boundingBox.min.y) + padding * 2;
+      // Fixed size for "You are here!" at 0.15 fontSize
+      const bgWidth  = 1.2;
+      const bgHeight = 0.25;
       const textBgMaterial = new THREE.MeshBasicMaterial({
         color: 0xffffff,
         side: THREE.DoubleSide,
@@ -125,14 +119,11 @@ export class LocationMarker extends Marker {
       });
       const textBgMesh = new THREE.Mesh(new THREE.PlaneGeometry(bgWidth, bgHeight), textBgMaterial);
       textBgMesh.position.z = -0.01;
-      textBgMesh.position.y = (geometry.boundingBox.max.y + geometry.boundingBox.min.y) / 2;
 
       this._textLabelGroup.add(textBgMesh);
       this._textLabelGroup.add(textMesh);
       this._textLabelGroup.position.y = this.markerHeight + 0.4;
       this.group.add(this._textLabelGroup);
-    } else if (text && !LocationMarker.font) {
-      console.warn("LocationMarker: text=true but LocationMarker.font is not set.");
     }
 
     if (position) this.group.position.copy(position);

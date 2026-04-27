@@ -8,7 +8,6 @@ import { Navigation } from "@/js/events/navigation.js";
 import { fetchDirectoryData, initDirectory } from "@/js/feature/directory.js";
 import { Floor } from "@/js/floor/floor.js";
 import { applyThemeToScene } from "@/js/floor/modelParser.js";
-import { loadFont } from "@/js/helper/font.js";
 import { Icon } from "@/js/marker/icon.js";
 import { Marker } from "@/js/marker/marker.js";
 import { QRMarker } from "@/js/marker/qrmarker.js";
@@ -65,15 +64,6 @@ setupEventListeners(appState);
 
 // Initializing the application
 async function initApp() {
-  const font = await loadFont();
-  if (font === undefined) {
-    console.log("Font not loaded");
-  }
-  console.log(`Font: ${font}`);
-
-  // Set font as a class attribute so handleURLQR etc. don't need it passed
-  Marker.font = font;
-
   // 1. Fetch raw data
   const rawData = await fetchDirectoryData();
 

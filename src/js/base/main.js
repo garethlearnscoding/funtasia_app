@@ -177,6 +177,4 @@ ccaToggleBtn.addEventListener('click', () => switchEventCategory('cca'));
 dunklistToggleBtn.addEventListener('click', () => switchEventCategory('dunklist'));
 pabuskingToggleBtn.addEventListener('click', () => switchEventCategory('pabusking'));
 
-console.log("not a snowman")
 switchEventCategory('cca');
-console.log("yes a snowman")

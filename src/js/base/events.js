@@ -22,7 +22,6 @@ return hours * 60 + minutes;
 }
 
 export async function switchEventCategory(category) {
-    console.log("hi i am a snowman")
     // Update Buttons
     Object.entries(eventCategories).forEach(([key, btn]) => {
         if (key === category) {

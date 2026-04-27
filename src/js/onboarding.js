@@ -44,26 +44,19 @@ Alpine.data('onboarding', () => ({
             `${BASE}/icons/directory_button.svg`
         ];
         const models = [
-            `${BASE}/models/njc-l1-v2-31-3.glb`,
-            `${BASE}/models/njc-b3-v2-31-3.glb`,
-            `${BASE}/models/njc-b2-v2-31-3.glb`,
-            `${BASE}/models/njc-b1-v2-31-3.glb`,
-            `${BASE}/models/njc-l2-v2-31-3.glb`,
-            `${BASE}/models/njc-l3-v2-31-3.glb`,
-            `${BASE}/models/njc-l4-v2-31-3.glb`
+            `${BASE}/models/${VERSION}/njc-l1-${VERSION}.glb`,
+            `${BASE}/models/${VERSION}/njc-b3-${VERSION}.glb`,
+            `${BASE}/models/${VERSION}/njc-b2-${VERSION}.glb`,
+            `${BASE}/models/${VERSION}/njc-b1-${VERSION}.glb`,
+            `${BASE}/models/${VERSION}/njc-l2-${VERSION}.glb`,
         ];
 
         const fetchAsset = async (url) => {
             try {
+                // With the VitePWA runtimeCaching added, this fetch 
+                // will be intercepted and saved permanently by the Service Worker.
                 await fetch(url, { cache: 'force-cache' });
                 console.log(`[Preloader] Cached: ${url}`);
-                
-                // Persist loaded status for the Map page
-                const loaded = JSON.parse(localStorage.getItem('funtasia_preloaded_assets') || '[]');
-                if (!loaded.includes(url)) {
-                    loaded.push(url);
-                    localStorage.setItem('funtasia_preloaded_assets', JSON.stringify(loaded));
-                }
             } catch (e) {
                 console.warn(`[Preloader] Failed to cache: ${url}`, e);
             }

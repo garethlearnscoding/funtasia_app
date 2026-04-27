@@ -1,5 +1,7 @@
 import * as THREE from "three";
+import { setDirectoryData } from '@/js/feature/directory.js';
 import { Floor } from "@/js/floor/floor.js";
+import { focusOnObject } from "@/js/helper/util.js";
 import { Icon } from "@/js/marker/icon.js";
 import { QRMarker } from "@/js/marker/qrmarker.js";
 import { hideBottomSheet, hideToast, showToast, updateFloorUI } from "@/js/ui_ux/ui.js";
@@ -94,8 +96,7 @@ export class Navigation {
              await Navigation.switchFloor(appState.previousMainFloorId || "l1");
              
              if (prevObj) {
-                const util = await import("@/js/helper/util.js");
-                util.focusOnObject(prevObj, Navigation.appState);
+                focusOnObject(prevObj, Navigation.appState);
              }
           };
         } else {
@@ -117,9 +118,7 @@ export class Navigation {
           
           // Once all main floors are loaded (or as they load), cache the data
           // Actually, we can just cache it immediately after parsing since the data object is shared
-          import('@/js/feature/directory.js').then(({ setDirectoryData }) => {
-             setDirectoryData(appState.rawData);
-          });
+          setDirectoryData(appState.rawData);
         } catch (err) {
           console.error(`Failed to load floor ${floorId}:`, err);
           showToast(`Error: ${floorId.toUpperCase()} failed.`);

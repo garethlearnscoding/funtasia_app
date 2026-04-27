@@ -18,7 +18,7 @@ const miscSchema = {
   "FTOILET":   '--color-ctp-pink',
   "MTOILET":   '--color-ctp-lavender',
   "ATOILET":   '--color-ctp-sky',
-  "LIFT":      '--colot-ctp-overlay1',
+  "LIFT":      '--color-ctp-overlay1',
 };
 
 const zoneSchema = {

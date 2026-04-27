@@ -1,6 +1,6 @@
 @layer events {
-    #events-timeline {
-        @apply w-full text-left relative pl-6 md:pl-8 before:content-[''] before:absolute before:left-0 before:top-2 before:bottom-2 before:w-[2px] before:bg-ctp-surface2;
+    .events-timeline {
+        @apply w-full text-left relative pl-6 mb-8 md:pl-8 before:content-[''] before:absolute before:left-0 before:top-2 before:bottom-2 before:w-[2px] before:bg-ctp-surface2;
     }
 
     .events-item-container {
@@ -32,6 +32,6 @@
     }
 
     .events-item-description {
-        @apply font-body text-sm mb-4 leading-relaxed;
+        @apply font-body text-sm leading-relaxed;
     }
 }

@@ -1,5 +1,7 @@
+[
 {
-  "subtitle": "Session 1",
+  "title": "Session 1",
+  "subtitle": "4:00 PM - 4:45 PM",
   "endText": "End of Session 1",
   "location": "LT5",
   "events": [
@@ -10,28 +12,149 @@
     },
     {
       "time": "1605",
-      "title": "Malay Dance"
+      "title": "Malay Dance: Imbang",
+      "description": "\"Imbang\" is Malay for \"Balance\". This genre of Malay Dance originates from Indonesia and the piece incorporates plates as props. In this performance, the dancers present to you a lively, upbeat dance, as they balance golden plates on both hands!"
     },
     {
       "time": "1610",
-      "title": "Chinese Dance"
+      "title": "Chinese Dance: 春夜细雨 (chūn yè xì yǔ)",
+      "description": "A gentle drizzle falls on a spring night,<br>Beneath the moon, a graceful figure dances.<br><br>The breeze brushes past flowing sleeves, soft and whispering,<br>Her elegant movements reflecting a radiant face."
     },
     {
       "time": "1615",
-      "title": "Indian Dance"
+      "title": "Indian Dance: Kadhal Oonjal, Aye Aye",
+      "description": "Indian Dance consists of passionate dancers, who explore the different types of dances across India such as bharathanatyam, kalbeliya, and much more. Kadhal Oonjal is a semi-classical dance piece filled with elegant and fast-paced movements while Aye Aye is a high octane dance filled with fun!"
     },
     {
       "time": "1620",
-      "title": "Western Dance"
+      "title": "Western Dance: Chasing Cars",
+      "description": "A contemporary dance piece set to Chasing Cars self-choreographed by JH western dance, this performance explores themes of vulnerability and connection. This piece captures both fragility and strength that can be found in human relationships."
     },
     {
       "time": "1625",
-      "title": "Choir"
+      "title": "Choir: For Good, Butterfly",
+      "description": "The first song, Stephen Schwartz’s For Good from the musical Wicked, reflects on friendship, gratitude, and how the people we meet can change us in meaningful ways. It reminds us that even short moments and small actions can leave a lasting impact. Through this piece, we hope to express appreciation for those who have shaped our journey and helped us to grow - for good. The second song, Butterfly, composed by Mia Makaroff, is the choir's signature song. This acappella piece evokes the image of a butterfly - delicate, fleeting, and ever in motion. Its layered voices come together to reflect the quiet beauty of nature, inviting us to pause and find the beauty in life’s simple moments."
     },
     {
       "time": "1635",
-      "title": "String Orchestra",
-      "endTime": "1645"
+      "title": "String Orchestra: Bubble (Eve, arr. by Tristen Ng)",
+      "endTime": "1645",
+      "description": "Bubble is an upbeat pop-rock track that features Eve's distinctive high-pitched vocals and catchy melodies. The lyrics of the song express a feeling of being trapped in a bubble, unable to break free from the constraints of everyday life. Bubble has an overall positive and hopeful message, encouraging listeners to keep striving for their dreams and break free from their bubbles."
+    }
+  ]
+},
+{
+  "title": "Session 2",
+  "subtitle": "5:00 PM - 5:45 PM",
+  "endText": "End of Session 2",
+  "location": "LT5",
+  "events": [
+    {
+      "time": "1700",
+      "title": "Emcee Opening",
+      "isSessionHeader": true
+    },
+    {
+      "time": "1705",
+      "title": "Guzheng: 翡翠 (Jade), 粉墨 (Fen Mo)",
+      "description": "Jade by Wang DanHong is a contemporary guzheng piece inspired by Miao and Dong folk music from southwest China. It combines lively dance rhythms with lyrical melodies, using dynamic contrasts and layered textures to portray the region’s natural beauty, cultural richness, and spirit of hope. Fen Mo by Zhao Mojia is a guzheng quintet piece inspired by Peking opera. It features energetic, layered textures and incorporates the melody of Xiuqi Xiaokaimen in its third section. The piece depicts dramatic opera scenes before ending reflectively, highlighting the contrast between theatrical illusion and real life."
+    },
+    {
+      "time": "1715",
+      "title": "Guitar Ensemble: Bokura no eien (Our Eternity)",
+      "description": "Our Eternity is a Japanese indie pop song composed and performed by WEAVER, a Japanese rock trio band that was formed in 2004. It is a romantic J-pop piece written from the perspective of someone professing their undying love and desire to be by their lover's side forever."
+    },
+    {
+      "time": "1725",
+      "title": "Chinese Orchestra: 我们这一班 (wǒ men zhè yī bān)",
+      "description": "This song, arranged by our own conductor, Mr Sim Boon Yew, and composed by Billy Koh and Ng King Kang, is a 新谣/Singapore Chinese folk song which mainly tells the longing for school life and classmates' friendships after growing up. The melody evokes memories of the 1980s campus for many Singaporeans."
+    },
+    {
+      "time": "1735",
+      "__comment__": "1738🔥, ay, i'm like hey wassup hello",
+      "title": "Symphonic Band: Selections from Encanto, Selections from La La Land",
+      "description": "Encanto follows the Colombian Madrigal family, who live in a magical \"Casita\" that grants unique gifts to every child except Mirabel. When the magic begins to fade, ordinary Mirabel must discover why and save her family's legacy. Selections from Encanto presents the music of the film, including iconic songs like \"We Don't Talk about Bruno\" and \"Surface Pressure.\"<br>La La Land is a 2016 musical drama following Mia, an aspiring actress, and Sebastian, a dedicated jazz pianist, who fall in love while pursuing their dreams in Los Angeles. Featuring the bright opening, \"Another Day of Sun\" as well as the romantic duet, \"City of Stars\", Highlights from La La Land is sure to tug at your heartstrings.",
+      "endTime": "1745"
+    }
+  ]
+},
+{
+  "title": "Session 3",
+  "subtitle": "6:00 PM - 6:45 PM",
+  "location": "LT5",
+  "endText": "End of Session 3",
+  "events": [
+    {
+      "time": "1800",
+      "title": "Emcee Opening",
+      "isSessionHeader": true
+    },
+    {
+      "time": "1805",
+      "title": "Symphonic Band: Selections from Encanto, Selections from La La Land",
+      "description": "Encanto follows the Colombian Madrigal family, who live in a magical \"Casita\" that grants unique gifts to every child except Mirabel. When the magic begins to fade, ordinary Mirabel must discover why and save her family's legacy. Selections from Encanto presents the music of the film, including iconic songs like \"We Don't Talk about Bruno\" and \"Surface Pressure.\"<br>La La Land is a 2016 musical drama following Mia, an aspiring actress, and Sebastian, a dedicated jazz pianist, who fall in love while pursuing their dreams in Los Angeles. Featuring the bright opening, \"Another Day of Sun\" as well as the romantic duet, \"City of Stars\", Highlights from La La Land is sure to tug at your heartstrings."
+    },
+    {
+      "time": "1815",
+      "title": "Chinese Orchestra: 我们这一班 (wǒ men zhè yī bān)",
+      "description": "This song, arranged by our own conductor, Mr Sim Boon Yew, and composed by Billy Koh and Ng King Kang, is a 新谣/Singapore Chinese folk song which mainly tells the longing for school life and classmates' friendships after growing up. The melody evokes memories of the 1980s campus for many Singaporeans."
+    },
+    {
+      "time": "1825",
+      "title": "Guzheng: 翡翠 (Jade), 粉墨 (Fen Mo)",
+      "description": "Jade by Wang DanHong is a contemporary guzheng piece inspired by Miao and Dong folk music from southwest China. It combines lively dance rhythms with lyrical melodies, using dynamic contrasts and layered textures to portray the region’s natural beauty, cultural richness, and spirit of hope. Fen Mo by Zhao Mojia is a guzheng quintet piece inspired by Peking opera. It features energetic, layered textures and incorporates the melody of Xiuqi Xiaokaimen in its third section. The piece depicts dramatic opera scenes before ending reflectively, highlighting the contrast between theatrical illusion and real life."
+    },
+    {
+      "time": "1835",
+      "title": "Guitar Ensemble: Bokura no eien (Our Eternity)",
+      "description": "Our Eternity is a Japanese indie pop song composed and performed by WEAVER, a Japanese rock trio band that was formed in 2004. It is a romantic J-pop piece written from the perspective of someone professing their undying love and desire to be by their lover's side forever.",
+      "endTime": "1845"
+    }
+  ]
+},
+{
+  "title": "Session 4",
+  "subtitle": "7:00 PM - 7:45 PM",
+  "location": "LT5",
+  "endText": "End of all sessions",
+  "events": [
+    {
+      "time": "1900",
+      "title": "Emcee Opening",
+      "isSessionHeader": true
+    },
+    {
+      "time": "1905",
+      "title": "Malay Dance: Imbang",
+      "description": "\"Imbang\" is Malay for \"Balance\". This genre of Malay Dance originates from Indonesia and the piece incorporates plates as props. In this performance, the dancers present to you a lively, upbeat dance, as they balance golden plates on both hands!"
+    },
+    {
+      "time": "1910",
+      "title": "Chinese Dance: 春夜细雨 (chūn yè xì yǔ)",
+      "description": "A gentle drizzle falls on a spring night,<br>Beneath the moon, a graceful figure dances.<br><br>The breeze brushes past flowing sleeves, soft and whispering,<br>Her elegant movements reflecting a radiant face."
+    },
+    {
+      "time": "1915",
+      "title": "Indian Dance: Kadhal Oonjal, Aye Aye",
+      "description": "Indian Dance consists of passionate dancers, who explore the different types of dances across India such as bharathanatyam, kalbeliya, and much more. Kadhal Oonjal is a semi-classical dance piece filled with elegant and fast-paced movements while Aye Aye is a high octane dance filled with fun!"
+    },
+    {
+      "time": "1920",
+      "title": "Western Dance: Chasing Cars",
+      "description": "A contemporary dance piece set to Chasing Cars self-choreographed by JH western dance, this performance explores themes of vulnerability and connection. This piece captures both fragility and strength that can be found in human relationships."
+    },
+    {
+      "time": "1925",
+      "title": "Choir: For Good, Butterfly",
+      "description": "The first song, Stephen Schwartz’s For Good from the musical Wicked, reflects on friendship, gratitude, and how the people we meet can change us in meaningful ways. It reminds us that even short moments and small actions can leave a lasting impact. Through this piece, we hope to express appreciation for those who have shaped our journey and helped us to grow - for good. The second song, Butterfly, composed by Mia Makaroff, is the choir's signature song. This acappella piece evokes the image of a butterfly - delicate, fleeting, and ever in motion. Its layered voices come together to reflect the quiet beauty of nature, inviting us to pause and find the beauty in life’s simple moments."
+    },
+    {
+      "time": "1935",
+      "title": "String Orchestra: Bubble (Eve, arr. by Tristen Ng)",
+      "description": "Bubble is an upbeat pop-rock track that features Eve's distinctive high-pitched vocals and catchy melodies. The lyrics of the song express a feeling of being trapped in a bubble, unable to break free from the constraints of everyday life. Bubble has an overall positive and hopeful message, encouraging listeners to keep striving for their dreams and break free from their bubbles.",
+      "endTime": "1945",
+      "__comment__": "1945: war and invasion came, we had no right we had no say and we longed to be free one day"
     }
   ]
 }
+]

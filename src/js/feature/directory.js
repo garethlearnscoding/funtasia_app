@@ -1,7 +1,8 @@
 import * as THREE from "three";
 import { Navigation } from "@/js/events/navigation.js";
 import { Floor } from "@/js/floor/floor.js";
-import { clearStoredBottomSheet, hideBottomSheet } from "@/js/ui_ux/ui.js";
+import { clearStoredBottomSheet, showBottomSheet, hideBottomSheet } from "@/js/ui_ux/ui.js";
+import { DirectoryMarker } from '@/js/marker/directorymarker.js';
 
 let cachedFuntasiaData = null;
 
@@ -228,7 +229,6 @@ export async function focusOnBooth(boothNum, levelHint = null) {
   const latestItem = cachedFuntasiaData[level][boothNum] || item;
 
   if (latestItem["Location"]) {
-    const { DirectoryMarker } = await import('@/js/marker/directorymarker.js');
     const marker = new DirectoryMarker(latestItem["Location"], targetFloorId);
     appStateRef.activeDirectoryMarker = marker;
     appStateRef.activeMarkers.push(marker);
@@ -279,8 +279,7 @@ export async function focusOnBooth(boothNum, levelHint = null) {
     window.showFabButtons();
   }
 
-  const { showBottomSheet: showBS } = await import('@/js/ui_ux/ui.js');
-  showBS(boothName, null, boothDesc);
+  showBottomSheet(boothName, null, boothDesc);
 }
 
 /* ── Rendering ───────────────────────────────────────────── */

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
   <head>
     <script>
       // Immediate theme sync to avoid flashing
@@ -220,7 +220,7 @@
                     <span class="material-symbols-outlined" style="font-size: 22px;">event</span>
                   </div>
                   <div class="info-btn-desc">
-                    <span class="info-btn-title">Events</span>
+                    <span class="info-btn-title">Event Schedule</span>
                     <span class="info-btn-caption">Check the live schedule for CCA performances, dunklist, and PA busking.</span>
                   </div>
                 </div>
@@ -239,7 +239,7 @@
         <div class="modal-card">
           <div class="modal-header">
             <div>
-              <h1 class="modal-title">Events</h1>
+              <h1 class="modal-title">Event Schedule</h1>
               <p class="modal-subtitle">Timeline of events</p>
             </div>
             <button class="modal-close-btn" id="close-events-btn">
@@ -264,7 +264,7 @@
               </button>
             </div>
             <!-- Dynamic Content Area -->
-            <div id="events-list-container" class="w-full space-y-4">
+            <div id="events-list-container" class="w-full space-y-4 scroll-smooth">
               <!-- Items injected by script -->
             </div>
           </div>
@@ -541,6 +541,7 @@
 
       openEventsBtn.addEventListener('click', () => {
         eventsModal.style.display = 'block';
+        window.switchEventCategory("cca");
         hideFabButtons();
       });
       closeEventsBtn.addEventListener('click', () => {

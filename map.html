@@ -330,22 +330,16 @@
       
 
       function hideFabButtons() {
-        openDirBtn.style.display = 'none';
-        openSettingsBtn.style.display = 'none';
-        openQrBtn.style.display = 'none';
-        openInfoBtn.style.display = 'none';
-        openEventsBtn.style.display = 'none';
-        
+        document.querySelectorAll(".fab-btn").forEach(btn => {
+          btn.style.display = 'none';
+        });
         storeAndHideBottomSheet();
       }
 
       function showFabButtons() {
-        openDirBtn.style.display = 'flex';
-        openSettingsBtn.style.display = 'flex';
-        openQrBtn.style.display = 'flex';
-        openInfoBtn.style.display = 'flex';
-        openEventsBtn.style.display = 'flex';
-
+        document.querySelectorAll(".fab-btn").forEach(btn => {
+          btn.style.display = 'flex';
+        });
         reopenStoredBottomSheet();
       }
 
@@ -582,6 +576,5 @@
       window.openQRModal = () => openQrBtn.click();
     </script>
     <script type="module" src="/src/js/base/main.js"></script>
-    <!-- <script src="src/js/base/events.js"></script> -->
   </body>
 </html>

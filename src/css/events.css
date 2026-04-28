@@ -1,6 +1,6 @@
 @layer events {
     .events-timeline {
-        @apply w-full text-left relative pl-6 mb-8 md:pl-8 before:content-[''] before:absolute before:left-0 before:top-2 before:bottom-2 before:w-[2px] before:bg-ctp-surface2;
+        @apply w-full text-left relative pl-6 mb-8 ml-2 max-w-[calc(100%-var(--spacing)*6)] md:pl-8 before:content-[''] before:absolute before:left-0 before:top-2 before:bottom-2 before:w-[2px] before:bg-ctp-surface2 -z-30;
     }
 
     .events-item-container {

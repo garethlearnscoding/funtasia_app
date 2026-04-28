@@ -69,7 +69,7 @@ export async function switchEventCategory(category) {
             }
             let eventID = "events-item-" + (index + 1)
             html += `
-            <header id="${eventID}" class="mb-8 w-full text-left sticky top-0 left-[-12] bg-ctp-base text-ctp-base z-30">
+            <header id="${eventID}" class="mb-12 w-[calc(100%+var(--spacing)*-3)] text-left sticky top-0 left-[-12] bg-ctp-base text-ctp-base">
                 <div class="flex flex-row mb-1 justify-items-center w-full">
                     <h1 class="font-headline text-3xl font-bold tracking-tight text-ctp-text leading-none mr-2 sticky top-0">${data.title}</h1>
                     <span class="events-location cursor-pointer hover:opacity-70 transition-opacity active:scale-95" data-booth-id="${data.location}">
@@ -77,7 +77,7 @@ export async function switchEventCategory(category) {
                     </span>
                 </div>
                 <p class="text-ctp-subtext0 font-body text-sm w-full">${data.subtitle || '<br>'}</p>
-                <div class="absolute -left-4 -top-8 w-[calc(100%+var(--spacing)*8)] bg-ctp-base -z-10 h-28"></div> 
+                <div class="absolute -left-4 -top-8 w-[calc(100%+var(--spacing)*4)] bg-ctp-base -z-10 h-28"></div> 
             </header>
             <div class="events-timeline">
             `;

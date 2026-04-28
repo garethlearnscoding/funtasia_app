@@ -34,4 +34,7 @@ git push origin gh-pages
 
 git checkout main
 
+# since node_modules was deleted
+npm install
+
 echo "Commited with message: $1"

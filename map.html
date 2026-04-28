@@ -746,11 +746,12 @@
           
           if (firstVal && secondVal) {
             // Transform first input: leading 0 → "b", leading 1 → "l"
+            const markerID = secondVal.charAt(0) === '0' ? secondVal.slice(1) : secondVal;
             const firstDigit = firstVal.charAt(0);
             const restDigits = firstVal.slice(1);
             const prefix = firstDigit === '0' ? 'b' : firstDigit === '1' ? 'l' : firstDigit;
             const floorPart = `${prefix}${restDigits}`;
-            const qrID = `${floorPart}-m${secondVal}`;
+            const qrID = `${floorPart}-m${markerID}`;
             console.log(`Manual input qrID: ${qrID}`);
             
             try {

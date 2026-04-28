@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
   <head>
     <script>
       // Immediate theme sync to avoid flashing
@@ -12,16 +12,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <title>Funtasia 3D Map</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
     <link rel="icon" type="image/svg+xml" href="/funtasia_app/favicon/favicon.svg"/>
     <link rel="apple-touch-icon" href="/funtasia_app/favicon/apple-touch-icon.png"/>
-    <script type="module" crossorigin src="/funtasia_app/assets/map-Bsk5DzkB.js"></script>
-    <link rel="modulepreload" crossorigin href="/funtasia_app/assets/input-VwdCvokw.js">
-    <link rel="modulepreload" crossorigin href="/funtasia_app/assets/vendor-Bz-JYute.js">
-    <link rel="modulepreload" crossorigin href="/funtasia_app/assets/vendor-three-0_8A-LSn.js">
-    <link rel="stylesheet" crossorigin href="/funtasia_app/assets/input-D6fjDLTQ.css">
+    <script type="module" crossorigin src="/funtasia_app/assets/map-mzLqXCYG.js"></script>
+    <link rel="modulepreload" crossorigin href="/funtasia_app/assets/input-D8jnwGmS.js">
+    <link rel="modulepreload" crossorigin href="/funtasia_app/assets/vendor-CMrZzyQn.js">
+    <link rel="modulepreload" crossorigin href="/funtasia_app/assets/vendor-three-DiTxwgKr.js">
+    <link rel="stylesheet" crossorigin href="/funtasia_app/assets/input-BnJyzyCd.css">
     <link rel="stylesheet" crossorigin href="/funtasia_app/assets/map-D5Yz7FpN.css">
-  <link rel="manifest" href="/funtasia_app/manifest.webmanifest"></head>
+  </head>
   <body>
     <div id="canvas-container"></div>
 
@@ -113,7 +113,123 @@
           </div>
           <!-- Content Area -->
           <div class="modal-content" id="info-content-area">
-            <p>Uhh honestly idk man, try it out yourself or go back to onboarding</p>
+
+            <!-- ── Icons Section ─────────────────────── -->
+            <div class="px-2">
+              <h3 class="modal-section-title">Icons</h3>
+              <p class="text-ctp-subtext1 text-xs px-4 -mt-2 mb-4">Markers you'll encounter on the 3D map</p>
+              <div class="info-icon-grid">
+
+                <div class="info-icon-cell">
+                  <div class="info-icon-bubble">
+                    <img src="https://cdn.jsdelivr.net/gh/garethlearnscoding/funtasia_assets@main/icons/stair-u.png" class="info-icon-img" alt="Stair Up"/>
+                  </div>
+                  <span class="info-icon-label">Stairs<br>Up only</span>
+                </div>
+
+                <div class="info-icon-cell">
+                  <div class="info-icon-bubble">
+                    <img src="https://cdn.jsdelivr.net/gh/garethlearnscoding/funtasia_assets@main/icons/stair-d.png" class="info-icon-img" alt="Stair Down"/>
+                  </div>
+                  <span class="info-icon-label">Stairs<br>Down only</span>
+                </div>
+
+                <div class="info-icon-cell">
+                  <div class="info-icon-bubble">
+                    <img src="https://cdn.jsdelivr.net/gh/garethlearnscoding/funtasia_assets@main/icons/stair-ud.png" class="info-icon-img" alt="Stair Up & Down"/>
+                  </div>
+                  <span class="info-icon-label">Stairs<br>Up &amp; Down</span>
+                </div>
+
+                <div class="info-icon-cell">
+                  <div class="info-icon-bubble">
+                    <img src="https://cdn.jsdelivr.net/gh/garethlearnscoding/funtasia_assets@main/icons/lift.png" class="info-icon-img" alt="Lift"/>
+                  </div>
+                  <span class="info-icon-label">Lift</span>
+                </div>
+
+                <div class="info-icon-cell">
+                  <div class="info-icon-bubble">
+                    <img src="https://cdn.jsdelivr.net/gh/garethlearnscoding/funtasia_assets@main/icons/mtoilet.png" class="info-icon-img" alt="Male Toilet"/>
+                  </div>
+                  <span class="info-icon-label">Male<br>Toilet</span>
+                </div>
+
+                <div class="info-icon-cell">
+                  <div class="info-icon-bubble">
+                    <img src="https://cdn.jsdelivr.net/gh/garethlearnscoding/funtasia_assets@main/icons/ftoilet.png" class="info-icon-img" alt="Female Toilet"/>
+                  </div>
+                  <span class="info-icon-label">Female<br>Toilet</span>
+                </div>
+
+                <div class="info-icon-cell">
+                  <div class="info-icon-bubble">
+                    <img src="https://cdn.jsdelivr.net/gh/garethlearnscoding/funtasia_assets@main/icons/atoilet.png" class="info-icon-img" alt="Accessible Toilet"/>
+                  </div>
+                  <span class="info-icon-label">Accessible<br>Toilet</span>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- ── UI Buttons Section ─────────────────── -->
+            <div class="px-2">
+              <h3 class="modal-section-title">UI Buttons</h3>
+              <p class="text-ctp-subtext1 text-xs px-4 -mt-2 mb-4">Floating action buttons around the map</p>
+              <div class="info-btn-list">
+
+                <div class="info-btn-row">
+                  <div class="info-btn-preview">
+                    <span class="material-symbols-outlined" style="font-size: 22px;">settings</span>
+                  </div>
+                  <div class="info-btn-desc">
+                    <span class="info-btn-title">Settings</span>
+                    <span class="info-btn-caption">Adjust accessibility options, dark mode, and app preferences.</span>
+                  </div>
+                </div>
+
+                <div class="info-btn-row">
+                  <div class="info-btn-preview">
+                    <span class="material-symbols-outlined" style="font-size: 22px;">menu_book</span>
+                  </div>
+                  <div class="info-btn-desc">
+                    <span class="info-btn-title">Directory</span>
+                    <span class="info-btn-caption">Browse and search all booths, zones, and exhibitions by level or tag.</span>
+                  </div>
+                </div>
+
+                <div class="info-btn-row">
+                  <div class="info-btn-preview">
+                    <span class="material-symbols-outlined" style="font-size: 22px;">qr_code_scanner</span>
+                  </div>
+                  <div class="info-btn-desc">
+                    <span class="info-btn-title">QR Scanner</span>
+                    <span class="info-btn-caption">Scan a location QR code to pinpoint your current position on the map.</span>
+                  </div>
+                </div>
+
+                <div class="info-btn-row">
+                  <div class="info-btn-preview">
+                    <span class="material-symbols-outlined" style="font-size: 22px;">info_i</span>
+                  </div>
+                  <div class="info-btn-desc">
+                    <span class="info-btn-title">Information</span>
+                    <span class="info-btn-caption">View this help guide explaining map icons and controls.</span>
+                  </div>
+                </div>
+
+                <div class="info-btn-row">
+                  <div class="info-btn-preview">
+                    <span class="material-symbols-outlined" style="font-size: 22px;">event</span>
+                  </div>
+                  <div class="info-btn-desc">
+                    <span class="info-btn-title">Event Schedule</span>
+                    <span class="info-btn-caption">Check the live schedule for CCA performances, dunklist, and PA busking.</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
           </div>
           <div class="modal-footer-fade"></div>
         </div>
@@ -126,7 +242,7 @@
         <div class="modal-card">
           <div class="modal-header">
             <div>
-              <h1 class="modal-title">Events</h1>
+              <h1 class="modal-title">Event Schedule</h1>
               <p class="modal-subtitle">Timeline of events</p>
             </div>
             <button class="modal-close-btn" id="close-events-btn">
@@ -151,7 +267,7 @@
               </button>
             </div>
             <!-- Dynamic Content Area -->
-            <div id="events-list-container" class="w-full mt-6 space-y-4">
+            <div id="events-list-container" class="w-full space-y-4 scroll-smooth">
               <!-- Items injected by script -->
             </div>
           </div>

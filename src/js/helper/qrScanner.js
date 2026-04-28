@@ -367,13 +367,14 @@ export async function stopScanner(elementId = "qrcode_scanner") {
 // toggleTorch — identical to original
 // ─────────────────────────────────────────────────────────────────────────────
 
-export async function toggleTorch(buttonElement, iconElement, elementId = "qrcode_scanner") {
+export async function toggleTorch(buttonElement) {
     if (!html5QrCode || !html5QrCode.isScanning || !torchSupported) {
         console.warn("Scanner is not running or torch unsupported. Cannot toggle torch.");
         return;
     }
 
-    const videoElement = document.querySelector(`#${elementId} video`);
+    const iconElement = document.getElementById('qr-flash-icon');
+    const videoElement = document.querySelector('#qrcode_scanner video');
     if (!videoElement || !videoElement.srcObject) return;
 
     const track = videoElement.srcObject.getVideoTracks()[0];

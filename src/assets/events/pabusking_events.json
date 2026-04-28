@@ -1,30 +1,91 @@
 [{
   "title": "Busking Performances",
+  "subtitle": "Busking performances from our own NJCians!",
   "endText": "End of Performances",
   "location": "O2",
   "events": [
     {
-      "time": "1030",
-      "title": "Morning Acoustic Set",
-      "description": "Relaxing tunes to start the day.",
-      "isSessionHeader": true
+      "time": "1630",
+      "title": "Weyoung",
+      "songs": [
+        "愛錯 by Wang Leehom",
+        "⁠夜空中最亮的星 by Escape Plan",
+        "Everybody Talks by Neon Trees",
+        "太陽與地球 by Crowd Lu",
+        "Out of My League by Fitz and the Tantrums",
+        "Until I Found You (Em Beihold version) by Stephen Sanchez and Em Beihold"
+      ]
     },
     {
-      "time": "1045",
-      "title": "Pop Covers",
-      "description": "Acoustic covers of popular hits."
+      "time": "1705",
+      "title": "Nunyuh Business",
+      "tag": {"icon": "open_in_new", "text": "<a href='https://www.instagram.com/its.nunyuhbusiness/' target='_blank'>Instagram</a>"},
+      "songs": [
+        "That Should Be Me by Justin Bieber",
+        "Sorry by Justin Bieber",
+        "Yummy by Justin Bieber",
+        "Beauty and a Beat by Justin Bieber",
+        "Baby by Justin Bieber",
+        "Daisies by Justin Bieber"
+      ]
     },
     {
-      "time": "1330",
-      "title": "Afternoon Jazz",
-      "description": "Smooth jazz performances.",
-      "isSessionHeader": true
+      "time": "1740",
+      "title": "Phyllis Lim",
+      "songs": [
+        "Dreams by The Cranberries",
+        "Blade Bird by Oklou",
+        "Skinshine by Phyllzx"
+      ]
     },
     {
-      "time": "1345",
-      "title": "Jazz Duo",
-      "description": "Saxophone and guitar duo.",
-      "endTime": "1430"
+      "time": "1755",
+      "title": "Blueforms",
+      "tag": {"icon": "open_in_new", "text":"<a href='https://www.instagram.com/theblueforms/' target='_blank'>Instagram</a>"},
+      "songs": [
+        "UNAPPROVED: Kilby Girl by The Backseat Lovers",
+        "Forget You by CeeLo Green",
+        "Creep by Radiohead",
+        "Don't Stop Me Now by Queen",
+        "Don't Look Back in Anger by Oasis",
+        "Kiss You by One Direction",
+        "Put Your Records On by Corinne Bailey Rae"
+      ]
+    },
+    {
+      "time": "1830",
+      "title": "Updawg",
+      "songs": [
+        "Kiss Me by Sixpence None The Richer",
+        "Every Summertime by NIKI",
+        "September by Earth, Wind and Fire",
+        "Everybody Talks by The Neon Trees",
+        "Shut Up And Dance by Walk The Moon"
+      ]
+    },
+    {
+      "time": "1905",
+      "title": "Thaarmin",
+      "tag": {"icon": "open_in_new", "text":"<a href='https://linktr.ee/thaarmin/' target='_blank'>Linktree</a>"},
+      "songs": [
+        "Circles by Thaarmin",
+        "Bird of a Feather (Billie Eilish Cover) ",
+        "UNAPPROVED: Secrets of your Scars by Thaarmin",
+        "Roll the Dice by Thaarmin"
+      ]
+    },
+    {
+      "time": "1920",
+      "title": "Mirage!",
+      "songs": [
+        "Helena by My Chemical Romance",
+        "Boulevard of Broken Dreams by Green Day",
+        "I Don't Love You by My Chemical Romance",
+        "My Hero by Foo Fighters",
+        "You Give Love a Bad Name by Bon Jovi",
+        "海阔天空 by Beyond",
+        "Just The Way You Are by Bruno Mars"
+      ]
     }
   ]
 }

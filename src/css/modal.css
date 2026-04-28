@@ -37,7 +37,7 @@
         @apply text-ctp-subtext1 hover:text-ctp-text transition-colors active:scale-90;
     }
     .modal-content {
-        @apply px-2 py-4 overflow-y-auto hide-scrollbar space-y-8;
+        @apply px-2 py-4 overflow-y-scroll overflow-x-hidden space-y-8 -z-50;
     }
     .modal-search-wrapper {
         @apply relative flex items-center rounded-2xl;

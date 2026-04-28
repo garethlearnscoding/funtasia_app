@@ -69,7 +69,7 @@ export async function switchEventCategory(category) {
             }
             let eventID = "events-item-" + (index + 1)
             html += `
-            <header id="${eventID}" class="mb-12 w-[calc(100%+var(--spacing)*-3)] text-left sticky top-0 left-[-12] bg-ctp-base text-ctp-base">
+            <header id="${eventID}" class="mb-12 w-full text-left sticky top-0 left-[-12] bg-ctp-base text-ctp-base">
                 <div class="flex flex-row mb-1 justify-items-center w-full">
                     <h1 class="font-headline text-3xl font-bold tracking-tight text-ctp-text leading-none mr-2 sticky top-0">${data.title}</h1>
                     <span class="events-location cursor-pointer hover:opacity-70 transition-opacity active:scale-95" data-booth-id="${data.location}">
@@ -134,20 +134,45 @@ export async function switchEventCategory(category) {
                     boxClass = 'bg-ctp-surface0 ring-1 ring-ctp-surface1 hover:bg-ctp-surface1';
                 }
 
+                let tagsHtml = ""
+                if (ev.tag) {
+                    tagsHtml += `<span class="bg-ctp-surface0 text-ctp-blue px-3 py-1 rounded-full font-label text-[10px] uppercase tracking-widest flex items-center gap-1 w-fit">
+                    ${ ev.tag.icon ? `<span class="material-symbols-outlined text-[12px]">${ev.tag.icon}</span>` : '' }
+                    ${ev.tag.text}
+                  </span>`
+                }
+
                 html += `
                     <div class="events-item-container group">
                         <div class="${nodeColor} events-item-dots"></div>
                     
                         <div class="flex flex-col gap-1 mb-3">
                             <span class="${timeColor} events-item-time">${formatTime(ev.time)}</span>
-                            <h3 class="${titleColor} events-item-title">${ev.title}</h3>
+                            <div class="flex flex-row">
+                                <h3 class="${titleColor} events-item-title ${tagsHtml? "mr-2" : ""}">${ev.title}</h3>
+                                ${tagsHtml}
+                            </div>
                         </div>
                 `;
 
-                if (!ev.isSessionHeader && ev.description) {
+                let songsHtml = "";
+                if (ev.songs) {
+                    ev.songs.forEach(song => {
+                        songsHtml += `<span class="bg-ctp-surface0 px-3 py-1 my-2 rounded-full font-label text-[12px] uppercase tracking-widest flex items-center gap-1 w-fit">
+                    <span class="material-symbols-outlined text-[12px]">music_note</span>
+                    ${song}
+                  </span>`
+                    })
+                }
+
+                let descHtml = "";
+                if (ev.description) descHtml = `<p class="${status === 'past' ? 'text-ctp-subtext0' : 'text-ctp-subtext1'} events-item-description">${ev.description}</p>`
+
+                if (!ev.isSessionHeader && (descHtml || songsHtml)) {
                     html += `
                     <div class="${boxClass} events-item-body">
-                        <p class="${status === 'past' ? 'text-ctp-subtext0' : 'text-ctp-subtext1'} events-item-description">${ev.description}</p>
+                        ${descHtml}
+                        ${songsHtml}
                     </div>
                     `;
                 }

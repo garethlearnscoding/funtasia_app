@@ -12,7 +12,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <title>Funtasia 3D Map</title>
     <link rel="stylesheet" href="/src/css/main.css"/>
-    <link href="https://fonts.googleapis.com/css?family=JetBrains+Mono:wght@400;500;600;700|Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=block" rel="stylesheet">
     <link href="/src/css/input.css" rel="stylesheet"/>
     <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg"/>
     <link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png"/>
@@ -50,7 +51,7 @@
     </button>
 
     <button id="open-directory-btn" class="fab-btn">
-      <span class="material-symbols-outlined">menu_book</span>
+      <span class="material-symbols-outlined">store</span>
     </button>
 
      <button id="open-qr-btn" class="fab-btn">
@@ -110,10 +111,162 @@
               <span class="material-symbols-outlined text-[20px]">close</span>
             </button>
           </div>
-          <!-- Content Area -->
+          <!-- Welcome Area -->
           <div class="modal-content" id="info-content-area">
 
-            <!-- ── Icons Section ─────────────────────── -->
+            <div class="px-2">
+              <h3 class="modal-section-title">Feature overview</h3>
+              <p class="text-ctp-subtext1 text-xs px-4 -mt-2 mb-4">Summary of main features (explained more below)</p>
+              <div class="info-btn-list">
+
+                <div class="info-btn-row">
+                  <div class="info-btn-preview">
+                    <span class="material-symbols-outlined" style="font-size: 22px;">info_i</span>
+                  </div>
+                  <div class="info-btn-desc">
+                    <span class="info-btn-title">UI Buttons</span>
+                    <span class="info-btn-caption">Includes Directory, Event schedule, QR Code Location Scanner, and more!</span>
+                  </div>
+                </div>
+                
+                <div class="info-btn-row">
+                  <div class="info-btn-preview">
+                    <span class="material-symbols-outlined" style="font-size: 22px;">map</span>
+                  </div>
+                  <div class="info-btn-desc">
+                    <span class="info-btn-title">Interactive Map</span>
+                    <span class="info-btn-caption">Interactive map with clickable elements</span>
+                  </div>
+                </div>
+                
+                <div class="info-btn-row">
+                  <div class="info-btn-preview">
+                    <span class="material-symbols-outlined" style="font-size: 22px;">image</span>
+                  </div>
+                  <div class="info-btn-desc">
+                    <span class="info-btn-title">Icons</span>
+                    <span class="info-btn-caption">Icons are non-interactive and show locations of various object (explained below)</span>
+                  </div>
+                </div>
+              
+              </div>
+            </div>
+
+            <!-- ── UI Buttons Section ─────────────────── -->
+            <div class="px-2">
+              <h3 class="modal-section-title">UI Buttons</h3>
+              <p class="text-ctp-subtext1 text-xs px-4 -mt-2 mb-4">Floating action buttons in the sidebar on the right</p>
+              <div class="info-btn-list">
+
+                <div class="info-btn-row">
+                  <div class="info-btn-preview">
+                    <span class="material-symbols-outlined" style="font-size: 22px;">info_i</span>
+                  </div>
+                  <div class="info-btn-desc">
+                    <span class="info-btn-title">Information</span>
+                    <span class="info-btn-caption">View this help guide explaining map icons and controls.</span>
+                  </div>
+                </div>
+
+                <div class="info-btn-row">
+                  <div class="info-btn-preview">
+                    <span class="material-symbols-outlined" style="font-size: 22px;">event</span>
+                  </div>
+                  <div class="info-btn-desc">
+                    <span class="info-btn-title">Event Schedule</span>
+                    <span class="info-btn-caption">Check the live schedule for CCA performances, teacher dunklist, and PA busking.</span>
+                  </div>
+                </div>
+
+                <div class="info-btn-row">
+                  <div class="info-btn-preview">
+                    <span class="material-symbols-outlined" style="font-size: 22px;">directions_run</span>
+                  </div>
+                  <div class="info-btn-desc">
+                    <span class="info-btn-title">Escape Room Queue</span>
+                    <span class="info-btn-caption">Scan the queue QR code at the escape room to join the virtual line.</span>
+                  </div>
+                </div>                
+
+                <div class="info-btn-row">
+                  <div class="info-btn-preview">
+                    <span class="material-symbols-outlined" style="font-size: 22px;">qr_code_scanner</span>
+                  </div>
+                  <div class="info-btn-desc">
+                    <span class="info-btn-title">QR Scanner</span>
+                    <span class="info-btn-caption">Scan a location QR code to pinpoint your current position on the map.</span>
+                  </div>
+                </div>
+
+                <div class="info-btn-row">
+                  <div class="info-btn-preview">
+                    <span class="material-symbols-outlined" style="font-size: 22px;">settings</span>
+                  </div>
+                  <div class="info-btn-desc">
+                    <span class="info-btn-title">Settings</span>
+                    <span class="info-btn-caption">Adjust accessibility options, dark mode, and app preferences.</span>
+                  </div>
+                </div>
+
+                <div class="info-btn-row">
+                  <div class="info-btn-preview">
+                    <span class="material-symbols-outlined" style="font-size: 22px;">store</span>
+                  </div>
+                  <div class="info-btn-desc">
+                    <span class="info-btn-title">Directory</span>
+                    <span class="info-btn-caption">Browse and search all booths by level or tag.</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+                <!-- ── Map Elements Section───────────────── -->
+            <div class="px-2">
+              <h3 class="modal-section-title">Map elements</h3>
+              <p class="text-ctp-subtext1 text-xs px-4 -mt-2 mb-4">Elements found on the interactive 3D map</p>
+              <div class="info-btn-list">
+
+                <div class="info-btn-row">
+                  <div class="info-btn-preview">
+                    <span class="material-symbols-outlined" style="font-size: 22px;">touch_app</span>
+                  </div>
+                  <div class="info-btn-desc">
+                    <span class="info-btn-title">Interactive</span>
+                    <span class="info-btn-caption">Interactive elements are of one of these colors: 
+                      <span class="text-ctp-green-300 material-symbols-outlined" style="font-size: 12px; font-variation-settings: 'FILL' 1;">circle</span>
+                      <span class="text-ctp-blue-600 material-symbols-outlined" style="font-size: 12px; font-variation-settings: 'FILL' 1;">circle</span>
+                      <span class="text-ctp-peach-400 material-symbols-outlined" style="font-size: 12px; font-variation-settings: 'FILL' 1;">circle</span>
+                      <span class="text-ctp-mauve material-symbols-outlined" style="font-size: 12px; font-variation-settings: 'FILL' 1;">circle</span>
+                      <span class="text-ctp-yellow material-symbols-outlined" style="font-size: 12px; font-variation-settings: 'FILL' 1;">circle</span>
+                      <span class="text-ctp-red-300 material-symbols-outlined" style="font-size: 12px; font-variation-settings: 'FILL' 1;">circle</span>
+                    </span>
+                  </div>
+                </div>
+                
+                <div class="info-btn-row">
+                  <div class="info-btn-preview">
+                    <span class="material-symbols-outlined" style="font-size: 22px;">image</span>
+                  </div>
+                  <div class="info-btn-desc">
+                    <span class="info-btn-title">Marker icons</span>
+                    <span class="info-btn-caption">These icons are non-interactive and show locations of helpful utilities (explained below)</span>
+                  </div>
+                </div>
+
+                <div class="info-btn-row">
+                  <div class="info-btn-preview">
+                    <span class="material-symbols-outlined" style="font-size: 22px;">swap_vert</span>
+                  </div>
+                  <div class="info-btn-desc">
+                    <span class="info-btn-title">Level Selector</span>
+                    <span class="info-btn-caption">Click/slide the numbers to switch levels. The highlighted level represents the current level</span>
+                  </div>
+                </div>
+              
+              </div>
+            </div>
+
+                <!-- ── Icons Section ─────────────────────── -->
             <div class="px-2">
               <h3 class="modal-section-title">Icons</h3>
               <p class="text-ctp-subtext1 text-xs px-4 -mt-2 mb-4">Markers you'll encounter on the 3D map</p>
@@ -171,74 +324,6 @@
               </div>
             </div>
 
-            <!-- ── UI Buttons Section ─────────────────── -->
-            <div class="px-2">
-              <h3 class="modal-section-title">UI Buttons</h3>
-              <p class="text-ctp-subtext1 text-xs px-4 -mt-2 mb-4">Floating action buttons around the map</p>
-              <div class="info-btn-list">
-
-                <div class="info-btn-row">
-                  <div class="info-btn-preview">
-                    <span class="material-symbols-outlined" style="font-size: 22px;">settings</span>
-                  </div>
-                  <div class="info-btn-desc">
-                    <span class="info-btn-title">Settings</span>
-                    <span class="info-btn-caption">Adjust accessibility options, dark mode, and app preferences.</span>
-                  </div>
-                </div>
-
-                <div class="info-btn-row">
-                  <div class="info-btn-preview">
-                    <span class="material-symbols-outlined" style="font-size: 22px;">menu_book</span>
-                  </div>
-                  <div class="info-btn-desc">
-                    <span class="info-btn-title">Directory</span>
-                    <span class="info-btn-caption">Browse and search all booths, zones, and exhibitions by level or tag.</span>
-                  </div>
-                </div>
-
-                <div class="info-btn-row">
-                  <div class="info-btn-preview">
-                    <span class="material-symbols-outlined" style="font-size: 22px;">qr_code_scanner</span>
-                  </div>
-                  <div class="info-btn-desc">
-                    <span class="info-btn-title">QR Scanner</span>
-                    <span class="info-btn-caption">Scan a location QR code to pinpoint your current position on the map.</span>
-                  </div>
-                </div>
-
-                <div class="info-btn-row">
-                  <div class="info-btn-preview">
-                    <span class="material-symbols-outlined" style="font-size: 22px;">info_i</span>
-                  </div>
-                  <div class="info-btn-desc">
-                    <span class="info-btn-title">Information</span>
-                    <span class="info-btn-caption">View this help guide explaining map icons and controls.</span>
-                  </div>
-                </div>
-
-                <div class="info-btn-row">
-                  <div class="info-btn-preview">
-                    <span class="material-symbols-outlined" style="font-size: 22px;">event</span>
-                  </div>
-                  <div class="info-btn-desc">
-                    <span class="info-btn-title">Event Schedule</span>
-                    <span class="info-btn-caption">Check the live schedule for CCA performances, dunklist, and PA busking.</span>
-                  </div>
-                </div>
-
-                <div class="info-btn-row">
-                  <div class="info-btn-preview">
-                    <span class="material-symbols-outlined" style="font-size: 22px;">directions_run</span>
-                  </div>
-                  <div class="info-btn-desc">
-                    <span class="info-btn-title">Escape Room Queue</span>
-                    <span class="info-btn-caption">Scan the queue QR code at the escape room to join the virtual line.</span>
-                  </div>
-                </div>
-
-              </div>
-            </div>
           </div>
           <div class="modal-footer-fade"></div>
         </div>

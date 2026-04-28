@@ -150,7 +150,7 @@ export async function switchEventCategory(category) {
                         <div class="flex flex-col gap-1 mb-3">
                             <span class="${timeColor} events-item-time">${formatTime(ev.time)}</span>
                             <div class="flex flex-row">
-                                <h3 class="${titleColor} events-item-title ${tagsHtml? "mr-2" : ""}">${ev.title}</h3>
+                                <h3 class="${titleColor} events-item-title">${ev.title}</h3>
                                 ${linkHtml}
                             </div>
                         </div>

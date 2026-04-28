@@ -23,9 +23,7 @@ git checkout gh-pages
 
 git rm -rf .
 
-cp -r dist/. .
-
-rm -rf dist/
+mv dist/* .
 
 git add .
 git commit -m "deploy v$VERSION"

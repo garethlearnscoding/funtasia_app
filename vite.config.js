@@ -3,7 +3,8 @@ import tailwindcss from '@tailwindcss/vite';
 import { fileURLToPath, URL } from 'node:url';
 import { resolve } from 'path';
 
-const base = "/funtasia_app/"
+// const base = "/funtasia_app/"
+const base =""
 
 export default defineConfig({
   base:base,  
@@ -24,6 +25,13 @@ export default defineConfig({
     port:5317,
     allowedHosts: ["chunky-toaster.seagull-hippocampus.ts.net","broken-toaster.seagull-hippocampus.ts.net"],
     host:true,
+    proxy: {
+      '/queue-api': {
+        target: 'http://127.0.0.1:3000',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/queue-api/, '/api'),
+      },
+    },
   },
   build: {
     rollupOptions: {

@@ -211,7 +211,7 @@ body {
 /* === Floor Selector UI (Floating — Glassmorphism per §2) === */
 #floor-selector {
   position: fixed;
-  top: calc(50% - 54px);
+  top: 50%;
   right: 8px;
   transform: translateY(-50%);
   z-index: 10;
@@ -358,6 +358,11 @@ body {
   right: 16px
 }
 
+#open-queue-btn {
+  top: 128px;
+  right: 16px
+}
+
 #clear-directory-marker-btn {
   top: 16px;
   left: 16px
@@ -442,7 +447,7 @@ body {
   margin-bottom: 12px;
 }
 
-#qrcode_scanner {
+.qr-scanner-container {
   width: 220px; 
   height: 220px; 
   border: 2px dashed color-mix(in srgb, var(--color-ctp-mauve) 50%, transparent); 
@@ -457,7 +462,7 @@ body {
   position: relative;
 }
 
-#qrcode_scanner video {
+.qr-scanner-container video {
   width: 100% !important;
   height: 100% !important;
   object-fit: cover !important;
@@ -510,4 +515,81 @@ body {
   gap: 8px; 
   cursor: pointer; 
   transition: background 0.2s;
+}
+
+/* === Queue Modal Specific Styles === */
+.queue-screen {
+  display: none;
+}
+.queue-screen.active {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.queue-action-btn {
+  width: 100%; 
+  padding: 14px; 
+  border-radius: 12px; 
+  background: var(--color-ctp-mauve);
+  color: var(--color-ctp-base); 
+  font-weight: 700; 
+  font-size: 14px; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  gap: 8px; 
+  cursor: pointer; 
+  transition: background 0.2s;
+  border: none;
+}
+.queue-action-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.queue-leave-btn {
+  width: 100%; 
+  padding: 14px; 
+  border-radius: 12px; 
+  background: transparent;
+  color: var(--color-ctp-red); 
+  font-weight: 700; 
+  font-size: 14px; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  gap: 8px; 
+  cursor: pointer; 
+  transition: background 0.2s;
+  border: 1px solid var(--color-ctp-red);
+}
+.queue-name-input {
+  width: 100%; 
+  padding: 14px;
+  text-align: center; 
+  font-size: 18px; 
+  font-weight: 700; 
+  border-radius: 12px; 
+  border: 2px solid var(--color-ctp-mauve-950); 
+  background: var(--color-ctp-surface0); 
+  color: var(--color-ctp-mauve); 
+  outline: none;
+  font-family: "JetBrains Mono", monospace;
+}
+.queue-position {
+  font-size: 64px;
+  font-weight: 700;
+  line-height: 1;
+}
+.queue-countdown {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1;
+  font-family: "JetBrains Mono", monospace;
+}
+.queue-error-text {
+  color: var(--color-ctp-red);
+  font-size: 12px;
+  font-weight: 600;
+  min-height: 18px;
 }

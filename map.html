@@ -66,6 +66,10 @@
       <span class="material-symbols-outlined">event</span>
     </button>  
 
+    <button id="open-queue-btn" class="fab-btn">
+      <span class="material-symbols-outlined">directions_run</span>
+    </button> 
+
     <!-- Clear Directory Marker Button (hidden by default) -->
     <button id="clear-directory-marker-btn" class="fab-btn" style="display: none;">
       <span class="material-symbols-outlined">close</span>
@@ -224,6 +228,16 @@
                   </div>
                 </div>
 
+                <div class="info-btn-row">
+                  <div class="info-btn-preview">
+                    <span class="material-symbols-outlined" style="font-size: 22px;">directions_run</span>
+                  </div>
+                  <div class="info-btn-desc">
+                    <span class="info-btn-title">Escape Room Queue</span>
+                    <span class="info-btn-caption">Scan the queue QR code at the escape room to join the virtual line.</span>
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>
@@ -378,7 +392,7 @@
             <div id="qr-scanner-view">
               <p>Align within frame</p>
               <!-- Scanner Placeholder Square -->
-              <div id="qrcode_scanner">
+              <div id="qrcode_scanner" class="qr-scanner-container">
                 <span class="material-symbols-outlined" style="font-size: 48px; opacity: 0.4;">qr_code_scanner</span>
               </div>
               <button id="qr-flash-btn">
@@ -406,11 +420,98 @@
       </div>
     </div>
 
+    <div id="queue-modal-wrapper" class="modal-wrapper">
+      <div class="modal-container fixed inset-0">
+        <div class="modal-backdrop" id="queue-modal-backdrop"></div>
+        <div class="modal-card">
+          <!-- Header Section -->
+          <div class="modal-header">
+            <div>
+              <h1 class="modal-title" id="queue-modal-title">Escape Room Queue</h1>
+              <p class="modal-subtitle" id="queue-modal-subtitle">Check status or join the line</p>
+            </div>
+            <button class="modal-close-btn" id="close-queue-btn">
+              <span class="material-symbols-outlined text-[20px]">close</span>
+            </button>
+          </div>
+          <!-- Content Area -->
+          <div class="modal-content flex flex-col items-center p-6" id="queue-modal-content">
+            
+            <!-- Screen 1: Instructions -->
+            <div id="queue-screen-instructions" class="queue-screen active">
+              <span class="material-symbols-outlined text-[64px] text-ctp-mauve mb-4 text-center block">qr_code_scanner</span>
+              <p class="text-center text-ctp-text mb-8">Scan the QR code at the escape room booth to join the virtual queue.</p>
+              <button id="queue-scan-btn" class="queue-action-btn">Scan QR Code</button>
+            </div>
+
+            <!-- Screen 2: Scanner -->
+            <div id="queue-screen-scanner" class="queue-screen">
+              <div class="w-full flex items-center mb-4">
+                <button id="queue-back-to-instructions-btn" class="flex items-center gap-2 text-ctp-mauve font-bold">
+                  <span class="material-symbols-outlined">arrow_back</span>
+                  Back
+                </button>
+              </div>
+              <p class="uppercase font-bold mb-3 text-center w-full" style="font-size: 11px; letter-spacing: 0.1em;">Align within frame</p>
+              <div id="queue_qrcode_scanner" class="qr-scanner-container mx-auto">
+                <span class="material-symbols-outlined" style="font-size: 48px; opacity: 0.4;">qr_code_scanner</span>
+              </div>
+              <p id="queue-scan-error" class="queue-error-text mt-4 text-center"></p>
+            </div>
+
+            <!-- Screen 3: Join -->
+            <div id="queue-screen-join" class="queue-screen">
+              <p id="queue-token-timer" class="queue-token-timer text-center w-full mb-6 text-ctp-subtext1 font-bold"></p>
+              <p class="uppercase font-bold mb-3 text-center w-full" style="font-size: 11px; letter-spacing: 0.1em;">Enter your name</p>
+              <input type="text" id="queue-name-input" class="queue-name-input w-full mb-6" placeholder="Your Name" autocomplete="off" />
+              <button id="queue-submit-btn" class="queue-action-btn mb-4">Join Queue</button>
+              <p id="queue-join-error" class="queue-error-text text-center w-full"></p>
+            </div>
+
+            <!-- Screen 4: Waiting -->
+            <div id="queue-screen-wait" class="queue-screen">
+              <div class="flex flex-col items-center mb-8 w-full">
+                <p id="queue-wait-name" class="text-ctp-subtext1 font-bold mb-4"></p>
+                <div class="text-center">
+                  <p id="queue-wait-position" class="queue-position text-ctp-mauve">--</p>
+                  <p id="queue-wait-ahead" class="text-ctp-subtext1 mt-2">-- people ahead of you</p>
+                </div>
+              </div>
+              <div class="flex items-center justify-center gap-2 text-ctp-text mb-8">
+                <span class="material-symbols-outlined animate-spin text-[20px]">hourglass_empty</span>
+                <span>Waiting for your turn...</span>
+              </div>
+              <button id="queue-leave-btn" class="queue-leave-btn w-full">Leave Queue</button>
+            </div>
+
+            <!-- Screen 5: Notified -->
+            <div id="queue-screen-notified" class="queue-screen">
+              <span class="material-symbols-outlined text-[64px] text-ctp-green mb-2 text-center block">celebration</span>
+              <h2 class="text-2xl font-bold text-ctp-text text-center mb-6">It's your turn!</h2>
+              <p class="text-ctp-subtext1 text-center mb-4">Head to the escape room booth. You have:</p>
+              <p id="queue-countdown" class="queue-countdown text-ctp-red text-center mb-8">05:00</p>
+            </div>
+
+            <!-- Screen 6: Expired -->
+            <div id="queue-screen-expired" class="queue-screen">
+              <span class="material-symbols-outlined text-[64px] text-ctp-subtext0 mb-4 text-center block">timer_off</span>
+              <h2 class="text-xl font-bold text-ctp-text text-center mb-2">Session Expired</h2>
+              <p class="text-ctp-subtext1 text-center mb-8">Your turn has expired. You'll need to join the queue again.</p>
+              <button id="queue-back-to-start-btn" class="queue-action-btn">Back to start</button>
+            </div>
+
+          </div>
+          <div class="modal-footer-fade"></div>
+        </div>
+      </div>
+    </div>
+
     <script type="module">
       import { startScanner, stopScanner, toggleTorch } from '/src/js/helper/qrScanner.js';
       import { Navigation } from '/src/js/events/navigation.js';
       import { QRMarker } from '/src/js/marker/qrmarker.js';
       import { showToast, storeAndHideBottomSheet, reopenStoredBottomSheet, clearStoredBottomSheet } from '/src/js/ui_ux/ui.js';
+      import * as escapeQueue from '/src/js/queue/escapeQueue.js';
       const openDirBtn = document.getElementById('open-directory-btn');
       const closeDirBtn = document.getElementById('close-directory-btn');
       const dirModal = document.getElementById('directory-modal-wrapper');
@@ -435,6 +536,17 @@
       const closeQrBtn = document.getElementById('close-qr-btn');
       const qrModal = document.getElementById('qr-modal-wrapper');
       const qrBackdrop = document.getElementById('qr-modal-backdrop');
+
+      const openQueueBtn = document.getElementById('open-queue-btn');
+      const closeQueueBtn = document.getElementById('close-queue-btn');
+      const queueModal = document.getElementById('queue-modal-wrapper');
+      const queueBackdrop = document.getElementById('queue-modal-backdrop');
+      const queueStatusView = document.getElementById('queue-status-view');
+      const queueScannerContainer = document.getElementById('queue-scanner-container');
+      const joinQueueBtn = document.getElementById('join-queue-btn');
+      const backToStatusBtn = document.getElementById('back-to-status-btn');
+      const queueModalTitle = document.getElementById('queue-modal-title');
+      const queueModalSubtitle = document.getElementById('queue-modal-subtitle');
 
       const qrToggleBtn = document.getElementById('qr-toggle-btn');
       const textToggleBtn = document.getElementById('text-toggle-btn');
@@ -511,6 +623,12 @@
           }
       }
 
+      function handleQueueQRSuccess(decodedText) {
+          console.log("Queue QR Scanned:", decodedText);
+          showToast(`Joined queue: ${decodedText}`, 3000);
+          // For now, no parsing as requested.
+      }
+
       // Modals
       openDirBtn.addEventListener('click', () => {
         dirModal.style.display = 'block';
@@ -583,6 +701,229 @@
         showFabButtons();
         stopScanner();
         clearTextInputs();
+      });
+
+      // ==========================================
+      // Escape Room Queue Integration
+      // ==========================================
+      
+      const qScreens = {
+        instructions: document.getElementById('queue-screen-instructions'),
+        scanner: document.getElementById('queue-screen-scanner'),
+        join: document.getElementById('queue-screen-join'),
+        wait: document.getElementById('queue-screen-wait'),
+        notified: document.getElementById('queue-screen-notified'),
+        expired: document.getElementById('queue-screen-expired')
+      };
+
+      function showQueueScreen(screenName) {
+        Object.values(qScreens).forEach(s => {
+          if (s) {
+            s.classList.remove('active');
+            s.style.display = 'none';
+          }
+        });
+        const target = qScreens[screenName];
+        if (target) {
+          target.classList.add('active');
+          target.style.display = 'flex';
+          target.style.width = '100%';
+        }
+      }
+
+      let qValidityInterval = null;
+
+      function startValidityTimer(secsLeft) {
+        if (qValidityInterval) clearInterval(qValidityInterval);
+        const el = document.getElementById('queue-token-timer');
+        let left = secsLeft;
+        
+        const tick = () => {
+          if (left <= 0) {
+            clearInterval(qValidityInterval);
+            document.getElementById('queue-join-error').textContent = "Token expired. Please scan again.";
+            el.textContent = "Token expired";
+            document.getElementById('queue-submit-btn').disabled = true;
+          } else {
+            el.textContent = `Valid — join within ${left}s`;
+            left--;
+          }
+        };
+        tick();
+        qValidityInterval = setInterval(tick, 1000);
+      }
+
+      function handleQueueQRScanned(decodedText) {
+        const result = escapeQueue.handleScannedQR(decodedText);
+        stopScanner('queue_qrcode_scanner');
+        
+        if (!result.valid) {
+          document.getElementById('queue-scan-error').textContent = result.error;
+          setTimeout(() => {
+            document.getElementById('queue-scan-error').textContent = '';
+            startScanner(handleQueueQRScanned, 'queue_qrcode_scanner');
+          }, 3000);
+          return;
+        }
+
+        // Token valid!
+        queueModalTitle.textContent = "Join Queue";
+        queueModalSubtitle.textContent = "Enter your details";
+        document.getElementById('queue-submit-btn').disabled = false;
+        document.getElementById('queue-name-input').value = '';
+        document.getElementById('queue-join-error').textContent = '';
+        startValidityTimer(result.secsLeft);
+        showQueueScreen('join');
+      }
+
+      escapeQueue.setCallbacks({
+        onWaiting: (pos, total) => {
+          const session = escapeQueue.getSession();
+          if (session) {
+            document.getElementById('queue-wait-name').textContent = session.label;
+          }
+          document.getElementById('queue-wait-position').textContent = escapeQueue.ordinal(pos);
+          document.getElementById('queue-wait-ahead').textContent = pos > 1 ? `${pos - 1} people ahead of you` : 'You are next! Please wait to be called.';
+          showQueueScreen('wait');
+        },
+        onNotified: (notifiedAt) => {
+          showQueueScreen('notified');
+          escapeQueue.startCountdown(notifiedAt);
+        },
+        onExpired: () => {
+          showQueueScreen('expired');
+        },
+        onRemoved: () => {
+          showToast("You were removed from the queue.", 3000);
+          showQueueScreen('instructions');
+        },
+        onTick: (m, s) => {
+          document.getElementById('queue-countdown').textContent = `${m}:${s}`;
+        }
+      });
+
+      // Page Load logic for ?t= token
+      window.addEventListener("DOMContentLoaded", () => {
+        const params = new URLSearchParams(window.location.search);
+        const token = params.get("t");
+        
+        if (token) {
+          // Strip token from URL immediately
+          window.history.replaceState({}, "", window.location.pathname);
+          
+          const result = escapeQueue.handleURLToken(token);
+          if (result.valid) {
+            // Auto open modal and go to join screen
+            queueModal.style.display = 'block';
+            hideFabButtons();
+            
+            queueModalTitle.textContent = "Join Queue";
+            queueModalSubtitle.textContent = "Enter your details";
+            document.getElementById('queue-submit-btn').disabled = false;
+            document.getElementById('queue-name-input').value = '';
+            document.getElementById('queue-join-error').textContent = '';
+            startValidityTimer(result.secsLeft);
+            showQueueScreen('join');
+          } else {
+            showToast(result.error, 4000);
+          }
+        }
+      });
+
+      openQueueBtn.addEventListener('click', () => {
+        queueModal.style.display = 'block';
+        hideFabButtons();
+        
+        queueModalTitle.textContent = "Escape Room Queue";
+        queueModalSubtitle.textContent = "Check status or join the line";
+        
+        const nextScreen = escapeQueue.init();
+        if (nextScreen === "resume") {
+          const session = escapeQueue.getSession();
+          if (session) {
+            escapeQueue.startPolling(session.id);
+            // Will transition to 'wait' or 'notified' immediately on first poll
+            showQueueScreen('wait'); 
+          }
+        } else {
+          showQueueScreen('instructions');
+        }
+      });
+
+      document.getElementById('queue-scan-btn').addEventListener('click', () => {
+        queueModalTitle.textContent = "Scan QR";
+        queueModalSubtitle.textContent = "Scan the booth QR code";
+        document.getElementById('queue-scan-error').textContent = '';
+        showQueueScreen('scanner');
+        startScanner(handleQueueQRScanned, 'queue_qrcode_scanner');
+      });
+
+      document.getElementById('queue-back-to-instructions-btn').addEventListener('click', () => {
+        queueModalTitle.textContent = "Escape Room Queue";
+        queueModalSubtitle.textContent = "Check status or join the line";
+        stopScanner('queue_qrcode_scanner');
+        showQueueScreen('instructions');
+      });
+
+      document.getElementById('queue-submit-btn').addEventListener('click', async () => {
+        const name = document.getElementById('queue-name-input').value.trim();
+        if (!name) {
+          document.getElementById('queue-join-error').textContent = "Please enter your name.";
+          return;
+        }
+
+        const btn = document.getElementById('queue-submit-btn');
+        btn.disabled = true;
+        btn.textContent = "Joining...";
+        
+        const res = await escapeQueue.joinQueue(name);
+        
+        btn.textContent = "Join Queue";
+        
+        if (!res.success) {
+          document.getElementById('queue-join-error').textContent = res.error;
+          btn.disabled = false;
+          return;
+        }
+
+        if (qValidityInterval) clearInterval(qValidityInterval);
+
+        if (res.data.status === "notified") {
+          showQueueScreen('notified');
+          escapeQueue.startCountdown(res.data.notifiedAt);
+        } else {
+          showQueueScreen('wait');
+          escapeQueue.startPolling(res.data.id);
+        }
+      });
+
+      document.getElementById('queue-leave-btn').addEventListener('click', async () => {
+        const btn = document.getElementById('queue-leave-btn');
+        btn.disabled = true;
+        btn.textContent = "Leaving...";
+        await escapeQueue.leaveQueue();
+        btn.disabled = false;
+        btn.textContent = "Leave Queue";
+        showQueueScreen('instructions');
+      });
+
+      document.getElementById('queue-back-to-start-btn').addEventListener('click', () => {
+        showQueueScreen('instructions');
+      });
+
+      closeQueueBtn.addEventListener('click', () => {
+        queueModal.style.removeProperty('display');
+        showFabButtons();
+        stopScanner('queue_qrcode_scanner');
+        escapeQueue.stopPolling();
+        escapeQueue.stopCountdown();
+      });
+      queueBackdrop.addEventListener('click', () => {
+        queueModal.style.removeProperty('display');
+        showFabButtons();
+        stopScanner('queue_qrcode_scanner');
+        escapeQueue.stopPolling();
+        escapeQueue.stopCountdown();
       });
 
       // QR / Text Toggles

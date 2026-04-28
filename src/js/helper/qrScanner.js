@@ -207,10 +207,16 @@ async function findBestCamera() {
 const torchOnColor = 'var(--color-ctp-mauve-700)'
 const torchOffColor = 'var(--color-ctp-mauve-950)'
 
-export async function startScanner(successCallback) {
-    if (!html5QrCode) {
-        html5QrCode = new Html5Qrcode("qrcode_scanner");
+export async function startScanner(successCallback, elementId = "qrcode_scanner") {
+    if (html5QrCode && html5QrCode.isScanning) {
+        return;
     }
+
+    // Re-initialize if the elementId changed or it doesn't exist
+    if (html5QrCode) {
+        try { html5QrCode.clear(); } catch(e) {}
+    }
+    html5QrCode = new Html5Qrcode(elementId);
 
     if (html5QrCode.isScanning) {
         return;
@@ -266,7 +272,7 @@ export async function startScanner(successCallback) {
         // Sync initial torch state and attach track listeners — identical to original.
         // Added null-check on track to prevent TypeError if html5Qrcode's DOM
         // structure differs between versions.
-        const videoElement = document.querySelector('#qrcode_scanner video');
+        const videoElement = document.querySelector(`#${elementId} video`);
         if (videoElement && videoElement.srcObject) {
             const track = videoElement.srcObject.getVideoTracks()[0];
 
@@ -300,7 +306,7 @@ export async function startScanner(successCallback) {
 
     } catch (err) {
         console.error("Failed to start QR scanner:", err);
-        const scannerView = document.getElementById('qr-scanner-view');
+        const scannerView = document.getElementById(elementId).parentNode;
         let errorMsg = document.getElementById('qr-error-msg');
         if (!errorMsg) {
             errorMsg = document.createElement('p');
@@ -324,10 +330,10 @@ export async function startScanner(successCallback) {
 // stopScanner — identical to original
 // ─────────────────────────────────────────────────────────────────────────────
 
-export async function stopScanner() {
+export async function stopScanner(elementId = "qrcode_scanner") {
     if (html5QrCode && html5QrCode.isScanning) {
         try {
-            const videoElement = document.querySelector('#qrcode_scanner video');
+            const videoElement = document.querySelector(`#${elementId} video`);
             if (videoElement && videoElement.srcObject) {
                 const track = videoElement.srcObject.getVideoTracks()[0];
                 if (track && torchSupported && torchOn) {
@@ -351,7 +357,7 @@ export async function stopScanner() {
         qrFlashBtn.style.background = torchOffColor;
     }
 
-    const scannerDiv = document.getElementById('qrcode_scanner');
+    const scannerDiv = document.getElementById(elementId);
     if (scannerDiv && !scannerDiv.innerHTML.includes('qr_code_scanner')) {
         scannerDiv.innerHTML = '<span class="material-symbols-outlined" style="font-size: 48px; color: var(--color-ctp-subtext1); opacity: 0.4;">qr_code_scanner</span>';
     }
@@ -361,13 +367,13 @@ export async function stopScanner() {
 // toggleTorch — identical to original
 // ─────────────────────────────────────────────────────────────────────────────
 
-export async function toggleTorch(buttonElement, iconElement) {
+export async function toggleTorch(buttonElement, iconElement, elementId = "qrcode_scanner") {
     if (!html5QrCode || !html5QrCode.isScanning || !torchSupported) {
         console.warn("Scanner is not running or torch unsupported. Cannot toggle torch.");
         return;
     }
 
-    const videoElement = document.querySelector('#qrcode_scanner video');
+    const videoElement = document.querySelector(`#${elementId} video`);
     if (!videoElement || !videoElement.srcObject) return;
 
     const track = videoElement.srcObject.getVideoTracks()[0];

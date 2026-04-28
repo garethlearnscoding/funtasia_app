@@ -19,7 +19,7 @@
     {
       "time": "1705",
       "title": "Nunyuh Business",
-      "tag": {"icon": "open_in_new", "text": "<a href='https://www.instagram.com/its.nunyuhbusiness/' target='_blank'>Instagram</a>"},
+      "link": {"link": "https://www.instagram.com/its.nunyuhbusiness/", "text": "Instagram"},
       "songs": [
         "That Should Be Me by Justin Bieber",
         "Sorry by Justin Bieber",
@@ -41,7 +41,7 @@
     {
       "time": "1755",
       "title": "Blueforms",
-      "tag": {"icon": "open_in_new", "text":"<a href='https://www.instagram.com/theblueforms/' target='_blank'>Instagram</a>"},
+      "link": {"link":"https://www.instagram.com/theblueforms/", "text": "Instagram"},
       "songs": [
         "UNAPPROVED: Kilby Girl by The Backseat Lovers",
         "Forget You by CeeLo Green",
@@ -66,7 +66,7 @@
     {
       "time": "1905",
       "title": "Thaarmin",
-      "tag": {"icon": "open_in_new", "text":"<a href='https://linktr.ee/thaarmin/' target='_blank'>Linktree</a>"},
+      "link": {"link": "https://linktr.ee/thaarmin/", "text": "Linktree"},
       "songs": [
         "Circles by Thaarmin",
         "Bird of a Feather (Billie Eilish Cover) ",

@@ -134,12 +134,13 @@ export async function switchEventCategory(category) {
                     boxClass = 'bg-ctp-surface0 ring-1 ring-ctp-surface1 hover:bg-ctp-surface1';
                 }
 
-                let tagsHtml = ""
-                if (ev.tag) {
-                    tagsHtml += `<span class="bg-ctp-surface0 text-ctp-blue px-3 py-1 rounded-full font-label text-[10px] uppercase tracking-widest flex items-center gap-1 w-fit">
-                    ${ ev.tag.icon ? `<span class="material-symbols-outlined text-[12px]">${ev.tag.icon}</span>` : '' }
-                    ${ev.tag.text}
+                let linkHtml = ""
+                if (ev.link) {
+                    linkHtml = `<span class="bg-ctp-surface0 text-ctp-blue ml-4 px-3 py-1 rounded-full font-label text-[10px] uppercase tracking-widest flex items-center gap-1 w-fit">
+                    <span class="material-symbols-outlined text-[10px]" style="font-size: 12px">${ev.link.icon || "open_in_new"}</span>
+                    <a class="capitalize" href="${ev.link.url}" target="${ev.link.target || "_blank"}">${ev.link.text}</a>
                   </span>`
+
                 }
 
                 html += `
@@ -150,7 +151,7 @@ export async function switchEventCategory(category) {
                             <span class="${timeColor} events-item-time">${formatTime(ev.time)}</span>
                             <div class="flex flex-row">
                                 <h3 class="${titleColor} events-item-title ${tagsHtml? "mr-2" : ""}">${ev.title}</h3>
-                                ${tagsHtml}
+                                ${linkHtml}
                             </div>
                         </div>
                 `;

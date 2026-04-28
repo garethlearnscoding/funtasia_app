@@ -1,5 +1,6 @@
 [{
-  "title": "Dunking of Teachers Schedule",
+  "title": "Dunk Schedule",
+  "subtitle": "Dunk a teacher!",
   "endText": "End of Dunking Events",
   "location": "Amphi",
   "events": [

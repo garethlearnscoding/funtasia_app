@@ -56,7 +56,7 @@ export async function switchEventCategory(category) {
     eventsListContainer.innerHTML = '<p class="text-center opacity-50 py-10">Loading events...</p>';
 
     try {
-        const response = await fetch(`/events/${category}_events.json`);
+        const response = await fetch(`./events/${category}_events.json`);
         if (!response.ok) throw new Error('Failed to load events for ' + category);
         const data_arr = await response.json();
 

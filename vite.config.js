@@ -12,7 +12,7 @@ export default defineConfig({
   ],
   define: {
     ASSETS_BASE_URL: JSON.stringify('https://cdn.jsdelivr.net/gh/garethlearnscoding/funtasia_assets@main'),
-    VERSION: JSON.stringify('v3-11-4')
+    VERSION: JSON.stringify('v4-28-4')
   },
   resolve: {
     alias: {

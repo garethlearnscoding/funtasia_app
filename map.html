@@ -877,10 +877,13 @@
       // Expose for external modules if needed later
       window.openQRModal = () => openQrBtn.click();
 
-      if (!await cookieStore.get("firstRunDone")) {
-        openInfoBtn.click();
-        cookieStore.set("firstRunDone", "flag{y0u_f0und_m3!}")
-      }
+      cookieStore.get("firstRunDone")
+        .then(val => {
+          if (!val) {
+            openInfoBtn.click();
+            cookieStore.set("firstRunDone", "flag{y0u_f0und_m3!}")
+          }
+        })
     </script>
     <script type="module" src="/src/js/base/main.js"></script>
   </body>

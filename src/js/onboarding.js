@@ -39,10 +39,7 @@ Alpine.data('onboarding', () => ({
 
     preloadMapAssets() {
         const BASE = ASSETS_BASE_URL;
-        const icons = [
-            `${BASE}/icons/settings.svg`,
-            `${BASE}/icons/directory_button.svg`
-        ];
+
         const models = [
             `${BASE}/models/${VERSION}/njc-l1-${VERSION}.glb`,
             `${BASE}/models/${VERSION}/njc-b3-${VERSION}.glb`,
@@ -64,8 +61,6 @@ Alpine.data('onboarding', () => ({
 
         // Run after an initial delay so the onboarding interaction sets up smoothly
         setTimeout(async () => {
-            // Fetch icons concurrently
-            await Promise.all(icons.map(url => fetchAsset(url)));
 
             // Fetch models sequentially in specified order
             for (const url of models) {

@@ -53,6 +53,8 @@ export function applySelection(target, appState) {
 }
 
 export function focusOnObject(targetObject, appState) {
+  if (appState.selected === targetObject) return;
+
   applySelection(targetObject, appState);
 
   if (targetObject) {

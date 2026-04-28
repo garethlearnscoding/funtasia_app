@@ -56,7 +56,7 @@ export async function switchEventCategory(category) {
     eventsListContainer.innerHTML = '<p class="text-center opacity-50 py-10">Loading events...</p>';
 
     try {
-        const response = await fetch(`/funtasia_app/events/${category}_events.json`);
+        const response = await fetch(`/events/${category}_events.json`);
         if (!response.ok) throw new Error('Failed to load events for ' + category);
         const data_arr = await response.json();
 
@@ -158,7 +158,7 @@ export async function switchEventCategory(category) {
                 let songsHtml = "";
                 if (ev.songs) {
                     ev.songs.forEach(song => {
-                        songsHtml += `<span class="bg-ctp-surface0 px-3 py-1 my-2 rounded-full font-label text-[12px] uppercase tracking-widest flex items-center gap-1 w-fit">
+                        songsHtml += `<span class="bg-transparent px-3 py-1 my-2 rounded-full font-label text-[12px] uppercase tracking-widest flex items-center gap-1 w-fit">
                     <span class="material-symbols-outlined text-[12px]">music_note</span>
                     ${song}
                   </span>`

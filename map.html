@@ -13,7 +13,7 @@
     <title>Funtasia 3D Map</title>
     <link rel="stylesheet" href="/src/css/main.css"/>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=block" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&icon_names=arrow_back,celebration,circle,close,directions_run,event,falling,flashlight_off,flashlight_on,hourglass_empty,image,info_i,keyboard,logout,map,music_note_2,qr_code_scanner,search,settings,store,swap_vert,theater_comedy,touch_app&display=block" rel="stylesheet">
     <link href="/src/css/input.css" rel="stylesheet"/>
     <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg"/>
     <link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png"/>
@@ -249,7 +249,7 @@
                   </div>
                   <div class="info-btn-desc">
                     <span class="info-btn-title">Marker icons</span>
-                    <span class="info-btn-caption">These icons are non-interactive and show locations of helpful utilities (explained below)</span>
+                    <span class="info-btn-caption">These icons are non-interactive and show locations of helpful utilities (explained below). They can be toggled in Settings</span>
                   </div>
                 </div>
 
@@ -590,6 +590,20 @@
       </div>
     </div>
 
+    <script>
+      // Allow info modal wrapper to appear before loading of all other js, which alows background loading WOAH
+      cookieStore.get("firstRunDone")
+        .then(val => {
+          if (!val) {
+            document.querySelectorAll(".fab-btn").forEach(btn => {
+              btn.style.display = 'none';
+            });
+            document.getElementById('info-modal-wrapper').style.display = 'flex';
+            cookieStore.set("firstRunDone", "flag{y0u_f0und_m3!}")
+          }
+      })
+    </script>
+
     <script type="module">
       import { startScanner, stopScanner, toggleTorch } from '/src/js/helper/qrScanner.js';
       import { Navigation } from '/src/js/events/navigation.js';
@@ -876,14 +890,6 @@
       }
       // Expose for external modules if needed later
       window.openQRModal = () => openQrBtn.click();
-
-      cookieStore.get("firstRunDone")
-        .then(val => {
-          if (!val) {
-            openInfoBtn.click();
-            cookieStore.set("firstRunDone", "flag{y0u_f0und_m3!}")
-          }
-        })
     </script>
     <script type="module" src="/src/js/base/main.js"></script>
   </body>

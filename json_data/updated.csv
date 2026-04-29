@@ -1,0 +1,115 @@
+level,booth_id,booth_name,tags,invis_tags,zone,booth_description,location,sort_helper
+B3,BG1,Minigames,Game,25SH21,Green,Test your aim by tossing ping pong balls into tiny cups.,,1
+B3,BG2,Human Slot Machine,Game,25SH14,Green,Pull the lever and watch random prize combinations roll in like a real slot machine.,,1
+B3,BG3,Nerf N' Mosh,Game,JH301,Green,"Dash, duck, and shoot foam darts in a chaotic inflatable arena.",,1
+B3,BG4,Knock the Teeth,,JH204,Green,Swing a bat to smash a giant paper tooth filled with hidden treats.,,1
+B3,BG5,The Fizzy Leaf,Drinks,25SH12,Green,Buy cold bottled drinks and canned sodas to stay refreshed.,,1
+B3,BG6,Skeeball,Game,JH202,Green,Roll a heavy ball up a curved ramp to land in high-scoring holes.,,1
+B3,BG7,Info Counter,Info,26SH10,Green,"Find your way around with maps, schedules, and friendly answers.",,1
+B3,BG8,Ticket Counter,Tickets,,Green,Exchange cash or digital passes for ride and game tokens.,,1
+B3,CG1,Sky Wars,Game,25SH13,Green,"Climb, jump, and battle opponents in a bouncy foam pit arena.",,1
+B3,CG2,Rubber Duck Racing,Game,JH306,Green,Squeeze a rubber duck to propel it down a rain gutter race lane.,,1
+B3,CG3,Guess & Chuck,,25SH07,Green,Chuck a beanbag onto a numbered board to win whatever space it lands on.,,1
+B3,CG4,Catch That Dough!,Game,25SH11,Green,Whack a button to launch a roll of paper bills into the air for a mad grab.,,1
+B3,CG5,B(A)verage Baller,"Game, Drinks",JH302,Green,Toss a basketball from an awkward side angle just to see if you'll sink it.,,1
+B3,ISH1,Punching Machine,Game,26SH09,Green,Slam a padded target with a mallet to test how hard you can hit.,,1
+B3,ISH2,Naughty Bean,Game,26SH01,Green,Find the one sour jellybean hidden in a handful of sweet ones.,,1
+B3,ISH3,Gladiator Dome,Game,26SH09,Green,Climb inside an inflatable bubble and bump heads with your friends.,,1
+B3,ISH4,Inflatable Human Bowling Pin,Game,26SH01,Green,Wear a giant inflatable tube and let others roll you over like a bowling pin.,,1
+B3,ISH5,Ball Throwing,Game,26SH09,Green,Fling soft balls at moving targets to clear the board before time runs out.,,1
+B3,ISH6,First Aid Station 1,First Aid,,Green,,,1
+B2,Gym,Laser Tag,Game,26SH12,Green,Gear up with a laser gun and sneak through a dark maze to tag opponents.,,2
+L1,Amphi,Water Dunk Tank,Game,JH206,Blue,Throw a ball to dunk a friend in the water tank.,,4
+L1,S1,Drawn For You: Caricature Photobooth,Photos,25SH05,Blue,Get a hand-drawn digital caricature printed instantly.,,4
+L1,S2,Photomania,Photos,25SH06,Blue,"Pose with zany props for wild, themed photo strips.",,4
+L1,S3,Keychain Corner,Merch,25SH17,Blue,Pick from dozens of cute acrylic and resin keychains.,,4
+L1,S4,Gem it Up!: Face Gems,Glam Up,25SH20,Blue,Add sparkly face gems for instant glam.,,4
+L1,S5,"Revibe: Hairstyling, Body Paint",Glam Up,25SH16,Blue,"Get trendy hairstyling, braids, and shimmering body paint.",,4
+L1,S6,Face Painting & Hair Tinsels,Glam Up,JH207,Blue,Choose colorful face paint designs and shiny hair tinsels.,,4
+L1,S7,Bedazzle: Bracelet Making,Merch,25SH08,Blue,String beads and charms to make your own custom bracelet.,,4
+L1,AB1,Astro,Game,astronomy,Orange,,,4
+L1,AB2,Soccer Dart,Game,26SH01,Orange,Kick a soccer ball at a giant dartboard target to score points,,4
+L1,C1,Big Wok,Food,26SH13,Orange,,,4
+L1,C11,Mambo,Food,26SH07,Orange,,,4
+L1,C12,Prata Hut,Food,26SH07,Orange,,,4
+L1,C13,Ramly Style Burger Live Station,Food,26SH19,Orange,,,4
+L1,C14,"Malaysia Boleh, Eureka Popcorn",Food,26SH11,Orange,,,4
+L1,C15,"Yakun, Polar, Bakery Bera",Food,26SH08,Orange,,,4
+L1,C16,Takoyaki,Food,26SH14,Orange,,,4
+L1,C2,Chicken Rice,Food,26SH13,Orange,,,4
+L1,C4,Western,Food,26SH05,Orange,,,4
+L1,C6,Hot Drinks,Drinks,26SH05,Orange,,,4
+L1,C7,Cold Drinks,Drinks,26SH05,Orange,,,4
+L1,C8,Drinks stall : Herbal Tea (ZTP),Drinks,26SH14,Orange,,,4
+L1,C9,Noodle,Food,26SH03,Orange,,,4
+L1,CB1,Popcorn and Candy Floss,Food,26SH14,Orange,,,4
+L1,CB2,Seaweed Fries,Food,26SH16,Orange,,,4
+L1,CE1,Heyya Duck Rice,Food,26SH03,Orange,,,4
+L1,CE2,Buldak Noodles,Food,26SH16,Orange,,,4
+L1,DS3,Gatecrash: Escape Room,Game,JH203,Orange,Work together to solve clues and puzzles before time runs out,,4
+L1,O1,Go Kart,Game,26SH06,Orange,Feel the thrill of the track,,4
+L1,O2,PA Busking Booth,Performance,PA,Orange,Show off your talent or cheer local performers,,4
+L1,O3,First Aid Station 2,First Aid,,Orange,Here to help with bumps and scrapes,,4
+L1,O4,Info Counter,Info,26SH10,Orange,Your one-stop for event questions and maps,,4
+L1,O5,Ticket Counter,Tickets,,Orange,Grab your tickets here,,4
+L1,A1,Info Counter,Info,,Red,,,4
+L1,A2,Ticket Counter,Tickets,,Red,,,4
+L1,A34a,PAACT: NJC Merch,Merch,26SH18,Red,,,4
+L1,A4b,Slushie,Drinks,26SH07,Red,,,4
+L1,A5,NJC Heritage,,26Sh18,Red,,,4
+L1,AC1,Lucky Pop Shootout,,JH307,Red,,,4
+L1,AC2,Hypercrate Co,,JH303,Red,,,4
+L1,AC3,"Made With Love: Nails, Bracelets, Keychains",Merch,25SH15,Red,,,4
+L1,AC456,Alumni Supermarket,,26SH18,Red,,,4
+L1,AC7,Flower Fantasy,,25SH19,Red,,,4
+L1,AC8,Shoot the Target,Game,25SH01,Red,,,4
+L1,AC9,Is 2026 The New 2016,,25Sh02,Red,,,4
+L2,LBCP1,Corndog Live station,Food,26SH19,Brown,"Hot, crispy corndogs made fresh on the spot",,5
+L2,LBCP2,Tteokbokki,Food,26SH15,Brown,Spicy Korean rice cakes in rich gochujang sauce,,5
+L2,LBCP3,Each a Cup,Drinks,26SH02,Brown,Build-your-own dessert cups with toppings,,5
+L2,LBCP4,Ice Cream Cart,Food,,Brown,Rolling refreshment with classic ice cream treats,,5
+L2,LBCP5,Crepe,Food,26SH15,Brown,"Thin, warm French-style crepes with fillings",,5
+L2,LBCP6,Grilled Satay Live Station,Food,26SH17,Brown,Smoky skewers of meat with peanut sauce,,5
+L2,LBCP7,Taiwanese-style Fried Chicken Chop,Food,26SH17,Brown,"Crispy, juicy chicken cutlet with seasoning",,5
+L2,LBCP8910,Old Chang Kee Food Truck,Food,26SH11,Brown,Famous curry puffs and hot snacks on wheels,,5
+L2,H1,Minute to Squash,CCA,Squash,Purple,,,5
+L2,H10,"Blow, Blow, Blow Your Boat",CCA,Canoeing,Purple,,,5
+L2,H11,Beat Dominion,CCA,Choir,Purple,,,5
+L2,H12,Running With Style,CCA,Track,Purple,,,5
+L2,H13,Henna Haven,CCA,Indian Dance,Purple,,,5
+L2,H14,Cover Your Ears,CCA,Symphonic Band,Purple,,,5
+L2,H15,Fire in the Hole,CCA,Softball,Purple,,,5
+L2,H16,Second Hand Thrift,CCA,Greenlink,Purple,,,5
+L2,H17,Ticket Counter,Tickets,,Purple,,,5
+L2,H18,Info Counter,Info,26SH10,Purple,,,5
+L2,H19,Makers,CCA,Makers,Purple,,,5
+L2,H2,Strings Attached,CCA,Strings,Purple,,,5
+L2,H3,Just Dance,CCA,Western Dance,Purple,,,5
+L2,H4,Saturday Night Funtasia,CCA,Guitar,Purple,,,5
+L2,H5,Hit the Beat,CCA,COGZ,Purple,,,5
+L2,H6,Basketball showdown,CCA,Basketball,Purple,,,5
+L2,H7,"Balik Kampung, Batik Kampung",CCA,Malay Dance,Purple,,,5
+L2,H8,No Bad Hair Day,CCA,Chinese Dance,Purple,,,5
+L2,H9,Hot Shots,CCA,Shooting,Purple,,,5
+L2,LB1,Info Counter,Info,26SH10,Yellow,Your one-stop for event questions and maps,,5
+L2,LB2,Ticket Counter,Tickets,,Yellow,Grab your tickets here,,5
+L2,LIB1,Central Prize Booth,,,Yellow,Exchange stamps for awesome prizes,,5
+L2,LIB2,Photo Booth,Game,26SH04,Yellow,Freeze fun moments with props and prints,,5
+L2,LT1,Rest Zone,,,Yellow,"Quiet area to sit, recharge, and relax",,5
+L2,LT12A,Build a Doll,Merch,25SH03,Yellow,Decorate tiny wooden peg characters,,5
+L2,LT12B,Strike a Pose!,Photos,JH304,Yellow,Snap silly or stylish instant photos,,5
+L2,LT1A,Balloonatics,Merch,JH201,Yellow,Twisted balloon art and wacky creations,,5
+L2,LT1B,Get Slimed!,Merch,25Sh18,Yellow,"Gooey, stretchy slime in every color",,5
+L2,LT1C,JH205 Tuckshop,"Food, Drinks",JH205,Yellow,Quick bites and beverages to fuel your day,,5
+L2,LT5,IP OH CCA Performances,Performance,,Yellow,"Student showcases of music, dance, and drama",,5
+L2,LT5A,Gachapon,Merch,26SH04,Yellow,Twist for a surprise capsule toy,,5
+L2,LT5A,Jang and Fox Postcard,Merch,26Sh04,Yellow,Adorable illustrated postcards to send or keep,,5
+L2,LT5B,Pipe cleaner flowers and animals,Merch,25SH04,Yellow,Bend and twist into fuzzy crafts,,5
+L2,TA11,Karaoke & Just Dance,Game,JH305,Yellow,Bust a move and follow the on-screen choreography,,5
+L2,TA12,Language Arts Booth,Academic,JH401,Yellow,Discover interactive learning activities,,5
+L2,TA13,Mathematics Booth,Academic,JH402,Yellow,Solve puzzles and number games for prizes,,5
+L2,TA14,Aesthetics Booth,Academic,JH404,Yellow,"Explore art, design, and creative expression",,5
+L2,TA15,Humanities Booth,Academic,JH405,Yellow,"Dive into history, culture, and big ideas",,5
+L2,TA16,Science Booth,Academic,JH406,Yellow,Hands-on experiments and cool demonstrations,,5
+L2,TA17,Mother Tongue Booth,Academic,JH407,Yellow,Celebrate languages and cultural stories,,5
+L2,TA18,On Cloud 9 & 10,"Merch, Drinks, Food","25SH09,25SH10",Yellow,Craft custom accessories and sip refreshments,,5

@@ -1,828 +1,927 @@
 {
   "b3": {
     "BG1": {
-      "Booth Name": "Ping Pong Minigame",
-      "Tags": "Game",
-      "Zone": "Green",
-      "Booth Description": "Test your aim by tossing ping pong balls into tiny cups.",
-      "Location": ""
+      "booth_name": "Minigames",
+      "tags": "Game",
+      "invis_tags": "25SH21",
+      "zone": "Green",
+      "booth_description": "Test your aim by tossing ping pong balls into tiny cups.",
+      "location": ""
     },
     "BG2": {
-      "Booth Name": "Human Slot Machine",
-      "Tags": "Game",
-      "Zone": "Green",
-      "Booth Description": "Pull the lever and watch random prize combinations roll in like a real slot machine.",
-      "Location": ""
+      "booth_name": "Human Slot Machine",
+      "tags": "Game",
+      "invis_tags": "25SH14",
+      "zone": "Green",
+      "booth_description": "Pull the lever and watch random prize combinations roll in like a real slot machine.",
+      "location": ""
     },
     "BG3": {
-      "Booth Name": "Nerf N' Mosh",
-      "Tags": "Game",
-      "Zone": "Green",
-      "Booth Description": "Dash, duck, and shoot foam darts in a chaotic inflatable arena.",
-      "Location": ""
+      "booth_name": "Nerf N' Mosh",
+      "tags": "Game",
+      "invis_tags": "JH301",
+      "zone": "Green",
+      "booth_description": "Dash, duck, and shoot foam darts in a chaotic inflatable arena.",
+      "location": ""
     },
     "BG4": {
-      "Booth Name": "Break the Tooth",
-      "Tags": "",
-      "Zone": "Green",
-      "Booth Description": "Swing a bat to smash a giant paper tooth filled with hidden treats.",
-      "Location": ""
+      "booth_name": "Knock the Teeth",
+      "tags": "",
+      "invis_tags": "JH204",
+      "zone": "Green",
+      "booth_description": "Swing a bat to smash a giant paper tooth filled with hidden treats.",
+      "location": ""
     },
     "BG5": {
-      "Booth Name": "Drinks Stall",
-      "Tags": "Drinks",
-      "Zone": "Green",
-      "Booth Description": "Buy cold bottled drinks and canned sodas to stay refreshed.",
-      "Location": ""
+      "booth_name": "The Fizzy Leaf",
+      "tags": "Drinks",
+      "invis_tags": "25SH12",
+      "zone": "Green",
+      "booth_description": "Buy cold bottled drinks and canned sodas to stay refreshed.",
+      "location": ""
     },
     "BG6": {
-      "Booth Name": "Skeeball",
-      "Tags": "Game",
-      "Zone": "Green",
-      "Booth Description": "Roll a heavy ball up a curved ramp to land in high-scoring holes.",
-      "Location": ""
+      "booth_name": "Skeeball",
+      "tags": "Game",
+      "invis_tags": "JH202",
+      "zone": "Green",
+      "booth_description": "Roll a heavy ball up a curved ramp to land in high-scoring holes.",
+      "location": ""
     },
     "BG7": {
-      "Booth Name": "Info Counter",
-      "Tags": "Info",
-      "Zone": "Green",
-      "Booth Description": "Find your way around with maps, schedules, and friendly answers.",
-      "Location": ""
+      "booth_name": "Info Counter",
+      "tags": "Info",
+      "invis_tags": "26SH10",
+      "zone": "Green",
+      "booth_description": "Find your way around with maps, schedules, and friendly answers.",
+      "location": ""
     },
     "BG8": {
-      "Booth Name": "Ticket Counter",
-      "Tags": "Tickets",
-      "Zone": "Green",
-      "Booth Description": "Exchange cash or digital passes for ride and game tokens.",
-      "Location": ""
+      "booth_name": "Ticket Counter",
+      "tags": "Tickets",
+      "invis_tags": "",
+      "zone": "Green",
+      "booth_description": "Exchange cash or digital passes for ride and game tokens.",
+      "location": ""
     },
     "CG1": {
-      "Booth Name": "Sky Wars",
-      "Tags": "Game",
-      "Zone": "Green",
-      "Booth Description": "Climb, jump, and battle opponents in a bouncy foam pit arena.",
-      "Location": ""
+      "booth_name": "Sky Wars",
+      "tags": "Game",
+      "invis_tags": "25SH13",
+      "zone": "Green",
+      "booth_description": "Climb, jump, and battle opponents in a bouncy foam pit arena.",
+      "location": ""
     },
     "CG2": {
-      "Booth Name": "Duck Racing",
-      "Tags": "Game",
-      "Zone": "Green",
-      "Booth Description": "Squeeze a rubber duck to propel it down a rain gutter race lane.",
-      "Location": ""
+      "booth_name": "Rubber Duck Racing",
+      "tags": "Game",
+      "invis_tags": "JH306",
+      "zone": "Green",
+      "booth_description": "Squeeze a rubber duck to propel it down a rain gutter race lane.",
+      "location": ""
     },
     "CG3": {
-      "Booth Name": "Guess & Chuck",
-      "Tags": "",
-      "Zone": "Green",
-      "Booth Description": "Chuck a beanbag onto a numbered board to win whatever space it lands on.",
-      "Location": ""
+      "booth_name": "Guess & Chuck",
+      "tags": "",
+      "invis_tags": "25SH07",
+      "zone": "Green",
+      "booth_description": "Chuck a beanbag onto a numbered board to win whatever space it lands on.",
+      "location": ""
     },
     "CG4": {
-      "Booth Name": "Catch That Dough!",
-      "Tags": "Game",
-      "Zone": "Green",
-      "Booth Description": "Whack a button to launch a roll of paper bills into the air for a mad grab.",
-      "Location": ""
+      "booth_name": "Catch That Dough!",
+      "tags": "Game",
+      "invis_tags": "25SH11",
+      "zone": "Green",
+      "booth_description": "Whack a button to launch a roll of paper bills into the air for a mad grab.",
+      "location": ""
     },
     "CG5": {
-      "Booth Name": "B(A)verage Baller",
-      "Tags": [
+      "booth_name": "B(A)verage Baller",
+      "tags": [
         "Game",
         " Drinks"
       ],
-      "Zone": "Green",
-      "Booth Description": "Toss a basketball from an awkward side angle just to see if you'll sink it.",
-      "Location": ""
+      "invis_tags": "JH302",
+      "zone": "Green",
+      "booth_description": "Toss a basketball from an awkward side angle just to see if you'll sink it.",
+      "location": ""
     },
     "ISH1": {
-      "Booth Name": "Punching Machine",
-      "Tags": "Game",
-      "Zone": "Green",
-      "Booth Description": "Slam a padded target with a mallet to test how hard you can hit.",
-      "Location": ""
+      "booth_name": "Punching Machine",
+      "tags": "Game",
+      "invis_tags": "26SH09",
+      "zone": "Green",
+      "booth_description": "Slam a padded target with a mallet to test how hard you can hit.",
+      "location": ""
     },
     "ISH2": {
-      "Booth Name": "Naughty Bean",
-      "Tags": "Game",
-      "Zone": "Green",
-      "Booth Description": "Find the one sour jellybean hidden in a handful of sweet ones.",
-      "Location": ""
+      "booth_name": "Naughty Bean",
+      "tags": "Game",
+      "invis_tags": "26SH01",
+      "zone": "Green",
+      "booth_description": "Find the one sour jellybean hidden in a handful of sweet ones.",
+      "location": ""
     },
     "ISH3": {
-      "Booth Name": "Gladiator Dome",
-      "Tags": "Game",
-      "Zone": "Green",
-      "Booth Description": "Climb inside an inflatable bubble and bump heads with your friends.",
-      "Location": ""
+      "booth_name": "Gladiator Dome",
+      "tags": "Game",
+      "invis_tags": "26SH09",
+      "zone": "Green",
+      "booth_description": "Climb inside an inflatable bubble and bump heads with your friends.",
+      "location": ""
     },
     "ISH4": {
-      "Booth Name": "Inflatable Human Bowling Pin",
-      "Tags": "Game",
-      "Zone": "Green",
-      "Booth Description": "Wear a giant inflatable tube and let others roll you over like a bowling pin.",
-      "Location": ""
+      "booth_name": "Inflatable Human Bowling Pin",
+      "tags": "Game",
+      "invis_tags": "26SH01",
+      "zone": "Green",
+      "booth_description": "Wear a giant inflatable tube and let others roll you over like a bowling pin.",
+      "location": ""
     },
     "ISH5": {
-      "Booth Name": "Ball Throwing",
-      "Tags": "Game",
-      "Zone": "Green",
-      "Booth Description": "Fling soft balls at moving targets to clear the board before time runs out.",
-      "Location": ""
+      "booth_name": "Ball Throwing",
+      "tags": "Game",
+      "invis_tags": "26SH09",
+      "zone": "Green",
+      "booth_description": "Fling soft balls at moving targets to clear the board before time runs out.",
+      "location": ""
     },
     "ISH6": {
-      "Booth Name": "First Aid Station 1",
-      "Tags": "First Aid",
-      "Zone": "Green",
-      "Booth Description": "",
-      "Location": ""
+      "booth_name": "First Aid Station 1",
+      "tags": "First Aid",
+      "invis_tags": "",
+      "zone": "Green",
+      "booth_description": "",
+      "location": ""
     }
   },
   "b2": {
     "Gym": {
-      "Booth Name": "Laser Tag",
-      "Tags": "Game",
-      "Zone": "Green",
-      "Booth Description": "Gear up with a laser gun and sneak through a dark maze to tag opponents.",
-      "Location": ""
+      "booth_name": "Laser Tag",
+      "tags": "Game",
+      "invis_tags": "26SH12",
+      "zone": "Green",
+      "booth_description": "Gear up with a laser gun and sneak through a dark maze to tag opponents.",
+      "location": ""
     }
   },
   "l1": {
     "Amphi": {
-      "Booth Name": "Water Dunk Tank",
-      "Tags": "Game",
-      "Zone": "Blue",
-      "Booth Description": "Throw a ball to dunk a friend in the water tank.",
-      "Location": ""
+      "booth_name": "Water Dunk Tank",
+      "tags": "Game",
+      "invis_tags": "JH206",
+      "zone": "Blue",
+      "booth_description": "Throw a ball to dunk a friend in the water tank.",
+      "location": ""
     },
     "S1": {
-      "Booth Name": "Drawn For You: Caricature Photobooth",
-      "Tags": "Photos",
-      "Zone": "Blue",
-      "Booth Description": "Get a hand-drawn digital caricature printed instantly.",
-      "Location": ""
+      "booth_name": "Drawn For You: Caricature Photobooth",
+      "tags": "Photos",
+      "invis_tags": "25SH05",
+      "zone": "Blue",
+      "booth_description": "Get a hand-drawn digital caricature printed instantly.",
+      "location": ""
     },
     "S2": {
-      "Booth Name": "Photomania",
-      "Tags": "Photos",
-      "Zone": "Blue",
-      "Booth Description": "Pose with zany props for wild, themed photo strips.",
-      "Location": ""
+      "booth_name": "Photomania",
+      "tags": "Photos",
+      "invis_tags": "25SH06",
+      "zone": "Blue",
+      "booth_description": "Pose with zany props for wild, themed photo strips.",
+      "location": ""
     },
     "S3": {
-      "Booth Name": "Keychain Corner",
-      "Tags": "Merch",
-      "Zone": "Blue",
-      "Booth Description": "Pick from dozens of cute acrylic and resin keychains.",
-      "Location": ""
+      "booth_name": "Keychain Corner",
+      "tags": "Merch",
+      "invis_tags": "25SH17",
+      "zone": "Blue",
+      "booth_description": "Pick from dozens of cute acrylic and resin keychains.",
+      "location": ""
     },
     "S4": {
-      "Booth Name": "Gem it Up!: Face Gems",
-      "Tags": "Glam Up",
-      "Zone": "Blue",
-      "Booth Description": "Add sparkly face gems for instant glam.",
-      "Location": ""
+      "booth_name": "Gem it Up!: Face Gems",
+      "tags": "Glam Up",
+      "invis_tags": "25SH20",
+      "zone": "Blue",
+      "booth_description": "Add sparkly face gems for instant glam.",
+      "location": ""
     },
     "S5": {
-      "Booth Name": "Revibe: Hairstyling, Body Paint",
-      "Tags": "Glam Up",
-      "Zone": "Blue",
-      "Booth Description": "Get trendy hairstyling, braids, and shimmering body paint.",
-      "Location": ""
+      "booth_name": "Revibe: Hairstyling, Body Paint",
+      "tags": "Glam Up",
+      "invis_tags": "25SH16",
+      "zone": "Blue",
+      "booth_description": "Get trendy hairstyling, braids, and shimmering body paint.",
+      "location": ""
     },
     "S6": {
-      "Booth Name": "Face Painting & Hair Tinsels",
-      "Tags": "Glam Up",
-      "Zone": "Blue",
-      "Booth Description": "Choose colorful face paint designs and shiny hair tinsels.",
-      "Location": ""
+      "booth_name": "Face Painting & Hair Tinsels",
+      "tags": "Glam Up",
+      "invis_tags": "JH207",
+      "zone": "Blue",
+      "booth_description": "Choose colorful face paint designs and shiny hair tinsels.",
+      "location": ""
     },
     "S7": {
-      "Booth Name": "Bedazzle: Bracelet Making",
-      "Tags": "Merch",
-      "Zone": "Blue",
-      "Booth Description": "String beads and charms to make your own custom bracelet.",
-      "Location": ""
+      "booth_name": "Bedazzle: Bracelet Making",
+      "tags": "Merch",
+      "invis_tags": "25SH08",
+      "zone": "Blue",
+      "booth_description": "String beads and charms to make your own custom bracelet.",
+      "location": ""
     },
     "AB1": {
-      "Booth Name": "Astro",
-      "Tags": "Game",
-      "Zone": "Orange",
-      "Booth Description": "",
-      "Location": ""
+      "booth_name": "Astro",
+      "tags": "Game",
+      "invis_tags": "astronomy",
+      "zone": "Orange",
+      "booth_description": "",
+      "location": ""
     },
     "AB2": {
-      "Booth Name": "Soccer Dart",
-      "Tags": "Game",
-      "Zone": "Orange",
-      "Booth Description": "Kick a soccer ball at a giant dartboard target to score points",
-      "Location": ""
+      "booth_name": "Soccer Dart",
+      "tags": "Game",
+      "invis_tags": "26SH01",
+      "zone": "Orange",
+      "booth_description": "Kick a soccer ball at a giant dartboard target to score points",
+      "location": ""
     },
     "C1": {
-      "Booth Name": "Big Wok",
-      "Tags": "Food",
-      "Zone": "Orange",
-      "Booth Description": "",
-      "Location": ""
-    },
-    "C10": {
-      "Booth Name": "-",
-      "Tags": "",
-      "Zone": "Orange",
-      "Booth Description": "",
-      "Location": ""
+      "booth_name": "Big Wok",
+      "tags": "Food",
+      "invis_tags": "26SH13",
+      "zone": "Orange",
+      "booth_description": "",
+      "location": ""
     },
     "C11": {
-      "Booth Name": "Mambo",
-      "Tags": "Food",
-      "Zone": "Orange",
-      "Booth Description": "",
-      "Location": ""
+      "booth_name": "Mambo",
+      "tags": "Food",
+      "invis_tags": "26SH07",
+      "zone": "Orange",
+      "booth_description": "",
+      "location": ""
     },
     "C12": {
-      "Booth Name": "Prata Hut",
-      "Tags": "Food",
-      "Zone": "Orange",
-      "Booth Description": "",
-      "Location": ""
+      "booth_name": "Prata Hut",
+      "tags": "Food",
+      "invis_tags": "26SH07",
+      "zone": "Orange",
+      "booth_description": "",
+      "location": ""
     },
     "C13": {
-      "Booth Name": "Ramly Style Burger Live Station",
-      "Tags": "Food",
-      "Zone": "Orange",
-      "Booth Description": "",
-      "Location": ""
+      "booth_name": "Ramly Style Burger Live Station",
+      "tags": "Food",
+      "invis_tags": "26SH19",
+      "zone": "Orange",
+      "booth_description": "",
+      "location": ""
     },
     "C14": {
-      "Booth Name": "Malaysia Boleh, Eureka Popcorn",
-      "Tags": "Food",
-      "Zone": "Orange",
-      "Booth Description": "",
-      "Location": ""
+      "booth_name": "Malaysia Boleh, Eureka Popcorn",
+      "tags": "Food",
+      "invis_tags": "26SH11",
+      "zone": "Orange",
+      "booth_description": "",
+      "location": ""
     },
     "C15": {
-      "Booth Name": "Yakun, Polar, Bakery Bera",
-      "Tags": "Food",
-      "Zone": "Orange",
-      "Booth Description": "",
-      "Location": ""
+      "booth_name": "Yakun, Polar, Bakery Bera",
+      "tags": "Food",
+      "invis_tags": "26SH08",
+      "zone": "Orange",
+      "booth_description": "",
+      "location": ""
     },
     "C16": {
-      "Booth Name": "Takoyaki",
-      "Tags": "Food",
-      "Zone": "Orange",
-      "Booth Description": "",
-      "Location": ""
+      "booth_name": "Takoyaki",
+      "tags": "Food",
+      "invis_tags": "26SH14",
+      "zone": "Orange",
+      "booth_description": "",
+      "location": ""
     },
     "C2": {
-      "Booth Name": "Chicken Rice",
-      "Tags": "Food",
-      "Zone": "Orange",
-      "Booth Description": "",
-      "Location": ""
-    },
-    "C3": {
-      "Booth Name": "-",
-      "Tags": "",
-      "Zone": "Orange",
-      "Booth Description": "",
-      "Location": ""
+      "booth_name": "Chicken Rice",
+      "tags": "Food",
+      "invis_tags": "26SH13",
+      "zone": "Orange",
+      "booth_description": "",
+      "location": ""
     },
     "C4": {
-      "Booth Name": "Western",
-      "Tags": "Food",
-      "Zone": "Orange",
-      "Booth Description": "",
-      "Location": ""
-    },
-    "C5": {
-      "Booth Name": "-",
-      "Tags": "",
-      "Zone": "Orange",
-      "Booth Description": "",
-      "Location": ""
+      "booth_name": "Western",
+      "tags": "Food",
+      "invis_tags": "26SH05",
+      "zone": "Orange",
+      "booth_description": "",
+      "location": ""
     },
     "C6": {
-      "Booth Name": "Hot Drinks",
-      "Tags": "Drinks",
-      "Zone": "Orange",
-      "Booth Description": "",
-      "Location": ""
+      "booth_name": "Hot Drinks",
+      "tags": "Drinks",
+      "invis_tags": "26SH05",
+      "zone": "Orange",
+      "booth_description": "",
+      "location": ""
     },
     "C7": {
-      "Booth Name": "Cold Drinks",
-      "Tags": "Drinks",
-      "Zone": "Orange",
-      "Booth Description": "",
-      "Location": ""
+      "booth_name": "Cold Drinks",
+      "tags": "Drinks",
+      "invis_tags": "26SH05",
+      "zone": "Orange",
+      "booth_description": "",
+      "location": ""
     },
     "C8": {
-      "Booth Name": "Drinks stall : Herbal Tea (ZTP)",
-      "Tags": "Drinks",
-      "Zone": "Orange",
-      "Booth Description": "",
-      "Location": ""
+      "booth_name": "Drinks stall : Herbal Tea (ZTP)",
+      "tags": "Drinks",
+      "invis_tags": "26SH14",
+      "zone": "Orange",
+      "booth_description": "",
+      "location": ""
     },
     "C9": {
-      "Booth Name": "Noodle",
-      "Tags": "Food",
-      "Zone": "Orange",
-      "Booth Description": "",
-      "Location": ""
+      "booth_name": "Noodle",
+      "tags": "Food",
+      "invis_tags": "26SH03",
+      "zone": "Orange",
+      "booth_description": "",
+      "location": ""
     },
     "CB1": {
-      "Booth Name": "Popcorn and Candy Floss",
-      "Tags": "Food",
-      "Zone": "Orange",
-      "Booth Description": "",
-      "Location": ""
+      "booth_name": "Popcorn and Candy Floss",
+      "tags": "Food",
+      "invis_tags": "26SH14",
+      "zone": "Orange",
+      "booth_description": "",
+      "location": ""
     },
     "CB2": {
-      "Booth Name": "Seaweed Fries",
-      "Tags": "Food",
-      "Zone": "Orange",
-      "Booth Description": "",
-      "Location": ""
+      "booth_name": "Seaweed Fries",
+      "tags": "Food",
+      "invis_tags": "26SH16",
+      "zone": "Orange",
+      "booth_description": "",
+      "location": ""
     },
     "CE1": {
-      "Booth Name": "Heyya Duck Rice",
-      "Tags": "Food",
-      "Zone": "Orange",
-      "Booth Description": "",
-      "Location": ""
+      "booth_name": "Heyya Duck Rice",
+      "tags": "Food",
+      "invis_tags": "26SH03",
+      "zone": "Orange",
+      "booth_description": "",
+      "location": ""
     },
     "CE2": {
-      "Booth Name": "Buldak Noodles",
-      "Tags": "Food",
-      "Zone": "Orange",
-      "Booth Description": "",
-      "Location": ""
+      "booth_name": "Buldak Noodles",
+      "tags": "Food",
+      "invis_tags": "26SH16",
+      "zone": "Orange",
+      "booth_description": "",
+      "location": ""
     },
     "DS3": {
-      "Booth Name": "Escape Room",
-      "Tags": "Game",
-      "Zone": "Orange",
-      "Booth Description": "Work together to solve clues and puzzles before time runs out",
-      "Location": ""
+      "booth_name": "Gatecrash: Escape Room",
+      "tags": "Game",
+      "invis_tags": "JH203",
+      "zone": "Orange",
+      "booth_description": "Work together to solve clues and puzzles before time runs out",
+      "location": ""
     },
     "O1": {
-      "Booth Name": "Go Kart",
-      "Tags": "Game",
-      "Zone": "Orange",
-      "Booth Description": "Feel the thrill of the track",
-      "Location": ""
+      "booth_name": "Go Kart",
+      "tags": "Game",
+      "invis_tags": "26SH06",
+      "zone": "Orange",
+      "booth_description": "Feel the thrill of the track",
+      "location": ""
     },
     "O2": {
-      "Booth Name": "PA Busking Booth",
-      "Tags": "Performance",
-      "Zone": "Orange",
-      "Booth Description": "Show off your talent or cheer local performers",
-      "Location": ""
+      "booth_name": "PA Busking Booth",
+      "tags": "Performance",
+      "invis_tags": "PA",
+      "zone": "Orange",
+      "booth_description": "Show off your talent or cheer local performers",
+      "location": ""
     },
     "O3": {
-      "Booth Name": "First Aid Station 2",
-      "Tags": "First Aid",
-      "Zone": "Orange",
-      "Booth Description": "Here to help with bumps and scrapes",
-      "Location": ""
+      "booth_name": "First Aid Station 2",
+      "tags": "First Aid",
+      "invis_tags": "",
+      "zone": "Orange",
+      "booth_description": "Here to help with bumps and scrapes",
+      "location": ""
     },
     "O4": {
-      "Booth Name": "Info Counter",
-      "Tags": "Info",
-      "Zone": "Orange",
-      "Booth Description": "Your one-stop for event questions and maps",
-      "Location": ""
+      "booth_name": "Info Counter",
+      "tags": "Info",
+      "invis_tags": "26SH10",
+      "zone": "Orange",
+      "booth_description": "Your one-stop for event questions and maps",
+      "location": ""
     },
     "O5": {
-      "Booth Name": "Ticket Counter",
-      "Tags": "Tickets",
-      "Zone": "Orange",
-      "Booth Description": "Grab your tickets here",
-      "Location": ""
+      "booth_name": "Ticket Counter",
+      "tags": "Tickets",
+      "invis_tags": "",
+      "zone": "Orange",
+      "booth_description": "Grab your tickets here",
+      "location": ""
     },
     "A1": {
-      "Booth Name": "Info Counter",
-      "Tags": "Info",
-      "Zone": "Red",
-      "Booth Description": "",
-      "Location": ""
+      "booth_name": "Info Counter",
+      "tags": "Info",
+      "invis_tags": "",
+      "zone": "Red",
+      "booth_description": "",
+      "location": ""
     },
     "A2": {
-      "Booth Name": "Ticket Counter",
-      "Tags": "Tickets",
-      "Zone": "Red",
-      "Booth Description": "",
-      "Location": ""
+      "booth_name": "Ticket Counter",
+      "tags": "Tickets",
+      "invis_tags": "",
+      "zone": "Red",
+      "booth_description": "",
+      "location": ""
     },
     "A34a": {
-      "Booth Name": "PAACT: NJC Merch",
-      "Tags": "Merch",
-      "Zone": "Red",
-      "Booth Description": "",
-      "Location": ""
+      "booth_name": "PAACT: NJC Merch",
+      "tags": "Merch",
+      "invis_tags": "26SH18",
+      "zone": "Red",
+      "booth_description": "",
+      "location": ""
     },
     "A4b": {
-      "Booth Name": "Slushie",
-      "Tags": "Drinks",
-      "Zone": "Red",
-      "Booth Description": "",
-      "Location": ""
+      "booth_name": "Slushie",
+      "tags": "Drinks",
+      "invis_tags": "26SH07",
+      "zone": "Red",
+      "booth_description": "",
+      "location": ""
     },
     "A5": {
-      "Booth Name": "NJC Heritage",
-      "Tags": "",
-      "Zone": "Red",
-      "Booth Description": "",
-      "Location": ""
+      "booth_name": "NJC Heritage",
+      "tags": "",
+      "invis_tags": "26Sh18",
+      "zone": "Red",
+      "booth_description": "",
+      "location": ""
     },
     "AC1": {
-      "Booth Name": "Lucky Pop Shootout",
-      "Tags": "",
-      "Zone": "Red",
-      "Booth Description": "",
-      "Location": ""
+      "booth_name": "Lucky Pop Shootout",
+      "tags": "",
+      "invis_tags": "JH307",
+      "zone": "Red",
+      "booth_description": "",
+      "location": ""
     },
     "AC2": {
-      "Booth Name": "The Blind Boxes",
-      "Tags": "",
-      "Zone": "Red",
-      "Booth Description": "",
-      "Location": ""
+      "booth_name": "Hypercrate Co",
+      "tags": "",
+      "invis_tags": "JH303",
+      "zone": "Red",
+      "booth_description": "",
+      "location": ""
     },
     "AC3": {
-      "Booth Name": "Made With Love: Nails, Bracelets, Keychains",
-      "Tags": "Merch",
-      "Zone": "Red",
-      "Booth Description": "",
-      "Location": ""
+      "booth_name": "Made With Love: Nails, Bracelets, Keychains",
+      "tags": "Merch",
+      "invis_tags": "25SH15",
+      "zone": "Red",
+      "booth_description": "",
+      "location": ""
     },
     "AC456": {
-      "Booth Name": "CART-oon Market: Sheng Siong",
-      "Tags": "",
-      "Zone": "Red",
-      "Booth Description": "",
-      "Location": ""
+      "booth_name": "Alumni Supermarket",
+      "tags": "",
+      "invis_tags": "26SH18",
+      "zone": "Red",
+      "booth_description": "",
+      "location": ""
     },
     "AC7": {
-      "Booth Name": "Flower Fantasy",
-      "Tags": "",
-      "Zone": "Red",
-      "Booth Description": "",
-      "Location": ""
+      "booth_name": "Flower Fantasy",
+      "tags": "",
+      "invis_tags": "25SH19",
+      "zone": "Red",
+      "booth_description": "",
+      "location": ""
     },
     "AC8": {
-      "Booth Name": "Shoot the Target",
-      "Tags": "Game",
-      "Zone": "Red",
-      "Booth Description": "",
-      "Location": ""
+      "booth_name": "Shoot the Target",
+      "tags": "Game",
+      "invis_tags": "25SH01",
+      "zone": "Red",
+      "booth_description": "",
+      "location": ""
     },
     "AC9": {
-      "Booth Name": "Is 2026 The New 2016",
-      "Tags": "",
-      "Zone": "Red",
-      "Booth Description": "",
-      "Location": ""
+      "booth_name": "Is 2026 The New 2016",
+      "tags": "",
+      "invis_tags": "25Sh02",
+      "zone": "Red",
+      "booth_description": "",
+      "location": ""
     }
   },
   "l2": {
     "LBCP1": {
-      "Booth Name": "Corndog Live station",
-      "Tags": "Food",
-      "Zone": "Brown",
-      "Booth Description": "Hot, crispy corndogs made fresh on the spot",
-      "Location": ""
+      "booth_name": "Corndog Live station",
+      "tags": "Food",
+      "invis_tags": "26SH19",
+      "zone": "Brown",
+      "booth_description": "Hot, crispy corndogs made fresh on the spot",
+      "location": ""
     },
     "LBCP2": {
-      "Booth Name": "Tteokbokki",
-      "Tags": "Food",
-      "Zone": "Brown",
-      "Booth Description": "Spicy Korean rice cakes in rich gochujang sauce",
-      "Location": ""
+      "booth_name": "Tteokbokki",
+      "tags": "Food",
+      "invis_tags": "26SH15",
+      "zone": "Brown",
+      "booth_description": "Spicy Korean rice cakes in rich gochujang sauce",
+      "location": ""
     },
     "LBCP3": {
-      "Booth Name": "Each a Cup",
-      "Tags": "Drinks",
-      "Zone": "Brown",
-      "Booth Description": "Build-your-own dessert cups with toppings",
-      "Location": ""
+      "booth_name": "Each a Cup",
+      "tags": "Drinks",
+      "invis_tags": "26SH02",
+      "zone": "Brown",
+      "booth_description": "Build-your-own dessert cups with toppings",
+      "location": ""
     },
     "LBCP4": {
-      "Booth Name": "Ice Cream Cart",
-      "Tags": "Food",
-      "Zone": "Brown",
-      "Booth Description": "Rolling refreshment with classic ice cream treats",
-      "Location": ""
+      "booth_name": "Ice Cream Cart",
+      "tags": "Food",
+      "invis_tags": "",
+      "zone": "Brown",
+      "booth_description": "Rolling refreshment with classic ice cream treats",
+      "location": ""
     },
     "LBCP5": {
-      "Booth Name": "Crepe",
-      "Tags": "Food",
-      "Zone": "Brown",
-      "Booth Description": "Thin, warm French-style crepes with fillings",
-      "Location": ""
+      "booth_name": "Crepe",
+      "tags": "Food",
+      "invis_tags": "26SH15",
+      "zone": "Brown",
+      "booth_description": "Thin, warm French-style crepes with fillings",
+      "location": ""
     },
     "LBCP6": {
-      "Booth Name": "Grilled Satay Live Station",
-      "Tags": "Food",
-      "Zone": "Brown",
-      "Booth Description": "Smoky skewers of meat with peanut sauce",
-      "Location": ""
+      "booth_name": "Grilled Satay Live Station",
+      "tags": "Food",
+      "invis_tags": "26SH17",
+      "zone": "Brown",
+      "booth_description": "Smoky skewers of meat with peanut sauce",
+      "location": ""
     },
     "LBCP7": {
-      "Booth Name": "Taiwanese-style Fried Chicken Chop",
-      "Tags": "Food",
-      "Zone": "Brown",
-      "Booth Description": "Crispy, juicy chicken cutlet with seasoning",
-      "Location": ""
+      "booth_name": "Taiwanese-style Fried Chicken Chop",
+      "tags": "Food",
+      "invis_tags": "26SH17",
+      "zone": "Brown",
+      "booth_description": "Crispy, juicy chicken cutlet with seasoning",
+      "location": ""
     },
     "LBCP8910": {
-      "Booth Name": "Old Chang Kee Food Truck",
-      "Tags": "Food",
-      "Zone": "Brown",
-      "Booth Description": "Famous curry puffs and hot snacks on wheels",
-      "Location": ""
+      "booth_name": "Old Chang Kee Food Truck",
+      "tags": "Food",
+      "invis_tags": "26SH11",
+      "zone": "Brown",
+      "booth_description": "Famous curry puffs and hot snacks on wheels",
+      "location": ""
     },
     "H1": {
-      "Booth Name": "Minute to Squash",
-      "Tags": "CCA",
-      "Zone": "Purple",
-      "Booth Description": "",
-      "Location": ""
+      "booth_name": "Minute to Squash",
+      "tags": "CCA",
+      "invis_tags": "Squash",
+      "zone": "Purple",
+      "booth_description": "",
+      "location": ""
     },
     "H10": {
-      "Booth Name": "Blow, Blow, Blow Your Boat",
-      "Tags": "CCA",
-      "Zone": "Purple",
-      "Booth Description": "",
-      "Location": ""
+      "booth_name": "Blow, Blow, Blow Your Boat",
+      "tags": "CCA",
+      "invis_tags": "Canoeing",
+      "zone": "Purple",
+      "booth_description": "",
+      "location": ""
     },
     "H11": {
-      "Booth Name": "Beat Dominion",
-      "Tags": "CCA",
-      "Zone": "Purple",
-      "Booth Description": "",
-      "Location": ""
+      "booth_name": "Beat Dominion",
+      "tags": "CCA",
+      "invis_tags": "Choir",
+      "zone": "Purple",
+      "booth_description": "",
+      "location": ""
     },
     "H12": {
-      "Booth Name": "Running With Style",
-      "Tags": "CCA",
-      "Zone": "Purple",
-      "Booth Description": "",
-      "Location": ""
+      "booth_name": "Running With Style",
+      "tags": "CCA",
+      "invis_tags": "Track",
+      "zone": "Purple",
+      "booth_description": "",
+      "location": ""
     },
     "H13": {
-      "Booth Name": "Henna Haven",
-      "Tags": "CCA",
-      "Zone": "Purple",
-      "Booth Description": "",
-      "Location": ""
+      "booth_name": "Henna Haven",
+      "tags": "CCA",
+      "invis_tags": "Indian Dance",
+      "zone": "Purple",
+      "booth_description": "",
+      "location": ""
     },
     "H14": {
-      "Booth Name": "Cover Your Ears",
-      "Tags": "CCA",
-      "Zone": "Purple",
-      "Booth Description": "",
-      "Location": ""
+      "booth_name": "Cover Your Ears",
+      "tags": "CCA",
+      "invis_tags": "Symphonic Band",
+      "zone": "Purple",
+      "booth_description": "",
+      "location": ""
     },
     "H15": {
-      "Booth Name": "Fire in the Hole",
-      "Tags": "CCA",
-      "Zone": "Purple",
-      "Booth Description": "",
-      "Location": ""
+      "booth_name": "Fire in the Hole",
+      "tags": "CCA",
+      "invis_tags": "Softball",
+      "zone": "Purple",
+      "booth_description": "",
+      "location": ""
     },
     "H16": {
-      "Booth Name": "Second Hand Thrift",
-      "Tags": "CCA",
-      "Zone": "Purple",
-      "Booth Description": "",
-      "Location": ""
+      "booth_name": "Second Hand Thrift",
+      "tags": "CCA",
+      "invis_tags": "Greenlink",
+      "zone": "Purple",
+      "booth_description": "",
+      "location": ""
     },
     "H17": {
-      "Booth Name": "Ticket Counter",
-      "Tags": "Tickets",
-      "Zone": "Purple",
-      "Booth Description": "",
-      "Location": ""
+      "booth_name": "Ticket Counter",
+      "tags": "Tickets",
+      "invis_tags": "",
+      "zone": "Purple",
+      "booth_description": "",
+      "location": ""
     },
     "H18": {
-      "Booth Name": "Info Counter",
-      "Tags": "Info",
-      "Zone": "Purple",
-      "Booth Description": "",
-      "Location": ""
+      "booth_name": "Info Counter",
+      "tags": "Info",
+      "invis_tags": "26SH10",
+      "zone": "Purple",
+      "booth_description": "",
+      "location": ""
     },
     "H19": {
-      "Booth Name": "Makers",
-      "Tags": "CCA",
-      "Zone": "Purple",
-      "Booth Description": "",
-      "Location": ""
+      "booth_name": "Makers",
+      "tags": "CCA",
+      "invis_tags": "Makers",
+      "zone": "Purple",
+      "booth_description": "",
+      "location": ""
     },
     "H2": {
-      "Booth Name": "Strings Attached",
-      "Tags": "CCA",
-      "Zone": "Purple",
-      "Booth Description": "",
-      "Location": ""
+      "booth_name": "Strings Attached",
+      "tags": "CCA",
+      "invis_tags": "Strings",
+      "zone": "Purple",
+      "booth_description": "",
+      "location": ""
     },
     "H3": {
-      "Booth Name": "Just Dance",
-      "Tags": "CCA",
-      "Zone": "Purple",
-      "Booth Description": "",
-      "Location": ""
+      "booth_name": "Just Dance",
+      "tags": "CCA",
+      "invis_tags": "Western Dance",
+      "zone": "Purple",
+      "booth_description": "",
+      "location": ""
     },
     "H4": {
-      "Booth Name": "Saturday Night Funtasia",
-      "Tags": "CCA",
-      "Zone": "Purple",
-      "Booth Description": "",
-      "Location": ""
+      "booth_name": "Saturday Night Funtasia",
+      "tags": "CCA",
+      "invis_tags": "Guitar",
+      "zone": "Purple",
+      "booth_description": "",
+      "location": ""
     },
     "H5": {
-      "Booth Name": "Hit the Beat",
-      "Tags": "CCA",
-      "Zone": "Purple",
-      "Booth Description": "",
-      "Location": ""
+      "booth_name": "Hit the Beat",
+      "tags": "CCA",
+      "invis_tags": "COGZ",
+      "zone": "Purple",
+      "booth_description": "",
+      "location": ""
     },
     "H6": {
-      "Booth Name": "Basketball showdown",
-      "Tags": "CCA",
-      "Zone": "Purple",
-      "Booth Description": "",
-      "Location": ""
+      "booth_name": "Basketball showdown",
+      "tags": "CCA",
+      "invis_tags": "Basketball",
+      "zone": "Purple",
+      "booth_description": "",
+      "location": ""
     },
     "H7": {
-      "Booth Name": "Balik Kampung, Batik Kampung",
-      "Tags": "CCA",
-      "Zone": "Purple",
-      "Booth Description": "",
-      "Location": ""
+      "booth_name": "Balik Kampung, Batik Kampung",
+      "tags": "CCA",
+      "invis_tags": "Malay Dance",
+      "zone": "Purple",
+      "booth_description": "",
+      "location": ""
     },
     "H8": {
-      "Booth Name": "No Bad Hair Day",
-      "Tags": "CCA",
-      "Zone": "Purple",
-      "Booth Description": "",
-      "Location": ""
+      "booth_name": "No Bad Hair Day",
+      "tags": "CCA",
+      "invis_tags": "Chinese Dance",
+      "zone": "Purple",
+      "booth_description": "",
+      "location": ""
     },
     "H9": {
-      "Booth Name": "Hot Shots",
-      "Tags": "CCA",
-      "Zone": "Purple",
-      "Booth Description": "",
-      "Location": ""
+      "booth_name": "Hot Shots",
+      "tags": "CCA",
+      "invis_tags": "Shooting",
+      "zone": "Purple",
+      "booth_description": "",
+      "location": ""
     },
     "LB1": {
-      "Booth Name": "Info Counter",
-      "Tags": "Info",
-      "Zone": "Yellow",
-      "Booth Description": "Your one-stop for event questions and maps",
-      "Location": ""
+      "booth_name": "Info Counter",
+      "tags": "Info",
+      "invis_tags": "26SH10",
+      "zone": "Yellow",
+      "booth_description": "Your one-stop for event questions and maps",
+      "location": ""
     },
     "LB2": {
-      "Booth Name": "Ticket Counter",
-      "Tags": "Tickets",
-      "Zone": "Yellow",
-      "Booth Description": "Grab your tickets here",
-      "Location": ""
+      "booth_name": "Ticket Counter",
+      "tags": "Tickets",
+      "invis_tags": "",
+      "zone": "Yellow",
+      "booth_description": "Grab your tickets here",
+      "location": ""
     },
     "LIB1": {
-      "Booth Name": "Central Prize Booth",
-      "Tags": "",
-      "Zone": "Yellow",
-      "Booth Description": "Exchange stamps for awesome prizes",
-      "Location": ""
+      "booth_name": "Central Prize Booth",
+      "tags": "",
+      "invis_tags": "",
+      "zone": "Yellow",
+      "booth_description": "Exchange stamps for awesome prizes",
+      "location": ""
     },
     "LIB2": {
-      "Booth Name": "Photo Booth",
-      "Tags": "Game",
-      "Zone": "Yellow",
-      "Booth Description": "Freeze fun moments with props and prints",
-      "Location": ""
+      "booth_name": "Photo Booth",
+      "tags": "Game",
+      "invis_tags": "26SH04",
+      "zone": "Yellow",
+      "booth_description": "Freeze fun moments with props and prints",
+      "location": ""
     },
     "LT1": {
-      "Booth Name": "Rest Zone",
-      "Tags": "",
-      "Zone": "Yellow",
-      "Booth Description": "Quiet area to sit, recharge, and relax",
-      "Location": ""
+      "booth_name": "Rest Zone",
+      "tags": "",
+      "invis_tags": "",
+      "zone": "Yellow",
+      "booth_description": "Quiet area to sit, recharge, and relax",
+      "location": ""
     },
     "LT12A": {
-      "Booth Name": "Peg Dolls",
-      "Tags": "Merch",
-      "Zone": "Yellow",
-      "Booth Description": "Decorate tiny wooden peg characters",
-      "Location": ""
+      "booth_name": "Build a Doll",
+      "tags": "Merch",
+      "invis_tags": "25SH03",
+      "zone": "Yellow",
+      "booth_description": "Decorate tiny wooden peg characters",
+      "location": ""
     },
     "LT12B": {
-      "Booth Name": "Photo Booth",
-      "Tags": "Photos",
-      "Zone": "Yellow",
-      "Booth Description": "Snap silly or stylish instant photos",
-      "Location": ""
+      "booth_name": "Strike a Pose!",
+      "tags": "Photos",
+      "invis_tags": "JH304",
+      "zone": "Yellow",
+      "booth_description": "Snap silly or stylish instant photos",
+      "location": ""
     },
     "LT1A": {
-      "Booth Name": "JH201 Balloonatics",
-      "Tags": "",
-      "Zone": "Yellow",
-      "Booth Description": "Twisted balloon art and wacky creations",
-      "Location": ""
+      "booth_name": "Balloonatics",
+      "tags": "Merch",
+      "invis_tags": "JH201",
+      "zone": "Yellow",
+      "booth_description": "Twisted balloon art and wacky creations",
+      "location": ""
     },
     "LT1B": {
-      "Booth Name": "Slime Selling",
-      "Tags": "Merch",
-      "Zone": "Yellow",
-      "Booth Description": "Gooey, stretchy slime in every color",
-      "Location": ""
+      "booth_name": "Get Slimed!",
+      "tags": "Merch",
+      "invis_tags": "25Sh18",
+      "zone": "Yellow",
+      "booth_description": "Gooey, stretchy slime in every color",
+      "location": ""
     },
     "LT1C": {
-      "Booth Name": "Snacks and Drinks",
-      "Tags": [
+      "booth_name": "JH205 Tuckshop",
+      "tags": [
         "Food",
         " Drinks"
       ],
-      "Zone": "Yellow",
-      "Booth Description": "Quick bites and beverages to fuel your day",
-      "Location": ""
+      "invis_tags": "JH205",
+      "zone": "Yellow",
+      "booth_description": "Quick bites and beverages to fuel your day",
+      "location": ""
     },
     "LT5": {
-      "Booth Name": "IP OH CCA Performances",
-      "Tags": "Performance",
-      "Zone": "Yellow",
-      "Booth Description": "Student showcases of music, dance, and drama",
-      "Location": ""
+      "booth_name": "IP OH CCA Performances",
+      "tags": "Performance",
+      "invis_tags": "",
+      "zone": "Yellow",
+      "booth_description": "Student showcases of music, dance, and drama",
+      "location": ""
     },
     "LT5A": {
-      "Booth Name": "Jang and Fox Postcard",
-      "Tags": "Merch",
-      "Zone": "Yellow",
-      "Booth Description": "Adorable illustrated postcards to send or keep",
-      "Location": ""
+      "booth_name": "Jang and Fox Postcard",
+      "tags": "Merch",
+      "invis_tags": "26Sh04",
+      "zone": "Yellow",
+      "booth_description": "Adorable illustrated postcards to send or keep",
+      "location": ""
     },
     "LT5B": {
-      "Booth Name": "Pipe cleaner flowers and animals",
-      "Tags": "Merch",
-      "Zone": "Yellow",
-      "Booth Description": "Bend and twist into fuzzy crafts",
-      "Location": ""
+      "booth_name": "Pipe cleaner flowers and animals",
+      "tags": "Merch",
+      "invis_tags": "25SH04",
+      "zone": "Yellow",
+      "booth_description": "Bend and twist into fuzzy crafts",
+      "location": ""
     },
     "TA11": {
-      "Booth Name": "Just Dance",
-      "Tags": "Game",
-      "Zone": "Yellow",
-      "Booth Description": "Bust a move and follow the on-screen choreography",
-      "Location": ""
+      "booth_name": "Karaoke & Just Dance",
+      "tags": "Game",
+      "invis_tags": "JH305",
+      "zone": "Yellow",
+      "booth_description": "Bust a move and follow the on-screen choreography",
+      "location": ""
     },
     "TA12": {
-      "Booth Name": "LA Booth",
-      "Tags": "Academic",
-      "Zone": "Yellow",
-      "Booth Description": "Discover interactive learning activities",
-      "Location": ""
+      "booth_name": "Language Arts Booth",
+      "tags": "Academic",
+      "invis_tags": "JH401",
+      "zone": "Yellow",
+      "booth_description": "Discover interactive learning activities",
+      "location": ""
     },
     "TA13": {
-      "Booth Name": "Mathematics Booth",
-      "Tags": "Academic",
-      "Zone": "Yellow",
-      "Booth Description": "Solve puzzles and number games for prizes",
-      "Location": ""
+      "booth_name": "Mathematics Booth",
+      "tags": "Academic",
+      "invis_tags": "JH402",
+      "zone": "Yellow",
+      "booth_description": "Solve puzzles and number games for prizes",
+      "location": ""
     },
     "TA14": {
-      "Booth Name": "Aesthetics Booth",
-      "Tags": "Academic",
-      "Zone": "Yellow",
-      "Booth Description": "Explore art, design, and creative expression",
-      "Location": ""
+      "booth_name": "Aesthetics Booth",
+      "tags": "Academic",
+      "invis_tags": "JH404",
+      "zone": "Yellow",
+      "booth_description": "Explore art, design, and creative expression",
+      "location": ""
     },
     "TA15": {
-      "Booth Name": "Humanities Booth",
-      "Tags": "Academic",
-      "Zone": "Yellow",
-      "Booth Description": "Dive into history, culture, and big ideas",
-      "Location": ""
+      "booth_name": "Humanities Booth",
+      "tags": "Academic",
+      "invis_tags": "JH405",
+      "zone": "Yellow",
+      "booth_description": "Dive into history, culture, and big ideas",
+      "location": ""
     },
     "TA16": {
-      "Booth Name": "Science Booth",
-      "Tags": "Academic",
-      "Zone": "Yellow",
-      "Booth Description": "Hands-on experiments and cool demonstrations",
-      "Location": ""
+      "booth_name": "Science Booth",
+      "tags": "Academic",
+      "invis_tags": "JH406",
+      "zone": "Yellow",
+      "booth_description": "Hands-on experiments and cool demonstrations",
+      "location": ""
     },
     "TA17": {
-      "Booth Name": "Mother Tongue Booth",
-      "Tags": "Academic",
-      "Zone": "Yellow",
-      "Booth Description": "Celebrate languages and cultural stories",
-      "Location": ""
+      "booth_name": "Mother Tongue Booth",
+      "tags": "Academic",
+      "invis_tags": "JH407",
+      "zone": "Yellow",
+      "booth_description": "Celebrate languages and cultural stories",
+      "location": ""
     },
     "TA18": {
-      "Booth Name": "Popsicles and Ice Cream",
-      "Tags": "Food",
-      "Zone": "Yellow",
-      "Booth Description": "Cool, sweet treats on a stick or in a cone",
-      "Location": ""
+      "booth_name": "On Cloud 9 & 10",
+      "tags": [
+        "Merch",
+        " Drinks",
+        " Food"
+      ],
+      "invis_tags": [
+        "25SH09",
+        "25SH10"
+      ],
+      "zone": "Yellow",
+      "booth_description": "Craft custom accessories and sip refreshments",
+      "location": ""
     }
   }
 }

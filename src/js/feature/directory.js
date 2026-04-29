@@ -23,11 +23,14 @@ const zoneColorMap = {
 const tagColorMap = {
   Game:        "var(--color-ctp-blue)",
   Performance: "var(--color-ctp-mauve)", 
-  Acad:        "var(--color-ctp-teal",
+  Acad:        "var(--color-ctp-teal)",
   Food:        "var(--color-ctp-red)", 
   Drinks:      "var(--color-ctp-sky)",
   Merch:       "var(--color-ctp-peach)", 
-  Photos:      "var(--color-ctp-pink)", 
+  Photos:      "var(--color-ctp-pink)",
+  Info:        "var(--color-ctp-sapphire)",
+  Tickets:     "var(--color-ctp-flamingo)",
+  Services:    "var(--color-ctp-green)",
 };
 
 const fallbackTagColor = "#6b7280"; // gray-500
@@ -45,8 +48,11 @@ const filterState = {
 
 export async function fetchDirectoryData() {
   try {
-    const response = await fetch(`${ASSETS_BASE_URL}/json_data/funtasia_data.json`);
-    const rawData = await response.json();
+    // const response = await fetch(`${ASSETS_BASE_URL}/json_data/funtasia_data.json`);
+    // const rawData = await response.json();
+    const localData = await import("@/assets/funtasia_data.json");
+    const rawData = localData.default;
+    // console.log(rawData);
     
     // Normalize data: convert array format to object format keyed by "Booth ID"
     // This ensures compatibility whether the CDN serves the old array or new object format.
@@ -101,7 +107,7 @@ function collectAllTags(funtasiaData) {
   levels.forEach(level => {
     if (typeof funtasiaData[level] !== 'object' || funtasiaData[level] === null) return;
     Object.values(funtasiaData[level]).forEach(item => {
-      parseTags(item["Tags"]).forEach(t => tags.add(t));
+      parseTags(item["tags"] || item["Tags"]).forEach(t => tags.add(t));
     });
   });
   return [...tags].sort();
@@ -136,24 +142,41 @@ function getFilteredData(funtasiaData) {
     Object.entries(funtasiaData[level]).forEach(([boothId, item]) => {
       // Zone filter
       if (filterState.zone) {
-        const itemZone = (item["Zone"] || "").trim();
+        const itemZone = (item["zone"] || item["Zone"] || "").trim();
         if (itemZone.toLowerCase() !== filterState.zone.toLowerCase()) return;
       }
 
       // Tag filter (OR: item must have at least one selected tag)
       if (filterState.tags.size > 0) {
-        const itemTags = parseTags(item["Tags"]);
+        const itemTags = parseTags(item["tags"] || item["Tags"]);
         const hasMatch = itemTags.some(t => filterState.tags.has(t));
         if (!hasMatch) return;
       }
 
-      // Search filter
+      // Search filter (Tokenized for multi-word support)
       if (filterState.search) {
-        const q = filterState.search.toLowerCase();
-        const name = (item["Booth Name"] || "").toLowerCase();
-        const desc = (item["Booth Description"] || "").toLowerCase();
-        const id   = (boothId || "").toLowerCase();
-        if (!name.includes(q) && !desc.includes(q) && !id.includes(q)) return;
+        const tokens = filterState.search.toLowerCase().trim().split(/\s+/);
+        
+        const itemTagsRaw = item["tags"] || item["Tags"] || "";
+        const itemTagsStr = Array.isArray(itemTagsRaw) ? itemTagsRaw.join(" ") : String(itemTagsRaw);
+        
+        const invisibleTags = item["invis_tags"] || item["invis_tag"] || item["Invisible Tags"] || "";
+        const invisibleTagsStr = Array.isArray(invisibleTags) ? invisibleTags.join(" ") : String(invisibleTags);
+
+        const keywords = item["Keywords"] || "";
+        const keywordsStr = Array.isArray(keywords) ? keywords.join(" ") : String(keywords);
+
+        const haystack = [
+          item["booth_name"] || item["Booth Name"] || "",
+          item["booth_description"] || item["Booth Description"] || "",
+          itemTagsStr,
+          invisibleTagsStr,
+          keywordsStr,
+          boothId || ""
+        ].join(" ").toLowerCase();
+
+        const allMatch = tokens.every(token => haystack.includes(token));
+        if (!allMatch) return;
       }
 
       // We inject Booth ID here for rendering later
@@ -193,8 +216,8 @@ export async function focusOnBooth(boothNum, levelHint = null) {
     return;
   }
 
-  const boothName = item["Booth Name"] || boothNum;
-  const boothDesc = item["Booth Description"] || "No description available.";
+  const boothName = item["booth_name"] || item["Booth Name"] || boothNum;
+  const boothDesc = item["booth_description"] || item["Booth Description"] || "No description available.";
 
   // 1. Navigation Logic
   let targetFloorId = level;
@@ -227,9 +250,10 @@ export async function focusOnBooth(boothNum, levelHint = null) {
   // 3. Marker and Camera Logic
   // Re-fetch to ensure we have any runtime-injected data (like Location coordinates)
   const latestItem = cachedFuntasiaData[level][boothNum] || item;
+  const locationData = latestItem["location"] || latestItem["Location"];
 
-  if (latestItem["Location"]) {
-    const marker = new DirectoryMarker(latestItem["Location"], targetFloorId);
+  if (locationData) {
+    const marker = new DirectoryMarker(locationData, targetFloorId);
     appStateRef.activeDirectoryMarker = marker;
     appStateRef.activeMarkers.push(marker);
 
@@ -303,7 +327,7 @@ function renderDirectory(container, funtasiaData) {
   const grouped = {};
   filtered.forEach(({ item, level }) => {
     if (!grouped[level]) grouped[level] = {};
-    let zone = item["Zone"];
+    let zone = item["zone"] || item["Zone"];
     if (!zone || zone.trim() === "-") zone = "Other Zones";
     else zone = zone.trim();
     if (!grouped[level][zone]) grouped[level][zone] = [];
@@ -341,11 +365,11 @@ function renderDirectory(container, funtasiaData) {
         const itemEl = document.createElement("div");
         itemEl.className = "modal-list-item";
 
-        let boothName = item["Booth Name"] || "Unnamed Booth";
+        let boothName = item["booth_name"] || item["Booth Name"] || "Unnamed Booth";
         if (boothName === "-") boothName = "Unnamed Booth";
-        const boothDesc = item["Booth Description"] || "No description available.";
+        const boothDesc = item["booth_description"] || item["Booth Description"] || "No description available.";
         const boothNum = item["Booth ID"];
-        const itemTags = parseTags(item["Tags"]);
+        const itemTags = parseTags(item["tags"] || item["Tags"]);
 
         // Build tag pills HTML
         const tagPillsHTML = itemTags.map(tag => {
@@ -362,7 +386,7 @@ function renderDirectory(container, funtasiaData) {
           <div class="modal-item-accent-bar ${zoneColors.bar}"></div>
           <div class="modal-item-content">
             <div class="flex items-center gap-2 mb-0.5 flex-wrap">
-              <h3 class="modal-item-title leading-tight">${boothNum ? `${boothNum}: ` : ''}${boothName}</h3>
+              <h3 class="modal-item-title leading-tight">${boothName}</h3>
               ${tagPillsHTML}
             </div>
             <p class="modal-item-subtitle mt-0.5 opacity-80 line-clamp-2">${boothDesc}</p>

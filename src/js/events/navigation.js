@@ -4,6 +4,7 @@ import { Floor } from "@/js/floor/floor.js";
 import { focusOnObject } from "@/js/helper/util.js";
 import { Icon } from "@/js/marker/icon.js";
 import { QRMarker } from "@/js/marker/qrmarker.js";
+import { TextMarker } from "@/js/marker/textmarker.js";
 import { hideBottomSheet, hideToast, showToast, updateFloorUI } from "@/js/ui_ux/ui.js";
 
 export class Navigation {
@@ -135,6 +136,7 @@ export class Navigation {
       appState.interactiveObjects = targetFloor.interactiveObjects;
       appState.currentFloor = targetFloor;
       Icon.setLevel(floorId);
+      TextMarker.setLevel(floorId);
       console.log(`Switched to floor: ${floorId}`);
     }
 

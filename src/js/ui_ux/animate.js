@@ -55,7 +55,9 @@ export function startAnimationLoop(appState) {
     /*
     Animate text markers
     */
-    TextMarker.allTextMarkers.forEach(marker => marker.animate(time, appState.camera));
+    Object.values(TextMarker.textMarkersByLevel).forEach(levelMarkers => {
+      levelMarkers.forEach(marker => marker.animate(time, appState.camera));
+    });
     
     appState.renderer.render(appState.scene, appState.camera);
   }

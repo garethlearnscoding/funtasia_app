@@ -165,12 +165,12 @@ export function parseModel(gltf, floorId, scene, funtasiaData, dataFloorId = flo
       child.userData.logicalParent = logicalNode;
     } else {
       console.log("Hello")
-      if (logicalNode.name in textMarkerMap[floorId]) {
+      if (textMarkerMap[floorId] && logicalNode.name in textMarkerMap[floorId]) {
         const box = new THREE.Box3().setFromObject(child);
         // const size = box.getSize(new THREE.Vector3());
         const pos = child.getWorldPosition(new THREE.Vector3());
         pos.y = (0);
-        new TextMarker(scene, pos, textMarkerMap[floorId][child.name]);
+        new TextMarker(scene, pos, textMarkerMap[floorId][child.name], floorId);
       };
     }
 

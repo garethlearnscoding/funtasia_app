@@ -173,9 +173,7 @@ export function parseModel(gltf, floorId, scene, funtasiaData, dataFloorId = flo
         Object.assign(child.userData, logicalNode.userData);
       }
       child.userData.logicalParent = logicalNode;
-    } else {
     }
-
     // Add TextMarker if the logical node's name is in the textMarkerMap
     if (textMarkerMap[floorId] && logicalNode.name in textMarkerMap[floorId]) {
       if (!markerNames.has(logicalNode.name)) {

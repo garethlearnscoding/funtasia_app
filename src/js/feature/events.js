@@ -68,19 +68,32 @@ export async function switchEventCategory(category) {
                 return;
             }
             let eventID = "events-item-" + (index + 1)
+            // html += `
+            // <header id="${eventID}" class="mb-12 w-full text-left sticky top-0 left-[-12] bg-ctp-base text-ctp-base z-20">
+            //     <div class="flex flex-row mb-1 justify-items-center w-full">
+            //         <h1 class="font-headline text-3xl font-bold tracking-tight text-ctp-text leading-none mr-2 sticky top-0 z-10">${data.title}</h1>
+            //         <span class="events-location cursor-pointer hover:opacity-70 transition-opacity active:scale-95 z-10" data-booth-id="${data.location}">
+            //             <span class="material-symbols-outlined text-[12px]">location_on</span>${data.location}
+            //         </span>
+            //     </div>
+            //     <p class="text-ctp-subtext0 font-body text-sm w-full z-10 relative">${data.subtitle || '<br>'}</p>
+            //     <div class="absolute -left-4 -top-8 w-[calc(100%+var(--spacing)*4)] bg-ctp-base h-28 z-0"></div> 
+            // </header>
+            // <div class="events-timeline">
+            // `;
+
             html += `
-            <header id="${eventID}" class="mb-12 w-full text-left sticky top-0 left-[-12] bg-ctp-base text-ctp-base">
-                <div class="flex flex-row mb-1 justify-items-center w-full">
+            <header id="${eventID}" class="text-left sticky -top-6 -left-4 bg-ctp-base text-ctp-base h-28 z-20 w-[calc(100%+var(--spacing)*4)]">
+                <div class="flex flex-row mb-1 justify-items-center w-full ml-4 top-6 relative">
                     <h1 class="font-headline text-3xl font-bold tracking-tight text-ctp-text leading-none mr-2 sticky top-0 z-10">${data.title}</h1>
                     <span class="events-location cursor-pointer hover:opacity-70 transition-opacity active:scale-95 z-10" data-booth-id="${data.location}">
                         <span class="material-symbols-outlined text-[12px]">location_on</span>${data.location}
                     </span>
                 </div>
-                <p class="text-ctp-subtext0 font-body text-sm w-full z-10 relative">${data.subtitle || '<br>'}</p>
-                <div class="absolute -left-4 -top-8 w-[calc(100%+var(--spacing)*4)] bg-ctp-base h-28"></div> 
+                <p class="text-ctp-subtext0 font-body text-sm w-full z-10 relative ml-4 top-8">${data.subtitle || '<br>'}</p>        
             </header>
             <div class="events-timeline">
-            `;
+            `;            
 
             const now = new Date();
             const currentMinutes = now.getHours() * 60 + now.getMinutes();

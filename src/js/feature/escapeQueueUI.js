@@ -36,6 +36,13 @@ export function initEscapeQueueUI() {
             target.style.display = 'flex';
             target.style.width = '100%';
         }
+
+        // Handle background general polling for instructions
+        if (screenName === 'instructions') {
+            escapeQueue.startGeneralPolling();
+        } else {
+            escapeQueue.stopGeneralPolling();
+        }
     }
 
     let qValidityInterval = null;
@@ -83,20 +90,23 @@ export function initEscapeQueueUI() {
     }
 
     escapeQueue.setCallbacks({
-        onWaiting: (pos, total) => {
-            const session = escapeQueue.getSession();
-            if (session) {
-                document.getElementById('queue-wait-name').textContent = session.label;
-            }
+        onWaiting: (pos, total, ticketNumber) => {
+            queueModalTitle.textContent = "Your Ticket";
+            queueModalSubtitle.textContent = "Wait for your turn";
+            document.getElementById('queue-ticket-number').textContent = `#${ticketNumber || '--'}`;
             document.getElementById('queue-wait-position').textContent = escapeQueue.ordinal(pos);
-            document.getElementById('queue-wait-ahead').textContent = pos > 1 ? `${pos - 1} people ahead of you` : 'You are next! Please wait to be called.';
+            document.getElementById('queue-wait-time').textContent = `${pos * 15} mins`;
             showQueueScreen('wait');
         },
         onNotified: (notifiedAt) => {
+            queueModalTitle.textContent = "It's your turn!";
+            queueModalSubtitle.textContent = "Head to the booth now";
             showQueueScreen('notified');
             escapeQueue.startCountdown(notifiedAt);
         },
         onExpired: () => {
+            queueModalTitle.textContent = "Session Expired";
+            queueModalSubtitle.textContent = "Your time is up";
             showQueueScreen('expired');
         },
         onRemoved: () => {
@@ -105,6 +115,10 @@ export function initEscapeQueueUI() {
         },
         onTick: (m, s) => {
             document.getElementById('queue-countdown').textContent = `${m}:${s}`;
+        },
+        onGeneralStatus: (total) => {
+            document.getElementById('queue-info-people').textContent = total;
+            document.getElementById('queue-info-wait').textContent = `${total * 15} mins`;
         }
     });
 
@@ -130,7 +144,7 @@ export function initEscapeQueueUI() {
         }
     }
 
-    openQueueBtn.addEventListener('click', () => {
+    openQueueBtn.addEventListener('click', async () => {
         queueModal.style.display = 'block';
         if (window.hideFabButtons) window.hideFabButtons();
         
@@ -146,6 +160,19 @@ export function initEscapeQueueUI() {
             }
         } else {
             showQueueScreen('instructions');
+            try {
+                const res = await fetch(`/queue-api/queue?t=${Date.now()}`);
+                if (res.ok) {
+                    const data = await res.json();
+                    document.getElementById('queue-info-people').textContent = data.total;
+                    document.getElementById('queue-info-wait').textContent = `${data.total * 15} mins`;
+                } else {
+                    throw new Error();
+                }
+            } catch {
+                document.getElementById('queue-info-people').textContent = '-';
+                document.getElementById('queue-info-wait').textContent = 'Queue unavailable';
+            }
         }
     });
 
@@ -170,19 +197,53 @@ export function initEscapeQueueUI() {
             document.getElementById('queue-join-error').textContent = "Please enter your name.";
             return;
         }
+        
+        // Disable button to prevent double-join
+        const btn = document.getElementById('queue-submit-btn');
+        btn.disabled = true;
+        btn.textContent = "Joining...";
+
         const res = await escapeQueue.joinQueue(name);
+        
+        btn.disabled = false;
+        btn.textContent = "Join Queue";
+
         if (!res.success) {
             document.getElementById('queue-join-error').textContent = res.error;
             return;
         }
+
         if (qValidityInterval) clearInterval(qValidityInterval);
+        
+        // Start polling immediately to transition to the wait screen
+        escapeQueue.startPolling(res.data.id);
     });
+
+    const leaveHandler = async () => {
+        if (confirm("Are you sure you want to leave the queue?")) {
+            await escapeQueue.leaveQueue();
+            queueModalTitle.textContent = "Escape Room Queue";
+            queueModalSubtitle.textContent = "Check status or join the line";
+            showQueueScreen('instructions');
+        }
+    };
+
+    document.getElementById('queue-leave-btn').addEventListener('click', leaveHandler);
+    document.getElementById('queue-leave-notified-btn').addEventListener('click', leaveHandler);
+    
+    document.getElementById('queue-back-to-start-btn').addEventListener('click', () => {
+        queueModalTitle.textContent = "Escape Room Queue";
+        queueModalSubtitle.textContent = "Check status or join the line";
+        showQueueScreen('instructions');
+    });
+
 
     const closeHandler = () => {
         queueModal.style.removeProperty('display');
         if (window.showFabButtons) window.showFabButtons();
         stopScanner('queue_qrcode_scanner');
         escapeQueue.stopPolling();
+        escapeQueue.stopGeneralPolling();
         escapeQueue.stopCountdown();
     };
     closeQueueBtn.addEventListener('click', closeHandler);

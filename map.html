@@ -13,7 +13,7 @@
     <title>Funtasia 3D Map</title>
     <link rel="stylesheet" href="/src/css/main.css"/>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&icon_names=arrow_back,celebration,circle,close,directions_run,event,falling,flashlight_off,flashlight_on,hourglass_empty,image,info_i,keyboard,location_on,logout,map,music_note,music_note_2,open_in_new,qr_code_scanner,search,settings,store,swap_vert,theater_comedy,touch_app&display=block" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&icon_names=arrow_back,celebration,circle,close,directions_run,event,falling,flashlight_off,flashlight_on,hourglass_empty,image,info_i,keyboard,location_on,logout,map,music_note,music_note_2,open_in_new,qr_code_scanner,search,settings,store,swap_vert,theater_comedy,timer_off,touch_app&display=block" rel="stylesheet">
     <link href="/src/css/input.css" rel="stylesheet"/>
     <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg"/>
     <link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png"/>
@@ -522,10 +522,22 @@
           <div class="modal-content flex flex-col items-center p-6" id="queue-modal-content">
             
             <!-- Screen 1: Instructions -->
-            <div id="queue-screen-instructions" class="queue-screen active">
-              <span class="material-symbols-outlined text-[64px] text-ctp-mauve mb-4 text-center block">qr_code_scanner</span>
-              <p class="text-center text-ctp-text mb-8">Scan the QR code at the escape room booth to join the virtual queue.</p>
-              <button id="queue-scan-btn" class="queue-action-btn">Scan QR Code</button>
+            <div id="queue-screen-instructions" class="queue-screen active w-full flex-col">
+              <p class="text-center text-ctp-text mb-6">Visit the Escape Room and make payments before joining the queue with the "Join Queue" button below.</p>
+              
+              <div class="bg-ctp-surface0 rounded-lg p-4 mb-6 w-full flex flex-row justify-around border border-ctp-surface2">
+                 <div class="flex flex-col items-center">
+                    <p class="text-ctp-subtext0 text-xs font-bold uppercase tracking-wider mb-1 text-center">Number of<br>People</p>
+                    <p id="queue-info-people" class="text-ctp-mauve text-3xl font-bold">-</p>
+                 </div>
+                 <div class="w-px bg-ctp-surface2"></div>
+                 <div class="flex flex-col items-center">
+                    <p class="text-ctp-subtext0 text-xs font-bold uppercase tracking-wider mb-1 text-center">Estimated<br>Wait Time</p>
+                    <p id="queue-info-wait" class="text-ctp-mauve text-3xl font-bold">-</p>
+                 </div>
+              </div>
+              
+              <button id="queue-scan-btn" class="queue-action-btn w-full">Join Queue</button>
             </div>
 
             <!-- Screen 2: Scanner -->
@@ -554,13 +566,21 @@
 
             <!-- Screen 4: Waiting -->
             <div id="queue-screen-wait" class="queue-screen">
-              <div class="flex flex-col items-center mb-8 w-full">
-                <p id="queue-wait-name" class="text-ctp-subtext1 font-bold mb-4"></p>
-                <div class="text-center">
-                  <p id="queue-wait-position" class="queue-position text-ctp-mauve">--</p>
-                  <p id="queue-wait-ahead" class="text-ctp-subtext1 mt-2">-- people ahead of you</p>
+              <div class="bg-ctp-surface0 rounded-lg p-6 w-full mb-6 border-2 border-dashed border-ctp-surface2">
+                <p class="uppercase font-bold mb-4 text-center text-ctp-subtext0 tracking-widest text-xs">Escape Room Ticket</p>
+                <h2 id="queue-ticket-number" class="text-5xl font-bold text-center text-ctp-mauve mb-6">#--</h2>
+                
+                <div class="flex justify-between items-center mb-4">
+                  <span class="text-ctp-subtext1">Place in queue</span>
+                  <span id="queue-wait-position" class="font-bold text-ctp-text text-xl">--</span>
+                </div>
+                
+                <div class="flex justify-between items-center">
+                  <span class="text-ctp-subtext1">Est. wait time</span>
+                  <span id="queue-wait-time" class="font-bold text-ctp-text text-xl">--</span>
                 </div>
               </div>
+
               <div class="flex items-center justify-center gap-2 text-ctp-text mb-8">
                 <span class="material-symbols-outlined animate-[spin_2s_ease-in-out_infinite] text-[20px]">hourglass_empty</span>
                 <span>Waiting for your turn...</span>
@@ -574,6 +594,7 @@
               <h2 class="text-2xl font-bold text-ctp-text text-center mb-6">It's your turn!</h2>
               <p class="text-ctp-subtext1 text-center mb-4">Head to the escape room booth. You have:</p>
               <p id="queue-countdown" class="queue-countdown text-ctp-red text-center mb-8">05:00</p>
+              <button id="queue-leave-notified-btn" class="queue-leave-btn w-full">Leave Queue</button>
             </div>
 
             <!-- Screen 6: Expired -->
@@ -602,6 +623,12 @@
             cookieStore.set("firstRunDone", "flag{y0u_f0und_m3!}")
           }
       })
+      
+    </script>
+
+    <script type="module">
+      import { initEscapeQueueUI } from '/src/js/feature/escapeQueueUI.js';
+      initEscapeQueueUI();
     </script>
 
     <script type="module">
@@ -609,7 +636,6 @@
       import { Navigation } from '/src/js/events/navigation.js';
       import { QRMarker } from '/src/js/marker/qrmarker.js';
       import { showToast, storeAndHideBottomSheet, reopenStoredBottomSheet, clearStoredBottomSheet } from '/src/js/ui_ux/ui.js';
-      import { initEscapeQueueUI } from '/src/js/feature/escapeQueueUI.js';
       const openDirBtn = document.getElementById('open-directory-btn');
       const closeDirBtn = document.getElementById('close-directory-btn');
       const dirModal = document.getElementById('directory-modal-wrapper');
@@ -783,7 +809,6 @@
         clearTextInputs();
       });
 
-      initEscapeQueueUI();
 
       // QR / Text Toggles
       qrToggleBtn.addEventListener('click', () => {

@@ -7,6 +7,7 @@ const FIVE_MINUTES = 5 * 60 * 1000;
 const POLL_MS = 1500;
 
 let pollTimer = null;
+let generalPollTimer = null;
 let countdownTimer = null;
 let lastStatus = null;
 let currentToken = null;
@@ -17,7 +18,8 @@ let uiCallbacks = {
   onNotified: () => {},
   onExpired: () => {},
   onRemoved: () => {},
-  onTick: () => {}
+  onTick: () => {},
+  onGeneralStatus: () => {}
 };
 
 /**
@@ -153,6 +155,33 @@ export function stopPolling() {
   pollTimer = null;
 }
 
+/**
+ * Start polling general queue status (e.g. for instructions screen)
+ */
+export function startGeneralPolling() {
+  if (generalPollTimer) clearInterval(generalPollTimer);
+  // Poll every 3 minutes as requested
+  generalPollTimer = setInterval(pollGeneral, 0.5 * 60 * 1000);
+  pollGeneral();
+}
+
+export function stopGeneralPolling() {
+  if (generalPollTimer) clearInterval(generalPollTimer);
+  generalPollTimer = null;
+}
+
+async function pollGeneral() {
+  try {
+    const res = await fetch(`/queue-api/queue?t=${Date.now()}`, { cache: "no-store" });
+    if (res.ok) {
+      const data = await res.json();
+      uiCallbacks.onGeneralStatus(data.total);
+    }
+  } catch (e) {
+    console.warn("Failed to fetch general queue status", e);
+  }
+}
+
 async function poll(id) {
   let res, data;
   try {
@@ -192,7 +221,7 @@ async function poll(id) {
   }
 
   // Still waiting
-  uiCallbacks.onWaiting(data.position, data.total);
+  uiCallbacks.onWaiting(data.position, data.total, data.ticketNumber);
 }
 
 /**
@@ -261,8 +290,5 @@ export function clearSession() {
  * Helper to format positions
  */
 export function ordinal(n) {
-  if (n === 1) return "1st — you're next!";
-  if (n === 2) return "2nd";
-  if (n === 3) return "3rd";
-  return `${n}th`;
+  return `#${n}`;
 }

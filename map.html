@@ -13,7 +13,7 @@
     <title>Funtasia 3D Map</title>
     <link rel="stylesheet" href="/src/css/main.css"/>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&icon_names=album,arrow_back,celebration,chevron_right,circle,close,directions_run,event,falling,festival,flashlight_off,flashlight_on,hourglass_empty,image,info_i,keyboard,location_on,logout,map,mic_external_on,music_note,music_note_2,open_in_new,qr_code_scanner,rock_and_roll,search,settings,store,swap_vert,theater_comedy,timer_off,touch_app&display=block" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&icon_names=album,arrow_back,celebration,chevron_right,circle,close,directions_run,event,falling,festival,flashlight_off,flashlight_on,hourglass_empty,image,info_i,keyboard,location_on,logout,map,mic_external_on,music_note,music_note_2,open_in_new,qr_code_scanner,search,settings,store,swap_vert,theater_comedy,timer_off,touch_app&display=block" rel="stylesheet">
     <link href="/src/css/input.css" rel="stylesheet"/>
     <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg"/>
     <link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png"/>
@@ -215,7 +215,7 @@
                   </div>
                   <div class="info-btn-desc">
                     <span class="info-btn-title">Directory</span>
-                    <span class="info-btn-caption">Browse and search all booths by level or tag.</span>
+                    <span class="info-btn-caption">Browse and find booths by searching and filtering by tags.</span>
                   </div>
                 </div>
 
@@ -263,7 +263,17 @@
                     <span class="info-btn-caption">Click/slide the numbers to switch levels. The highlighted level represents the current level</span>
                   </div>
                 </div>
-              
+
+                <div class="info-btn-row">
+                  <div class="info-btn-preview">
+                    <span class="material-symbols-outlined" style="font-size: 22px;">location_on</span>
+                  </div>
+                  <div class="info-btn-desc">
+                    <span class="info-btn-title">Location Marker (You Are Here!)</span>
+                    <span class="info-btn-caption">The location marker shows the location of the last location QR code scanned</span>
+                  </div>
+                </div>
+
               </div>
             </div>
 
@@ -614,16 +624,14 @@
 
     <script>
       // Allow info modal wrapper to appear before loading of all other js, which alows background loading WOAH
-      cookieStore.get("firstRunDone")
-        .then(val => {
-          if (!val) {
-            document.querySelectorAll(".fab-btn").forEach(btn => {
-              btn.style.display = 'none';
-            });
-            document.getElementById('info-modal-wrapper').style.display = 'flex';
-            cookieStore.set("firstRunDone", "flag{y0u_f0und_m3!}")
-          }
-      })
+      console.log((new URLSearchParams(window.location.search)).get("t"))
+      if (!(new URLSearchParams(window.location.search)).get("t") && !localStorage.getItem("firstRunDone")) {
+        document.querySelectorAll(".fab-btn").forEach(btn => {
+          btn.style.display = 'none';
+        });
+        document.getElementById('info-modal-wrapper').style.display = 'flex';
+        localStorage.setItem("firstRunDone", "flag{y0u_f0und_m3!}");
+      }
       
     </script>
 

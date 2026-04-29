@@ -67,7 +67,7 @@ export async function switchEventCategory(category) {
                 eventsListContainer.innerHTML = '<p class="text-center opacity-50 py-10">No events scheduled in this category.</p>';
                 return;
             }
-            let eventID = "events-item-" + (index + 1)
+            const eventID = "events-item-" + (index + 1)
             // html += `
             // <header id="${eventID}" class="mb-12 w-full text-left sticky top-0 left-[-12] bg-ctp-base text-ctp-base z-20">
             //     <div class="flex flex-row mb-1 justify-items-center w-full">
@@ -100,14 +100,14 @@ export async function switchEventCategory(category) {
 
             let isAllPast = true;
 
-            data.events.forEach((ev, index) => {
+            data.events.forEach((ev, ev_no) => {
                 const evMins = parseTimeToMinutes(ev.time);
                 let nextEvMins = Infinity;
                 
                 if (ev.endTime) {
                     nextEvMins = parseTimeToMinutes(ev.endTime);
                 } else {
-                    for (let i = index + 1; i < data.events.length; i++) {
+                    for (let i = ev_no + 1; i < data.events.length; i++) {
                         if (data.events[i].time) {
                             nextEvMins = parseTimeToMinutes(data.events[i].time);
                             break;
@@ -115,7 +115,7 @@ export async function switchEventCategory(category) {
                     }
                 }
 
-                let status = 'future';
+                let status;
                 if (currentMinutes >= nextEvMins) {
                     status = 'past';
                 } else if (currentMinutes >= evMins && currentMinutes < nextEvMins) {
@@ -195,8 +195,19 @@ export async function switchEventCategory(category) {
             });
 
             // End Node
-            const endNodeColor = isAllPast ? 'bg-ctp-mauve shadow-[0_0_10px_var(--color-ctp-mauve)]' : 'bg-ctp-surface2';
-            const endTextColor = isAllPast ? 'text-ctp-text font-bold' : 'text-ctp-subtext0';
+            let nextEvMins = Infinity;
+            
+            for (let i = index + 1; i < data_arr.length; i++) {
+                if (data_arr[i].events && data_arr[i].events.length > 0 && data_arr[i].events[0].time) {
+                    nextEvMins = parseTimeToMinutes(data_arr[i].events[0].time);
+                    break;
+                }
+            }
+
+            const isNotNextEvent = currentMinutes < nextEvMins
+            const endNodeColor = isAllPast && isNotNextEvent ? 'bg-ctp-mauve shadow-[0_0_10px_var(--color-ctp-mauve)]' : 'bg-ctp-surface2';
+            const endTextColor = isAllPast && isNotNextEvent ? 'text-ctp-text font-bold' : 'text-ctp-subtext0';
+
             
             html += `
                 <div class="relative w-full">

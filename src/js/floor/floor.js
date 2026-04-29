@@ -32,6 +32,7 @@ export class Floor {
 
     this.sceneModel = null;
     this.interactiveObjects = [];
+    this.textMarkers = [];
     
     // Register self
     Floor.registerFloor(this);
@@ -63,7 +64,7 @@ export class Floor {
     const gltf = await loadModel(this.modelPath);
     const parsingId = this.parentFloorId || this.id;
     const result = parseModel(gltf, this.id, appState.scene, funtasiaData, parsingId);
-    this.attachParsedData(result.model, result.interactiveObjects, result.cameraConfig);
+    this.attachParsedData(result.model, result.interactiveObjects, result.cameraConfig, result.textMarkers);
     
     window.dispatchEvent(new CustomEvent("floorReady", { detail: { floorId: this.id } }));
     console.log(`[Floor] Parsed ${this.id}: ${result.interactiveObjects.length} interactive meshes.`);
@@ -79,6 +80,7 @@ export class Floor {
     }
 
     this.sceneModel.visible = true;
+    this.textMarkers.forEach(tm => { if (tm.group) tm.group.visible = true; });
 
     // Apply specific camera config 
     controls.target.copy(this.cameraConfig.target);
@@ -103,15 +105,17 @@ export class Floor {
   hide() {
     if (this.isLoaded()) {
       this.sceneModel.visible = false;
+      this.textMarkers.forEach(tm => { if (tm.group) tm.group.visible = false; });
     }
   }
 
   /**
    * Populates the internal state after the GLTF model is parsed.
    */
-  attachParsedData(model, interactiveObjects, cameraConfig) {
+  attachParsedData(model, interactiveObjects, cameraConfig, textMarkers = []) {
     this.sceneModel = model;
     this.interactiveObjects = interactiveObjects;
     this.cameraConfig = cameraConfig;
+    this.textMarkers = textMarkers;
   }
 }

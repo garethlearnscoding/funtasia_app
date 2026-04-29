@@ -4,15 +4,23 @@ import { Icon } from "@/js/marker/icon.js";
 import { QRMarker } from "@/js/marker/qrmarker.js";
 import { TextMarker } from "@/js/marker/textmarker.js";
 
+// Add names of interactive objects here to display a TextMarker above them
 export const textMarkerMap = {
-  l1:{
+  l1: {
     "Canteen": "Canteen",
     "Amphi": "Amphitheatre",
+    "Atrium": "Atrium",
+    "None": "Lobby"
   },
-  l2:{
-  "None":"Field",
+  l2: {
+  "Hall": "Hall",
+  "LT5": "LT5",
+  "LT1": "LT1",
+  },
+  b3: {
+    "None": "Field",
+    "ISH": "ISH"
   }
-  // Add names of interactive objects here to display a TextMarker above them
 };
 
 function getColor(colorName) {
@@ -149,6 +157,8 @@ export function parseModel(gltf, floorId, scene, funtasiaData, dataFloorId = flo
   };
 
   const objects = [];
+  const textMarkers = [];
+  const markerNames = new Set();
   model.updateMatrixWorld(true);
   console.log(model)
   model.traverse((child) => {
@@ -164,14 +174,18 @@ export function parseModel(gltf, floorId, scene, funtasiaData, dataFloorId = flo
       }
       child.userData.logicalParent = logicalNode;
     } else {
-      console.log("Hello")
-      if (textMarkerMap[floorId] && logicalNode.name in textMarkerMap[floorId]) {
-        const box = new THREE.Box3().setFromObject(child);
-        // const size = box.getSize(new THREE.Vector3());
+    }
+
+    // Add TextMarker if the logical node's name is in the textMarkerMap
+    if (textMarkerMap[floorId] && logicalNode.name in textMarkerMap[floorId]) {
+      if (!markerNames.has(logicalNode.name)) {
         const pos = child.getWorldPosition(new THREE.Vector3());
-        pos.y = (0);
-        new TextMarker(scene, pos, textMarkerMap[floorId][child.name], floorId);
-      };
+        pos.y = 0;
+        const tm = new TextMarker(scene, pos, textMarkerMap[floorId][logicalNode.name]);
+        if (tm.group) tm.group.visible = false;
+        textMarkers.push(tm);
+        markerNames.add(logicalNode.name);
+      }
     }
 
     if (child.userData.ROLE === undefined) return;
@@ -253,8 +267,7 @@ export function parseModel(gltf, floorId, scene, funtasiaData, dataFloorId = flo
         });
         child.userData.material = child.material;
       }
-      return
-    };
+    }
 
     if (child.userData.ZONE === "NONE") return;
     const lookupName = logicalNode.name;
@@ -282,5 +295,5 @@ export function parseModel(gltf, floorId, scene, funtasiaData, dataFloorId = flo
     }
   });
   
-  return { model, interactiveObjects: objects, cameraConfig };
+  return { model, interactiveObjects: objects, cameraConfig, textMarkers };
 }

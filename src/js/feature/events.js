@@ -71,13 +71,13 @@ export async function switchEventCategory(category) {
             html += `
             <header id="${eventID}" class="mb-12 w-full text-left sticky top-0 left-[-12] bg-ctp-base text-ctp-base">
                 <div class="flex flex-row mb-1 justify-items-center w-full">
-                    <h1 class="font-headline text-3xl font-bold tracking-tight text-ctp-text leading-none mr-2 sticky top-0">${data.title}</h1>
-                    <span class="events-location cursor-pointer hover:opacity-70 transition-opacity active:scale-95" data-booth-id="${data.location}">
+                    <h1 class="font-headline text-3xl font-bold tracking-tight text-ctp-text leading-none mr-2 sticky top-0 z-10">${data.title}</h1>
+                    <span class="events-location cursor-pointer hover:opacity-70 transition-opacity active:scale-95 z-10" data-booth-id="${data.location}">
                         <span class="material-symbols-outlined text-[12px]">location_on</span>${data.location}
                     </span>
                 </div>
-                <p class="text-ctp-subtext0 font-body text-sm w-full">${data.subtitle || '<br>'}</p>
-                <div class="absolute -left-4 -top-8 w-[calc(100%+var(--spacing)*4)] bg-ctp-base -z-10 h-28"></div> 
+                <p class="text-ctp-subtext0 font-body text-sm w-full z-10 relative">${data.subtitle || '<br>'}</p>
+                <div class="absolute -left-4 -top-8 w-[calc(100%+var(--spacing)*4)] bg-ctp-base h-28"></div> 
             </header>
             <div class="events-timeline">
             `;
@@ -159,9 +159,9 @@ export async function switchEventCategory(category) {
                 let songsHtml = "";
                 if (ev.songs) {
                     ev.songs.forEach(song => {
-                        songsHtml += `<span class="bg-transparent px-3 py-1 my-2 rounded-full font-label text-[12px] uppercase tracking-widest flex items-center gap-1 w-fit">
-                    <span class="material-symbols-outlined text-[12px]">music_note</span>
-                    ${song}
+                        songsHtml += `<span class="bg-transparent px-3 py-1 my-2 rounded-full font-label text-[12px] tracking-widest flex items-center gap-1 w-fit">
+                    <span class="material-symbols-outlined text-[12px]">${song.icon ? song.icon : "music_note"}</span>
+                    <span class="uppercase">${song.title}</span><p>&nbsp;by&nbsp;</p><span class="capitalize">${song.author}</span>
                   </span>`
                     })
                 }

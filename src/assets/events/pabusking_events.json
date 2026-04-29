@@ -8,12 +8,12 @@
       "time": "1630",
       "title": "Weyoung",
       "songs": [
-        "愛錯 by Wang Leehom",
-        "⁠夜空中最亮的星 by Escape Plan",
-        "Everybody Talks by Neon Trees",
-        "太陽與地球 by Crowd Lu",
-        "Out of My League by Fitz and the Tantrums",
-        "Until I Found You (Em Beihold version) by Stephen Sanchez and Em Beihold"
+        { "title": "愛錯", "author": "Wang Leehom", "icon": "mic_external_on" },
+        { "title": "⁠夜空中最亮的星", "author": "Escape Plan" },
+        { "title": "Everybody Talks", "author": "Neon Trees" },
+        { "title": "太陽與地球", "author": "Crowd Lu" },
+        { "title": "Out of My League", "author": "Fitz and the Tantrums" },
+        { "title": "Until I Found You (Em Beihold version)", "author": "Stephen Sanchez and Em Beihold", "icon": "mic_external_on" }
       ]
     },
     {
@@ -21,21 +21,21 @@
       "title": "Nunyuh Business",
       "link": {"link": "https://www.instagram.com/its.nunyuhbusiness/", "text": "Instagram"},
       "songs": [
-        "That Should Be Me by Justin Bieber",
-        "Sorry by Justin Bieber",
-        "Yummy by Justin Bieber",
-        "Beauty and a Beat by Justin Bieber",
-        "Baby by Justin Bieber",
-        "Daisies by Justin Bieber"
+        { "title": "That Should Be Me", "author": "Justin Bieber", "icon": "mic_external_on" },
+        { "title": "Sorry", "author": "Justin Bieber", "icon": "mic_external_on" },
+        { "title": "Yummy", "author": "Justin Bieber", "icon": "mic_external_on" },
+        { "title": "Beauty and a Beat", "author": "Justin Bieber", "icon": "mic_external_on" },
+        { "title": "Baby", "author": "Justin Bieber", "icon": "mic_external_on" },
+        { "title": "Daisies", "author": "Justin Bieber", "icon": "mic_external_on" }
       ]
     },
     {
       "time": "1740",
       "title": "Phyllis Lim",
       "songs": [
-        "Dreams by The Cranberries",
-        "Blade Bird by Oklou",
-        "Skinshine by Phyllzx"
+        { "title": "Dreams", "author": "The Cranberries" },
+        { "title": "Blade Bird", "author": "Oklou" },
+        { "title": "Skinshine", "author": "Phyllzx" }
       ]
     },
     {
@@ -43,24 +43,24 @@
       "title": "Blueforms",
       "link": {"link":"https://www.instagram.com/theblueforms/", "text": "Instagram"},
       "songs": [
-        "UNAPPROVED: Kilby Girl by The Backseat Lovers",
-        "Forget You by CeeLo Green",
-        "Creep by Radiohead",
-        "Don't Stop Me Now by Queen",
-        "Don't Look Back in Anger by Oasis",
-        "Kiss You by One Direction",
-        "Put Your Records On by Corinne Bailey Rae"
+        {"title": "UNAPPROVED: Kilby Girl", "author": "The Backseat Lovers"},
+        { "title": "Forget You", "author": "CeeLo Green", "icon": "mic_external_on" },
+        { "title": "Creep", "author": "Radiohead" },
+        { "title": "Don't Stop Me Now", "author": "Queen" },
+        { "title": "Don't Look Back in Anger", "author": "Oasis" },
+        { "title": "Kiss You", "author": "One Direction", "icon": "mic_external_on" },
+        { "title": "Put Your Records On", "author": "Corinne Bailey Rae", "icon": "album" }
       ]
     },
     {
       "time": "1830",
       "title": "Updawg",
       "songs": [
-        "Kiss Me by Sixpence None The Richer",
-        "Every Summertime by NIKI",
-        "September by Earth, Wind and Fire",
-        "Everybody Talks by The Neon Trees",
-        "Shut Up And Dance by Walk The Moon"
+        { "title": "Kiss Me", "author": "Sixpence None The Richer" },
+        { "title": "Every Summertime", "author": "NIKI", "icon": "mic_external_on" },
+        { "title": "September", "author": "Earth, Wind and Fire", "icon": "album" },
+        { "title": "Everybody Talks", "author": "The Neon Trees" },
+        { "title": "Shut Up And Dance", "author": "Walk The Moon" }
       ]
     },
     {
@@ -68,23 +68,23 @@
       "title": "Thaarmin",
       "link": {"link": "https://linktr.ee/thaarmin/", "text": "Linktree"},
       "songs": [
-        "Circles by Thaarmin",
-        "Bird of a Feather (Billie Eilish Cover) ",
-        "UNAPPROVED: Secrets of your Scars by Thaarmin",
-        "Roll the Dice by Thaarmin"
+        { "title": "Circles", "author": "Thaarmin", "icon": "mic_external_on" },
+        { "title": "Bird of a Feather", "author": "Billie Eilish", "icon": "mic_external_on" },
+        { "title": "UNAPPROVED: Secrets of your Scars", "author": "Thaarmin", "icon": "mic_external_on" },
+        { "title": "Roll the Dice", "author": "Thaarmin", "icon": "mic_external_on" }
       ]
     },
     {
       "time": "1920",
       "title": "Mirage!",
       "songs": [
-        "Helena by My Chemical Romance",
-        "Boulevard of Broken Dreams by Green Day",
-        "I Don't Love You by My Chemical Romance",
-        "My Hero by Foo Fighters",
-        "You Give Love a Bad Name by Bon Jovi",
-        "海阔天空 by Beyond",
-        "Just The Way You Are by Bruno Mars"
+        { "title": "Helena", "author": "My Chemical Romance" },
+        { "title": "Boulevard of Broken Dreams", "author": "Green Day" },
+        { "title": "I Don't Love You", "author": "My Chemical Romance" },
+        { "title": "My Hero", "author": "Foo Fighters" },
+        { "title": "You Give Love a Bad Name", "author": "Bon Jovi" },
+        { "title": "海阔天空", "author": "Beyond" },
+        { "title": "Just The Way You Are", "author": "Bruno Mars", "icon": "mic_external_on" }
       ]
     }
   ]

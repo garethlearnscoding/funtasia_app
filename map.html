@@ -859,7 +859,7 @@
               
               // Fallback: If exact match fails, check if there's a marker that counts as a "match" (e.g. l1-m2-tc)
               // (Checking against the current floor's markers if loaded)
-              const fuzzyMatch = Object.keys(QRMarker.allMarkers).find(id => id.startsWith(qrID));
+              const fuzzyMatch = Object.keys(QRMarker.allMarkers).find(id => id.startsWith(qrID + '-'));
               if (fuzzyMatch) {
                 targetID = fuzzyMatch;
               }

@@ -624,16 +624,14 @@
 
     <script>
       // Allow info modal wrapper to appear before loading of all other js, which alows background loading WOAH
-      cookieStore.get("firstRunDone")
-        .then(val => {
-          if (!val) {
-            document.querySelectorAll(".fab-btn").forEach(btn => {
-              btn.style.display = 'none';
-            });
-            document.getElementById('info-modal-wrapper').style.display = 'flex';
-            cookieStore.set("firstRunDone", "flag{y0u_f0und_m3!}")
-          }
-      })
+      console.log((new URLSearchParams(window.location.search)).get("t"))
+      if (!(new URLSearchParams(window.location.search)).get("t") && !localStorage.getItem("firstRunDone")) {
+        document.querySelectorAll(".fab-btn").forEach(btn => {
+          btn.style.display = 'none';
+        });
+        document.getElementById('info-modal-wrapper').style.display = 'flex';
+        localStorage.setItem("firstRunDone", "flag{y0u_f0und_m3!}");
+      }
       
     </script>
 

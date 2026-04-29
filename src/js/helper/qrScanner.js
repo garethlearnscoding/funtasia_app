@@ -222,7 +222,11 @@ export async function startScanner(successCallback, elementId = "qrcode_scanner"
         return;
     }
 
-    const qrFlashBtn = document.getElementById('qr-flash-btn');
+    const isQueue = elementId === "queue_qrcode_scanner";
+    const flashBtnId = isQueue ? 'queue-qr-flash-btn' : 'qr-flash-btn';
+    const flashIconId = isQueue ? 'queue-qr-flash-icon' : 'qr-flash-icon';
+
+    const qrFlashBtn = document.getElementById(flashBtnId);
     if (qrFlashBtn) {
         qrFlashBtn.innerHTML = `<span class="material-symbols-outlined text-[20px] animate-spin">hourglass_empty</span> Finding camera...`;
         qrFlashBtn.disabled = true;
@@ -250,7 +254,7 @@ export async function startScanner(successCallback, elementId = "qrcode_scanner"
             qrFlashBtn.disabled = true;
         } else {
             qrFlashBtn.disabled = false;
-            qrFlashBtn.innerHTML = `<span class="material-symbols-outlined text-[20px]" id="qr-flash-icon">flashlight_off</span> Toggle Flash`;
+            qrFlashBtn.innerHTML = `<span class="material-symbols-outlined text-[20px]" id="${flashIconId}">flashlight_off</span> Toggle Flash`;
         }
     }
 
@@ -285,7 +289,7 @@ export async function startScanner(successCallback, elementId = "qrcode_scanner"
                 }
 
                 if (torchOn && torchSupported && qrFlashBtn) {
-                    const icon = document.getElementById('qr-flash-icon');
+                    const icon = document.getElementById(flashIconId);
                     if (icon) icon.textContent = 'flashlight_on';
                     qrFlashBtn.style.background = torchOnColor;
                 }
@@ -293,7 +297,7 @@ export async function startScanner(successCallback, elementId = "qrcode_scanner"
                 track.addEventListener('mute', () => {
                     torchOn = false;
                     if (torchSupported && qrFlashBtn) {
-                        const icon = document.getElementById('qr-flash-icon');
+                        const icon = document.getElementById(flashIconId);
                         if (icon) icon.textContent = 'flashlight_off';
                         qrFlashBtn.style.background = torchOffColor;
                     }
@@ -350,9 +354,13 @@ export async function stopScanner(elementId = "qrcode_scanner") {
 
     torchOn = false;
 
-    const qrFlashBtn = document.getElementById('qr-flash-btn');
+    const isQueue = elementId === "queue_qrcode_scanner";
+    const flashBtnId = isQueue ? 'queue-qr-flash-btn' : 'qr-flash-btn';
+    const flashIconId = isQueue ? 'queue-qr-flash-icon' : 'qr-flash-icon';
+
+    const qrFlashBtn = document.getElementById(flashBtnId);
     if (qrFlashBtn && torchSupported) {
-        const qrFlashIcon = document.getElementById('qr-flash-icon');
+        const qrFlashIcon = document.getElementById(flashIconId);
         if (qrFlashIcon) qrFlashIcon.textContent = 'flashlight_off';
         qrFlashBtn.style.background = torchOffColor;
     }
@@ -367,14 +375,16 @@ export async function stopScanner(elementId = "qrcode_scanner") {
 // toggleTorch — identical to original
 // ─────────────────────────────────────────────────────────────────────────────
 
-export async function toggleTorch(buttonElement) {
+export async function toggleTorch(buttonElement, elementId = "qrcode_scanner") {
     if (!html5QrCode || !html5QrCode.isScanning || !torchSupported) {
         console.warn("Scanner is not running or torch unsupported. Cannot toggle torch.");
         return;
     }
 
-    const iconElement = document.getElementById('qr-flash-icon');
-    const videoElement = document.querySelector('#qrcode_scanner video');
+    const isQueue = elementId === "queue_qrcode_scanner";
+    const flashIconId = isQueue ? 'queue-qr-flash-icon' : 'qr-flash-icon';
+    const iconElement = document.getElementById(flashIconId);
+    const videoElement = document.querySelector(`#${elementId} video`);
     if (!videoElement || !videoElement.srcObject) return;
 
     const track = videoElement.srcObject.getVideoTracks()[0];

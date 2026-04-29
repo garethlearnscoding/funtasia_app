@@ -1,5 +1,5 @@
 import * as escapeQueue from '@/js/helper/escapeQueue.js';
-import { startScanner, stopScanner } from '@/js/helper/qrScanner.js';
+import { startScanner, stopScanner, toggleTorch } from '@/js/helper/qrScanner.js';
 import { showToast } from '@/js/ui_ux/ui.js';
 
 /**
@@ -180,6 +180,18 @@ export function initEscapeQueueUI() {
         queueModalTitle.textContent = "Scan QR";
         queueModalSubtitle.textContent = "Scan the booth QR code";
         document.getElementById('queue-scan-error').textContent = '';
+        showQueueScreen('scanner');
+        startScanner(handleQueueQRScanned, 'queue_qrcode_scanner');
+    });
+
+    document.getElementById('queue-qr-flash-btn').addEventListener('click', (e) => {
+        toggleTorch(e.currentTarget, 'queue_qrcode_scanner');
+    });
+
+    document.getElementById('queue-back-to-scanner-btn').addEventListener('click', () => {
+        if (qValidityInterval) clearInterval(qValidityInterval);
+        queueModalTitle.textContent = "Scan QR";
+        queueModalSubtitle.textContent = "Scan the booth QR code";
         showQueueScreen('scanner');
         startScanner(handleQueueQRScanned, 'queue_qrcode_scanner');
     });

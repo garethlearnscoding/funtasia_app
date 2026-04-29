@@ -490,7 +490,7 @@
               <div id="qrcode_scanner" class="qr-scanner-container">
                 <span class="material-symbols-outlined" style="font-size: 48px; opacity: 0.4;">qr_code_scanner</span>
               </div>
-              <button id="qr-flash-btn">
+              <button id="qr-flash-btn" class="qr-flash-btn">
                 <span class="material-symbols-outlined text-[20px]" id="qr-flash-icon">flashlight_off</span>
                 Toggle Flash
               </button>
@@ -563,11 +563,21 @@
               <div id="queue_qrcode_scanner" class="qr-scanner-container mx-auto">
                 <span class="material-symbols-outlined" style="font-size: 48px; opacity: 0.4;">qr_code_scanner</span>
               </div>
+              <button id="queue-qr-flash-btn" class="qr-flash-btn">
+                <span class="material-symbols-outlined text-[20px]" id="queue-qr-flash-icon">flashlight_off</span>
+                Toggle Flash
+              </button>
               <p id="queue-scan-error" class="queue-error-text mt-4 text-center"></p>
             </div>
 
             <!-- Screen 3: Join -->
             <div id="queue-screen-join" class="queue-screen">
+              <div class="w-full flex items-center mb-4">
+                <button id="queue-back-to-scanner-btn" class="flex items-center gap-2 text-ctp-mauve font-bold">
+                  <span class="material-symbols-outlined">arrow_back</span>
+                  Back
+                </button>
+              </div>
               <p id="queue-token-timer" class="queue-token-timer text-center w-full mb-6 text-ctp-subtext1 font-bold"></p>
               <p class="uppercase font-bold mb-3 text-center w-full" style="font-size: 11px; letter-spacing: 0.1em;">Enter your name</p>
               <input type="text" id="queue-name-input" class="queue-name-input w-full mb-6" placeholder="Your Name" autocomplete="off" />
@@ -848,7 +858,7 @@
       // Flash Toggle Logic
       if (qrFlashBtn) {
         qrFlashBtn.addEventListener('click', () => {
-          toggleTorch(qrFlashBtn, qrFlashIcon);
+          toggleTorch(qrFlashBtn);
         });
       }
 

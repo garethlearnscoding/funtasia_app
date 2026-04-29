@@ -481,7 +481,7 @@ body {
   border-radius: 16px !important;
 }
 
-#qr-flash-btn {
+.qr-flash-btn {
   width: 100%; 
   max-width: 300px; 
   padding: 14px; 

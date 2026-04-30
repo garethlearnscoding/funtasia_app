@@ -38,15 +38,18 @@ export function applySelection(target, appState) {
 
   if (appState.selected) {
     const baseColor = new THREE.Color(zoneColours[appState.selected.userData.ZONE]);
-    const emissiveColor = baseColor.clone().multiplyScalar(2);
-    const highlightMaterial = new THREE.MeshBasicMaterial({
-      color: emissiveColor,
-    });
+
+    const wallHighlightColor = baseColor.clone().multiplyScalar(1.4); // Slightly brighter for walls
+    const topHighlightColor = baseColor.clone().multiplyScalar(1.6);  // More pronounced for tops
+
+    const wallHighlightMaterial = new THREE.MeshBasicMaterial({color: wallHighlightColor,});
+    const topHighlightMaterial = new THREE.MeshBasicMaterial({color: topHighlightColor,});
 
     // Apply highlight to all mesh children
     appState.selected.traverse((child) => {
       if (child.isMesh && child.userData.material) {
-        child.material = highlightMaterial;
+        // Determine if the child mesh represents a wall ('_1') or a top ('_2') face
+        child.material = child.name.endsWith('_1') ? wallHighlightMaterial : topHighlightMaterial;
       }
     });
   }

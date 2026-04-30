@@ -23,14 +23,17 @@ const zoneColorMap = {
 const tagColorMap = {
   Game:        "var(--color-ctp-blue)",
   Performance: "var(--color-ctp-mauve)", 
-  Acad:        "var(--color-ctp-teal)",
-  Food:        "var(--color-ctp-red)", 
+  Academic:    "var(--color-ctp-teal)",
+  Food:        "var(--color-ctp-maroon)", 
   Drinks:      "var(--color-ctp-sky)",
   Merch:       "var(--color-ctp-peach)", 
   Photos:      "var(--color-ctp-pink)",
   Info:        "var(--color-ctp-sapphire)",
   Tickets:     "var(--color-ctp-flamingo)",
   Services:    "var(--color-ctp-green)",
+  CCA:         "var(--color-ctp-lavender)",
+  "First Aid": "var(--color-ctp-red)",
+  "Glam Up":   "var(--color-ctp-rosewater)"
 };
 
 const fallbackTagColor = "#6b7280"; // gray-500

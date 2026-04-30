@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import { loadModel } from "@/js/floor/modelLoader.js";
 import { parseModel } from "@/js/floor/modelParser.js";
+import { TextMarker } from "@/js/marker/textmarker.js";
 
 export class Floor {
   // Static class attributes initialized in main.js
@@ -80,7 +81,9 @@ export class Floor {
     }
 
     this.sceneModel.visible = true;
-    this.textMarkers.forEach(tm => { if (tm.group) tm.group.visible = true; });
+    
+    // Notify TextMarker system of the active level to sync visibility
+    TextMarker.setLevel(this.id);
 
     // Apply specific camera config 
     controls.target.copy(this.cameraConfig.target);

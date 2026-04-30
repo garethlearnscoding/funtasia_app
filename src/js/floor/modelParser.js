@@ -159,6 +159,10 @@ export function parseModel(gltf, floorId, scene, funtasiaData, dataFloorId = flo
   const objects = [];
   const textMarkers = [];
   const markerNames = new Set();
+
+  // Normalize floor lookup key to match the lowercase keys in textMarkerMap
+  const floorKey = floorId.toLowerCase();
+
   model.updateMatrixWorld(true);
   console.log(model)
   model.traverse((child) => {
@@ -175,11 +179,11 @@ export function parseModel(gltf, floorId, scene, funtasiaData, dataFloorId = flo
       child.userData.logicalParent = logicalNode;
     }
     // Add TextMarker if the logical node's name is in the textMarkerMap
-    if (textMarkerMap[floorId] && logicalNode.name in textMarkerMap[floorId]) {
+    if (child.isMesh && textMarkerMap[floorKey] && logicalNode.name in textMarkerMap[floorKey]) {
       if (!markerNames.has(logicalNode.name)) {
         const pos = child.getWorldPosition(new THREE.Vector3());
         pos.y = 0;
-        const tm = new TextMarker(scene, pos, textMarkerMap[floorId][logicalNode.name]);
+        const tm = new TextMarker(scene, pos, textMarkerMap[floorKey][logicalNode.name], floorId);
         if (tm.group) tm.group.visible = false;
         textMarkers.push(tm);
         markerNames.add(logicalNode.name);

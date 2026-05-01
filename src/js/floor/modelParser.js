@@ -49,6 +49,7 @@ const zoneSchema = {
   "PURPLE": '--color-ctp-mauve',
   "YELLOW": '--color-ctp-yellow',
   "RED":    '--color-ctp-red',
+  "BROWN":  '--color-ctp-flamingo-900',
 };
 
 // Maps for runtime color lookup, initialized with static colors.

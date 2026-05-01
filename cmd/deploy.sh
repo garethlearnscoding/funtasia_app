@@ -15,10 +15,12 @@ fi
 cd "$(git rev-parse --show-toplevel)"
 
 git checkout main
+git pull
 
 npm run build
 
 git checkout gh-pages
+git pull 
 
 # Remove all tracked files except CNAME
 git rm -r .

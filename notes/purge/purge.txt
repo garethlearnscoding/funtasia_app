@@ -1,9 +1,0 @@
-https://cdn.jsdelivr.net/gh/garethlearnscoding/funtasia_assets@main/models/v5-30-4/njc-l1-v5-30-4.glb
-https://cdn.jsdelivr.net/gh/garethlearnscoding/funtasia_assets@main/models/v5-30-4/njc-l2-hall-v5-30-4.glb
-https://cdn.jsdelivr.net/gh/garethlearnscoding/funtasia_assets@main/models/v5-30-4/njc-l2-v5-30-4.glb
-https://cdn.jsdelivr.net/gh/garethlearnscoding/funtasia_assets@main/models/v5-30-4/njc-l1-sanctuary-v5-30-4.glb
-https://cdn.jsdelivr.net/gh/garethlearnscoding/funtasia_assets@main/models/v5-30-4/njc-b3-v5-30-4.glb
-https://cdn.jsdelivr.net/gh/garethlearnscoding/funtasia_assets@main/models/v5-30-4/njc-l1-canteen-v5-30-4.glb
-https://cdn.jsdelivr.net/gh/garethlearnscoding/funtasia_assets@main/models/v5-30-4/njc-b2-v5-30-4.glb
-https://cdn.jsdelivr.net/gh/garethlearnscoding/funtasia_assets@main/models/v5-30-4/njc-b3-ish-5-30-4.glb
-https://cdn.jsdelivr.net/gh/garethlearnscoding/funtasia_assets@main/models/v5-30-4/njc-b1-v5-30-4.glb

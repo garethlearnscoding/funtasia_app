@@ -4,7 +4,7 @@ import { fileURLToPath, URL } from 'node:url';
 import { resolve } from 'path';
 
 // const base = "/funtasia_app/"
-const base =""
+const base = ""
 
 export default defineConfig({
   base:base,  
@@ -36,8 +36,7 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: {
-        main: resolve(__dirname, 'index.html'),
-        map: resolve(__dirname, 'map.html'),
+        main: resolve(__dirname, 'index.html')
       },
       output: {
         manualChunks(id) {

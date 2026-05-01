@@ -1,10 +1,11 @@
 import { 
   isPointerOverUI, 
-  handleInteraction, 
+  getInteractionTarget, 
   updateMousePosition, 
   updateMouseFromTouch,
-  applySelection
 } from "@/js/helper/util.js";
+import { focusOnObject, applySelection } from "@/js/ui_ux/cameraUtils.js";
+import { showBottomSheet } from "@/js/ui_ux/ui.js";
 
 export function setupEventListeners(appState) {
   /* 
@@ -125,11 +126,20 @@ export function setupEventListeners(appState) {
 
     updateMouseFromTouch(event, appState);
     event.preventDefault();
-    handleInteraction(event, appState);
+    
+    const target = getInteractionTarget(event, appState);
+    if (target) {
+      focusOnObject(target, appState);
+      showBottomSheet(target.userData.boothId, target.userData.child, target.userData.boothDescription, target.name);
+    }
   }, { passive: false });
 
   window.addEventListener("click", (event) => {
-    handleInteraction(event, appState);
+    const target = getInteractionTarget(event, appState);
+    if (target) {
+      focusOnObject(target, appState);
+      showBottomSheet(target.userData.boothId, target.userData.child, target.userData.boothDescription, target.name);
+    }
   });
   /*
   Event listener to handle when user ovverides the 3D scene by interacting with it during a camera animation

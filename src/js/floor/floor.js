@@ -80,25 +80,26 @@ export class Floor {
       return;
     }
 
+    console.log(`[Floor] Activating ${this.id}. Setting visible = true.`);
     this.sceneModel.visible = true;
     
     // Notify TextMarker system of the active level to sync visibility
     TextMarker.setLevel(this.id);
 
     // Apply specific camera config 
-    controls.target.copy(this.cameraConfig.target);
-    camera.position.copy(this.cameraConfig.initialPosition);
-    controls.minDistance = this.cameraConfig.minDistance;
-    controls.maxDistance = this.cameraConfig.maxDistance;
-    // camera.near = this.cameraConfig.near;
-    // camera.far = this.cameraConfig.far;
+    if (this.cameraConfig) {
+      console.log(`[Floor] Applying camera config for ${this.id}:`, this.cameraConfig);
+      controls.target.copy(this.cameraConfig.target);
+      camera.position.copy(this.cameraConfig.initialPosition);
+      controls.minDistance = this.cameraConfig.minDistance;
+      controls.maxDistance = this.cameraConfig.maxDistance;
+      camera.updateProjectionMatrix();
+      controls.update();
+    }
     
     controls.enableRotate = !Floor.appState.rotationLocked;
     controls.touches.TWO = Floor.appState.rotationLocked ? THREE.TOUCH.DOLLY_PAN : THREE.TOUCH.DOLLY_ROTATE;
     
-    camera.updateProjectionMatrix();
-    controls.update();
-
     console.log(`Switched to floor: ${this.id}`);
   }
 

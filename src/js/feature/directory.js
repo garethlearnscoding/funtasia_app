@@ -250,6 +250,10 @@ export async function focusOnBooth(boothNum, levelHint = null) {
     appStateRef.activeDirectoryMarker.clear();
     appStateRef.activeDirectoryMarker = null;
   }
+  
+  appStateRef.activeDirectoryBoothId = boothNum;
+  appStateRef.activeDirectoryLevel = level;
+  appStateRef.activeDirectoryActualFloor = targetFloorId;
 
   // 3. Marker and Camera Logic
   // Re-fetch to ensure we have any runtime-injected data (like Location coordinates)

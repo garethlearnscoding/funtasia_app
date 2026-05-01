@@ -35,10 +35,12 @@
       <button id="close-btn">&times;</button>
       <h2 id="sheet-title">Location Title</h2>
       <p id="sheet-desc">Location description will appear here.</p>
-      <button class="bg-ctp-surface1 text-ctp-text" id="enter-child-btn">Enter Area</button>
+      <button class="bg-ctp-surface1 text-ctp-text" id="enter-child-btn">View Area</button>
+      <button class="bg-ctp-surface1 text-ctp-text" id="lt5-event-btn" style="display: none;">CCA Performances</button>
+      <button class="bg-ctp-surface1 text-ctp-text" id="o2-event-btn" style="display: none;">PA Busking</button>
     </div>
 
-    <button class="bg-ctp-surface1 text-ctp-text" id="exit-child-btn">
+    <button id="exit-child-btn" class="fab-btn" style="display: none; width: fit-content; height: fit-content;">
       <span class="material-symbols-outlined text-[18px]">logout</span> Exit Area
     </button>
 
@@ -76,7 +78,7 @@
       Clear directory marker
     </button>
 
-    <div id="welcome-modal-wrapper" class="flex modal-wrapper">
+    <div id="welcome-modal-wrapper" class="modal-wrapper">
       <div class="modal-container">
         <div class="modal-backdrop" id="welcome-modal-backdrop"></div>
         <div class="modal-card items-center">
@@ -703,6 +705,8 @@
         document.querySelectorAll(".fab-btn").forEach(btn => {
           if (btn.id === 'clear-directory-marker-btn') {
             btn.style.display = isClearDirectoryMarkerButtonOpen ? 'flex' : 'none';
+          } else if (btn.id === 'exit-child-btn') {
+            btn.style.display = window.isChildFloor ? 'flex' : 'none';
           } else {
             btn.style.display = 'flex';
           }
@@ -780,10 +784,15 @@
         showFabButtons();
       });
 
-      openEventsBtn.addEventListener('click', () => {
+      const openEventsModal = (category = "cca") => {
         eventsModal.style.display = 'block';
-        window.switchEventCategory("cca");
+        window.switchEventCategory(category);
         hideFabButtons();
+      };
+      window.openEventsModal = openEventsModal;
+
+      openEventsBtn.addEventListener('click', () => {
+        openEventsModal("cca");
       });
       closeEventsBtn.addEventListener('click', () => {
         eventsModal.style.removeProperty('display');

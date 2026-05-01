@@ -37,19 +37,28 @@ export class TextMarker extends Marker {
     textMesh.color = 0x000000;
     textMesh.anchorX = 'center';
     textMesh.anchorY = 'middle';
-    textMesh.sync();
 
     // Padded background behind the text
-    const bgWidth = 1.2;
-    const bgHeight = 0.25;
     const textBgMaterial = new THREE.MeshBasicMaterial({
       color: 0xffffff,
       side: THREE.DoubleSide,
       transparent: true,
       opacity: 0.9
     });
-    const textBgMesh = new THREE.Mesh(new THREE.PlaneGeometry(bgWidth, bgHeight), textBgMaterial);
+    
+    // Create background with a unit width so we can scale it easily to the text width
+    const textBgMesh = new THREE.Mesh(new THREE.PlaneGeometry(1, 0.25), textBgMaterial);
     textBgMesh.position.z = -0.01;
+    textBgMesh.scale.x = 1.0; // Default
+
+    // Sync the text and update background scale based on actual text width
+    textMesh.sync(() => {
+      if (textMesh.geometry && textMesh.geometry.boundingBox) {
+        const width = textMesh.geometry.boundingBox.max.x - textMesh.geometry.boundingBox.min.x;
+        const padding = 0.1;
+        textBgMesh.scale.x = width + padding;
+      }
+    });
 
     this._textLabelGroup.add(textBgMesh);
     this._textLabelGroup.add(textMesh);

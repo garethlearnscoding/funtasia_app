@@ -1,4 +1,4 @@
-import { Navigation } from "@/js/events/navigation.js";
+import { focusOnFloor } from "@/js/ui_ux/cameraUtils.js";
 
 const sheet = document.getElementById("bottom-sheet");
 const sheetTitle = document.getElementById("sheet-title");
@@ -62,10 +62,14 @@ export function showBottomSheet(objectName, childFloorId = null, description = n
   sheetDesc.textContent = description ? description : locationInfo.description;
   
   const enterBtn = document.getElementById("enter-child-btn");
+  const lt5Btn = document.getElementById("lt5-event-btn");
+  const o2Btn = document.getElementById("o2-event-btn");
+
   if (enterBtn) {
     if (childFloorId) {
       enterBtn.style.display = "block";
-      enterBtn.onclick = () => {
+      enterBtn.onclick = async () => {
+        const { Navigation } = await import("@/js/events/navigation.js");
         Navigation.switchFloor(childFloorId);
         hideBottomSheet();
       };
@@ -75,13 +79,41 @@ export function showBottomSheet(objectName, childFloorId = null, description = n
     }
   }
 
+  if (lt5Btn) {
+    if (objectName === "LT5") {
+      lt5Btn.style.display = "block";
+      lt5Btn.onclick = () => {
+        if (window.openEventsModal) window.openEventsModal("cca");
+        hideBottomSheet();
+      };
+    } else {
+      lt5Btn.style.display = "none";
+      lt5Btn.onclick = null;
+    }
+  }
+
+  if (o2Btn) {
+    if (objectName === "O2") {
+      o2Btn.style.display = "block";
+      o2Btn.onclick = () => {
+        if (window.openEventsModal) window.openEventsModal("pabusking");
+        hideBottomSheet();
+      };
+    } else {
+      o2Btn.style.display = "none";
+      o2Btn.onclick = null;
+    }
+  }
+
   sheet.classList.add("show");
   if (currentAppState) currentAppState.isBottomSheetOpen = true;
 }
 
 export function hideBottomSheet(clearState = true) {
   sheet.classList.remove("show");
-  if (currentAppState) currentAppState.isBottomSheetOpen = false;
+  if (currentAppState) {
+    currentAppState.isBottomSheetOpen = false;
+  }
   if (clearState) {
     storedBottomSheetState = null;
   }
@@ -224,7 +256,10 @@ export function setupUI(floors, appState) {
         updateThumbUI(index);
         
         const floorId = floorBtns[index].dataset.floor;
-        Navigation.switchFloor(floorId);
+        const NavigationPromise = import("@/js/events/navigation.js");
+        NavigationPromise.then(({ Navigation }) => {
+          Navigation.switchFloor(floorId);
+        });
       }
     }
 

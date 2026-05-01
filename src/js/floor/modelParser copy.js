@@ -133,16 +133,11 @@ export function parseModel(gltf, floorId, scene, funtasiaData, dataFloorId = flo
 
   let box = new THREE.Box3().setFromObject(model);
   const center = box.getCenter(new THREE.Vector3());
-  console.log(`[Parser] Model ${floorId} center:`, center);
   model.position.sub(center);
 
   box = new THREE.Box3().setFromObject(model);
   const sizeVec = box.getSize(new THREE.Vector3());
   const radius = sizeVec.length() * 0.5;
-  const isChildModel = dataFloorId !== floorId;
-  console.log(`[Parser] ── Model: ${floorId} (${isChildModel ? 'CHILD of ' + dataFloorId : 'FLOOR'}) ──`);
-  console.log(`[Parser]   Bounding box size: W=${sizeVec.x.toFixed(2)}, H=${sizeVec.y.toFixed(2)}, D=${sizeVec.z.toFixed(2)}`);
-  console.log(`[Parser]   Radius (half-diagonal): ${radius.toFixed(2)}`);
   maxRadius = Math.max(maxRadius, radius);
 
   if (!skybox) {
@@ -156,27 +151,16 @@ export function parseModel(gltf, floorId, scene, funtasiaData, dataFloorId = flo
     skybox = new THREE.Mesh(skyGeo, skyMat);
     scene.add(skybox);
   }
-  const radiusfixed = 20;
-  const cameraConfig = isChildModel
-    ? {
-        // Child models: wider, higher angle to fill viewport
-        initialPosition: new THREE.Vector3(0, radius * 1.4, radius * 2.0),
-        target: new THREE.Vector3(0, 0, 0),
-        minDistance: radius * 0.1,
-        maxDistance: radius * 5.0,
-        near: 0.01,
-        far: Math.max(radius * 1000, 2000),
-      }
-    : {
-        // Floor models: closer, customized framing
-        initialPosition: new THREE.Vector3(radiusfixed * 0.07, radiusfixed * 0.3, radiusfixed * 0.7),
-        target: new THREE.Vector3(radiusfixed * 0.07, 0, radiusfixed * 0.2),
-        minDistance: radius * 0.06,
-        maxDistance: radius * 2,
-        near: radius / 1000,
-        far: Math.max(radius * 10000, 2000),
-      };
-  console.log(`[Parser]   Camera Config:`, cameraConfig);
+
+  const cameraConfig = {
+    initialPosition: new THREE.Vector3(radius * 0.07, radius * 0.4, radius * 0.5),
+    target: new THREE.Vector3(radius * 0.07, 0, radius * 0.2),
+    minDistance: radius * 0.06,
+    maxDistance: radius * 1,
+    near: radius / 1000,
+    far: Math.max(radius * 10000, 2000), // Ensure at least default far
+  };
+
   const objects = [];
   const textMarkers = [];
   const markerNames = new Set();
@@ -187,9 +171,10 @@ export function parseModel(gltf, floorId, scene, funtasiaData, dataFloorId = flo
   model.updateMatrixWorld(true);
   console.log(model)
   model.traverse((child) => {
-    // 1. Resolve userData from parent group for split meshes
     let isSplitChild = false;
     let logicalNode = child;
+
+    // Resolve userData from parent Group for split meshes
     if (child.isMesh && (child.name.endsWith("_1") || child.name.endsWith("_2")) && child.parent) {
       isSplitChild = true;
       logicalNode = child.parent;
@@ -198,21 +183,7 @@ export function parseModel(gltf, floorId, scene, funtasiaData, dataFloorId = flo
       }
       child.userData.logicalParent = logicalNode;
     }
-
-    // Immediately return if the object has no ROLE
-    if (child.userData.ROLE === undefined) return;
-
-    // 2. If ROLE is GREY, set its material to transparent
-    if (child.isMesh && child.userData.ROLE === "GREY") {
-      child.material = new THREE.MeshBasicMaterial({
-        color: 0x000000,
-        transparent: true,
-        opacity: 0,
-      });
-      return;
-    }
-
-    // 3. Add TextMarker if the logical node's name appears in textMarkerMap
+    // Add TextMarker if the logical node's name is in the textMarkerMap
     if (child.isMesh && textMarkerMap[floorKey] && logicalNode.name in textMarkerMap[floorKey]) {
       if (!markerNames.has(logicalNode.name)) {
         const pos = child.getWorldPosition(new THREE.Vector3());
@@ -224,95 +195,102 @@ export function parseModel(gltf, floorId, scene, funtasiaData, dataFloorId = flo
       }
     }
 
-    // 4. Default Zone to NONE if undefined
-    if (child.userData.ZONE === undefined) { child.userData.ZONE = "NONE"; }
+    if (child.userData.ROLE === undefined) return;
 
-    // 5. Determine if the child is an interactable object (mesh with a meaningful zone)
-    const role = child.userData.ROLE;
-    const isInteractive = child.isMesh && role === "OBJECT";
+    // Add TextMarker if the logical node's name is in the textMarkerList
+    // console.log(child.name)
+    
+    const role = child.userData?.ROLE;
 
-    // 6. If not interactive, check for icon/marker registration and return
-    if (!isInteractive && !isSplitChild) {
-      // Register Markers globally
-      if (role === "MARKER") {
-        const markerId = String(child.userData.MARKERID);
-        const pos = child.getWorldPosition(new THREE.Vector3());
-        const entry = { pos, floorId };
-        Floor.allMarkers[markerId] = entry;
-        QRMarker.allMarkers[markerId] = entry;
+    
+    const isInteractive = role === "OBJECT";
+    if (child.userData.ZONE == undefined) { child.userData.ZONE = "NONE"; }
+
+    if (!isInteractive) {
+      if (child.isMesh) {
+        console.log(child.name)
+        const isGrey = child.userData.ROLE === "GREY";
+        const colorVal = miscColours[child.userData.ROLE] !== undefined ? miscColours[child.userData.ROLE] : 0xc1c3c7;
+        child.material = new THREE.MeshBasicMaterial({
+          color: colorVal,
+          transparent: isGrey ? true : false,
+          opacity: isGrey ? 0 : 1,
+        });
       }
 
-      // Collect Icons
-      if (Object.keys(roledict).includes(role)) {
-        let normalisedRole = roledict[role];
-        if (normalisedRole === "staircase") {
-          switch (child.userData?.STAIRCASEDIRECTION) {
-            case "U":
-              normalisedRole = "stair-u";
-              break;
-            case "D":
-              normalisedRole = "stair-d";
-              break;
-            case "UD":
-              normalisedRole = "stair-ud";
-              break;
-            default:
-              normalisedRole = "stair-ud";
-              break;
+      // Only register abstract objects like Markers and Icons at the logical node level
+      // to avoid double registration for split meshes.
+      if (!isSplitChild) {
+        // Register Markers globally
+        if (child.userData.ROLE === "MARKER") {
+          const markerId = String(child.userData.MARKERID);
+          const pos = child.getWorldPosition(new THREE.Vector3());
+          const entry = { pos, floorId };
+          Floor.allMarkers[markerId] = entry;
+          QRMarker.allMarkers[markerId] = entry;
+        }
+
+        // Collect Icons
+        if (Object.keys(roledict).includes(child.userData.ROLE)) {
+          let normalisedRole = roledict[child.userData.ROLE];
+          if (normalisedRole === "staircase") {
+            switch(child.userData?.STAIRCASEDIRECTION){
+              case "U":
+                normalisedRole = "stair-u";
+                break;
+              case "D":
+                normalisedRole = "stair-d";
+                break;
+              case "UD":
+                normalisedRole = "stair-ud";
+                break;
+              default:
+                normalisedRole = "stair-ud";
+                break;
+            }
+          }
+          if (normalisedRole) {
+            const pos = child.getWorldPosition(new THREE.Vector3());
+            new Icon(normalisedRole, pos, floorId);
           }
         }
-        if (normalisedRole) {
-          const pos = child.getWorldPosition(new THREE.Vector3());
-          new Icon(normalisedRole, pos, floorId);
+      }
+    } else {
+      if (child.isMesh) {
+        let colorVal = zoneColours[child.userData.ZONE];
+
+        // Derived brightened top colour for `_2` meshes
+        if (child.name.endsWith("_2")) {
+          const baseColor = new THREE.Color(colorVal);
+          baseColor.multiplyScalar(1.2);
+          baseColor.r = Math.min(1.0, baseColor.r);
+          baseColor.g = Math.min(1.0, baseColor.g);
+          baseColor.b = Math.min(1.0, baseColor.b);
+          colorVal = baseColor.getHex();
         }
+
+        child.material = new THREE.MeshBasicMaterial({
+          color: colorVal,
+        });
+        child.userData.material = child.material;
       }
     }
 
-    // 7. Apply material colours — miscSchema for non-interactive, zoneSchema for interactive
-    if (child.isMesh) {
-      let colorVal;
-      if (!isInteractive) {
-        colorVal = miscColours[role] !== undefined ? miscColours[role] : 0xc1c3c7;
-      } else {
-        colorVal = zoneColours[child.userData.ZONE];
-      }
-
-      // 8. Calculate brighter colour for the top face (_2 meshes)
-      if (child.name.endsWith("_2")) {
-        const baseColor = new THREE.Color(colorVal);
-        baseColor.multiplyScalar(1.2);
-        baseColor.r = Math.min(1.0, baseColor.r);
-        baseColor.g = Math.min(1.0, baseColor.g);
-        baseColor.b = Math.min(1.0, baseColor.b);
-        colorVal = baseColor.getHex();
-      }
-
-      child.material = new THREE.MeshBasicMaterial({ color: colorVal });
-      if (isInteractive) child.userData.material = child.material;
-    }
-
-    // 9. Return for non-interactive children
-    if (!isInteractive) return;
-
-    // 10. Data attribution for interactive objects
     if (child.userData.ZONE === "NONE") return;
     const lookupName = logicalNode.name;
     if (!logicalNode.name || logicalNode.name === "") {
       logicalNode.name = `${floorId}_Object_${objects.length + 1}`;
     }
-    logicalNode.userData.boothId = lookupName;
 
     if (funtasiaData && funtasiaData[dataFloorId] && funtasiaData[dataFloorId][lookupName]) {
-      const entry = funtasiaData[dataFloorId][lookupName];
-      const boothName = entry["booth_name"];
-      if (boothName && boothName !== "-") {
-        logicalNode.name = boothName;
-      }
-      const boothDesc = entry["booth_description"];
-      if (boothDesc) {
-        logicalNode.userData.boothDescription = boothDesc;
-      }
-      entry["Location"] = logicalNode.getWorldPosition(new THREE.Vector3());
+        const entry = funtasiaData[dataFloorId][lookupName];
+        if (entry["Booth Name"] && entry["Booth Name"] !== "-") {
+            logicalNode.name = entry["Booth Name"];
+        }
+        if (entry["Booth Description"]) {
+            logicalNode.userData.boothDescription = entry["Booth Description"];
+        }
+        entry["Location"] = logicalNode.getWorldPosition(new THREE.Vector3());
     }
 
     if (Floor.childModels && Floor.childModels[dataFloorId] && Floor.childModels[dataFloorId][logicalNode.name]) {

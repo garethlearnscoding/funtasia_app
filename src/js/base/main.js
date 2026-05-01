@@ -190,6 +190,8 @@ if (clearDirMarkerBtn) {
       if (appState && appState.activeDirectoryMarker) {
           appState.activeDirectoryMarker.clear();
           appState.activeDirectoryMarker = null;
+          appState.activeDirectoryBoothId = null;
+          appState.activeDirectoryLevel = null;
           appState.activeMarkers = appState.activeMarkers.filter(m => m !== null);
       }
       clearDirMarkerBtn.style.display = 'none';

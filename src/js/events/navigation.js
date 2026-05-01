@@ -1,11 +1,12 @@
 import * as THREE from "three";
-import { setDirectoryData } from '@/js/feature/directory.js';
+import { setDirectoryData, getDirectoryData } from '@/js/feature/directory.js';
+import { DirectoryMarker } from '@/js/marker/directorymarker.js';
 import { Floor } from "@/js/floor/floor.js";
-import { focusOnObject } from "@/js/helper/util.js";
+import { focusOnObject, focusOnFloor } from "@/js/ui_ux/cameraUtils.js";
 import { Icon } from "@/js/marker/icon.js";
 import { QRMarker } from "@/js/marker/qrmarker.js";
 import { TextMarker } from "@/js/marker/textmarker.js";
-import { hideBottomSheet, hideToast, showToast, updateFloorUI } from "@/js/ui_ux/ui.js";
+import { hideBottomSheet, hideToast, showToast, updateFloorUI, showBottomSheet } from "@/js/ui_ux/ui.js";
 import { animateCameraTo } from "@/js/ui_ux/animate.js";
 
 export class Navigation {
@@ -84,6 +85,7 @@ export class Navigation {
       }
 
       const isChildFloor = !!targetFloor.parentFloorId;
+      window.isChildFloor = isChildFloor;
       if (appState.currentFloor && !appState.currentFloor.parentFloorId) {
         appState.previousMainFloorId = appState.currentFloor.id;
         appState.previousSelectedObject = savedSelection;
@@ -94,11 +96,27 @@ export class Navigation {
         if (isChildFloor) {
           exitBtn.style.display = "flex";
           exitBtn.onclick = async () => {
-             const prevObj = appState.previousSelectedObject;
-             await Navigation.switchFloor(appState.previousMainFloorId || "l1");
+             // Priority: 1. Parent of the child floor we are in, 2. Floor we came from
+             const exitTargetId = targetFloor.parentFloorId || appState.previousMainFloorId || "l1";
+             await Navigation.switchFloor(exitTargetId);
              
-             if (prevObj) {
-                focusOnObject(prevObj, Navigation.appState);
+             // Attempt to re-select the parent object
+             let targetObj = appState.previousSelectedObject;
+             
+             // If no previously selected object, try to find it by matching the child floor ID
+             if (!targetObj && appState.currentFloor && Floor.childModels[appState.currentFloor.id]) {
+                 for (const [nodeName, childId] of Object.entries(Floor.childModels[appState.currentFloor.id])) {
+                     if (childId === floorId) {
+                         // Found the parent node name, now find the object in the scene
+                         targetObj = appState.interactiveObjects.find(obj => obj.name === nodeName || obj.userData.boothId === nodeName);
+                         break;
+                     }
+                 }
+             }
+
+             if (targetObj) {
+                 focusOnObject(targetObj, appState);
+                 showBottomSheet(targetObj.userData.boothId, targetObj.userData.child, targetObj.userData.boothDescription, targetObj.name);
              }
           };
         } else {
@@ -146,17 +164,89 @@ export class Navigation {
     Navigation.restoreLastMarker(floorId);
     
     // Restore directory marker if it belongs to this floor
-    if (appState.activeDirectoryMarker && appState.activeDirectoryMarker.level === floorId) {
-      if (!appState.activeMarkers.includes(appState.activeDirectoryMarker)) {
+    // Directory Marker Bidirectional Transition Logic
+    if (appState.activeDirectoryBoothId && appState.activeDirectoryLevel) {
+      const funtasiaData = getDirectoryData();
+      let targetMarkerLocation = null;
+      let targetMarkerFloorId = null;
+
+      // Case 1: Returning to the booth's exact floor (the actual model it is in)
+      if (floorId === appState.activeDirectoryActualFloor) {
+        if (funtasiaData && funtasiaData[appState.activeDirectoryLevel] && funtasiaData[appState.activeDirectoryLevel][appState.activeDirectoryBoothId]) {
+          targetMarkerLocation = funtasiaData[appState.activeDirectoryLevel][appState.activeDirectoryBoothId].Location || funtasiaData[appState.activeDirectoryLevel][appState.activeDirectoryBoothId].location;
+          targetMarkerFloorId = floorId;
+        }
+      } 
+      // Case 2: Moving to a parent floor
+      else if (Floor.childModels[floorId]) {
+        let parentNodeName = null;
+        for (const [nodeName, childId] of Object.entries(Floor.childModels[floorId])) {
+          // Compare against the actual model floor ID
+          if (appState.activeDirectoryActualFloor === childId) {
+            parentNodeName = nodeName;
+            break;
+          }
+        }
+
+        if (parentNodeName) {
+          // Find the mesh object in the new floor
+          const parentObj = appState.interactiveObjects.find(obj => obj.name === parentNodeName || obj.userData.boothId === parentNodeName);
+          if (parentObj) {
+            targetMarkerLocation = parentObj.getWorldPosition(new THREE.Vector3());
+            targetMarkerFloorId = floorId;
+          }
+        }
+      }
+
+      if (targetMarkerLocation && targetMarkerFloorId) {
+        // Clear existing marker if it exists and level mismatches
+        if (appState.activeDirectoryMarker) {
+          appState.activeDirectoryMarker.clear();
+          appState.activeMarkers = appState.activeMarkers.filter(m => m !== appState.activeDirectoryMarker);
+        }
+        
+        // Re-create the marker for the appropriate level/location
+        appState.activeDirectoryMarker = new DirectoryMarker(targetMarkerLocation, targetMarkerFloorId);
         appState.activeMarkers.push(appState.activeDirectoryMarker);
+        
+        if (typeof window.setClearDirectoryMarkerVisible === 'function') {
+          window.setClearDirectoryMarkerVisible(true);
+        }
+      } else if (appState.activeDirectoryMarker && appState.activeDirectoryMarker.group && appState.scene) {
+        // Fallback: hide if it belongs to a different floor
+        if (appState.activeDirectoryMarker.level !== floorId) {
+           appState.scene.remove(appState.activeDirectoryMarker.group);
+           if (typeof window.setClearDirectoryMarkerVisible === 'function') {
+             window.setClearDirectoryMarkerVisible(false);
+           }
+        } else {
+           if (!appState.activeMarkers.includes(appState.activeDirectoryMarker)) {
+             appState.activeMarkers.push(appState.activeDirectoryMarker);
+           }
+           appState.scene.add(appState.activeDirectoryMarker.group);
+           if (typeof window.setClearDirectoryMarkerVisible === 'function') {
+             window.setClearDirectoryMarkerVisible(true);
+           }
+        }
       }
-      // Make sure it's added to the current scene
-      if (appState.scene && appState.activeDirectoryMarker.group) {
-        appState.scene.add(appState.activeDirectoryMarker.group);
+    } else if (appState.activeDirectoryMarker) {
+      // Legacy handling if state variables are somehow missing
+      if (appState.activeDirectoryMarker.level === floorId) {
+        if (!appState.activeMarkers.includes(appState.activeDirectoryMarker)) {
+          appState.activeMarkers.push(appState.activeDirectoryMarker);
+        }
+        if (appState.scene && appState.activeDirectoryMarker.group) {
+          appState.scene.add(appState.activeDirectoryMarker.group);
+          if (typeof window.setClearDirectoryMarkerVisible === 'function') {
+            window.setClearDirectoryMarkerVisible(true);
+          }
+        }
+      } else if (appState.scene && appState.activeDirectoryMarker.group) {
+        appState.scene.remove(appState.activeDirectoryMarker.group);
+        if (typeof window.setClearDirectoryMarkerVisible === 'function') {
+          window.setClearDirectoryMarkerVisible(false);
+        }
       }
-    } else if (appState.activeDirectoryMarker && appState.activeDirectoryMarker.group && appState.scene) {
-      // Hide it if on a different floor
-      appState.scene.remove(appState.activeDirectoryMarker.group);
     }
   }
 

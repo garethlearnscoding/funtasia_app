@@ -175,7 +175,7 @@ body {
 }
 
 /* === Enter and Exit Child Buttons === */
-#enter-child-btn {
+#enter-child-btn, #lt5-event-btn, #o2-event-btn {
   display:none; 
   width:100%; 
   padding: 14px; 
@@ -188,25 +188,10 @@ body {
   cursor: pointer; 
   transition: background 0.2s;
 }
-#exit-child-btn {
-  display:none; 
-  position: fixed; 
-  bottom: 32px; 
-  left: 50%; 
-  transform: translateX(-50%); 
-  z-index: 200; 
-  padding: 12px 24px; 
-  border-radius: 24px; 
-  font-weight: bold; 
-  font-family: 'JetBrains Mono', monospace; 
-  font-size: 14px; 
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2); 
-  border: 1px solid color-mix(in srgb, var(--color-ctp-text) 10%, transparent); 
-  align-items: center; 
-  justify-content: center; 
-  gap: 8px; 
-  cursor: pointer;
+#enter-child-btn:active, #lt5-event-btn:active, #o2-event-btn:active {
+  background: color-mix(in srgb, var(--color-ctp-mauve) 10%, transparent);
 }
+
 
 /* === Floor Selector UI (Floating — Glassmorphism per §2) === */
 #floor-selector {
@@ -364,6 +349,23 @@ body {
 }
 
 #clear-directory-marker-btn {
+  position: fixed;
+  bottom: 16px;
+  left: 50%;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  z-index: 10000;
+  transform: translateX(-50%);
+  padding: 12px;
+  font-weight: bold;
+  font-size: 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  border-radius: 24px; 
+}
+
+#exit-child-btn {
   position: fixed;
   top: 16px;
   left: 50%;

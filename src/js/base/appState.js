@@ -20,6 +20,9 @@ export class AppState {
     };
     this.activeMarkers = [];
     this.activeDirectoryMarker = null; // Stores the active directory marker
+    this.activeDirectoryBoothId = null;
+    this.activeDirectoryLevel = null;
+    this.activeDirectoryActualFloor = null;
     this.lastScannedInfo = null;
     this.pointerStartTime = 0;
     this.isBottomSheetOpen = false;

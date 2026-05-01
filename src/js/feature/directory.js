@@ -3,6 +3,7 @@ import { Navigation } from "@/js/events/navigation.js";
 import { Floor } from "@/js/floor/floor.js";
 import { clearStoredBottomSheet, showBottomSheet, hideBottomSheet } from "@/js/ui_ux/ui.js";
 import { DirectoryMarker } from '@/js/marker/directorymarker.js';
+import { animateCameraTo } from '@/js/ui_ux/animate.js';
 
 let cachedFuntasiaData = null;
 
@@ -277,15 +278,14 @@ export async function focusOnBooth(boothNum, levelHint = null) {
       direction.set(0, 0, Math.sign(direction.z));
     }
 
-    const distance = 8;
-    const heightOffset = 6;
+    const markerBaseScale = 5;
+    const distance = markerBaseScale * (appStateRef.cameraAnim.viewDistanceFactor || 1.2);
+    const heightOffset = markerBaseScale * (appStateRef.cameraAnim.viewHeightFactor || 0.8);
     const newCamPos = objectCenter.clone()
       .add(direction.multiplyScalar(distance))
       .add(new THREE.Vector3(0, heightOffset, 0));
 
-    appStateRef.cameraAnim.controlsTarget.copy(objectCenter);
-    appStateRef.cameraAnim.cameraTarget.copy(newCamPos);
-    appStateRef.cameraAnim.active = true;
+    animateCameraTo(appStateRef, newCamPos, objectCenter);
   }
 
   // 4. Interaction messaging

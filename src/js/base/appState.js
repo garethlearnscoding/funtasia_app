@@ -13,8 +13,10 @@ export class AppState {
       active: false,
       cameraTarget: new THREE.Vector3(),
       controlsTarget: new THREE.Vector3(),
-      progress: 0,
-      speed: 1.5,
+      lerpFactor: 0.05,
+      isSystemAction: false,
+      viewDistanceFactor: 1.2,
+      viewHeightFactor: 0.8,
     };
     this.activeMarkers = [];
     this.activeDirectoryMarker = null; // Stores the active directory marker

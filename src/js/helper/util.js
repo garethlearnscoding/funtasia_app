@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import { showBottomSheet } from "@/js/ui_ux/ui.js";
 import { zoneColours } from "@/js/floor/modelParser.js";
+import { animateCameraTo } from "@/js/ui_ux/animate.js";
 
 export function isPointerOverUI(event) {
   try {
@@ -95,18 +96,17 @@ export function focusOnObject(targetObject, appState) {
       }
 
       // 3. Compute new camera position
-      // Push back less to angle down more, and push up significantly
-      const distance = Math.max(objectSize.length(), 2) * 0.8;
-      const heightOffset = Math.max(objectSize.y, 1) * 1.5 + 5;
+      // Using factors from appState to maintain a consistent angle regardless of object size
+      const baseScale = Math.max(objectSize.length(), 2);
+      const distance = baseScale * (appState.cameraAnim.viewDistanceFactor || 1.2);
+      const heightOffset = baseScale * (appState.cameraAnim.viewHeightFactor || 0.8);
 
       const newCamPos = objectCenter.clone()
         .add(direction.multiplyScalar(distance))
         .add(new THREE.Vector3(0, heightOffset, 0));
 
       // 4. Activate animation state
-      appState.cameraAnim.controlsTarget.copy(objectCenter);
-      appState.cameraAnim.cameraTarget.copy(newCamPos);
-      appState.cameraAnim.active = true;
+      animateCameraTo(appState, newCamPos, objectCenter);
     }
   }
 }

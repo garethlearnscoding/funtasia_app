@@ -11,7 +11,7 @@ import { applyThemeToScene } from "@/js/floor/modelParser.js";
 import { Icon } from "@/js/marker/icon.js";
 import { Marker } from "@/js/marker/marker.js"; 
 import { QRMarker } from "@/js/marker/qrmarker.js";
-import { startAnimationLoop } from "@/js/ui_ux/animate.js";
+import { startAnimationLoop, animateCameraTo } from "@/js/ui_ux/animate.js";
 import { hideBottomSheet, setupUI, setDirectoryData } from "@/js/ui_ux/ui.js";
 
 const { scene, camera, renderer, controls } = setupScene();
@@ -129,10 +129,7 @@ async function initApp() {
         // Lerp camera to front of the model when locked
         if (isLocked && appState.currentFloor && appState.currentFloor.cameraConfig) {
           const config = appState.currentFloor.cameraConfig;
-          appState.cameraAnim.controlsTarget.copy(config.target);
-          appState.cameraAnim.cameraTarget.copy(config.initialPosition);
-          appState.cameraAnim.isSystemAction = true;
-          appState.cameraAnim.active = true;
+          animateCameraTo(appState, config.initialPosition, config.target, true);
         }
       },
       appState.rotationLocked

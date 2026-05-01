@@ -5,6 +5,14 @@ Function: animate() -> Main animation loop
 import { Icon } from "@/js/marker/icon.js";
 import { TextMarker } from "@/js/marker/textmarker.js";
 
+export function animateCameraTo(appState, cameraTarget, controlsTarget, isSystemAction = false, lerpFactor = 0.05) {
+  appState.cameraAnim.controlsTarget.copy(controlsTarget);
+  appState.cameraAnim.cameraTarget.copy(cameraTarget);
+  appState.cameraAnim.isSystemAction = isSystemAction;
+  appState.cameraAnim.lerpFactor = lerpFactor;
+  appState.cameraAnim.active = true;
+}
+
 export function startAnimationLoop(appState) {
   /**
   * @param {appstate} appState
@@ -24,7 +32,7 @@ export function startAnimationLoop(appState) {
         return;
       }
 
-      const lerpFactor = 0.05;
+      const lerpFactor = appState.cameraAnim.lerpFactor || 0.05;
       
       appState.camera.position.lerp(appState.cameraAnim.cameraTarget, lerpFactor);
       appState.controls.target.lerp(appState.cameraAnim.controlsTarget, lerpFactor);

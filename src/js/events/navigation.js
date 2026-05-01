@@ -6,6 +6,7 @@ import { Icon } from "@/js/marker/icon.js";
 import { QRMarker } from "@/js/marker/qrmarker.js";
 import { TextMarker } from "@/js/marker/textmarker.js";
 import { hideBottomSheet, hideToast, showToast, updateFloorUI } from "@/js/ui_ux/ui.js";
+import { animateCameraTo } from "@/js/ui_ux/animate.js";
 
 export class Navigation {
   static appState = null;
@@ -196,16 +197,15 @@ export class Navigation {
     }
 
     // Specific offsets for markers
-    const distance = 8; 
-    const heightOffset = 6;
+    const markerBaseScale = 5;
+    const distance = markerBaseScale * (Navigation.appState.cameraAnim.viewDistanceFactor || 1.2);
+    const heightOffset = markerBaseScale * (Navigation.appState.cameraAnim.viewHeightFactor || 0.8);
     
     const newCamPos = markerCenter.clone()
       .add(direction.multiplyScalar(distance))
       .add(new THREE.Vector3(0, heightOffset, 0));
 
-    Navigation.appState.cameraAnim.controlsTarget.copy(markerCenter);
-    Navigation.appState.cameraAnim.cameraTarget.copy(newCamPos);
-    Navigation.appState.cameraAnim.active = true;
+    animateCameraTo(Navigation.appState, newCamPos, markerCenter);
 
     return true;
   }

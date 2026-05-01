@@ -18,7 +18,6 @@ export function setupScene() {
   const container = document.getElementById("canvas-container");
   const scene = new THREE.Scene();
   let bgColor = getComputedStyle(document.documentElement).getPropertyValue('--color-ctp-base')
-  console.log("background: ", bgColor) // for debug, can remove
   scene.background = new THREE.Color(bgColor); 
 
   const viewportSize = getViewportSize();

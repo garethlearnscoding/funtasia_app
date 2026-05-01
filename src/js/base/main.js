@@ -75,11 +75,6 @@ async function initApp() {
   setupUI(Floor.floors, appState);
 
   // 3. Make raw data accessible globally for parsing later (handled via switchFloor param injection down the line)
-  // Wait, the instructions say to pass `rawData` to floor pipeline...
-  // But floor pipeline is lazy-loaded via switchFloor -> targetFloor.load()
-  // I need to ensure switchFloor passes this data. Let me handle that in navigation.js
-  // For now, let's keep rawData here and inject it into floor loading. Actually, I will pass it to Navigation.init
-  // or store it on appState.
   appState.rawData = rawData;
   
   initDirectory(appState);

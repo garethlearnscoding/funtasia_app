@@ -148,10 +148,10 @@ export function parseModel(gltf, floorId, scene, funtasiaData, dataFloorId = flo
   }
 
   const cameraConfig = {
-    initialPosition: new THREE.Vector3(0, radius * 1, radius * 1),
-    target: new THREE.Vector3(0, 0, 0),
+    initialPosition: new THREE.Vector3(radius * 0.07, radius * 0.4, radius * 0.5),
+    target: new THREE.Vector3(radius * 0.07, 0, radius * 0.2),
     minDistance: radius * 0.06,
-    maxDistance: radius * 3,
+    maxDistance: radius * 1,
     near: radius / 1000,
     far: Math.max(radius * 10000, 2000), // Ensure at least default far
   };

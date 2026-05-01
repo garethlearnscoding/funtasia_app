@@ -172,11 +172,9 @@ window.printAllMarkers = function () {
 
 // Events toggle buttons logic
 const ccaToggleBtn = document.getElementById('events-cca-toggle-btn');
-const dunklistToggleBtn = document.getElementById('events-dunklist-toggle-btn');
 const pabuskingToggleBtn = document.getElementById('events-pabusking-toggle-btn');
 
 ccaToggleBtn.addEventListener('click', () => switchEventCategory('cca'));
-dunklistToggleBtn.addEventListener('click', () => switchEventCategory('dunklist'));
 pabuskingToggleBtn.addEventListener('click', () => switchEventCategory('pabusking'));
 
 window.switchEventCategory = switchEventCategory

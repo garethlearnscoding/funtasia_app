@@ -9,7 +9,8 @@
         @apply fixed inset-0 z-200 hidden
     }
     .modal-container {
-        @apply relative z-50 flex flex-col h-full items-center justify-center p-4;
+        @apply z-50 flex flex-col h-full items-center justify-center fixed inset-0;
+        padding-inline: max(2.5vw, 15vw - 100px);
     }
     .modal-backdrop {
         @apply fixed inset-0 backdrop-blur-xs;

@@ -1,13 +1,11 @@
 import { focusOnBooth } from "@/js/feature/directory.js";
 
 const ccaToggleBtn = document.getElementById('events-cca-toggle-btn');
-const dunklistToggleBtn = document.getElementById('events-dunklist-toggle-btn');
 const pabuskingToggleBtn = document.getElementById('events-pabusking-toggle-btn');
 const eventsListContainer = document.getElementById('events-list-container');
 
 const eventCategories = {
     cca: ccaToggleBtn,
-    dunklist: dunklistToggleBtn,
     pabusking: pabuskingToggleBtn
 };
 
@@ -54,7 +52,8 @@ export async function switchEventCategory(category) {
 
     // Update Content
     eventsListContainer.innerHTML = '<p class="text-center opacity-50 py-10">Loading events...</p>';
-
+    eventsListContainer.style.position = 'relative';
+    eventsListContainer.style.zIndex = '0';
     try {
         const response = await fetch(`./events/${category}_events.json`);
         if (!response.ok) throw new Error('Failed to load events for ' + category);
@@ -83,14 +82,14 @@ export async function switchEventCategory(category) {
             // `;
 
             html += `
-            <header id="${eventID}" class="text-left sticky -top-6 -left-4 bg-ctp-base text-ctp-base h-28 z-20 w-[calc(100%+var(--spacing)*4)]">
-                <div class="flex flex-row mb-1 justify-items-center w-full ml-4 top-6 relative">
-                    <h1 class="font-headline text-3xl font-bold tracking-tight text-ctp-text leading-none mr-2 sticky top-0 z-10">${data.title}</h1>
-                    <span class="events-location cursor-pointer hover:opacity-70 transition-opacity active:scale-95 z-10" data-booth-id="${data.location}">
+            <header id="${eventID}" class="text-left sticky -top-8 -left-4 bg-ctp-base text-ctp-base min-h-28 z-50 w-[calc(100%+var(--spacing)*4)]" style="contain: layout paint;">
+                <div class="flex flex-row mb-1 justify-items-center w-full ml-4 mt-8">
+                    <h1 class="font-headline text-3xl font-bold tracking-tight text-ctp-text leading-none mr-2">${data.title}</h1>
+                    <span class="events-location cursor-pointer hover:opacity-70 transition-opacity active:scale-95" data-booth-id="${data.location}">
                         <span class="material-symbols-outlined text-[12px]">location_on</span>${data.location}
                     </span>
                 </div>
-                <p class="text-ctp-subtext0 font-body text-sm w-full z-10 relative ml-4 top-8">${data.subtitle || '<br>'}</p>        
+                <p class="text-ctp-subtext0 font-body text-sm w-full ml-4">${data.subtitle || '<br>'}</p>        
             </header>
             <div class="events-timeline">
             `;            
@@ -234,6 +233,7 @@ export async function switchEventCategory(category) {
     // Delegate click events for locations
     eventsListContainer.addEventListener('click', (e) => {
         const locationTag = e.target.closest('.events-location');
+        console.log(locationTag);
         if (locationTag && locationTag.dataset.boothId) {
             const boothId = locationTag.dataset.boothId.trim();
             if (boothId && boothId !== "-") focusOnBooth(boothId);

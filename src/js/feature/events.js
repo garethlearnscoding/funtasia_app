@@ -55,7 +55,7 @@ export async function switchEventCategory(category) {
     eventsListContainer.style.position = 'relative';
     eventsListContainer.style.zIndex = '0';
     try {
-        const response = await fetch(`./events/${category}_events.json`);
+        const response = await fetch(`${ASSETS_BASE_URL}/json_data/events/${category}_events.json`);
         if (!response.ok) throw new Error('Failed to load events for ' + category);
         const data_arr = await response.json();
 

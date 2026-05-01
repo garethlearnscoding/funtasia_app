@@ -68,10 +68,6 @@
       <span class="material-symbols-outlined">event</span>
     </button>  
 
-    <button id="open-queue-btn" class="fab-btn">
-      <span class="material-symbols-outlined">directions_run</span>
-    </button> 
-
     <!-- Clear Directory Marker Button (hidden by default) -->
     <button id="clear-directory-marker-btn" class="fab-btn" style="display: none; width: fit-content; height: fit-content;">
       <span class="material-symbols-outlined">close</span>
@@ -169,17 +165,7 @@
                     <span class="info-btn-title">Event Schedule</span>
                     <span class="info-btn-caption">Check the live schedule for CCA performances and PA busking.</span>
                   </div>
-                </div>
-
-                <div class="info-btn-row">
-                  <div class="info-btn-preview">
-                    <span class="material-symbols-outlined" style="font-size: 22px;">directions_run</span>
-                  </div>
-                  <div class="info-btn-desc">
-                    <span class="info-btn-title">Escape Room Queue</span>
-                    <span class="info-btn-caption">Scan the queue QR code at the escape room to join the virtual line.</span>
-                  </div>
-                </div>                
+                </div>            
 
                 <div class="info-btn-row">
                   <div class="info-btn-preview">
@@ -494,150 +480,15 @@
       </div>
     </div>
 
-    <div id="queue-modal-wrapper" class="modal-wrapper">
-      <div class="modal-container">
-        <div class="modal-backdrop" id="queue-modal-backdrop"></div>
-        <div class="modal-card">
-
-          <div class="modal-header">
-            <div>
-              <h1 class="modal-title" id="queue-modal-title">Escape Room Queue</h1>
-              <div class="flex flex-wrap items-center gap-2">
-                <p class="modal-subtitle" id="queue-modal-subtitle">Check status or join the line</p>
-              </div>
-            </div>
-            <button class="modal-close-btn" id="close-queue-btn">
-              <span class="material-symbols-outlined text-[20px]">close</span>
-            </button>
-          </div>
-
-          <div class="modal-content flex flex-col items-center p-6" id="queue-modal-content">
-            
-            <!-- Screen 1: Instructions -->
-            <div id="queue-screen-instructions" class="queue-screen active w-full flex-col">
-              
-              <div id="queue-info-grid" class="bg-ctp-surface0 rounded-lg p-4 mb-6 w-full flex flex-col items-center border border-ctp-surface2">
-                <div id="queue-info-stats" class="flex flex-row justify-around w-full">
-                  <div class="flex flex-col items-center">
-                     <p class="text-ctp-subtext0 text-xs font-bold uppercase tracking-wider mb-1 text-center">Number of<br>People</p>
-                     <p id="queue-info-people" class="text-ctp-mauve text-3xl font-bold">-</p>
-                  </div>
-                  <div class="w-px bg-ctp-surface2"></div>
-                  <div class="flex flex-col items-center">
-                     <p class="text-ctp-subtext0 text-xs font-bold uppercase tracking-wider mb-1 text-center">Estimated<br>Wait Time</p>
-                     <p id="queue-info-wait" class="text-ctp-mauve text-3xl font-bold">-</p>
-                  </div>
-                </div>
-                <div id="queue-info-unavailable" class="hidden text-ctp-mauve text-xl font-bold py-2">
-                  Queue status is currently unavailable, try again later
-                </div>
-              </div>
-              <p class="text-center text-ctp-text mb-6">Visit the 
-                <span id="queue-location-tag" class="cursor-pointer hover:opacity-70 transition-opacity active:scale-95 text-ctp-mauve text-[10px] font-bold uppercase tracking-wider inline-flex items-center gap-0.5 bg-ctp-surface1/50 px-2 py-0.5 rounded-full align-middle" data-booth-id="DS3">
-                  <span class="material-symbols-outlined text-[14px]">location_on</span>
-                  Escape Room
-                </span> 
-                and make payment before joining the queue with the "Join Queue" button below.</p>              
-              <button id="queue-scan-btn" class="queue-action-btn w-full">Payment made</button>
-            </div>
-
-            <!-- Screen 2: Scanner -->
-            <div id="queue-screen-scanner" class="queue-screen">
-              <div class="w-full flex items-center mb-4">
-                <button id="queue-back-to-instructions-btn" class="flex items-center gap-2 text-ctp-mauve font-bold">
-                  <span class="material-symbols-outlined">arrow_back</span>
-                  Back
-                </button>
-              </div>
-              <p class="text-center text-ctp-text mb-6">Scan QR code at the payment counter to join the queue</p>
-              <p class="uppercase font-bold mb-3 text-center w-full" style="font-size: 11px; letter-spacing: 0.1em;">Align within frame</p>
-              <div id="queue_qrcode_scanner" class="qr-scanner-container mx-auto">
-                <span class="material-symbols-outlined" style="font-size: 48px; opacity: 0.4;">qr_code_scanner</span>
-              </div>
-              <button id="queue-qr-flash-btn" class="qr-flash-btn">
-                <span class="material-symbols-outlined text-[20px]" id="queue-qr-flash-icon">flashlight_off</span>
-                Toggle Flash
-              </button>
-              <p id="queue-scan-error" class="queue-error-text mt-4 text-center"></p>
-            </div>
-
-            <!-- Screen 3: Join -->
-            <div id="queue-screen-join" class="queue-screen">
-              <div class="w-full flex items-center mb-4">
-                <button id="queue-back-to-scanner-btn" class="flex items-center gap-2 text-ctp-mauve font-bold">
-                  <span class="material-symbols-outlined">arrow_back</span>
-                  Back
-                </button>
-              </div>
-              <p id="queue-token-timer" class="queue-token-timer text-center w-full mb-6 text-ctp-subtext1 font-bold"></p>
-              <p class="uppercase font-bold mb-3 text-center w-full" style="font-size: 11px; letter-spacing: 0.1em;">Enter your name</p>
-              <input type="text" id="queue-name-input" class="queue-name-input w-full mb-6" placeholder="Your Name" autocomplete="off" />
-              <button id="queue-submit-btn" class="queue-action-btn mb-4">Join Queue</button>
-              <p id="queue-join-error" class="queue-error-text text-center w-full"></p>
-            </div>
-
-            <!-- Screen 4: Waiting -->
-            <div id="queue-screen-wait" class="queue-screen">
-              <div class="bg-ctp-surface0 rounded-lg p-6 w-full mb-6 border-2 border-dashed border-ctp-surface2">
-                <p class="uppercase font-bold mb-4 text-center text-ctp-subtext0 tracking-widest text-xs">Escape Room Ticket</p>
-                <h2 id="queue-ticket-number" class="text-5xl font-bold text-center text-ctp-mauve mb-6">#--</h2>
-                
-                <div class="flex justify-between items-center mb-4">
-                  <span class="text-ctp-subtext1">Place in queue</span>
-                  <span id="queue-wait-position" class="font-bold text-ctp-text text-xl">--</span>
-                </div>
-                
-                <div class="flex justify-between items-center">
-                  <span class="text-ctp-subtext1">Est. wait time</span>
-                  <span id="queue-wait-time" class="font-bold text-ctp-text text-xl">--</span>
-                </div>
-              </div>
-
-              <div class="flex items-center justify-center gap-2 text-ctp-text mb-8">
-                <span class="material-symbols-outlined animate-[spin_2s_ease-in-out_infinite] text-[20px]">hourglass_empty</span>
-                <span>Waiting for your turn...</span>
-              </div>
-              <button id="queue-leave-btn" class="queue-leave-btn w-full">Leave Queue</button>
-            </div>
-
-            <!-- Screen 5: Notified -->
-            <div id="queue-screen-notified" class="queue-screen">
-              <span class="material-symbols-outlined text-[64px] text-ctp-green mb-2 text-center block">celebration</span>
-              <h2 class="text-2xl font-bold text-ctp-text text-center mb-6">It's your turn!</h2>
-              <p class="text-ctp-subtext1 text-center mb-4">Head to the escape room booth. You have:</p>
-              <p id="queue-countdown" class="queue-countdown text-ctp-red text-center mb-8">05:00</p>
-              <button id="queue-leave-notified-btn" class="queue-leave-btn w-full">Leave Queue</button>
-            </div>
-
-            <!-- Screen 6: Expired -->
-            <div id="queue-screen-expired" class="queue-screen">
-              <span class="material-symbols-outlined text-[64px] text-ctp-subtext0 mb-4 text-center block">timer_off</span>
-              <h2 class="text-xl font-bold text-ctp-text text-center mb-2">Session Expired</h2>
-              <p class="text-ctp-subtext1 text-center mb-8">Your turn has expired. You'll need to join the queue again.</p>
-              <button id="queue-back-to-start-btn" class="queue-action-btn">Back to start</button>
-            </div>
-
-          </div>
-          <div class="modal-footer-fade"></div>
-        </div>
-      </div>
-    </div>
-
     <script>
       // Allow info modal wrapper to appear before loading of all other js, which alows background loading WOAH
-      console.log((new URLSearchParams(window.location.search)).get("t"))
-      if (!(new URLSearchParams(window.location.search)).get("t") && !localStorage.getItem("firstRunDone")) {
+      if (!localStorage.getItem("firstRunDone")) {
         document.querySelectorAll(".fab-btn").forEach(btn => {
           btn.style.display = 'none';
         });
         document.getElementById('welcome-modal-wrapper').style.display = 'flex'
         localStorage.setItem("firstRunDone", "flag{y0u_f0und_m3!}");
       }
-    </script>
-
-    <script type="module">
-      import { initEscapeQueueUI } from '/src/js/feature/escapeQueueUI.js';
-      initEscapeQueueUI();
     </script>
 
     <script type="module">

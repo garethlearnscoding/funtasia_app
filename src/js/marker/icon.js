@@ -33,7 +33,13 @@ export class Icon extends Marker {
 
     // Use TextureLoader to load high quality PNGs
     const textureLoader = new THREE.TextureLoader();
-    const texture = textureLoader.load(this.iconPath);
+    const texture = textureLoader.load(this.iconPath, (tex) => {
+      // Load aspect ratio once texture is ready
+      this.aspect = tex.image.width / tex.image.height;
+      if (this.indicator) {
+        this.indicator.scale.set(this.baseScale * this.aspect, this.baseScale, 1);
+      }
+    });
     
     // High-quality texture settings
     texture.colorSpace = THREE.SRGBColorSpace;
@@ -46,12 +52,14 @@ export class Icon extends Marker {
     this.material = new THREE.SpriteMaterial({ 
       map: texture, 
       transparent: true,
-      depthTest: true // Enable depth test so it can be occluded by walls, or set false to see through walls
+      depthTest: true 
     });
 
     this.indicator = new THREE.Sprite(this.material);
-    this.baseScale = 0.3;
-    this.indicator.scale.set(this.baseScale, this.baseScale, this.baseScale);
+    this.baseScale = 0.4;
+    this.aspect = 1.0;
+
+    this.indicator.scale.set(this.baseScale, this.baseScale, 1);
     
     // Elevate icon slightly above floor level
     this.indicator.position.y = 0.5; 
@@ -113,7 +121,7 @@ export class Icon extends Marker {
     
     this.group.visible = isVisible;
     if (isVisible) {
-      this.indicator.scale.set(finalScale, finalScale, 1);
+      this.indicator.scale.set(finalScale * this.aspect, finalScale, 1);
     }
   }
 

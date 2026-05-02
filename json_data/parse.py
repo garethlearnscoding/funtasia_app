@@ -1,7 +1,7 @@
 import json
 import csv
 
-with open("updated.csv", "r") as file:
+with open("Booth Data - Booth Data.csv", "r") as file:
     data = list(csv.DictReader(file))
 
 print(data)

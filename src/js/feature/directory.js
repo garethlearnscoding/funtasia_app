@@ -176,6 +176,7 @@ function getFilteredData(funtasiaData) {
 
         const haystack = [
           item["booth_name"] || "",
+          item["booth_oneline_description"] || "",
           item["booth_description"] || "",
           itemTagsStr,
           invisibleTagsStr,
@@ -327,7 +328,7 @@ export async function focusOnBooth(boothNum, levelHint = null) {
     window.showFabButtons();
   }
 
-  showBottomSheet(boothName, null, boothDesc);
+  showBottomSheet(boothNum, null, boothDesc, boothName);
 }
 
 /* ── Rendering ───────────────────────────────────────────── */
@@ -391,7 +392,7 @@ function renderDirectory(container, funtasiaData) {
 
         let boothName = item["booth_name"] || "Unnamed Booth";
         if (boothName === "-") boothName = "Unnamed Booth";
-        const boothDesc = item["booth_description"] || "No description available.";
+        const boothDesc = item["booth_oneline_description"] || item["booth_description"] || "No description available.";
         const boothNum = item["Booth ID"];
         const itemTags = parseTags(item["tags"] || item["Tags"]);
 

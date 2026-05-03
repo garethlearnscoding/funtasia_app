@@ -29,7 +29,7 @@ const floorDefs = {
 const childModelDefs = {
   canteen:   { floorId: "l1", nodeName: "Canteen",   path: `models/${VERSION}/njc-l1-canteen-${VERSION}.glb` },
   sanctuary: { floorId: "l1", nodeName: "Sanctuary", path: `models/${VERSION}/njc-l1-sanctuary-${VERSION}.glb` },
-  hall:      { floorId: "l2", nodeName: "Hall",      path: `models/${VERSION}/njc-l2-hall-${VERSION}.glb` },
+  hall:      { floorId: "l2", nodeName: "CCA Booths @ Hall",      path: `models/${VERSION}/njc-l2-hall-${VERSION}.glb` },
   ish:       { floorId: "b3", nodeName: "ISH",       path: `models/${VERSION}/njc-b3-ish-${VERSION}.glb` },
 };
 

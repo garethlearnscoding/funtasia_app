@@ -58,7 +58,15 @@ export class Navigation {
     const isSameFloor = appState.currentFloor && appState.currentFloor.id === floorId;
 
     if (!isSameFloor) {
-      updateFloorUI(floorId); // update UI first to prevent desync between thumb and text color invert
+      const targetFloor = Floor.floors[floorId];
+      if (!targetFloor) {
+        console.warn(`Floor ${floorId} not found`);
+        return;
+      }
+
+      // Update UI level selector (B3, B2, L1, L2) using the parent floor if it's a child model
+      const uiFloorId = targetFloor.parentFloorId || floorId;
+      updateFloorUI(uiFloorId); 
       // Store the active selected object to enable deep-back resuming
       const savedSelection = appState.selected;
 
@@ -76,12 +84,6 @@ export class Navigation {
           }
         });
         appState.selected = null;
-      }
-
-      const targetFloor = Floor.floors[floorId];
-      if (!targetFloor) {
-        console.warn(`Floor ${floorId} not found`);
-        return;
       }
 
       const isChildFloor = !!targetFloor.parentFloorId;

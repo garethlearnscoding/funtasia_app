@@ -114,6 +114,7 @@ body {
   font-size: 1em;
   color: var(--color-ctp-subtext1);
   line-height: 1.5;
+  white-space: pre-wrap;
 }
 
 @media (max-width: 768px) {

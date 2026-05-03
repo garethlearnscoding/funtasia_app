@@ -126,7 +126,8 @@ export function parseModel(gltf, floorId, scene, funtasiaData, dataFloorId = flo
     "MTOILET": "mtoilet",
     "FTOILET": "ftoilet",
     "LIFT": "lift",
-    "STAIRCASE": "staircase"
+    "STAIRCASE": "staircase",
+    "DOOR": "door"
   };
   const model = gltf.scene;
   model.visible = false;

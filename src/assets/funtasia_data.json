@@ -144,7 +144,7 @@
       "invis_tags": "26SH09",
       "zone": "Green",
       "booth_oneline_description": "",
-      "booth_description": "Compete with your friend and try to knock them off balance\u00e2\u20ac\u201dfirst one down loses. It\u00e2\u20ac\u2122s all about timing, balance, and a bit of chaos.",
+      "booth_description": "Compete with your friend and try to knock them off balance—first one down loses. It's all about timing, balance, and a bit of chaos.",
       "location": ""
     },
     "ISH4": {
@@ -186,7 +186,7 @@
       "invis_tags": "26SH12",
       "zone": "Green",
       "booth_oneline_description": "",
-      "booth_description": "Outplay your friends in an adrenaline-pumping laser tag showdown. Dodge, aim, and score your way to victory \u00e2\u20ac\u201d fast-paced, competitive, and seriously fun!",
+      "booth_description": "Outplay your friends in an adrenaline-pumping laser tag showdown. Dodge, aim, and score your way to victory — fast-paced, competitive, and seriously fun!",
       "location": ""
     }
   },
@@ -197,7 +197,15 @@
       "invis_tags": "JH206",
       "zone": "Blue",
       "booth_oneline_description": "",
-      "booth_description": "Stand a chance to dunk one of the following teachers at our dunk tank!\n\nMrs Lucy Toh\nMr Haresh Sivaram\nMr Wang Muran\nMr Terence Yap\nMr Deon Chen\nMs Chin Kai Qing\nMr See Yeow Hoe\nMr Lee Zhe Feng\nMdm Ong Theng Choo",
+      "booth_description": "Can you resist the urge of not dunking them?  Stand a chance to dunk one of the following teachers at our dunk tank!\n\nMrs Lucy Toh\nMr Haresh Sivaram\nMr Wang Muran\nMr Terence Yap\nMr Deon Chen\nMs Chin Kai Qing\nMr See Yeow Hoe\nMr Lee Zhe Feng\nMdm Ong Theng Choo",
+      "location": ""
+    },
+    "Canteen": {
+      "booth_name": "Canteen",
+      "tags": ["Food", "Drinks"],
+      "zone": "Orange",
+      "booth_oneline_description": "",
+      "booth_description": "Jump into a world of flavors at our food and drinks booths — everything you need to refuel and recharge",
       "location": ""
     },
     "S1": {
@@ -598,7 +606,7 @@
       "invis_tags": "25SH01",
       "zone": "Red",
       "booth_oneline_description": "",
-      "booth_description": "Test your aim and earn points by shooting colorful cardboard targets with a Nerf gun\u00e2\u20ac\u201dperfect for friendly competition and prizes!",
+      "booth_description": "Test your aim and earn points by shooting colorful cardboard targets with a Nerf gun—perfect for friendly competition and prizes!",
       "location": ""
     },
     "AC9": {
@@ -612,6 +620,15 @@
     }
   },
   "l2": {
+    "Hall": {
+      "booth_name": "CCA Booths @ Hall",
+      "tags": "CCA",
+      "invis_tags": "",
+      "zone": "Purple",
+      "booth_oneline_description": "",
+      "booth_description": "Dive into this wonderful showcase of the vibrant and diverse CCAs that NJC has to offer!",
+      "location": ""
+    },
     "LBCP1": {
       "booth_name": "Corndog Live station",
       "tags": "Food",
@@ -780,11 +797,10 @@
       "booth_description": "Explore a vibrant marketplace filled with donated clothes, accessories, K-pop/Anime merch, and collectibles from NJCians!",
       "location": ""
     },
-    "H1718": {
-      "booth_name": "Ticket & Info Counter",
+    "H17": {
+      "booth_name": "Ticket Counter",
       "tags": [
-        "Tickets",
-        " Info"
+        "Tickets"
       ],
       "invis_tags": "",
       "zone": "Purple",
@@ -895,7 +911,7 @@
       "invis_tags": "Chinese Dance",
       "zone": "Purple",
       "booth_oneline_description": "",
-      "booth_description": "Browse our collection of handcrafted hair accessories \u00e2\u20ac\u201d from delicate floral clips to ornate chopstick hairpins! Make a request and we can style your hair with your chosen accessories!",
+      "booth_description": "Browse our collection of handcrafted hair accessories — from delicate floral clips to ornate chopstick hairpins! Make a request and we can style your hair with your chosen accessories!",
       "location": ""
     },
     "H9": {
@@ -904,7 +920,7 @@
       "invis_tags": "Shooting",
       "zone": "Purple",
       "booth_oneline_description": "",
-      "booth_description": "Test your aim with Nerf guns as you try to shoot darts into holes of varying sizes on a board \u00e2\u20ac\u201c the more precise, the better!",
+      "booth_description": "Test your aim with Nerf guns as you try to shoot darts into holes of varying sizes on a board — the more precise, the better!",
       "location": ""
     },
     "LB1": {
@@ -952,7 +968,7 @@
       ],
       "zone": "Yellow",
       "booth_oneline_description": "",
-      "booth_description": "",
+      "booth_description": "Tired of the chaotic fun? Take a break and chill with air con at the rest zone!",
       "location": ""
     },
     "LT12A": {
@@ -1000,7 +1016,7 @@
       "invis_tags": "JH205",
       "zone": "Yellow",
       "booth_oneline_description": "",
-      "booth_description": "Relive your childhood, one snack at a time! Join us on a trip down memory lane with a massive spread of old-school favourites \u00e2\u20ac\u201d think WangWang, Eyeglass Candy, Mamee, Coco Jelly, and more",
+      "booth_description": "Relive your childhood, one snack at a time! Join us on a trip down memory lane with a massive spread of old-school favourites — think WangWang, Eyeglass Candy, Mamee, Coco Jelly, and more!",
       "location": ""
     },
     "LT5": {

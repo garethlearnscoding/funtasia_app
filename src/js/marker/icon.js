@@ -13,7 +13,8 @@ export class Icon extends Marker {
     'stair-ud': `${BASE}/icons/stair-ud.png`,
     'mtoilet': `${BASE}/icons/mtoilet.png`,
     'ftoilet': `${BASE}/icons/ftoilet.png`,
-    'atoilet': `${BASE}/icons/atoilet.png`
+    'atoilet': `${BASE}/icons/atoilet.png`,
+    'door': `${BASE}/icons/door.png`
   };
 
   // State flag for all icons visibility

@@ -53,10 +53,10 @@ const filterState = {
 
 export async function fetchDirectoryData() {
   try {
-    const response = await fetch(`${ASSETS_BASE_URL}/json_data/funtasia_data.json`);
-    const rawData = await response.json();
-    // const localData = await import("@/assets/funtasia_data.json");
-    // const rawData = localData.default;
+    // const response = await fetch(`${ASSETS_BASE_URL}/json_data/funtasia_data.json`);
+    // const rawData = await response.json();
+    const localData = await import("@/assets/funtasia_data.json");
+    const rawData = localData.default;
     // console.log(rawData);
     
     // Normalize data: convert array format to object format keyed by "Booth ID"

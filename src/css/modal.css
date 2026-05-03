@@ -39,7 +39,7 @@
         @apply text-ctp-subtext1 hover:text-ctp-text transition-colors active:scale-90;
     }
     .modal-content {
-        @apply px-2 py-4 overflow-y-scroll overflow-x-hidden space-y-8 -z-50;
+        @apply px-2 py-3 overflow-y-scroll overflow-x-hidden space-y-8 -z-50;
     }
 
 
@@ -47,16 +47,18 @@
         width:5px;
     }
     .modal-content::-webkit-scrollbar-track {
-        background: transparent;
-        margin-block:25px;
+        background:transparent;
+        border-radius: 100vw;
+        margin-block: 30px; /* Inset from top/bottom */
     }
     .modal-content::-webkit-scrollbar-thumb {
         background: var(--color-ctp-surface2);
         border-radius: 100vw;
         border: 2px solid transparent;
+
     }
     .modal-content::-webkit-scrollbar-thumb:hover {
-        background: var(--color-ctp-mauve-50);
+        background: var(--color-ctp-mauve);
     }
 
     .modal-search-wrapper {
@@ -138,7 +140,7 @@
         transform: scale(0.95);
     }
     .filter-row {
-        @apply flex gap-2 mb-3 flex-wrap;
+        @apply flex gap-4 mb-3 flex-wrap;
     }
 
     /* ── Dropdown ───────────────────────────────── */
@@ -187,6 +189,7 @@
         background: var(--color-ctp-surface2);
         border-radius: 100vw;
         border: 2px solid transparent;
+        /* background-clip: content-box; */
     }
     .custom-dropdown-menu::-webkit-scrollbar-thumb:hover {
         background: var(--color-ctp-mauve);

@@ -175,7 +175,7 @@ body {
 }
 
 /* === Enter and Exit Child Buttons === */
-#enter-child-btn, #lt5-event-btn, #o2-event-btn {
+#enter-child-btn, #lt5-event-btn, #o2-event-btn, #makers-redirect-btn, #escaperoom-redirect-btn {
   display:none; 
   width:100%; 
   padding: 14px; 
@@ -187,8 +187,11 @@ body {
   border: 1px solid color-mix(in srgb, var(--color-ctp-mauve) 30%, transparent); 
   cursor: pointer; 
   transition: background 0.2s;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
-#enter-child-btn:active, #lt5-event-btn:active, #o2-event-btn:active {
+#enter-child-btn:active, #lt5-event-btn:active, #o2-event-btn:active, #makers-redirect-btn:active, #escaperoom-redirect-btn:active {
   background: color-mix(in srgb, var(--color-ctp-mauve) 10%, transparent);
 }
 

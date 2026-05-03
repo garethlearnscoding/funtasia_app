@@ -1,6 +1,6 @@
 level,booth_id,booth_name,tags,invis_tags,zone,booth_oneline_description,booth_description,location,sort_helper
 B3,BG1,Minigames,Game,25SH21,Green,,Dive into thrilling mini-games where every challenge is a chance to rack up epic points and beat the competition!,,1
-B3,BG2,Human Slot Machine,Game,25SH14,Green,,Participate in a live size casino machine,,1
+B3,BG2,Human Slot Machine,Game,25SH14,Green,,Have you ever seen a human slot machine? No? Now is your chance!,,1
 B3,BG3,Nerf N' Mosh,Game,JH301,Green,,"Put your hand-eye coordination to the test with our Nerf battle zone, where accuracy and speed are key to victory!",,1
 B3,BG4,Knock the Teeth,,JH204,Green,,"Do you find clowns creepy? Well, here is your chance to take revenge by breaking the clown's teeth!",,1
 B3,BG5,The Fizzy Leaf,Drinks,25SH12,Green,,"Enjoy a refreshing selection of bottled water, carbonated drinks, and packet teas and juices, all kept perfectly chilled in ice-filled coolers.",,1
@@ -36,7 +36,7 @@ L1,S3,Keychain Corner,Merch,25SH17,Blue,,"Unleash your inner artist at our keych
 L1,S4,Gem it Up!: Face Gems,Glam Up,25SH20,Blue,,Get a unique face gem design with options to choose from a variety of styles!,,4
 L1,S5,"Revibe: Hairstyling, Body Paint",Glam Up,25SH16,Blue,,"Transform your look with hair braiding, simple buns, temporary hair color, face/body painting, and optional henna art, plus handcrafted accessories to take home.",,4
 L1,S6,Face Painting & Hair Tinsels,Glam Up,JH207,Blue,,"Get creative with face painting and dazzling hair tinsels, with design examples to inspire your look!",,4
-L1,S7,Bedazzle: Bracelet Making,Merch,25SH08,Blue,,Create your own anime-themed bracelet by selecting charms assembling them!,,4
+L1,S7,Bedazzle: Bracelet Making,Merch,25SH08,Blue,,Create your own anime-themed bracelet by selecting charms and assembling them!,,4
 L1,AB1,Astro,Game,astronomy,Orange,,"From 4: 00 - 6: 00 pm:
 Discover cosmic vents tied to your birthday or special dates through engaging astronomy activities
 
@@ -62,7 +62,7 @@ L1,CE1,Heyya Duck Rice,Food,26SH03,Orange,,I love duck rice and so should you. C
 L1,CE2,Buldak Noodles,Food,26SH16,Orange,,Are you coming? No? You are missing out on the most fire noodles ever!,,4
 L1,DS3,Gatecrash: Escape Room,Game,JH203,Orange,,Step into a thrilling escape room experience where you'll solve puzzles and unravel mysteries to escape before time runs out!,,4
 L1,O1,Go Kart,Game,26SH06,Orange,,Don't have a driving license? Well fret not! You get to drive here as well!,,4
-L1,O2,PA Busking Booth,Performance,"PA, HCWeyoung, Nunyuh Business, Phyllis, Phyllzx, Blueforms, Updawg, Thaarmin, Mirage!",Orange,,,,4
+L1,O2,Busking @ Linkway,Performance,"PA, HCWeyoung, Nunyuh Business, Phyllis, Phyllzx, Blueforms, Updawg, Thaarmin, Mirage!",Orange,,,,4
 L1,O3,First Aid Station 2,First Aid,"medical, injured, injury",Orange,,,,4
 L1,O4,Info Counter,Info,26SH10,Orange,,,,4
 L1,O5,Ticket Counter,Tickets,,Orange,,,,4
@@ -94,7 +94,7 @@ L2,H13,Henna Haven,"CCA, Glam Up",Indian Dance,Purple,,"Experience the art of he
 L2,H14,Cover Your Ears,"CCA, Game",Symphonic Band,Purple,,Test your music knowledge with a fun game where you guess the song in a recording by Symphonic Band!,,5
 L2,H15,Fire in the Hole,"CCA, Game",Softball,Purple,,Show off your throwing precision by launching balls into holes at varying distances for rewards!,,5
 L2,H16,Second Hand Thrift,"CCA, Merch",Greenlink,Purple,,"Explore a vibrant marketplace filled with donated clothes, accessories, K-pop/Anime merch, and collectibles from NJCians!",,5
-L2,H17,Ticket Counter,Tickets,,Purple,,,,5
+L2,H1718,Ticket & Info Counter,"Tickets, Info",,Purple,,,,5
 L2,H18,Info Counter,Info,26SH10,Purple,,,,5
 L2,H19,Makers,"CCA, Merch",Makers,Purple,,"Explore a vibrant marketplace filled with donated clothes, accessories, K-pop/Anime merch, and collectibles from NJCians!",,5
 L2,H2,Strings Attached,"CCA, Game",Strings,Purple,,Want a challenge? Well this game is for you! Try your mighty best to balance ping pong balls on cups with string!,,5
@@ -115,7 +115,7 @@ L2,LT12B,Strike a Pose!,Photos,JH304,Yellow,,"Choose your props, snap a shot aga
 L2,LT1A,Balloonatics,Merch,JH201,Yellow,,"Create and take home adorable balloon sculptures like ducks, bunnies, and minions from our vibrant display!",,5
 L2,LT1B,Get Slimed!,Merch,25Sh18,Yellow,,"Dive into a world of squishy fun with customizable DIY slime-making sessions, themed slimes, and playful sensory experiences.",,5
 L2,LT1C,JH205 Tuckshop,"Food, Drinks",JH205,Yellow,,"Relive your childhood, one snack at a time! Join us on a trip down memory lane with a massive spread of old-school favourites — think WangWang, Eyeglass Candy, Mamee, Coco Jelly, and more",,5
-L2,LT5,IP OH CCA Performances,Performance,"Malay Dance, Chinese Dance, Indian Dance, Western Dance, Choir, String Orchestra, Guitar Ensemble, Chinese Orchestra, Symphonic Band, Guzheng Ensemble, COGZ",Yellow,,Excited to see how NJC's performing arts are like? Do come check out the CCA performances here!,,5
+L2,LT5,CCA Performances @ LT5,Performance,"Malay Dance, Chinese Dance, Indian Dance, Western Dance, Choir, String Orchestra, Guitar Ensemble, Chinese Orchestra, Symphonic Band, Guzheng Ensemble, COGZ",Yellow,,Excited to see how NJC's performing arts are like? Do come check out the CCA performances here!,,5
 L2,LT5A,Gachapon,Merch,26SH04,Yellow,,"Well, I love me some cheap and cute Gachapons! Come here as soon as possible before our prizes run out! Prizes include smiskis, sonny angels and more!!",,5
 L2,LT5A,Jang and Fox Postcard,Merch,26Sh04,Yellow,,Want some cute postcards? Come check us out!,,5
 L2,LT5B,Pipe cleaner flowers and animals,Merch,25SH04,Yellow,,Join us in creating cute pocket creatures with vibrant pipecleaners!,,5

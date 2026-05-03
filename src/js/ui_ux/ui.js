@@ -64,6 +64,8 @@ export function showBottomSheet(objectName, childFloorId = null, description = n
   const enterBtn = document.getElementById("enter-child-btn");
   const lt5Btn = document.getElementById("lt5-event-btn");
   const o2Btn = document.getElementById("o2-event-btn");
+  const makersBtn = document.getElementById("makers-redirect-btn");
+  const escapeRoomBtn = document.getElementById("escaperoom-redirect-btn");
   
   if (enterBtn) {
     if (childFloorId) {
@@ -102,6 +104,30 @@ export function showBottomSheet(objectName, childFloorId = null, description = n
     } else {
       o2Btn.style.display = "none";
       o2Btn.onclick = null;
+    }
+  }
+
+  if (makersBtn) {
+    if (locationInfo.title === "Makers") {
+      makersBtn.style.display = "block";
+      makersBtn.onclick = () => {
+        window.open("https://makers.njcfuntasia.com", "_blank");
+      };
+    } else {
+      makersBtn.style.display = "none";
+      makersBtn.onclick = null;
+    }
+  }
+
+  if (escapeRoomBtn) {
+    if (locationInfo.title.toLowerCase().includes("escape room")) {
+      escapeRoomBtn.style.display = "flex";
+      escapeRoomBtn.onclick = () => {
+        window.open("https://queue.njcfuntasia.com", "_blank");
+      };
+    } else {
+      escapeRoomBtn.style.display = "none";
+      escapeRoomBtn.onclick = null;
     }
   }
 

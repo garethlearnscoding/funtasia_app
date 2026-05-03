@@ -13,7 +13,7 @@
     <title>Funtasia 3D Map</title>
     <link rel="stylesheet" href="/src/css/main.css"/>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&icon_names=album,arrow_back,celebration,check,chevron_right,circle,close,directions_run,event,falling,festival,flashlight_off,flashlight_on,hourglass_empty,image,info_i,keyboard,location_on,logout,map,mic_external_on,music_note,music_note_2,open_in_new,qr_code_scanner,search,search_off,settings,store,swap_vert,theater_comedy,timer_off,touch_app&display=block" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&icon_names=album,arrow_back,celebration,check,chevron_right,circle,close,directions_run,event,falling,festival,flashlight_off,flashlight_on,hourglass_empty,image,info_i,keyboard,keyboard_double_arrow_up,location_on,logout,map,mic_external_on,music_note,music_note_2,open_in_new,qr_code_scanner,search,search_off,settings,store,swap_vert,theater_comedy,timer_off,touch_app&display=block" rel="stylesheet">
     <link href="/src/css/input.css" rel="stylesheet"/>
     <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg"/>
     <link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png"/>
@@ -36,8 +36,12 @@
       <h2 id="sheet-title">Location Title</h2>
       <p id="sheet-desc">Location description will appear here.</p>
       <button class="bg-ctp-surface1 text-ctp-text" id="enter-child-btn">View Area</button>
-      <button class="bg-ctp-surface1 text-ctp-text" id="lt5-event-btn" style="display: none;">CCA Performances @ LT5</button>
-      <button class="bg-ctp-surface1 text-ctp-text" id="o2-event-btn" style="display: none;">Busking @ Linkway</button>
+      <button class="bg-ctp-surface1 text-ctp-text" id="lt5-event-btn" style="display: none;">CCA Performances</button>
+      <button class="bg-ctp-surface1 text-ctp-text" id="o2-event-btn" style="display: none;">Busking Performance</button>
+      <button class="bg-ctp-surface1 text-ctp-text" id="makers-redirect-btn" style  ="display: none;">Makers</button>
+      <button class="bg-ctp-surface1 text-ctp-text" id="escaperoom-redirect-btn" style="display: none; gap: 0.25rem;">
+        <span class="material-symbols-outlined">open_in_new</span>Escape Room Queue 
+      </button>
     </div>
 
     <button id="exit-child-btn" class="fab-btn" style="display: none; width: fit-content; height: fit-content;">
@@ -333,7 +337,7 @@
             </button>
           </div>
           <!-- Content Area -->
-          <div class="modal-content flex flex-col items-center p-6 scroll-smooth h-fit" id="events-content-area">
+          <div class="modal-content flex flex-col items-center p-3 scroll-smooth h-fit" id="events-content-area">
             <!-- Toggle Buttons -->
             <div class="toggle-selector-container max-w-xl">
               <button id="events-cca-toggle-btn" class="toggle-selector" style="background: var(--color-ctp-mauve); color: var(--color-ctp-base)">
@@ -351,6 +355,9 @@
             </div>
           </div>
           <div class="modal-footer-fade"></div>
+          <button id="events-back-to-top" class="absolute bottom-6 right-6 bg-ctp-mauve text-ctp-base p-2 rounded-full shadow-lg transition-all duration-300 opacity-0 pointer-events-none z-[100]" aria-label="Back to top">
+            <span class="material-symbols-outlined text-[20px]">keyboard_double_arrow_up</span>
+          </button>
         </div>
       </div>
     </div>

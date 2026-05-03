@@ -75,10 +75,10 @@ export async function switchEventCategory(category) {
             }
             const eventID = "events-item-" + (index + 1)
             html += `
-            <header id="${eventID}" class="text-left sticky -top-8 -left-4 bg-ctp-base text-ctp-base min-h-28 z-50 w-[calc(100%+var(--spacing)*4)]" style="contain: layout paint;">
-                <div class="flex flex-col mb-1 items-start w-full ml-4 mt-8 gap-2">
-                    <h1 class="font-headline text-3xl font-bold tracking-tight text-ctp-text leading-none">${data.title}</h1>
-                    <span class="events-location cursor-pointer hover:opacity-70 transition-opacity active:scale-95" data-booth-id="${data.location_id || data.location}">
+            <header id="${eventID}" class="text-left sticky -top-8 -left-3 bg-ctp-base text-ctp-base min-h-28 z-50 w-[calc(100%+var(--spacing)*3)]" style="contain: layout paint;">
+                <div class="flex flex-row mb-1 items-center justify-between w-full pr-8 mt-8 gap-4">
+                    <h1 class="font-headline text-3xl font-bold tracking-tight text-ctp-text leading-none ml-4 truncate">${data.title}</h1>
+                    <span class="events-location cursor-pointer hover:opacity-70 transition-opacity active:scale-95 flex-shrink-0" data-booth-id="${data.location_id || data.location}">
                         <span class="material-symbols-outlined text-[12px]">location_on</span>${data.location}
                     </span>
                 </div>
@@ -165,10 +165,14 @@ export async function switchEventCategory(category) {
                 let songsHtml = "";
                 if (ev.songs) {
                     ev.songs.forEach(song => {
-                        songsHtml += `<span class="bg-transparent px-3 py-1 my-2 rounded-full font-label text-[12px] tracking-widest flex items-center gap-1 w-fit">
-                    <span class="material-symbols-outlined text-[12px]">${song.icon ? song.icon : "music_note"}</span>
-                    <span class="uppercase">${song.title}</span><p>&nbsp;by&nbsp;</p><span class="capitalize">${song.author}</span>
-                  </span>`
+                        songsHtml += `
+                        <div class="flex items-center gap-3 my-4">
+                            <span class="material-symbols-outlined text-[18px] text-ctp-mauve-800">${song.icon ? song.icon : "music_note"}</span>
+                            <div class="flex flex-col gap-0.5">
+                                <span class="font-headline font-bold text-[12px] text-ctp-text uppercase tracking-wider">${song.title}</span>
+                                <span class="font-body text-[10px] text-ctp-mauve font-bold uppercase tracking-widest">${song.author}</span>
+                            </div>
+                        </div>`
                     })
                 }
 
@@ -232,5 +236,25 @@ export async function switchEventCategory(category) {
             const boothId = locationTag.dataset.boothId.trim();
             if (boothId && boothId !== "-") focusOnBooth(boothId);
         }
+    });
+}
+
+// Setup Back to Top scroll listener
+const eventsContentArea = document.getElementById('events-content-area');
+const eventsBackToTopBtn = document.getElementById('events-back-to-top');
+
+if (eventsContentArea && eventsBackToTopBtn) {
+    eventsContentArea.addEventListener('scroll', () => {
+        if (eventsContentArea.scrollTop > 200) {
+            eventsBackToTopBtn.classList.remove('opacity-0', 'pointer-events-none');
+            eventsBackToTopBtn.classList.add('opacity-100', 'pointer-events-auto');
+        } else {
+            eventsBackToTopBtn.classList.add('opacity-0', 'pointer-events-none');
+            eventsBackToTopBtn.classList.remove('opacity-100', 'pointer-events-auto');
+        }
+    });
+
+    eventsBackToTopBtn.addEventListener('click', () => {
+        eventsContentArea.scrollTo({ top: 0, behavior: 'smooth' });
     });
 }

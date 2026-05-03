@@ -15,7 +15,7 @@
       "invis_tags": "25SH14",
       "zone": "Green",
       "booth_oneline_description": "",
-      "booth_description": "Participate in a live size casino machine",
+      "booth_description": "Have you ever seen a human slot machine? No? Now is your chance!",
       "location": ""
     },
     "BG3": {
@@ -260,7 +260,7 @@
       "invis_tags": "25SH08",
       "zone": "Blue",
       "booth_oneline_description": "",
-      "booth_description": "Create your own anime-themed bracelet by selecting charms assembling them!",
+      "booth_description": "Create your own anime-themed bracelet by selecting charms and assembling them!",
       "location": ""
     },
     "AB1": {
@@ -780,9 +780,12 @@
       "booth_description": "Explore a vibrant marketplace filled with donated clothes, accessories, K-pop/Anime merch, and collectibles from NJCians!",
       "location": ""
     },
-    "H17": {
-      "booth_name": "Ticket Counter",
-      "tags": "Tickets",
+    "H1718": {
+      "booth_name": "Ticket & Info Counter",
+      "tags": [
+        "Tickets",
+        " Info"
+      ],
       "invis_tags": "",
       "zone": "Purple",
       "booth_oneline_description": "",

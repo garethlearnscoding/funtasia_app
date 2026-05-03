@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <script>
+      // Immediate theme sync to avoid flashing
+      const savedTheme = localStorage.getItem('funtasia-theme') || 'latte'; // Default to latte
+      document.documentElement.classList.remove('mocha');
+      document.documentElement.classList.remove('latte');
+      document.documentElement.classList.add(savedTheme);
+    </script>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title>404 - Page Not Found | Funtasia</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&icon_names=map,search_off&display=block" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="./favicon/favicon.svg"/>
+    <link rel="apple-touch-icon" href="./favicon/apple-touch-icon.png"/>
+    <link rel="stylesheet" crossorigin href="./assets/input-BnhAHNXl.css">
+  </head>
+  <body class="bg-ctp-base text-ctp-text min-h-screen flex items-center justify-center p-6 overflow-hidden">
+    <div class="max-w-md w-full text-center flex flex-col items-center">
+      <div class="mb-12">
+        <img class="m-auto max-w-[min(80%,220px)]" src="./assets/Logo-CQ8kWmQV.svg" alt="Funtasia Logo">
+      </div>
+
+      <span class="material-symbols-outlined text-[96px] text-ctp-mauve mb-6 select-none opacity-50">search_off</span>
+
+      <h1 class="text-5xl font-extrabold mb-4 tracking-tight">404</h1>
+      <p class="text-xl text-ctp-subtext1 mb-12 font-mono">
+        Oops! It looks like you've wandered off the map.
+      </p>
+
+      <a href="/" class="bg-ctp-mauve rounded-full px-10 py-4 text-ctp-base font-bold transition-all active:scale-95 hover:brightness-110 inline-flex items-center gap-2 no-underline shadow-lg shadow-ctp-mauve/20">
+        <span class="material-symbols-outlined text-[24px]">map</span>
+        Back to Map
+      </a>
+    </div>
+  </body>
+</html>

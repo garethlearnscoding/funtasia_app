@@ -56,7 +56,7 @@ var Pt=Object.defineProperty;var Ft=(n,t,e)=>t in n?Pt(n,t,{enumerable:!0,config
             <div class="events-timeline">
             `,console.log(s.location_id);const i=new Date,l=i.getHours()*60+i.getMinutes();let u=!0;s.events.forEach((m,B)=>{const v=xe(m.time);let p=1/0;if(m.endTime)p=xe(m.endTime);else for(let q=B+1;q<s.events.length;q++)if(s.events[q].time){p=xe(s.events[q].time);break}let O;l>=p?O="past":l>=v&&l<p?(O="current",u=!1):(O="future",u=!1),!u&&!r&&(r=c);let g,E,F,N;O==="past"?(g="bg-ctp-surface2",E="text-ctp-subtext0",F="text-ctp-subtext0",N="bg-ctp-surface0/50 opacity-50 ring-1 ring-ctp-surface1"):O==="current"?(g="bg-ctp-mauve shadow-[0_0_10px_var(--color-ctp-mauve)]",E="text-ctp-mauve font-bold",F="text-ctp-text font-bold",N="bg-ctp-surface0 ring-1 ring-ctp-mauve/70 shadow-lg shadow-ctp-mauve/10"):(g="bg-ctp-surface2 group-hover:bg-ctp-mauve",E="text-ctp-subtext0",F="text-ctp-text",N="bg-ctp-surface0 ring-1 ring-ctp-surface1 hover:bg-ctp-surface1");let Z="";m.link&&(Z=`<span class="bg-ctp-surface0 text-ctp-blue ml-4 px-3 py-1 rounded-full font-label text-[10px] uppercase tracking-widest flex items-center gap-1 w-fit">
                     <span class="material-symbols-outlined text-[10px]" style="font-size: 12px">${m.link.icon||"open_in_new"}</span>
-                    <a class="capitalize" href="${m.link.url}" target="${m.link.target||"_blank"}">${m.link.text}</a>
+                    <a class="capitalize" href="${m.link.link}" target="${m.link.target||"_blank"}">${m.link.text}</a>
                   </span>`),o+=`
                     <div class="events-item-container group">
                         <div class="${g} events-item-dots"></div>

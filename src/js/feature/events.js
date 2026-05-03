@@ -144,7 +144,7 @@ export async function switchEventCategory(category) {
                 if (ev.link) {
                     linkHtml = `<span class="bg-ctp-surface0 text-ctp-blue ml-4 px-3 py-1 rounded-full font-label text-[10px] uppercase tracking-widest flex items-center gap-1 w-fit">
                     <span class="material-symbols-outlined text-[10px]" style="font-size: 12px">${ev.link.icon || "open_in_new"}</span>
-                    <a class="capitalize" href="${ev.link.url}" target="${ev.link.target || "_blank"}">${ev.link.text}</a>
+                    <a class="capitalize" href="${ev.link.link}" target="${ev.link.target || "_blank"}">${ev.link.text}</a>
                   </span>`
 
                 }

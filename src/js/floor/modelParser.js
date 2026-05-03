@@ -16,6 +16,7 @@ export const textMarkerMap = {
     "Hall": "Hall",
     "LT5": "LT5",
     "LT1": "LT1",
+    "Amphitheatre": "Amphitheatre"
   },
   b2: {
     "Gym": "Gymnasium"

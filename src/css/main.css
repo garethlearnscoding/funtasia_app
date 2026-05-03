@@ -10,6 +10,7 @@
 
 * {
   box-sizing: border-box;
+  scrollbar-color: var(--color-ctp-subtext1) var(--color-ctp-surface0);
 }
 
 html,

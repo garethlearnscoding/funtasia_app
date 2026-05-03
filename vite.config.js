@@ -12,7 +12,7 @@ export default defineConfig({
     tailwindcss(),
   ],
   define: {
-    ASSETS_BASE_URL: JSON.stringify('https://cdn.jsdelivr.net/gh/garethlearnscoding/funtasia_assets@main'),
+    ASSETS_BASE_URL: JSON.stringify('https://cdn.jsdelivr.net/gh/garethlearnscoding/funtasia_assets@0.1.0'),
     VERSION: JSON.stringify('v5-30-4')
   },
   resolve: {

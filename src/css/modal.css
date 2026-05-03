@@ -19,10 +19,7 @@
         @apply relative h-[90vh] backdrop-blur-[20px] overflow-hidden flex flex-col bg-ctp-base text-ctp-text;
         width: min(95vw, calc(70vw + 200px));
         border-radius: 2rem;
-        /* Ghost border per §4 — outline-variant at 15% opacity */
-        border: 1px solid color-mix(in srgb, var(--color-outline-variant) 15%, transparent);
-        /* Ambient diffusion shadow (§4) — 30-60px blur, on-surface tinted */
-        box-shadow: 0 32px 64px color-mix(in srgb, var(--color-ctp-text) 8%, transparent);
+        box-shadow: 0 0 10px 2px var(--color-ctp-surface2);
     }
     .modal-header {
         @apply px-6 pt-6 pb-4 flex justify-between items-start sticky top-0 z-10 bg-ctp-crust; 
@@ -39,17 +36,18 @@
         @apply text-ctp-subtext1 hover:text-ctp-text transition-colors active:scale-90;
     }
     .modal-content {
-        @apply px-2 py-3 overflow-y-scroll overflow-x-hidden space-y-8 -z-50;
+        @apply px-2 py-3 overflow-y-scroll overflow-x-hidden space-y-8 -z-50 bg-ctp-base;
+        scrollbar-color: var(--color-ctp-mauve);
     }
 
 
-    .modal-content::-webkit-scrollbar {
+    /* .modal-content::-webkit-scrollbar {
         width:5px;
     }
     .modal-content::-webkit-scrollbar-track {
         background:transparent;
         border-radius: 100vw;
-        margin-block: 30px; /* Inset from top/bottom */
+        margin-block: 30px; 
     }
     .modal-content::-webkit-scrollbar-thumb {
         background: var(--color-ctp-surface2);
@@ -59,7 +57,7 @@
     }
     .modal-content::-webkit-scrollbar-thumb:hover {
         background: var(--color-ctp-mauve);
-    }
+    } */
 
     .modal-search-wrapper {
         @apply relative flex items-center rounded-2xl;
@@ -146,7 +144,6 @@
     /* ── Dropdown ───────────────────────────────── */
     .filter-dropdown {
         @apply text-xs font-bold py-2 px-3 rounded-xl outline-none cursor-pointer transition-all bg-ctp-surface0 text-ctp-text;
-        border: 1px solid color-mix(in srgb, var(--color-outline-variant) 25%, transparent);
         appearance: none;
         -webkit-appearance: none;
         background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236c7086' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
@@ -171,17 +168,12 @@
     }
     .custom-dropdown-menu {
         @apply backdrop-blur-md overflow-y-auto overflow-x-hidden rounded-xl;
-        background-color: color-mix(in srgb, var(--color-ctp-mantle) 85%, transparent);
-        border: 1px solid color-mix(in srgb, var(--color-outline-variant) 20%, transparent);
-        box-shadow: 0 16px 48px color-mix(in srgb, var(--color-ctp-crust) 40%, transparent);
-    
+        background-color: var(--color-ctp-mantle);
+        box-shadow: 0 16px 16px var(--color-ctp-crust);
     }
     
-    .custom-dropdown-menu::-webkit-scrollbar {
-        width:5px;
-    }
     .custom-dropdown-menu::-webkit-scrollbar-track {
-        background: color-mix(in srgb, var(--color-ctp-surface0) 40%, transparent);
+        background: var(--color-ctp-surface0);
         border-radius: 100vw;
         margin-block: 20px; /* Inset from top/bottom */
     }

@@ -11,7 +11,7 @@ const locationData = {};
  * Populates the UI's location database from the directory JSON.
  * @param {Object} data - The directory data object { floor: { boothId: item } }
  */
-export function setDirectoryData(data) {
+export function setUISheetData(data) {
   if (!data || typeof data !== 'object') return;
 
   // Flatten the floor-grouped data for the UI lookup map
@@ -19,8 +19,8 @@ export function setDirectoryData(data) {
     if (!floorEntries || typeof floorEntries !== 'object') return;
 
     Object.entries(floorEntries).forEach(([id, item]) => {
-      const title = item["Booth Name"] || item["booth_name"] || id;
-      const description = item["Booth Description"] || item["booth_description"];
+      const title = item["booth_name"] || id;
+      const description = item["booth_description"];
 
       const info = {
         title: title,
@@ -64,7 +64,7 @@ export function showBottomSheet(objectName, childFloorId = null, description = n
   const enterBtn = document.getElementById("enter-child-btn");
   const lt5Btn = document.getElementById("lt5-event-btn");
   const o2Btn = document.getElementById("o2-event-btn");
-
+  
   if (enterBtn) {
     if (childFloorId) {
       enterBtn.style.display = "block";
@@ -80,7 +80,7 @@ export function showBottomSheet(objectName, childFloorId = null, description = n
   }
 
   if (lt5Btn) {
-    if (objectName === "LT5") {
+    if (objectName === "CCA Performances @ LT5") {
       lt5Btn.style.display = "block";
       lt5Btn.onclick = () => {
         if (window.openEventsModal) window.openEventsModal("cca");
@@ -93,7 +93,7 @@ export function showBottomSheet(objectName, childFloorId = null, description = n
   }
 
   if (o2Btn) {
-    if (objectName === "O2") {
+    if (objectName === "Busking @ Linkway") {
       o2Btn.style.display = "block";
       o2Btn.onclick = () => {
         if (window.openEventsModal) window.openEventsModal("pabusking");

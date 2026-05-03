@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { setDirectoryData, getDirectoryData } from '@/js/feature/directory.js';
+import { setDirectoryListData, getDirectoryData } from '@/js/feature/directory.js';
 import { DirectoryMarker } from '@/js/marker/directorymarker.js';
 import { Floor } from "@/js/floor/floor.js";
 import { focusOnObject, focusOnFloor } from "@/js/ui_ux/cameraUtils.js";
@@ -122,6 +122,7 @@ export class Navigation {
 
              if (targetObj) {
                  focusOnObject(targetObj, appState);
+                 console.log("TARGET OBJECT: ", targetObj.userData.boothId)
                  showBottomSheet(targetObj.userData.boothId, targetObj.userData.child, targetObj.userData.boothDescription, targetObj.name);
              }
           };
@@ -144,7 +145,7 @@ export class Navigation {
           
           // Once all main floors are loaded (or as they load), cache the data
           // Actually, we can just cache it immediately after parsing since the data object is shared
-          setDirectoryData(appState.rawData);
+          setDirectoryListData(appState.rawData);
         } catch (err) {
           console.error(`Failed to load floor ${floorId}:`, err);
           showToast(`Error: ${floorId.toUpperCase()} failed.`);

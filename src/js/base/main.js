@@ -12,7 +12,7 @@ import { Icon } from "@/js/marker/icon.js";
 import { Marker } from "@/js/marker/marker.js"; 
 import { QRMarker } from "@/js/marker/qrmarker.js";
 import { startAnimationLoop, animateCameraTo } from "@/js/ui_ux/animate.js";
-import { hideBottomSheet, setupUI, setDirectoryData } from "@/js/ui_ux/ui.js";
+import { hideBottomSheet, setupUI, setUISheetData } from "@/js/ui_ux/ui.js";
 
 const { scene, camera, renderer, controls } = setupScene();
 
@@ -68,7 +68,7 @@ async function initApp() {
   const rawData = await fetchDirectoryData();
 
   // Register the fetched directory data with the UI module
-  setDirectoryData(rawData);
+  setUISheetData(rawData);
 
   // No pre-loading — floors are fetched on-demand in Navigation.switchFloor()
   // 2. Set up UI

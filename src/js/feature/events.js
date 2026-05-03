@@ -55,9 +55,15 @@ export async function switchEventCategory(category) {
     eventsListContainer.style.position = 'relative';
     eventsListContainer.style.zIndex = '0';
     try {
+        // --- LOCAL TESTING MODE ---
+        // To use local data, uncomment the import lines and comment out the fetch lines.
         const response = await fetch(`${ASSETS_BASE_URL}/json_data/events/${category}_events.json`);
         if (!response.ok) throw new Error('Failed to load events for ' + category);
         const data_arr = await response.json();
+
+        // const localModule = await import(`@/assets/${category}_events.json`);
+        // const data_arr = localModule.default;
+        // --------------------------
 
         let html = '';
         let currentEventID = null;
@@ -67,12 +73,11 @@ export async function switchEventCategory(category) {
                 return;
             }
             const eventID = "events-item-" + (index + 1)
-
             html += `
             <header id="${eventID}" class="text-left sticky -top-8 -left-4 bg-ctp-base text-ctp-base min-h-28 z-50 w-[calc(100%+var(--spacing)*4)]" style="contain: layout paint;">
                 <div class="flex flex-row mb-1 justify-items-center w-full ml-4 mt-8">
                     <h1 class="font-headline text-3xl font-bold tracking-tight text-ctp-text leading-none mr-2">${data.title}</h1>
-                    <span class="events-location cursor-pointer hover:opacity-70 transition-opacity active:scale-95" data-booth-id="${data.location}">
+                    <span class="events-location cursor-pointer hover:opacity-70 transition-opacity active:scale-95" data-booth-id="${data.location_id || data.location}">
                         <span class="material-symbols-outlined text-[12px]">location_on</span>${data.location}
                     </span>
                 </div>

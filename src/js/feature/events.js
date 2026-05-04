@@ -78,8 +78,8 @@ export async function switchEventCategory(category) {
             <header id="${eventID}" class="text-left sticky -top-8 -left-3 bg-ctp-base text-ctp-base min-h-28 z-50 w-[calc(100%+var(--spacing)*3)]" style="contain: layout paint;">
                 <div class="flex flex-row mb-1 items-center justify-between w-full pr-8 mt-8 gap-4">
                     <h1 class="font-headline text-3xl font-bold tracking-tight text-ctp-text leading-none ml-4 truncate">${data.title}</h1>
-                    <span class="events-location cursor-pointer hover:opacity-70 transition-opacity active:scale-95 flex-shrink-0" data-booth-id="${data.location_id || data.location}">
-                        <span class="material-symbols-outlined text-[12px]">location_on</span>${data.location}
+                    <span class="events-location cursor-pointer hover:opacity-70 transition-opacity active:scale-95 flex-0" data-booth-id="${data.location_id || data.location}">
+                        <span class="material-symbols-outlined text-[12px]">location_on</span>${data.location}  
                     </span>
                 </div>
                 <p class="text-ctp-subtext0 font-body text-sm w-full ml-4">${data.subtitle || '<br>'}</p>        

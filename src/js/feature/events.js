@@ -1,11 +1,13 @@
 import { focusOnBooth } from "@/js/feature/directory.js";
 
 const ccaToggleBtn = document.getElementById('events-cca-toggle-btn');
+const dunklistToggleBtn = document.getElementById('events-dunklist-toggle-btn');
 const pabuskingToggleBtn = document.getElementById('events-pabusking-toggle-btn');
 const eventsListContainer = document.getElementById('events-list-container');
 
 const eventCategories = {
     cca: ccaToggleBtn,
+    dunklist: dunklistToggleBtn,    
     pabusking: pabuskingToggleBtn
 };
 

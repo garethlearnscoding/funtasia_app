@@ -64,6 +64,7 @@ export function showBottomSheet(objectName, childFloorId = null, description = n
   const enterBtn = document.getElementById("enter-child-btn");
   const lt5Btn = document.getElementById("lt5-event-btn");
   const o2Btn = document.getElementById("o2-event-btn");
+  const amphiBtn = document.getElementById("amphi-event-btn");
   const makersBtn = document.getElementById("makers-redirect-btn");
   const escapeRoomBtn = document.getElementById("escaperoom-redirect-btn");
   
@@ -104,6 +105,19 @@ export function showBottomSheet(objectName, childFloorId = null, description = n
     } else {
       o2Btn.style.display = "none";
       o2Btn.onclick = null;
+    }
+  }
+
+  if (amphiBtn) {
+    if (objectName === "Water Dunk Tank") {
+      amphiBtn.style.display = 'block';
+      amphiBtn.onclick = () => {
+        if (window.openEventsModal) window.openEventsModal('dunklist');
+        hideBottomSheet();
+      };
+    } else {
+      amphiBtn.style.display = 'none';
+      amphiBtn.onclick = null;
     }
   }
 

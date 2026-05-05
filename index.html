@@ -35,11 +35,12 @@
       <button id="close-btn">&times;</button>
       <h2 id="sheet-title">Location Title</h2>
       <p id="sheet-desc">Location description will appear here.</p>
-      <button class="bg-ctp-surface1 text-ctp-text" id="enter-child-btn">View Area</button>
-      <button class="bg-ctp-surface1 text-ctp-text" id="lt5-event-btn" style="display: none;">CCA Performances</button>
-      <button class="bg-ctp-surface1 text-ctp-text" id="o2-event-btn" style="display: none;">Busking Performance</button>
-      <button class="bg-ctp-surface1 text-ctp-text" id="makers-redirect-btn" style  ="display: none;">Makers</button>
-      <button class="bg-ctp-surface1 text-ctp-text" id="escaperoom-redirect-btn" style="display: none; gap: 0.25rem;">
+      <button class="bottom-sheet-btn" id="enter-child-btn">View Area</button>
+      <button class="bottom-sheet-btn" id="lt5-event-btn">CCA Performances</button>
+      <button class="bottom-sheet-btn" id="o2-event-btn">Busking Performance</button>
+      <button class="bottom-sheet-btn" id="amphi-event-btn">Dunking Schedule</button>
+      <button class="bottom-sheet-btn" id="makers-redirect-btn">Makers</button>
+      <button class="bottom-sheet-btn" id="escaperoom-redirect-btn">
         <span class="material-symbols-outlined">open_in_new</span>Escape Room Queue 
       </button>
     </div>
@@ -167,7 +168,7 @@
                   </div>
                   <div class="info-btn-desc">
                     <span class="info-btn-title">Event Schedule</span>
-                    <span class="info-btn-caption">Check the live schedule for CCA performances and PA busking.</span>
+                    <span class="info-btn-caption">Check the live schedule for CCA performances, dunklist, and PA busking.</span>
                   </div>
                 </div>            
 
@@ -267,49 +268,49 @@
 
                 <div class="info-icon-cell">
                   <div class="info-icon-bubble">
-                    <img src="https://cdn.jsdelivr.net/gh/garethlearnscoding/funtasia_assets@0.1.1/icons/stair-u.png" class="info-icon-img" alt="Stair Up"/>
+                    <img src="https://cdn.jsdelivr.net/gh/garethlearnscoding/funtasia_assets@0.2.0/icons/stair-u.png" class="info-icon-img" alt="Stair Up"/>
                   </div>
                   <span class="info-icon-label">Stairs<br>Up only</span>
                 </div>
 
                 <div class="info-icon-cell">
                   <div class="info-icon-bubble">
-                    <img src="https://cdn.jsdelivr.net/gh/garethlearnscoding/funtasia_assets@0.1.1/icons/stair-d.png" class="info-icon-img" alt="Stair Down"/>
+                    <img src="https://cdn.jsdelivr.net/gh/garethlearnscoding/funtasia_assets@0.2.0/icons/stair-d.png" class="info-icon-img" alt="Stair Down"/>
                   </div>
                   <span class="info-icon-label">Stairs<br>Down only</span>
                 </div>
 
                 <div class="info-icon-cell">
                   <div class="info-icon-bubble">
-                    <img src="https://cdn.jsdelivr.net/gh/garethlearnscoding/funtasia_assets@0.1.1/icons/stair-ud.png" class="info-icon-img" alt="Stair Up & Down"/>
+                    <img src="https://cdn.jsdelivr.net/gh/garethlearnscoding/funtasia_assets@0.2.0/icons/stair-ud.png" class="info-icon-img" alt="Stair Up & Down"/>
                   </div>
                   <span class="info-icon-label">Stairs<br>Up &amp; Down</span>
                 </div>
 
                 <div class="info-icon-cell">
                   <div class="info-icon-bubble">
-                    <img src="https://cdn.jsdelivr.net/gh/garethlearnscoding/funtasia_assets@0.1.1/icons/lift.png" class="info-icon-img" alt="Lift"/>
+                    <img src="https://cdn.jsdelivr.net/gh/garethlearnscoding/funtasia_assets@0.2.0/icons/lift.png" class="info-icon-img" alt="Lift"/>
                   </div>
                   <span class="info-icon-label">Lift</span>
                 </div>
 
                 <div class="info-icon-cell">
                   <div class="info-icon-bubble">
-                    <img src="https://cdn.jsdelivr.net/gh/garethlearnscoding/funtasia_assets@0.1.1/icons/mtoilet.png" class="info-icon-img" alt="Male Toilet"/>
+                    <img src="https://cdn.jsdelivr.net/gh/garethlearnscoding/funtasia_assets@0.2.0/icons/mtoilet.png" class="info-icon-img" alt="Male Toilet"/>
                   </div>
                   <span class="info-icon-label">Male<br>Toilet</span>
                 </div>
 
                 <div class="info-icon-cell">
                   <div class="info-icon-bubble">
-                    <img src="https://cdn.jsdelivr.net/gh/garethlearnscoding/funtasia_assets@0.1.1/icons/ftoilet.png" class="info-icon-img" alt="Female Toilet"/>
+                    <img src="https://cdn.jsdelivr.net/gh/garethlearnscoding/funtasia_assets@0.2.0/icons/ftoilet.png" class="info-icon-img" alt="Female Toilet"/>
                   </div>
                   <span class="info-icon-label">Female<br>Toilet</span>
                 </div>
 
                 <div class="info-icon-cell">
                   <div class="info-icon-bubble">
-                    <img src="https://cdn.jsdelivr.net/gh/garethlearnscoding/funtasia_assets@0.1.1/icons/atoilet.png" class="info-icon-img" alt="Accessible Toilet"/>
+                    <img src="https://cdn.jsdelivr.net/gh/garethlearnscoding/funtasia_assets@0.2.0/icons/atoilet.png" class="info-icon-img" alt="Accessible Toilet"/>
                   </div>
                   <span class="info-icon-label">Accessible<br>Toilet</span>
                 </div>
@@ -347,6 +348,10 @@
               <button id="events-pabusking-toggle-btn" class="toggle-selector">
                 <span class="material-symbols-outlined text-[18px]">music_note_2</span>
                 Busking
+              </button>
+              <button id="events-dunklist-toggle-btn" class="toggle-selector">
+                <span class="material-symbols-outlined text-[18px]">falling</span>
+                Dunk list
               </button>
             </div>
             <!-- Dynamic Content Area -->

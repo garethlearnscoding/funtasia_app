@@ -76,8 +76,13 @@ export async function switchEventCategory(category) {
                 return;
             }
             const eventID = "events-item-" + (index + 1)
+            
+            // We use a CSS variable for 'top' so it can be updated by the scroll listener 
+            // when the toggle buttons are revealed/hidden. Defaulting to -2rem (-32px)
+            // to match the original layout.
             html += `
-            <header id="${eventID}" class="text-left sticky -top-8 -left-3 bg-ctp-base text-ctp-base min-h-28 z-50 w-[calc(100%+var(--spacing)*3)]" style="contain: layout paint;">
+            <header id="${eventID}" class="text-left sticky -left-3 bg-ctp-base text-ctp-base min-h-28 z-50 w-[calc(100%+var(--spacing)*3)]" 
+                    style="top: var(--event-header-top, -1rem); transition: top 0.3s ease-in-out; contain: layout paint;">
                 <div class="flex flex-row mb-1 items-center justify-between w-full pr-8 mt-8 gap-4">
                     <h1 class="font-headline text-3xl font-bold tracking-tight text-ctp-text leading-none ml-4 truncate">${data.title}</h1>
                     <span class="events-location cursor-pointer hover:opacity-70 transition-opacity active:scale-95 flex-shrink-0" data-booth-id="${data.location_id || data.location}">
@@ -246,15 +251,62 @@ const eventsContentArea = document.getElementById('events-content-area');
 const eventsBackToTopBtn = document.getElementById('events-back-to-top');
 
 if (eventsContentArea && eventsBackToTopBtn) {
+    let lastScrollTop = 0;
+    let upScrollAccumulator = 0;
+    const toggleContainer = document.getElementById('fullwidth-toggle-selector-container');
+    console.log(toggleContainer)
+    if (toggleContainer) {
+        Object.assign(toggleContainer.style, {
+            position: 'sticky',
+            top: '-16px',
+            zIndex: '60',
+            width: 'calc(100% + var(--spacing) * 3)',
+            marginLeft: 'calc(var(--spacing) * -3)',
+            transition: 'top 0.3s ease-in-out'
+        });
+    }
+
+    // Base offset matches Tailwind's -top-8 (-2rem / -32px)
+    const headerBaseOffset = -16; 
+
     eventsContentArea.addEventListener('scroll', () => {
-        if (eventsContentArea.scrollTop > 200) {
+        const scrollTop = eventsContentArea.scrollTop;
+        
+        // Measure actual height to ensure headers stack perfectly below buttons
+        const toggleHeight = toggleContainer ? toggleContainer.offsetHeight : 0;
+
+        // Back to Top button logic
+        if (scrollTop > 200) {
             eventsBackToTopBtn.classList.remove('opacity-0', 'pointer-events-none');
             eventsBackToTopBtn.classList.add('opacity-100', 'pointer-events-auto');
         } else {
             eventsBackToTopBtn.classList.add('opacity-0', 'pointer-events-none');
             eventsBackToTopBtn.classList.remove('opacity-100', 'pointer-events-auto');
         }
-    });
+
+        // Toggle container scroll-back logic
+        if (toggleContainer) {
+            const delta = lastScrollTop - scrollTop;
+            if (scrollTop <= 0) {
+                toggleContainer.style.top = '-16px';
+                eventsContentArea.style.setProperty('--event-header-top', `${toggleHeight + headerBaseOffset}px`);
+                upScrollAccumulator = 0;
+            } else if (delta > 0) { // Scrolling up
+                upScrollAccumulator += delta;
+                if (upScrollAccumulator >= 20) {
+                    toggleContainer.style.top = '-16px';
+                    eventsContentArea.style.setProperty('--event-header-top', `${toggleHeight + headerBaseOffset}px`);
+                }
+            } else { // Scrolling down
+                if (scrollTop > 120) {
+                    toggleContainer.style.top = `-${toggleHeight + 20}px`;
+                    eventsContentArea.style.setProperty('--event-header-top', `${headerBaseOffset}px`);
+                }
+                upScrollAccumulator = 0;
+            }
+        }
+        lastScrollTop = scrollTop;
+    }, { passive: true });
 
     eventsBackToTopBtn.addEventListener('click', () => {
         eventsContentArea.scrollTo({ top: 0, behavior: 'smooth' });

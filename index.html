@@ -379,22 +379,26 @@
           <!-- Content Area -->
           <div class="modal-content flex flex-col items-center p-3 scroll-smooth h-fit" id="events-content-area">
             <!-- Toggle Buttons -->
-            <div class="toggle-selector-container max-w-xl">
-              <button id="events-cca-toggle-btn" class="toggle-selector" style="background: var(--color-ctp-mauve); color: var(--color-ctp-base)">
-                <span class="material-symbols-outlined text-[18px]">theater_comedy</span>
-                CCA Performances
-              </button>
-              <button id="events-pabusking-toggle-btn" class="toggle-selector">
-                <span class="material-symbols-outlined text-[18px]">music_note_2</span>
-                Busking
-              </button>
-              <button id="events-dunklist-toggle-btn" class="toggle-selector">
-                <span class="material-symbols-outlined text-[18px]">falling</span>
-                Dunk list
-              </button>
+            <div id="fullwidth-toggle-selector-container" class="w-full m-0 bg-ctp-base pt-3 px-3 pb-2">
+              <div class="flex justify-center w-full">
+                <div class="toggle-selector-container flex gap-2 max-w-xl overflow-x-auto hide-scrollbar mx-[1rem_!important]">
+                  <button id="events-cca-toggle-btn" class="toggle-selector whitespace-nowrap" style="background: var(--color-ctp-mauve); color: var(--color-ctp-base)">
+                    <span class="material-symbols-outlined text-[18px]">theater_comedy</span>
+                    CCA Performances
+                  </button>
+                  <button id="events-pabusking-toggle-btn" class="toggle-selector whitespace-nowrap">
+                    <span class="material-symbols-outlined text-[18px]">music_note_2</span>
+                    Busking
+                  </button>
+                  <button id="events-dunklist-toggle-btn" class="toggle-selector whitespace-nowrap">
+                    <span class="material-symbols-outlined text-[18px]">falling</span>
+                    Dunk list
+                  </button>
+                </div>
+              </div>
             </div>
             <!-- Dynamic Content Area -->
-            <div id="events-list-container" class="w-full space-y-4 -z-50">
+            <div id="events-list-container" class="w-full space-y-4">
               <!-- Items injected by script -->
             </div>
           </div>

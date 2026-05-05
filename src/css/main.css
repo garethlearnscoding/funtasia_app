@@ -429,7 +429,7 @@ body {
   border: 1px solid var(--color-ctp-surface0);
 }
 
-@media (max-width: 365px) { /* 480px is smallest for events tab to not break */
+@media (max-width: 400px) { /* 400px is smallest for events tab to not break */
   .toggle-selector-container {
     flex-direction: column;
   }

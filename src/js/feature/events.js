@@ -4,6 +4,9 @@ const ccaToggleBtn = document.getElementById('events-cca-toggle-btn');
 const dunklistToggleBtn = document.getElementById('events-dunklist-toggle-btn');
 const pabuskingToggleBtn = document.getElementById('events-pabusking-toggle-btn');
 const eventsListContainer = document.getElementById('events-list-container');
+const eventsContentArea = document.getElementById('events-content-area');
+const eventsBackToTopBtn = document.getElementById('events-back-to-top');
+const toggleContainer = document.getElementById('fullwidth-toggle-selector-container');
 
 const eventCategories = {
     cca: ccaToggleBtn,
@@ -229,6 +232,8 @@ export async function switchEventCategory(category) {
                 block: "start",
                 container: "nearest",
             });
+            toggleContainer.style.top = `-${toggleContainer.offsetHeight + 20}px`;
+            eventsContentArea.style.setProperty('--event-header-top', '-16px');
         }
     } catch (err) {
         console.error("Error rendering timeline:", err);
@@ -247,13 +252,10 @@ export async function switchEventCategory(category) {
 }
 
 // Setup Back to Top scroll listener
-const eventsContentArea = document.getElementById('events-content-area');
-const eventsBackToTopBtn = document.getElementById('events-back-to-top');
-
 if (eventsContentArea && eventsBackToTopBtn) {
     let lastScrollTop = 0;
     let upScrollAccumulator = 0;
-    const toggleContainer = document.getElementById('fullwidth-toggle-selector-container');
+    let downScrollAccumulator = 0;
     if (toggleContainer) {
         Object.assign(toggleContainer.style, {
             position: 'sticky',
@@ -261,7 +263,8 @@ if (eventsContentArea && eventsBackToTopBtn) {
             zIndex: '60',
             width: 'calc(100% + var(--spacing) * 3)',
             marginLeft: 'calc(var(--spacing) * -3)',
-            transition: 'top 0.3s ease-in-out'
+            transition: 'top 0.3s ease-in-out',
+            willChange: 'top'
         });
     }
 
@@ -269,7 +272,8 @@ if (eventsContentArea && eventsBackToTopBtn) {
     const headerBaseOffset = -16; 
 
     eventsContentArea.addEventListener('scroll', () => {
-        const scrollTop = eventsContentArea.scrollTop;
+        // Clamp scrollTop to 0 to prevent Safari overscroll from messing with delta logic
+        const scrollTop = Math.max(0, eventsContentArea.scrollTop);
         
         // Measure actual height to ensure headers stack perfectly below buttons
         const toggleHeight = toggleContainer ? toggleContainer.offsetHeight : 0;
@@ -290,18 +294,22 @@ if (eventsContentArea && eventsBackToTopBtn) {
                 toggleContainer.style.top = '-16px';
                 eventsContentArea.style.setProperty('--event-header-top', `${toggleHeight + headerBaseOffset}px`);
                 upScrollAccumulator = 0;
+                downScrollAccumulator = 0;
             } else if (delta > 0) { // Scrolling up
                 upScrollAccumulator += delta;
-                if (upScrollAccumulator >= 20) {
+                downScrollAccumulator = 0;
+                if (upScrollAccumulator >= 0) {
                     toggleContainer.style.top = '-16px';
                     eventsContentArea.style.setProperty('--event-header-top', `${toggleHeight + headerBaseOffset}px`);
                 }
-            } else { // Scrolling down
-                if (scrollTop > 120) {
+            } else if (delta < 0) { // Scrolling down
+                downScrollAccumulator += Math.abs(delta);
+                upScrollAccumulator = 0;
+                if (scrollTop > 120 && downScrollAccumulator >= 20) {
+                    console.log(toggleHeight, "hihihehe")
                     toggleContainer.style.top = `-${toggleHeight + 20}px`;
                     eventsContentArea.style.setProperty('--event-header-top', `${headerBaseOffset}px`);
                 }
-                upScrollAccumulator = 0;
             }
         }
         lastScrollTop = scrollTop;

@@ -342,7 +342,10 @@ export function parseModel(gltf, floorId, scene, funtasiaData, dataFloorId = flo
           box.getCenter(pos);
           pos.y = box.max.y;
 
-          const bim = new BoothIDMarker(model, pos, logicalNode.name, floorId);
+          const boothZone = child.userData.ZONE || "NONE";
+          const markerBgColor = zoneColours[boothZone];
+
+          const bim = new BoothIDMarker(model, pos, logicalNode.name, floorId, { bgColor: markerBgColor });
           boothIDMarkers.push(bim);
           boothMarkerNodes.add(logicalNode.uuid);
       }

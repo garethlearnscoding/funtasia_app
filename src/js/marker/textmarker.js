@@ -222,19 +222,21 @@ export class BoothIDMarker extends BaseTextMarker {
   static boothMarkersByLevel = {};
   static boothIDsVisible = true;
 
-  constructor(parent, position, text, level) {
-    // Brand-colored background (Mauve)
+  constructor(parent, position, text, level, customOptions = {}) {
+    // Default Brand-colored background (Mauve) and text (Base)
     const bgColor = getComputedStyle(document.documentElement).getPropertyValue('--color-ctp-mauve') || "#cba6f7";
+    const textColor = getComputedStyle(document.documentElement).getPropertyValue('--color-ctp-base') || "#1e1e2e";
     
     super(parent, position, text, level, {
       markerHeight: 0.05, // Placed very close to the booth surface
       fontSize: 0.0267, // Smaller than location labels
-      textColor: 0xffffff, // White text
-      bgColor: Number("0x" + bgColor.slice(1)), // Convert CSS var to hex number
+      textColor: Number("0x" + textColor.slice(1)), // Use brand base color
+      bgColor: Number("0x" + bgColor.slice(1)), // Default mauve background
       bgOpacity: 0.85,
       bgPlaneHeight: 0.08,
       bgPadding: 0.06,
       bgZOffset: -0.005,
+      ...customOptions // Merge custom options, overriding defaults
     });
 
     this.group.visible = BoothIDMarker.boothIDsVisible && this.level === BoothIDMarker.activeLevel;

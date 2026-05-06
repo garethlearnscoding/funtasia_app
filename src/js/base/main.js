@@ -84,16 +84,22 @@ async function initApp() {
   const visualsSection = SettingsController.addSection('Visual Preferences');
   const controlsSection = SettingsController.addSection('Controls');
   
-  // Initialize Ghost Layers state from local storage (defaulting to true)
-  window.ghostLayersEnabled = localStorage.getItem('funtasia-ghost-layers') !== 'false';
-  
+  // Initialize settings from local storage
+  window.ghostLayersEnabled = localStorage.getItem('funtasia-ghost-layers') !== 'false';  // default true
+  appState.rotationLocked = localStorage.getItem('funtasia-rotation-lock') !== 'false';   // default true
+  appState.autoFocusEnabled = localStorage.getItem('funtasia-autofocus') !== 'false';     // default true
+  Icon.state(localStorage.getItem('funtasia-show-icons') !== 'false'); // default true
+
   if (visualsSection) {
     SettingsController.addToggle(
       visualsSection,
       'Show POI Icons',
       'Toggle 3D points of interest markers',
-      (state) => { Icon.state(state); },
-      Icon.iconsVisible !== false
+      (state) => {
+        localStorage.setItem('funtasia-show-icons', state);
+        Icon.state(state); 
+      },
+      Icon.iconsVisible
     );
     SettingsController.addToggle(
       visualsSection,
@@ -132,6 +138,7 @@ async function initApp() {
       'Rotation Lock',
       'Lock the rotation of the 3D model',
       (isLocked) => {
+        localStorage.setItem('funtasia-rotation-lock', isLocked);
         appState.rotationLocked = isLocked;
         controls.enableRotate = !isLocked;
         controls.touches.TWO = isLocked ? THREE.TOUCH.DOLLY_PAN : THREE.TOUCH.DOLLY_ROTATE;
@@ -150,9 +157,10 @@ async function initApp() {
       'Camera Auto-Focus',
       'Smoothly animate the camera when selecting a location',
       (enabled) => {
+        localStorage.setItem('funtasia-autofocus', enabled)
         appState.autoFocusEnabled = enabled;
       },
-      appState.autoFocusEnabled !== false
+      appState.autoFocusEnabled
     );
   }
 

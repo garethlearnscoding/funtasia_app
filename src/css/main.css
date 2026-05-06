@@ -401,7 +401,7 @@ body {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   /* Ambient tinted shadow */
-  box-shadow: 0 8px 40px color-mix(in srgb, var(--color-ctp-text) 10%, transparent);
+  box-shadow: 0 0 8px var(--color-ctp-surface1);
   z-index: 1000;
   opacity: 0;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);

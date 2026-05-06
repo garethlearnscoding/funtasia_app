@@ -95,7 +95,7 @@ export class Floor {
 
     // Apply specific camera config
     if (this.cameraConfig) {
-      console.log(`[Floor] Applying camera config for ${this.id}:`, this.cameraConfig);
+      // console.log(`[Floor] Applying camera config for ${this.id}:`, this.cameraConfig);
 
       const isMainLevelTransition = !this.parentFloorId && Floor.currentFloor && !Floor.currentFloor.parentFloorId;
       const shouldPreserveRotation = window.ghostLayersEnabled && isMainLevelTransition && !Floor.appState.rotationLocked;
@@ -121,8 +121,6 @@ export class Floor {
     
     controls.enableRotate = !Floor.appState.rotationLocked;
     controls.touches.TWO = Floor.appState.rotationLocked ? THREE.TOUCH.DOLLY_PAN : THREE.TOUCH.DOLLY_ROTATE;
-    
-    console.log(`Switched to floor: ${this.id}`);
   }
 
   /**

@@ -254,7 +254,6 @@ if (eventsContentArea && eventsBackToTopBtn) {
     let lastScrollTop = 0;
     let upScrollAccumulator = 0;
     const toggleContainer = document.getElementById('fullwidth-toggle-selector-container');
-    console.log(toggleContainer)
     if (toggleContainer) {
         Object.assign(toggleContainer.style, {
             position: 'sticky',

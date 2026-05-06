@@ -128,6 +128,11 @@ export class TextMarker extends BaseTextMarker {
   static textMarkersByLevel = {};
   static textMarkersVisible = true;
 
+  static state(isVisible) {
+    TextMarker.textMarkersVisible = isVisible;
+    TextMarker.updateVisibility();
+  }
+
   /**
    * @param {THREE.Scene} scene - Scene to add the marker to.
    * @param {THREE.Vector3} position - World position of the marker.
@@ -221,6 +226,11 @@ export class BoothIDMarker extends BaseTextMarker {
   static activeLevel = null; 
   static boothMarkersByLevel = {};
   static boothIDsVisible = true;
+
+  static state(isVisible) {
+    BoothIDMarker.boothIDsVisible = isVisible;
+    BoothIDMarker.updateVisibility();
+  }
 
   constructor(parent, position, text, level, customOptions = {}) {
     // Default Brand-colored background (Mauve) and text (Base)

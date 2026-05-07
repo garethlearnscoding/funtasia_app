@@ -88,9 +88,16 @@ export function startAnimationLoop(appState) {
       levelIcons.forEach(icon => icon.animate(time, appState.camera));
     });
 
-    // Animate all active markers (including TextMarker, BoothIDMarker, QRMarker, DirectoryMarker)
-    // Their individual animate methods will handle their specific logic and call super.animate()
-    // which includes the updateSyncState for opacity and visibility.
+    // Animate text markers
+    Object.values(TextMarker.textMarkersByLevel).forEach(levelMarkers => {
+      levelMarkers.forEach(marker => marker.animate(time, appState.camera));
+    });
+
+    // Animate booth ID markers
+    Object.values(BoothIDMarker.boothMarkersByLevel).forEach(levelMarkers => {
+      levelMarkers.forEach(marker => marker.animate(time, appState.camera));
+    });
+
     appState.renderer.render(appState.scene, appState.camera);
   }
 

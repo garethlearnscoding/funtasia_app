@@ -118,7 +118,7 @@ export class TextMarker extends BaseTextMarker {
    */
   constructor(parent, position, text, level) {
     super(parent, position, text, level, {
-      markerHeight: 0.4,
+      markerHeight: 0.5,
       fontSize: 0.15,
       textColor: 0x000000,
       bgColor: 0xffffff,
@@ -200,7 +200,7 @@ export class BoothIDMarker extends BaseTextMarker {
     const textColor = getComputedStyle(document.documentElement).getPropertyValue('--color-ctp-base') || "#1e1e2e";
     
     super(parent, position, text, level, {
-      markerHeight: 0.05, // Placed very close to the booth surface
+      markerHeight: 0.2, // Placed very close to the booth surface
       fontSize: 0.0267, // Smaller than location labels
       textColor: Number("0x" + textColor.slice(1)), // Use brand base color
       bgColor: Number("0x" + bgColor.slice(1)), // Default mauve background

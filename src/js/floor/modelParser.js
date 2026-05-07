@@ -291,7 +291,17 @@ export function parseModel(gltf, floorId, scene, funtasiaData, dataFloorId = flo
         colorVal = baseColor.getHex();
       }
 
-      child.material = new THREE.MeshBasicMaterial({ color: colorVal, transparent: true });
+      // Use opaque materials by default to prevent transparency sorting artifacts.
+      // Walkways and grass (FOOT, GRASS, DRIVE) often overlap with the BASE.
+      // We use polygonOffset to "nudge" them slightly forward in the depth buffer.
+      const isDecoration = ["FOOT", "GRASS", "DRIVE"].includes(role);
+      child.material = new THREE.MeshBasicMaterial({ 
+        color: colorVal, 
+        transparent: false,
+        polygonOffset: isDecoration,
+        polygonOffsetFactor: -1,
+        polygonOffsetUnits: -1
+      });
       if (isInteractive) child.userData.material = child.material;
     }
 

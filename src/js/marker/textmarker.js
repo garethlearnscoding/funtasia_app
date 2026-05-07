@@ -106,8 +106,8 @@ export class TextMarker extends BaseTextMarker {
   // New instance method to update visibility and opacity
   updateVisibilityAndOpacity() {
     const isVisibleLocal = TextMarker.textMarkersVisible && this.level === TextMarker.activeLevel;
-    this.group.visible = isVisibleLocal;
     this.updateSyncState(); // Apply parent floor's opacity and final visibility
+    if (!isVisibleLocal) this.group.visible = false;
   }
 
   /**
@@ -191,8 +191,8 @@ export class BoothIDMarker extends BaseTextMarker {
   // New instance method to update visibility and opacity
   updateVisibilityAndOpacity(camera) {
     const isVisibleLocal = BoothIDMarker.boothIDsVisible && this.level === BoothIDMarker.activeLevel && (this.distance < this.zoomThreshold);
-    this.group.visible = isVisibleLocal;
     this.updateSyncState(); // Apply parent floor's opacity and final visibility
+    if (!isVisibleLocal) this.group.visible = false;
   }
   constructor(parent, position, text, level, customOptions = {}) {
     // Default Brand-colored background (Mauve) and text (Base)

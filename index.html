@@ -18,8 +18,8 @@
     <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg"/>
     <link rel="apple-touch-icon" href="/favicon/favicon_60.png"/>
     <link rel="apple-touch-icon" sizes="76x76" href="/favicons/favicon_76.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="/favicons/favicon_76.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="/favicons/favicon_76.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/favicons/favicon_120.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/favicons/favicon_152.png">
     <link rel="image_src" href="/favicon/favicon_256.png">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
   </head>
@@ -150,11 +150,50 @@
           </div>
           <!-- Welcome Area -->
           <div class="modal-content" id="info-content-area">
+            
+            <!-- ── Controls Section ─────────────────── -->
+            <div class="px-2">
+              <h3 class="modal-section-title">Controls</h3>
+              <p class="text-ctp-subtext1 text-xs px-4 -mt-2 mb-4">How to interact with the map</p>
+              <div class="info-btn-list">
+
+                <div class="info-btn-row">
+                  <div class="info-btn-preview">
+                    <span class="material-symbols-outlined" style="font-size: 22px;">pan_tool_alt</span>
+                  </div>
+                  <div class="info-btn-desc">
+                    <span class="info-btn-title">Panning</span>
+                    <span class="info-btn-caption">Use 1 finger or hold down right mouse button to pan around the map.</span>
+                  </div>
+                </div>
+
+                <div class="info-btn-row">
+                  <div class="info-btn-preview">
+                    <span class="material-symbols-outlined" style="font-size: 22px;">pinch_zoom_out</span>
+                  </div>
+                  <div class="info-btn-desc">
+                    <span class="info-btn-title">Zoom</span>
+                    <span class="info-btn-caption">Pinch using 2 fingers to zoom in and out.</span>
+                  </div>
+                </div>            
+
+                <div class="info-btn-row">
+                  <div class="info-btn-preview">
+                    <span class="material-symbols-outlined" style="font-size: 22px;">swipe_right_2</span>
+                  </div>
+                  <div class="info-btn-desc">
+                    <span class="info-btn-title">Rotate</span>
+                    <span class="info-btn-caption">(DISABLED BY DEFAULT!) Use 2 fingers together to rotate the map.</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
 
             <!-- ── UI Buttons Section ─────────────────── -->
             <div class="px-2">
               <h3 class="modal-section-title">Buttons</h3>
-              <p class="text-ctp-subtext1 text-xs px-4 -mt-2 mb-4">Floating action buttons in the sidebar on the right</p>
+              <p class="text-ctp-subtext1 text-xs px-4 -mt-2 mb-4">Floating purple buttons on the top left and top right</p>
               <div class="info-btn-list">
 
                 <div class="info-btn-row">
@@ -164,6 +203,16 @@
                   <div class="info-btn-desc">
                     <span class="info-btn-title">Information</span>
                     <span class="info-btn-caption">View this help guide explaining map icons and controls.</span>
+                  </div>
+                </div>
+
+                <div class="info-btn-row">
+                  <div class="info-btn-preview">
+                    <span class="material-symbols-outlined" style="font-size: 22px;">settings</span>
+                  </div>
+                  <div class="info-btn-desc">
+                    <span class="info-btn-title">Settings</span>
+                    <span class="info-btn-caption">Adjust accessibility options, dark mode, and app preferences.</span>
                   </div>
                 </div>
 
@@ -189,16 +238,6 @@
 
                 <div class="info-btn-row">
                   <div class="info-btn-preview">
-                    <span class="material-symbols-outlined" style="font-size: 22px;">settings</span>
-                  </div>
-                  <div class="info-btn-desc">
-                    <span class="info-btn-title">Settings</span>
-                    <span class="info-btn-caption">Adjust accessibility options, dark mode, and app preferences.</span>
-                  </div>
-                </div>
-
-                <div class="info-btn-row">
-                  <div class="info-btn-preview">
                     <span class="material-symbols-outlined" style="font-size: 22px;">store</span>
                   </div>
                   <div class="info-btn-desc">
@@ -209,45 +248,7 @@
 
               </div>
             </div>
-            
-            <!-- ── Controls Section ─────────────────── -->
-            <div class="px-2">
-              <h3 class="modal-section-title">Controls</h3>
-              <p class="text-ctp-subtext1 text-xs px-4 -mt-2 mb-4">How to interact with the map</p>
-              <div class="info-btn-list">
 
-                <div class="info-btn-row">
-                  <div class="info-btn-preview">
-                    <span class="material-symbols-outlined" style="font-size: 22px;">pan_tool_alt</span>
-                  </div>
-                  <div class="info-btn-desc">
-                    <span class="info-btn-title">Panning</span>
-                    <span class="info-btn-caption">Use 1 finger or hold down right mouse button to pan around the map.</span>
-                  </div>
-                </div>
-
-                <div class="info-btn-row">
-                  <div class="info-btn-preview">
-                    <span class="material-symbols-outlined" style="font-size: 22px;">pinch_zoom_out</span>
-                  </div>
-                  <div class="info-btn-desc">
-                    <span class="info-btn-title">Zoom</span>
-                    <span class="info-btn-caption">Check the live schedule for CCA performances, dunklist, and PA busking.</span>
-                  </div>
-                </div>            
-
-                <div class="info-btn-row">
-                  <div class="info-btn-preview">
-                    <span class="material-symbols-outlined" style="font-size: 22px;">swipe_right_2</span>
-                  </div>
-                  <div class="info-btn-desc">
-                    <span class="info-btn-title">Rotate</span>
-                    <span class="info-btn-caption">(DISABLED BY DEFAULT!) Use 2 fingers together or hold down left mouse button to rotate the map</span>
-                  </div>
-                </div>
-
-              </div>
-            </div>
                 <!-- ── Map Elements Section───────────────── -->
             <div class="px-2">
               <h3 class="modal-section-title">Map elements</h3>
@@ -260,14 +261,7 @@
                   </div>
                   <div class="info-btn-desc">
                     <span class="info-btn-title">Interactive</span>
-                    <span class="info-btn-caption">Interactive elements are of one of these colors: 
-                      <span class="text-ctp-green-300 material-symbols-outlined" style="font-size: 12px; font-variation-settings: 'FILL' 1;">circle</span>
-                      <span class="text-ctp-blue-600 material-symbols-outlined" style="font-size: 12px; font-variation-settings: 'FILL' 1;">circle</span>
-                      <span class="text-ctp-peach-400 material-symbols-outlined" style="font-size: 12px; font-variation-settings: 'FILL' 1;">circle</span>
-                      <span class="text-ctp-mauve material-symbols-outlined" style="font-size: 12px; font-variation-settings: 'FILL' 1;">circle</span>
-                      <span class="text-ctp-yellow material-symbols-outlined" style="font-size: 12px; font-variation-settings: 'FILL' 1;">circle</span>
-                      <span class="text-ctp-red-300 material-symbols-outlined" style="font-size: 12px; font-variation-settings: 'FILL' 1;">circle</span>
-                    </span>
+                    <span class="info-btn-caption">Interactive elements will have a label in their zone color above them visible only when zoomed in.</span>
                   </div>
                 </div>
                 
@@ -277,7 +271,7 @@
                   </div>
                   <div class="info-btn-desc">
                     <span class="info-btn-title">Marker icons</span>
-                    <span class="info-btn-caption">These icons are non-interactive and show locations of helpful utilities (explained below). They can be toggled in Settings</span>
+                    <span class="info-btn-caption">These icons are non-interactive and show locations of helpful utilities (explained below).</span>
                   </div>
                 </div>
 
@@ -287,7 +281,7 @@
                   </div>
                   <div class="info-btn-desc">
                     <span class="info-btn-title">Level Selector</span>
-                    <span class="info-btn-caption">Click/slide the numbers to switch levels. The highlighted level represents the current level</span>
+                    <span class="info-btn-caption">Click/slide the numbers to switch levels. The highlighted level represents the current level.</span>
                   </div>
                 </div>
 
@@ -297,7 +291,7 @@
                   </div>
                   <div class="info-btn-desc">
                     <span class="info-btn-title">Location Marker (You Are Here!)</span>
-                    <span class="info-btn-caption">The location marker shows the location of the last location QR code scanned</span>
+                    <span class="info-btn-caption">The location marker shows the location of the last location QR code scanned.</span>
                   </div>
                 </div>
 

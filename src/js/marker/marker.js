@@ -21,10 +21,15 @@ export class Marker {
 
     this.group = new THREE.Group();
     
-    // If parent is a floor model (not the global scene), 
-    // convert world position to local position to prevent double-offsetting.
     if (this.parent && this.parent.type !== 'Scene') {
-      this.group.position.copy(this.parent.worldToLocal(this.position.clone()));
+      // Convert world position to local position. 
+      // To prevent the marker from being "offset" by current floor animations,
+      // we add the parent's current Y displacement back into the result.
+      // This effectively calculates the position relative to the "rest" floor height.
+      const localPos = this.parent.worldToLocal(this.position.clone());
+      localPos.y += this.parent.position.y; 
+      this.group.position.copy(localPos);
+      this.parent.updateMatrixWorld(true);
     } else {
       this.group.position.copy(this.position);
     }
@@ -33,6 +38,31 @@ export class Marker {
 
     if (this.parent) {
       this.parent.add(this.group);
+    }
+  }
+
+  /**
+   * Synchronizes the marker's visibility and opacity with its parent floor.
+   * This is modular and can be called by any subclass (TextMarker, Icon, etc.)
+   */
+  updateSyncState() {
+    if (!this.group || !this.parent || this.parent.type === 'Scene') return;
+
+    const targetOpacity = this.parent.userData.currentOpacity ?? 1.0;
+    this.group.visible = targetOpacity > 0.01;
+    
+    // Only apply opacity if the group is currently visible (either by its own rules or parent's)
+    if (this.group.visible) {
+      if (this._materials) {
+        this._materials.forEach(m => {
+          // Maintain slight transparency for backgrounds if they had it originally
+          const baseOpacity = (m.opacity < 1 && m.opacity > 0) ? m.opacity : 1.0;
+          m.opacity = targetOpacity * baseOpacity;
+        });
+      }
+      if (this._textMesh) {
+        this._textMesh.fillOpacity = targetOpacity;
+      }
     }
   }
 
@@ -52,16 +82,17 @@ export class LocationMarker extends Marker {
    * @param {THREE.Vector3} position - World position of the marker.
    * @param {boolean} text - Whether to include the "You are here!" text label.
    */
-  constructor(parent, position, text = false, showRing = true) {
-    super(parent, position); // Base class handles positioning and parenting
+  constructor(parent, position, level, text = false, showRing = true) {
+    super(parent, position, level); // Base class handles positioning and parenting
     
     // Use the existing group created by super()
     this.scene = this.parent;
     this.markerHeight = 0.8;
 
     // ----- materials -----
-    const activeMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000 });
-    const outlineMaterialActive = new THREE.LineBasicMaterial({ color: 0x550000 });
+    const activeMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000, transparent: true });
+    const outlineMaterialActive = new THREE.LineBasicMaterial({ color: 0x550000, transparent: true });
+    this._materials = [activeMaterial, outlineMaterialActive];
 
     // ----- ring -----
     if (showRing) {
@@ -117,6 +148,7 @@ export class LocationMarker extends Marker {
       textMesh.anchorX = 'center';
       textMesh.anchorY = 'middle';
       textMesh.sync();
+      this._textMesh = textMesh;
 
       // Padded background behind the text
       // Fixed size for "You are here!" at 0.15 fontSize
@@ -128,6 +160,7 @@ export class LocationMarker extends Marker {
         transparent: true,
         opacity: 0.9
       });
+      this._materials.push(textBgMaterial);
       const textBgMesh = new THREE.Mesh(new THREE.PlaneGeometry(bgWidth, bgHeight), textBgMaterial);
       textBgMesh.position.z = -0.01;
 
@@ -146,6 +179,10 @@ export class LocationMarker extends Marker {
    */
   animate(time, camera) {
     if (!this.group) return;
+
+    // Modular sync: No Floor import needed!
+    this.updateSyncState();
+
     const t = time * 0.003;
     // Calculate shared bobbing offset for cohesive animation
     const bobOffset = Math.sin(t * 0.5) * 0.05;

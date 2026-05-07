@@ -9,7 +9,7 @@ export class DirectoryMarker extends LocationMarker {
     // and changes opacity with the floor
     const parent = floor ? floor.sceneModel : null;
     
-    super(parent, position, false, false); // parent, position, text, showRing
+    super(parent, position, level, false, false); // parent, position, level, text, showRing
     this.level = level;
   }
 }

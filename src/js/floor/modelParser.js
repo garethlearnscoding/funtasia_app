@@ -291,7 +291,7 @@ export function parseModel(gltf, floorId, scene, funtasiaData, dataFloorId = flo
         colorVal = baseColor.getHex();
       }
 
-      child.material = new THREE.MeshBasicMaterial({ color: colorVal });
+      child.material = new THREE.MeshBasicMaterial({ color: colorVal, transparent: true });
       if (isInteractive) child.userData.material = child.material;
     }
 

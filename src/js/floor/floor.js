@@ -37,6 +37,9 @@ export class Floor {
     this.textMarkers = [];
     this.boothIDMarkers = [];
     
+    // Initialize userData so markers can observe state without importing Floor
+    if (this.sceneModel) this.sceneModel.userData.currentOpacity = 1.0;
+
     // Register self
     Floor.registerFloor(this);
 
@@ -86,7 +89,6 @@ export class Floor {
       return;
     }
 
-    console.log(`[Floor] Activating ${this.id}. Setting visible = true.`);
     this.sceneModel.visible = true;
     
     // Notify TextMarker system of the active level to sync visibility

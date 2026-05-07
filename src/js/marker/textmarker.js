@@ -1,36 +1,6 @@
 import * as THREE from "three";
 import { Marker, FONT_URL } from "@/js/marker/marker.js";
-import { floorOrder } from "@/js/events/navigation.js";
 import { Text } from "troika-three-text";
-import { Floor } from "@/js/floor/floor.js";
-
-/**
- * Helper function to update visibility for any marker type that uses static tracking.
- * @param {string} activeLevel - The currently active floor level ID.
- * @param {Object.<string, Array<BaseTextMarker>>} allMarkersByLevel - Static dictionary of markers grouped by level.
- * @param {boolean} markersVisibleFlag - Global visibility flag for this marker type.
- */
-function _updateMarkerVisibility(activeLevel, allMarkersByLevel, markersVisibleFlag) {
-  const activeFloor = Floor.floors[activeLevel];
-  const isViewingChild = !!activeFloor?.parentFloorId;
-  const activeRefFloorId = activeFloor?.parentFloorId || activeLevel;
-  const activeIdx = floorOrder.indexOf(activeRefFloorId);
-
-  Object.keys(allMarkersByLevel).forEach((level) => {
-    const markerFloor = Floor.floors[level];
-    const markerRefFloorId = markerFloor?.parentFloorId || level;
-    const levelIdx = floorOrder.indexOf(markerRefFloorId);
-      
-    const isGhost = !isViewingChild && window.ghostLayersEnabled && levelIdx < activeIdx && activeIdx !== -1;
-    const isLevelActive = (level === activeLevel) || isGhost;
-
-    allMarkersByLevel[level].forEach((marker) => {
-      if (marker.group) {
-        marker.group.visible = markersVisibleFlag && isLevelActive;
-      }
-    });
-  });
-}
 
 /**
  * BaseTextMarker: Provides common functionality for text-based markers.
@@ -130,7 +100,14 @@ export class TextMarker extends BaseTextMarker {
 
   static state(isVisible) {
     TextMarker.textMarkersVisible = isVisible;
-    TextMarker.updateVisibility();
+    TextMarker.allTextMarkers.forEach(marker => marker.updateVisibilityAndOpacity());
+  }
+
+  // New instance method to update visibility and opacity
+  updateVisibilityAndOpacity() {
+    const isVisibleLocal = TextMarker.textMarkersVisible && this.level === TextMarker.activeLevel;
+    this.group.visible = isVisibleLocal;
+    this.updateSyncState(); // Apply parent floor's opacity and final visibility
   }
 
   /**
@@ -151,9 +128,6 @@ export class TextMarker extends BaseTextMarker {
       bgZOffset: -0.01,
     });
 
-    // Set initial visibility
-    this.group.visible = TextMarker.textMarkersVisible && this.level === TextMarker.activeLevel;
-
     // Track this instance by its level
     if (!TextMarker.textMarkersByLevel[this.level]) {
       TextMarker.textMarkersByLevel[this.level] = [];
@@ -161,17 +135,15 @@ export class TextMarker extends BaseTextMarker {
     TextMarker.textMarkersByLevel[this.level].push(this);
 
     TextMarker.allTextMarkers.push(this);
+
+    // Set initial visibility and opacity
+    this.updateVisibilityAndOpacity();
   }
 
   // Method to set active level
   static setLevel(levelId) {
     TextMarker.activeLevel = levelId;
-    TextMarker.updateVisibility();
-  }
-
-  // Helper method to sync visibility across instances for TextMarker
-  static updateVisibility() {
-    _updateMarkerVisibility(TextMarker.activeLevel, TextMarker.textMarkersByLevel, TextMarker.textMarkersVisible);
+    TextMarker.allTextMarkers.forEach(marker => marker.updateVisibilityAndOpacity());
   }
 
   /**
@@ -180,23 +152,7 @@ export class TextMarker extends BaseTextMarker {
    * @param {THREE.Camera} camera - The active camera.
    */
   animate(time, camera) {
-    const activeFloor = Floor.floors[TextMarker.activeLevel];
-    const isViewingChild = !!activeFloor?.parentFloorId;
-    const activeRefFloorId = activeFloor?.parentFloorId || TextMarker.activeLevel;
-    const activeIdx = floorOrder.indexOf(activeRefFloorId);
-
-    const markerFloor = Floor.floors[this.level];
-    const markerRefFloorId = markerFloor?.parentFloorId || this.level;
-    const levelIdx = floorOrder.indexOf(markerRefFloorId);
-
-    const isGhost = !isViewingChild && window.ghostLayersEnabled && levelIdx < activeIdx && activeIdx !== -1;
-    const isLevelActive = (this.level === TextMarker.activeLevel) || isGhost;
-
-    // Ensure visibility is correct
-    const isVisible = TextMarker.textMarkersVisible && isLevelActive;
-    this.group.visible = isVisible;
-
-    if (isVisible) super.animate(time, camera); // Call base class animate for billboarding
+    super.animate(time, camera); // Call base class animate for billboarding and opacity sync
   }
 
   clear() {
@@ -229,9 +185,15 @@ export class BoothIDMarker extends BaseTextMarker {
 
   static state(isVisible) {
     BoothIDMarker.boothIDsVisible = isVisible;
-    BoothIDMarker.updateVisibility();
+    BoothIDMarker.allBoothMarkers.forEach(marker => marker.updateVisibilityAndOpacity());
   }
 
+  // New instance method to update visibility and opacity
+  updateVisibilityAndOpacity(camera) {
+    const isVisibleLocal = BoothIDMarker.boothIDsVisible && this.level === BoothIDMarker.activeLevel && (this.distance < this.zoomThreshold);
+    this.group.visible = isVisibleLocal;
+    this.updateSyncState(); // Apply parent floor's opacity and final visibility
+  }
   constructor(parent, position, text, level, customOptions = {}) {
     // Default Brand-colored background (Mauve) and text (Base)
     const bgColor = getComputedStyle(document.documentElement).getPropertyValue('--color-ctp-mauve') || "#cba6f7";
@@ -249,8 +211,6 @@ export class BoothIDMarker extends BaseTextMarker {
       ...customOptions // Merge custom options, overriding defaults
     });
 
-    this.group.visible = BoothIDMarker.boothIDsVisible && this.level === BoothIDMarker.activeLevel;
-
     if (!BoothIDMarker.boothMarkersByLevel[this.level]) {
       BoothIDMarker.boothMarkersByLevel[this.level] = [];
     }
@@ -260,12 +220,7 @@ export class BoothIDMarker extends BaseTextMarker {
 
   static setLevel(levelId) {
     BoothIDMarker.activeLevel = levelId;
-    BoothIDMarker.updateVisibility();
-  }
-
-  // Helper method to sync visibility across instances for BoothIDMarker
-  static updateVisibility() {
-    _updateMarkerVisibility(BoothIDMarker.activeLevel, BoothIDMarker.boothMarkersByLevel, BoothIDMarker.boothIDsVisible);
+    BoothIDMarker.allBoothMarkers.forEach(marker => marker.updateVisibilityAndOpacity(null)); // Pass null for camera as it's not available here
   }
 
   animate(time, camera) {
@@ -274,26 +229,12 @@ export class BoothIDMarker extends BaseTextMarker {
     // 1. Zoom-based visibility: only show when the camera is close
     const worldPos = new THREE.Vector3();
     this.group.getWorldPosition(worldPos);
-    const distance = camera.position.distanceTo(worldPos);
-    const zoomThreshold = 7.6; 
+    this.distance = camera.position.distanceTo(worldPos);
+    this.zoomThreshold = 7.6; 
 
-    // 2. Standard Visibility Logic (sync with Level switching and Ghost Layers)
-    const activeFloor = Floor.floors[BoothIDMarker.activeLevel];
-    const isViewingChild = !!activeFloor?.parentFloorId;
-    const activeRefFloorId = activeFloor?.parentFloorId || BoothIDMarker.activeLevel;
-    const activeIdx = floorOrder.indexOf(activeRefFloorId);
+    this.updateVisibilityAndOpacity(camera); // Update visibility and opacity based on zoom and parent state
 
-    const markerFloor = Floor.floors[this.level];
-    const markerRefFloorId = markerFloor?.parentFloorId || this.level;
-    const levelIdx = floorOrder.indexOf(markerRefFloorId);
-    
-    const isGhost = !isViewingChild && window.ghostLayersEnabled && levelIdx < activeIdx && activeIdx !== -1;
-    const isLevelActive = (this.level === BoothIDMarker.activeLevel) || isGhost;
-
-    const isVisible = BoothIDMarker.boothIDsVisible && isLevelActive && (distance < zoomThreshold);
-    this.group.visible = isVisible;
-
-    if (isVisible) super.animate(time, camera); // Call base class animate for billboarding
+    if (this.group.visible) super.animate(time, camera); // Call base class animate for billboarding
   }
 
   clear() {

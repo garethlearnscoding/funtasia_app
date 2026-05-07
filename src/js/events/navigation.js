@@ -88,6 +88,7 @@ export class Navigation {
           floor.sceneModel.visible = !isViewingChild;
           floor.targetY = 0;
           floor.sceneModel.renderOrder = 10; // Ensure it renders on top
+          floor.currentOpacity = 1.0;
           setFloorOpacity(floor.sceneModel, 1.0);
         }
       } else if (!isViewingChild && index < targetIdx && window.ghostLayersEnabled) {
@@ -108,6 +109,7 @@ export class Navigation {
 
           // Decreasing opacity based on depth (0.2 -> 0.1 -> 0.05...)
           const opacity = Math.max(0.02, 0.3 * Math.pow(0.4, depth - 1));
+          floor.currentOpacity = opacity;
           setFloorOpacity(floor.sceneModel, opacity);
         }
       } else {
@@ -117,6 +119,7 @@ export class Navigation {
           floor.targetY = depthAbove * GHOST_SPACING;
           
           // Fade out as it flies away
+          floor.currentOpacity = 0;
           setFloorOpacity(floor.sceneModel, 0); 
           // Hide main floors that are "above" or "ghosts" when a child model is active
           floor.sceneModel.visible = !isViewingChild;

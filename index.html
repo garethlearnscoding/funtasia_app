@@ -13,7 +13,7 @@
     <title>Funtasia 3D Map</title>
     <link rel="stylesheet" href="/src/css/main.css"/>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&icon_names=album,arrow_back,celebration,check,chevron_right,circle,close,directions_run,event,falling,festival,flashlight_off,flashlight_on,hourglass_empty,image,info_i,keyboard,keyboard_double_arrow_up,location_on,logout,map,mic_external_on,music_note,music_note_2,open_in_new,qr_code_scanner,search,search_off,settings,store,swap_vert,theater_comedy,timer_off,touch_app&display=block" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&icon_names=album,arrow_back,celebration,check,chevron_right,circle,close,directions_run,event,falling,festival,flashlight_off,flashlight_on,hourglass_empty,image,info_i,keyboard,keyboard_double_arrow_up,location_on,logout,map,mic_external_on,music_note,music_note_2,open_in_new,pan_tool_alt,pinch_zoom_out,qr_code_scanner,search,search_off,settings,store,swap_vert,swipe_right_2,theater_comedy,timer_off,touch_app&display=block" rel="stylesheet">
     <link href="/src/css/input.css" rel="stylesheet"/>
     <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg"/>
     <link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png"/>
@@ -35,11 +35,12 @@
       <button id="close-btn">&times;</button>
       <h2 id="sheet-title">Location Title</h2>
       <p id="sheet-desc">Location description will appear here.</p>
-      <button class="bg-ctp-surface1 text-ctp-text" id="enter-child-btn">View Area</button>
-      <button class="bg-ctp-surface1 text-ctp-text" id="lt5-event-btn" style="display: none;">CCA Performances</button>
-      <button class="bg-ctp-surface1 text-ctp-text" id="o2-event-btn" style="display: none;">Busking Performance</button>
-      <button class="bg-ctp-surface1 text-ctp-text" id="makers-redirect-btn" style  ="display: none;">Makers</button>
-      <button class="bg-ctp-surface1 text-ctp-text" id="escaperoom-redirect-btn" style="display: none; gap: 0.25rem;">
+      <button class="bottom-sheet-btn" id="enter-child-btn">View Area</button>
+      <button class="bottom-sheet-btn" id="lt5-event-btn">CCA Performances</button>
+      <button class="bottom-sheet-btn" id="o2-event-btn">Busking Performance</button>
+      <button class="bottom-sheet-btn" id="amphi-event-btn">Dunking Schedule</button>
+      <button class="bottom-sheet-btn" id="makers-redirect-btn">Makers</button>
+      <button class="bottom-sheet-btn" id="escaperoom-redirect-btn">
         <span class="material-symbols-outlined">open_in_new</span>Escape Room Queue 
       </button>
     </div>
@@ -147,7 +148,7 @@
 
             <!-- ── UI Buttons Section ─────────────────── -->
             <div class="px-2">
-              <h3 class="modal-section-title">UI Buttons</h3>
+              <h3 class="modal-section-title">Buttons</h3>
               <p class="text-ctp-subtext1 text-xs px-4 -mt-2 mb-4">Floating action buttons in the sidebar on the right</p>
               <div class="info-btn-list">
 
@@ -167,7 +168,7 @@
                   </div>
                   <div class="info-btn-desc">
                     <span class="info-btn-title">Event Schedule</span>
-                    <span class="info-btn-caption">Check the live schedule for CCA performances and PA busking.</span>
+                    <span class="info-btn-caption">Check the live schedule for CCA performances, dunklist, and PA busking.</span>
                   </div>
                 </div>            
 
@@ -198,6 +199,45 @@
                   <div class="info-btn-desc">
                     <span class="info-btn-title">Directory</span>
                     <span class="info-btn-caption">Browse and find booths by searching and filtering by tags.</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            
+            <!-- ── Controls Section ─────────────────── -->
+            <div class="px-2">
+              <h3 class="modal-section-title">Controls</h3>
+              <p class="text-ctp-subtext1 text-xs px-4 -mt-2 mb-4">How to interact with the map</p>
+              <div class="info-btn-list">
+
+                <div class="info-btn-row">
+                  <div class="info-btn-preview">
+                    <span class="material-symbols-outlined" style="font-size: 22px;">pan_tool_alt</span>
+                  </div>
+                  <div class="info-btn-desc">
+                    <span class="info-btn-title">Panning</span>
+                    <span class="info-btn-caption">Use 1 finger or hold down right mouse button to pan around the map.</span>
+                  </div>
+                </div>
+
+                <div class="info-btn-row">
+                  <div class="info-btn-preview">
+                    <span class="material-symbols-outlined" style="font-size: 22px;">pinch_zoom_out</span>
+                  </div>
+                  <div class="info-btn-desc">
+                    <span class="info-btn-title">Zoom</span>
+                    <span class="info-btn-caption">Check the live schedule for CCA performances, dunklist, and PA busking.</span>
+                  </div>
+                </div>            
+
+                <div class="info-btn-row">
+                  <div class="info-btn-preview">
+                    <span class="material-symbols-outlined" style="font-size: 22px;">swipe_right_2</span>
+                  </div>
+                  <div class="info-btn-desc">
+                    <span class="info-btn-title">Rotate</span>
+                    <span class="info-btn-caption">(DISABLED BY DEFAULT!) Use 2 fingers together or hold down left mouse button to rotate the map</span>
                   </div>
                 </div>
 
@@ -267,49 +307,49 @@
 
                 <div class="info-icon-cell">
                   <div class="info-icon-bubble">
-                    <img src="https://cdn.jsdelivr.net/gh/garethlearnscoding/funtasia_assets@0.1.0/icons/stair-u.png" class="info-icon-img" alt="Stair Up"/>
+                    <img src="https://cdn.jsdelivr.net/gh/garethlearnscoding/funtasia_assets@0.2.0/icons/stair-u.png" class="info-icon-img" alt="Stair Up"/>
                   </div>
                   <span class="info-icon-label">Stairs<br>Up only</span>
                 </div>
 
                 <div class="info-icon-cell">
                   <div class="info-icon-bubble">
-                    <img src="https://cdn.jsdelivr.net/gh/garethlearnscoding/funtasia_assets@0.1.0/icons/stair-d.png" class="info-icon-img" alt="Stair Down"/>
+                    <img src="https://cdn.jsdelivr.net/gh/garethlearnscoding/funtasia_assets@0.2.0/icons/stair-d.png" class="info-icon-img" alt="Stair Down"/>
                   </div>
                   <span class="info-icon-label">Stairs<br>Down only</span>
                 </div>
 
                 <div class="info-icon-cell">
                   <div class="info-icon-bubble">
-                    <img src="https://cdn.jsdelivr.net/gh/garethlearnscoding/funtasia_assets@0.1.0/icons/stair-ud.png" class="info-icon-img" alt="Stair Up & Down"/>
+                    <img src="https://cdn.jsdelivr.net/gh/garethlearnscoding/funtasia_assets@0.2.0/icons/stair-ud.png" class="info-icon-img" alt="Stair Up & Down"/>
                   </div>
                   <span class="info-icon-label">Stairs<br>Up &amp; Down</span>
                 </div>
 
                 <div class="info-icon-cell">
                   <div class="info-icon-bubble">
-                    <img src="https://cdn.jsdelivr.net/gh/garethlearnscoding/funtasia_assets@0.1.0/icons/lift.png" class="info-icon-img" alt="Lift"/>
+                    <img src="https://cdn.jsdelivr.net/gh/garethlearnscoding/funtasia_assets@0.2.0/icons/lift.png" class="info-icon-img" alt="Lift"/>
                   </div>
                   <span class="info-icon-label">Lift</span>
                 </div>
 
                 <div class="info-icon-cell">
                   <div class="info-icon-bubble">
-                    <img src="https://cdn.jsdelivr.net/gh/garethlearnscoding/funtasia_assets@0.1.0/icons/mtoilet.png" class="info-icon-img" alt="Male Toilet"/>
+                    <img src="https://cdn.jsdelivr.net/gh/garethlearnscoding/funtasia_assets@0.2.0/icons/mtoilet.png" class="info-icon-img" alt="Male Toilet"/>
                   </div>
                   <span class="info-icon-label">Male<br>Toilet</span>
                 </div>
 
                 <div class="info-icon-cell">
                   <div class="info-icon-bubble">
-                    <img src="https://cdn.jsdelivr.net/gh/garethlearnscoding/funtasia_assets@0.1.0/icons/ftoilet.png" class="info-icon-img" alt="Female Toilet"/>
+                    <img src="https://cdn.jsdelivr.net/gh/garethlearnscoding/funtasia_assets@0.2.0/icons/ftoilet.png" class="info-icon-img" alt="Female Toilet"/>
                   </div>
                   <span class="info-icon-label">Female<br>Toilet</span>
                 </div>
 
                 <div class="info-icon-cell">
                   <div class="info-icon-bubble">
-                    <img src="https://cdn.jsdelivr.net/gh/garethlearnscoding/funtasia_assets@0.1.0/icons/atoilet.png" class="info-icon-img" alt="Accessible Toilet"/>
+                    <img src="https://cdn.jsdelivr.net/gh/garethlearnscoding/funtasia_assets@0.2.0/icons/atoilet.png" class="info-icon-img" alt="Accessible Toilet"/>
                   </div>
                   <span class="info-icon-label">Accessible<br>Toilet</span>
                 </div>
@@ -347,6 +387,10 @@
               <button id="events-pabusking-toggle-btn" class="toggle-selector">
                 <span class="material-symbols-outlined text-[18px]">music_note_2</span>
                 Busking
+              </button>
+              <button id="events-dunklist-toggle-btn" class="toggle-selector">
+                <span class="material-symbols-outlined text-[18px]">falling</span>
+                Dunk list
               </button>
             </div>
             <!-- Dynamic Content Area -->

@@ -64,6 +64,7 @@ export function showBottomSheet(objectName, childFloorId = null, description = n
   const enterBtn = document.getElementById("enter-child-btn");
   const lt5Btn = document.getElementById("lt5-event-btn");
   const o2Btn = document.getElementById("o2-event-btn");
+  const amphiBtn = document.getElementById("amphi-event-btn");
   const makersBtn = document.getElementById("makers-redirect-btn");
   const escapeRoomBtn = document.getElementById("escaperoom-redirect-btn");
   
@@ -107,6 +108,19 @@ export function showBottomSheet(objectName, childFloorId = null, description = n
     }
   }
 
+  if (amphiBtn) {
+    if (objectName === "Water Dunk Tank") {
+      amphiBtn.style.display = 'block';
+      amphiBtn.onclick = () => {
+        if (window.openEventsModal) window.openEventsModal('dunklist');
+        hideBottomSheet();
+      };
+    } else {
+      amphiBtn.style.display = 'none';
+      amphiBtn.onclick = null;
+    }
+  }
+
   if (makersBtn) {
     if (locationInfo.title === "Makers") {
       makersBtn.style.display = "block";
@@ -123,7 +137,7 @@ export function showBottomSheet(objectName, childFloorId = null, description = n
     if (locationInfo.title.toLowerCase().includes("escape room")) {
       escapeRoomBtn.style.display = "flex";
       escapeRoomBtn.onclick = () => {
-        window.open("https://queue.njcfuntasia.com", "_blank");
+        window.open("https://escape-room.njcfuntasia.com", "_blank");
       };
     } else {
       escapeRoomBtn.style.display = "none";

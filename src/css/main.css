@@ -177,7 +177,8 @@ body {
 }
 
 /* === Enter and Exit Child Buttons === */
-#enter-child-btn, #lt5-event-btn, #o2-event-btn, #makers-redirect-btn, #escaperoom-redirect-btn {
+.bottom-sheet-btn {
+  @apply bg-ctp-surface1 text-ctp-text;
   display:none; 
   width:100%; 
   padding: 14px; 
@@ -193,7 +194,7 @@ body {
   justify-content: center;
   gap: 8px;
 }
-#enter-child-btn:active, #lt5-event-btn:active, #o2-event-btn:active, #makers-redirect-btn:active, #escaperoom-redirect-btn:active {
+.bottom-sheet-btn:active {
   background: color-mix(in srgb, var(--color-ctp-mauve) 10%, transparent);
 }
 
@@ -428,7 +429,7 @@ body {
   border: 1px solid var(--color-ctp-surface0);
 }
 
-@media (max-width: 365px) { /* 480px is smallest for events tab to not break */
+@media (max-width: 400px) { /* 400px is smallest for events tab to not break */
   .toggle-selector-container {
     flex-direction: column;
   }

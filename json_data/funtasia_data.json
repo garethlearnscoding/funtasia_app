@@ -112,7 +112,7 @@
       "booth_name": "B(A)verage Baller",
       "tags": [
         "Game",
-        " Drinks"
+        "Drinks"
       ],
       "invis_tags": "JH302",
       "zone": "Green",
@@ -144,7 +144,7 @@
       "invis_tags": "26SH09",
       "zone": "Green",
       "booth_oneline_description": "",
-      "booth_description": "Compete with your friend and try to knock them off balance\u00e2\u20ac\u201dfirst one down loses. It\u00e2\u20ac\u2122s all about timing, balance, and a bit of chaos.",
+      "booth_description": "Compete with your friend and try to knock them off balance\u2014first one down loses. It\u2019s all about timing, balance, and a bit of chaos.",
       "location": ""
     },
     "ISH4": {
@@ -170,8 +170,8 @@
       "tags": "First Aid",
       "invis_tags": [
         "medical",
-        " injured",
-        " injury"
+        "injured",
+        "injury"
       ],
       "zone": "Green",
       "booth_oneline_description": "",
@@ -186,7 +186,7 @@
       "invis_tags": "26SH12",
       "zone": "Green",
       "booth_oneline_description": "",
-      "booth_description": "Outplay your friends in an adrenaline-pumping laser tag showdown. Dodge, aim, and score your way to victory \u00e2\u20ac\u201d fast-paced, competitive, and seriously fun!",
+      "booth_description": "Outplay your friends in an adrenaline-pumping laser tag showdown. Dodge, aim, and score your way to victory \u2014 fast-paced, competitive, and seriously fun!",
       "location": ""
     }
   },
@@ -457,14 +457,14 @@
       "tags": "Performance",
       "invis_tags": [
         "PA",
-        " HCWeyoung",
-        " Nunyuh Business",
-        " Phyllis",
-        " Phyllzx",
-        " Blueforms",
-        " Updawg",
-        " Thaarmin",
-        " Mirage!"
+        "HCWeyoung",
+        "Nunyuh Business",
+        "Phyllis",
+        "Phyllzx",
+        "Blueforms",
+        "Updawg",
+        "Thaarmin",
+        "Mirage!"
       ],
       "zone": "Orange",
       "booth_oneline_description": "",
@@ -476,8 +476,8 @@
       "tags": "First Aid",
       "invis_tags": [
         "medical",
-        " injured",
-        " injury"
+        "injured",
+        "injury"
       ],
       "zone": "Orange",
       "booth_oneline_description": "",
@@ -598,7 +598,7 @@
       "invis_tags": "25SH01",
       "zone": "Red",
       "booth_oneline_description": "",
-      "booth_description": "Test your aim and earn points by shooting colorful cardboard targets with a Nerf gun\u00e2\u20ac\u201dperfect for friendly competition and prizes!",
+      "booth_description": "Test your aim and earn points by shooting colorful cardboard targets with a Nerf gun\u2014perfect for friendly competition and prizes!",
       "location": ""
     },
     "AC9": {
@@ -688,7 +688,7 @@
       "booth_name": "Minute to Squash",
       "tags": [
         "CCA",
-        " Game"
+        "Game"
       ],
       "invis_tags": "Squash",
       "zone": "Purple",
@@ -700,7 +700,7 @@
       "booth_name": "Blow, Blow, Blow Your Boat",
       "tags": [
         "CCA",
-        " Game"
+        "Game"
       ],
       "invis_tags": "Canoeing",
       "zone": "Purple",
@@ -712,7 +712,7 @@
       "booth_name": "Beat Dominion",
       "tags": [
         "CCA",
-        " Game"
+        "Game"
       ],
       "invis_tags": "Choir",
       "zone": "Purple",
@@ -724,7 +724,7 @@
       "booth_name": "Running With Style",
       "tags": [
         "CCA",
-        " Glam Up"
+        "Glam Up"
       ],
       "invis_tags": "Track",
       "zone": "Purple",
@@ -736,7 +736,7 @@
       "booth_name": "Henna Haven",
       "tags": [
         "CCA",
-        " Glam Up"
+        "Glam Up"
       ],
       "invis_tags": "Indian Dance",
       "zone": "Purple",
@@ -748,7 +748,7 @@
       "booth_name": "Cover Your Ears",
       "tags": [
         "CCA",
-        " Game"
+        "Game"
       ],
       "invis_tags": "Symphonic Band",
       "zone": "Purple",
@@ -760,7 +760,7 @@
       "booth_name": "Fire in the Hole",
       "tags": [
         "CCA",
-        " Game"
+        "Game"
       ],
       "invis_tags": "Softball",
       "zone": "Purple",
@@ -772,7 +772,7 @@
       "booth_name": "Second Hand Thrift",
       "tags": [
         "CCA",
-        " Merch"
+        "Merch"
       ],
       "invis_tags": "Greenlink",
       "zone": "Purple",
@@ -784,7 +784,7 @@
       "booth_name": "Ticket & Info Counter",
       "tags": [
         "Tickets",
-        " Info"
+        "Info"
       ],
       "invis_tags": "",
       "zone": "Purple",
@@ -805,7 +805,7 @@
       "booth_name": "Makers",
       "tags": [
         "CCA",
-        " Merch"
+        "Merch"
       ],
       "invis_tags": "Makers",
       "zone": "Purple",
@@ -817,7 +817,7 @@
       "booth_name": "Strings Attached",
       "tags": [
         "CCA",
-        " Game"
+        "Game"
       ],
       "invis_tags": "Strings",
       "zone": "Purple",
@@ -829,7 +829,7 @@
       "booth_name": "Just Dance",
       "tags": [
         "CCA",
-        " Game"
+        "Game"
       ],
       "invis_tags": "Western Dance",
       "zone": "Purple",
@@ -841,7 +841,7 @@
       "booth_name": "Saturday Night Funtasia",
       "tags": [
         "CCA",
-        " Game"
+        "Game"
       ],
       "invis_tags": "Guitar",
       "zone": "Purple",
@@ -853,12 +853,12 @@
       "booth_name": "Hit the Beat",
       "tags": [
         "CCA",
-        " Game"
+        "Game"
       ],
       "invis_tags": [
         "COGZ",
-        " Chinese Orchestra",
-        " Guzheng Ensemble"
+        "Chinese Orchestra",
+        "Guzheng Ensemble"
       ],
       "zone": "Purple",
       "booth_oneline_description": "",
@@ -878,7 +878,7 @@
       "booth_name": "Balik Kampung, Batik Kampung",
       "tags": [
         "CCA",
-        " Merch"
+        "Merch"
       ],
       "invis_tags": "Malay Dance",
       "zone": "Purple",
@@ -890,12 +890,12 @@
       "booth_name": "No Bad Hair Day",
       "tags": [
         "CCA",
-        " Merch"
+        "Merch"
       ],
       "invis_tags": "Chinese Dance",
       "zone": "Purple",
       "booth_oneline_description": "",
-      "booth_description": "Browse our collection of handcrafted hair accessories \u00e2\u20ac\u201d from delicate floral clips to ornate chopstick hairpins! Make a request and we can style your hair with your chosen accessories!",
+      "booth_description": "Browse our collection of handcrafted hair accessories \u2014 from delicate floral clips to ornate chopstick hairpins! Make a request and we can style your hair with your chosen accessories!",
       "location": ""
     },
     "H9": {
@@ -904,7 +904,7 @@
       "invis_tags": "Shooting",
       "zone": "Purple",
       "booth_oneline_description": "",
-      "booth_description": "Test your aim with Nerf guns as you try to shoot darts into holes of varying sizes on a board \u00e2\u20ac\u201c the more precise, the better!",
+      "booth_description": "Test your aim with Nerf guns as you try to shoot darts into holes of varying sizes on a board \u2013 the more precise, the better!",
       "location": ""
     },
     "LB1": {
@@ -948,7 +948,7 @@
       "tags": "",
       "invis_tags": [
         "sit",
-        " aircon"
+        "aircon"
       ],
       "zone": "Yellow",
       "booth_oneline_description": "",
@@ -995,12 +995,12 @@
       "booth_name": "JH205 Tuckshop",
       "tags": [
         "Food",
-        " Drinks"
+        "Drinks"
       ],
       "invis_tags": "JH205",
       "zone": "Yellow",
       "booth_oneline_description": "",
-      "booth_description": "Relive your childhood, one snack at a time! Join us on a trip down memory lane with a massive spread of old-school favourites \u00e2\u20ac\u201d think WangWang, Eyeglass Candy, Mamee, Coco Jelly, and more",
+      "booth_description": "Relive your childhood, one snack at a time! Join us on a trip down memory lane with a massive spread of old-school favourites \u2014 think WangWang, Eyeglass Candy, Mamee, Coco Jelly, and more",
       "location": ""
     },
     "LT5": {
@@ -1008,16 +1008,16 @@
       "tags": "Performance",
       "invis_tags": [
         "Malay Dance",
-        " Chinese Dance",
-        " Indian Dance",
-        " Western Dance",
-        " Choir",
-        " String Orchestra",
-        " Guitar Ensemble",
-        " Chinese Orchestra",
-        " Symphonic Band",
-        " Guzheng Ensemble",
-        " COGZ"
+        "Chinese Dance",
+        "Indian Dance",
+        "Western Dance",
+        "Choir",
+        "String Orchestra",
+        "Guitar Ensemble",
+        "Chinese Orchestra",
+        "Symphonic Band",
+        "Guzheng Ensemble",
+        "COGZ"
       ],
       "zone": "Yellow",
       "booth_oneline_description": "",
@@ -1073,7 +1073,7 @@
       "booth_name": "Aesthetics Booth",
       "tags": [
         "Academic",
-        " Glam Up"
+        "Glam Up"
       ],
       "invis_tags": "JH404",
       "zone": "Yellow",
@@ -1112,8 +1112,8 @@
       "booth_name": "On Cloud 9 & 10",
       "tags": [
         "Merch",
-        " Drinks",
-        " Food"
+        "Drinks",
+        "Food"
       ],
       "invis_tags": [
         "25SH09",

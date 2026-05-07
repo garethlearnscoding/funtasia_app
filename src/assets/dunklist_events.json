@@ -1,0 +1,110 @@
+[
+{
+  "title": "Session 1",
+  "subtitle": "4:00 PM - 4:50 PM",
+  "endText": "End of Session 1",
+  "location": "Amphitheatre",
+  "location_id": "Amphi",
+  "events": [
+    {
+      "time": "1600",
+      "title": "Mdm Ong Theng Choo"
+    },
+    {
+      "time": "1610",
+      "title": "Mr Terrence Yap"
+    },
+    {
+      "time": "1620",
+      "title": "Mr See Yeow Hoe"
+    },
+    {
+      "time": "1630",
+      "endTime": "1640",
+      "title": "Mr Deon Chen"
+    }
+  ]
+},
+{
+  "title": "Session 2",
+  "subtitle": "5:05 PM - 5:55 PM",
+  "endText": "End of Session 2",
+  "location": "Amphitheatre",
+  "location_id": "Amphi",
+  "events": [
+    {
+      "time": "1705",
+      "title": "Mr Haresh",
+      "description": "Mr Haresh is our Vice Principal!"
+    },
+    {
+      "time": "1720",
+      "title": "Mrs Toh",
+      "description": "Mrs Toh is our Principal!"
+    },
+    {
+      "time": "1735",
+      "title": "Ms Chin Kai Qing"
+    },
+    {
+      "time": "1745",
+      "endTime": "1755",
+      "title": "Mr Lee Zhe Feng"
+    }
+  ]
+},
+{
+  "title": "Session 3",
+  "subtitle": "6:10 PM - 8:00 PM",
+  "location": "Amphitheatre",
+  "location_id": "Amphi",
+  "endText": "End of all dunking",
+  "events": [
+    {
+      "time": "1810",
+      "title": "Mrs Susan Neo"
+    },
+    {
+      "time": "1820",
+      "title": "Mr Marcus Chong"
+    },
+    {
+      "time": "1830",
+      "title": "Raegan Lee"
+    },
+    {
+      "time": "1840",
+      "title": "Elil Nila"
+    },
+    {
+      "time": "1850",
+      "title": "Nathaniel Ng"
+    },
+    {
+      "time": "1900",
+      "title": "Chloe Cheah"
+    },
+    {
+      "time": "1910",
+      "title": "Charlotte Cowell"
+    },
+    {
+      "time": "1920",
+      "title": "Giselle Chiam"
+    },
+    {
+      "time": "1930",
+      "title": "Kylene Lew"
+    },
+    {
+      "time": "1940",
+      "title": "Enya Reiko"
+    },
+    {
+      "time": "1950",
+      "endTime": "2000",
+      "title": "Erin Pok"
+    }
+  ]
+}
+]

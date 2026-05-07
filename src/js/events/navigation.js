@@ -95,7 +95,7 @@ export class Navigation {
         if (!floor.isLoaded()) {
           if (!floor._loading) {
             floor.load(appState, appState.rawData).then(() => {
-              if (floor.sceneModel) floor.sceneModel.position.y = -GHOST_SPACING;
+              if (floor.sceneModel) floor.sceneModel.position.y = 1; // Start above to animate down
               Navigation.applyGhostLayers(activeFloorId);
             });
           }

@@ -63,10 +63,10 @@ export function startAnimationLoop(appState) {
         if (Math.abs(dist) > 0.01) {
           floor.sceneModel.position.y += dist * 0.1;
         } else {
-          // If floor has finished flying out to the top, hide it
+          // Hide floors that are ABOVE the current active floor once they finish flying out
           const floorIdx = floorOrder.indexOf(floor.id);
           const targetIdx = floorOrder.indexOf(activeFloorId);
-          if (floorIdx > targetIdx && targetIdx !== -1) {
+          if (floorIdx > targetIdx && floorIdx !== -1 && targetIdx !== -1) {
             floor.sceneModel.visible = false;
           }
         }

@@ -306,7 +306,6 @@ if (eventsContentArea && eventsBackToTopBtn) {
                 downScrollAccumulator += Math.abs(delta);
                 upScrollAccumulator = 0;
                 if (scrollTop > 120 && downScrollAccumulator >= 20) {
-                    console.log(toggleHeight, "hihihehe")
                     toggleContainer.style.top = `-${toggleHeight + 20}px`;
                     eventsContentArea.style.setProperty('--event-header-top', `${headerBaseOffset}px`);
                 }

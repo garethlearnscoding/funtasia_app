@@ -78,9 +78,11 @@ export class Marker {
 
 export class LocationMarker extends Marker {
   /**
-   * @param {THREE.Scene} scene - Scene to add the marker group to.
+   * @param {THREE.Object3D} parent - Parent object to add the marker group to.
    * @param {THREE.Vector3} position - World position of the marker.
+   * @param {string} level - The floor/level the marker belongs to.
    * @param {boolean} text - Whether to include the "You are here!" text label.
+   * @param {boolean} showRing - Whether to show the base ring.
    */
   constructor(parent, position, level, text = false, showRing = true) {
     super(parent, position, level); // Base class handles positioning and parenting

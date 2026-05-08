@@ -55,7 +55,7 @@ export class Navigation {
       const now = performance.now();
       
       if (now - startTime < greyDelay) {
-        const marker = new QRMarker(appState.scene, appState.lastScannedInfo.pos, greyDelay);
+        const marker = new QRMarker(appState.lastScannedInfo.pos, floorId, greyDelay);
         marker.startTime = startTime;
         appState.activeMarkers.push(marker);
       }

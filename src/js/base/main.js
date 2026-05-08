@@ -10,6 +10,7 @@ import { Floor } from "@/js/floor/floor.js";
 import { applyThemeToScene } from "@/js/floor/modelParser.js";
 import { Icon } from "@/js/marker/icon.js";
 import { Marker } from "@/js/marker/marker.js"; 
+import { TextMarker, BoothIDMarker } from "@/js/marker/textmarker.js";
 import { QRMarker } from "@/js/marker/qrmarker.js";
 import { startAnimationLoop, animateCameraTo } from "@/js/ui_ux/animate.js";
 import { hideBottomSheet, setupUI, setUISheetData } from "@/js/ui_ux/ui.js";
@@ -81,15 +82,59 @@ async function initApp() {
 
   // Initialize modular Settings menu
   SettingsController.init('settings-content-area');
-  const visualsSection = SettingsController.addSection('Visual Preferences');
   const controlsSection = SettingsController.addSection('Controls');
+  const visualsSection = SettingsController.addSection('Visual Preferences');
+  const mapElements = SettingsController.addSection('Map elements');
+  
+  // Initialize settings from local storage
+  window.ghostLayersEnabled = localStorage.getItem('funtasia-ghost-layers') !== 'false';  // default true
+  appState.rotationLocked = localStorage.getItem('funtasia-rotation-lock') !== 'false';   // default true
+  appState.autoFocusEnabled = localStorage.getItem('funtasia-autofocus') !== 'false';     // default true
+  Icon.state(localStorage.getItem('funtasia-show-icons') !== 'false'); // default true
+  TextMarker.state(localStorage.getItem('funtasia-show-text-markers') !== 'false'); // default true
+  BoothIDMarker.state(localStorage.getItem('funtasia-show-booth-markers') !== 'false'); // default true
+
   if (visualsSection) {
     SettingsController.addToggle(
-      visualsSection,
+      mapElements,
       'Show POI Icons',
-      'Toggle 3D points of interest markers',
-      (state) => { Icon.state(state); },
-      Icon.iconsVisible !== false
+      'Toggle icons on the map',
+      (state) => {
+        localStorage.setItem('funtasia-show-icons', state);
+        Icon.state(state); 
+      },
+      Icon.iconsVisible
+    );
+    SettingsController.addToggle(
+      mapElements,
+      'Location Labels',
+      'Toggle text labels for major areas (Hall, Canteen, etc.)',
+      (state) => {
+        localStorage.setItem('funtasia-show-text-markers', state);
+        TextMarker.state(state);
+      },
+      TextMarker.textMarkersVisible
+    );
+    SettingsController.addToggle(
+      mapElements,
+      'Booth Labels',
+      'Toggle text labels for individual booths',
+      (state) => {
+        localStorage.setItem('funtasia-show-booth-markers', state);
+        BoothIDMarker.state(state);
+      },
+      BoothIDMarker.boothIDsVisible
+    );
+    SettingsController.addToggle(
+      visualsSection,
+      'Ghost Layers',
+      'View lower levels as translucent layers',
+      (state) => {
+          localStorage.setItem('funtasia-ghost-layers', state);
+          window.ghostLayersEnabled = state;
+          if (window.updateFloorVisibilities) window.updateFloorVisibilities();
+      },
+      window.ghostLayersEnabled
     );
     SettingsController.addToggle(
       visualsSection,
@@ -117,6 +162,7 @@ async function initApp() {
       'Rotation Lock',
       'Lock the rotation of the 3D model',
       (isLocked) => {
+        localStorage.setItem('funtasia-rotation-lock', isLocked);
         appState.rotationLocked = isLocked;
         controls.enableRotate = !isLocked;
         controls.touches.TWO = isLocked ? THREE.TOUCH.DOLLY_PAN : THREE.TOUCH.DOLLY_ROTATE;
@@ -135,9 +181,10 @@ async function initApp() {
       'Camera Auto-Focus',
       'Smoothly animate the camera when selecting a location',
       (enabled) => {
+        localStorage.setItem('funtasia-autofocus', enabled)
         appState.autoFocusEnabled = enabled;
       },
-      appState.autoFocusEnabled !== false
+      appState.autoFocusEnabled
     );
   }
 

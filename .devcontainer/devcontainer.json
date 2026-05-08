@@ -4,5 +4,14 @@
   "features": {
     "ghcr.io/tailscale/codespace/tailscale": {},
     "ghcr.io/stu-bell/devcontainer-features/node:0": {}
-  }
+  },
+  "customizations": {
+    "codespaces": {
+      "repositories": {
+        "garethlearnscoding/funtasia_assets": {
+          "permissions": "write-all"
+        }
+      }
+    }
+  }  
 }

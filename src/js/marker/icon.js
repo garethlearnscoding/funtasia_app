@@ -1,5 +1,6 @@
 import * as THREE from "three";
 import { Marker } from "./marker.js";
+import { floorOrder } from "@/js/events/navigation.js";
 
 const BASE = ASSETS_BASE_URL;
 
@@ -23,11 +24,14 @@ export class Icon extends Marker {
   // Track active level to only show icons for the current level
   static activeLevel = null;
 
+  // Track all icon instances for global updates
+  static allIcons = [];
+
   // Track icons mapped by their level
   static iconsByLevel = {};
 
-  constructor(type, position, level) {
-    super(position, level);
+  constructor(parent, type, position, level) {
+    super(parent, position, level);
     
     this.icontype = type;
     this.iconPath = Icon.iconPaths[this.icontype]; 
@@ -70,6 +74,8 @@ export class Icon extends Marker {
     // Apply the current global visibility state
     this.group.visible = Icon.iconsVisible && this.level === Icon.activeLevel;
 
+    Icon.allIcons.push(this);
+
     // Track this instance by its level
     if (!Icon.iconsByLevel[this.level]) {
       Icon.iconsByLevel[this.level] = [];
@@ -80,30 +86,26 @@ export class Icon extends Marker {
   // Class method to control visibility state of all icons
   static state(isVisible) {
     Icon.iconsVisible = isVisible;
-    Icon.updateVisibility();
+    Icon.allIcons.forEach(icon => icon.updateVisibilityAndOpacity());
   }
 
   // Method to set active level
   static setLevel(levelId) {
     Icon.activeLevel = levelId;
-    Icon.updateVisibility();
+    Icon.allIcons.forEach(icon => icon.updateVisibilityAndOpacity());
   }
 
   // Helper method to sync visibility across instances, optimized for levels
-  static updateVisibility() {
-    Object.keys(Icon.iconsByLevel).forEach((level) => {
-      const isLevelActive = (level === Icon.activeLevel);
-      Icon.iconsByLevel[level].forEach((icon) => {
-        if (icon.group) {
-          icon.group.visible = Icon.iconsVisible && isLevelActive;
-        }
-      });
-    });
+  updateVisibilityAndOpacity() {
+    const isVisibleLocal = Icon.iconsVisible && this.level === Icon.activeLevel;
+    this.group.visible = isVisibleLocal;
+    this.updateSyncState(); // Apply parent floor's opacity and final visibility
   }
 
   // Animate method to handle dynamic scaling
   animate(time, camera) {
     if (!this.group || !this.indicator) return;
+    this.updateVisibilityAndOpacity(); // Update visibility and opacity based on active level and parent state
 
     // Calculate distance and update scale
     const worldPos = new THREE.Vector3();
@@ -113,15 +115,8 @@ export class Icon extends Marker {
     const factor = 0.08; 
     const targetScale = distance * factor;
     
-    // Constraints:
-    // 1. Zoom out: Cap at original size
-    const finalScale = Math.min(this.baseScale, targetScale);
-    
-    // 2. Zoom in: Hide if less than a quarter of original size
-    const isVisible = finalScale >= (this.baseScale / 4.5) && Icon.iconsVisible && this.level === Icon.activeLevel;
-    
-    this.group.visible = isVisible;
-    if (isVisible) {
+    const finalScale = Math.min(this.baseScale, targetScale); // Cap at original size
+    if (this.group.visible && finalScale >= (this.baseScale / 4.5)) { // Hide if too small
       this.indicator.scale.set(finalScale * this.aspect, finalScale, 1);
     }
   }

@@ -1,7 +1,7 @@
 import * as THREE from "three";
 import { loadModel } from "@/js/floor/modelLoader.js";
 import { parseModel } from "@/js/floor/modelParser.js";
-import { TextMarker } from "@/js/marker/textmarker.js";
+import { TextMarker, BoothIDMarker } from "@/js/marker/textmarker.js";
 
 export class Floor {
   // Static class attributes initialized in main.js
@@ -32,9 +32,14 @@ export class Floor {
     this.parentFloorId = null; // Set dynamically if this is a child model
 
     this.sceneModel = null;
+    this.targetY = 0;
     this.interactiveObjects = [];
     this.textMarkers = [];
+    this.boothIDMarkers = [];
     
+    // Initialize userData so markers can observe state without importing Floor
+    if (this.sceneModel) this.sceneModel.userData.currentOpacity = 1.0;
+
     // Register self
     Floor.registerFloor(this);
 
@@ -61,12 +66,16 @@ export class Floor {
    */
   async load(appState, funtasiaData) {
     if (this.isLoaded()) return;
+    if (this._loading) return; // Prevent multiple simultaneous loads
+
+    this._loading = true;
 
     const gltf = await loadModel(this.modelPath);
     const parsingId = this.parentFloorId || this.id;
     const result = parseModel(gltf, this.id, appState.scene, funtasiaData, parsingId);
-    this.attachParsedData(result.model, result.interactiveObjects, result.cameraConfig, result.textMarkers);
+    this.attachParsedData(result.model, result.interactiveObjects, result.cameraConfig, result.textMarkers, result.boothIDMarkers);
     
+    this._loading = false;
     window.dispatchEvent(new CustomEvent("floorReady", { detail: { floorId: this.id } }));
     console.log(`[Floor] Parsed ${this.id}: ${result.interactiveObjects.length} interactive meshes.`);
   }
@@ -80,17 +89,32 @@ export class Floor {
       return;
     }
 
-    console.log(`[Floor] Activating ${this.id}. Setting visible = true.`);
     this.sceneModel.visible = true;
     
     // Notify TextMarker system of the active level to sync visibility
     TextMarker.setLevel(this.id);
+    BoothIDMarker.setLevel(this.id);
 
-    // Apply specific camera config 
+    // Apply specific camera config
     if (this.cameraConfig) {
-      console.log(`[Floor] Applying camera config for ${this.id}:`, this.cameraConfig);
-      controls.target.copy(this.cameraConfig.target);
-      camera.position.copy(this.cameraConfig.initialPosition);
+      // console.log(`[Floor] Applying camera config for ${this.id}:`, this.cameraConfig);
+
+      const isMainLevelTransition = !this.parentFloorId && Floor.currentFloor && !Floor.currentFloor.parentFloorId;
+      const shouldPreserveRotation = window.ghostLayersEnabled && isMainLevelTransition && !Floor.appState.rotationLocked;
+
+      if (shouldPreserveRotation) {
+        // Calculate current vector from target to camera to preserve orientation and zoom
+        const offset = new THREE.Vector3().subVectors(camera.position, controls.target);
+        // Update target to the new floor's center
+        controls.target.copy(this.cameraConfig.target);
+        // Re-apply the offset to the new target
+        camera.position.addVectors(controls.target, offset);
+      } else {
+        // Default: reset to the floor's specific initial position (child models, or if conditions aren't met)
+        controls.target.copy(this.cameraConfig.target);
+        camera.position.copy(this.cameraConfig.initialPosition);
+      }
+
       controls.minDistance = this.cameraConfig.minDistance;
       controls.maxDistance = this.cameraConfig.maxDistance;
       camera.updateProjectionMatrix();
@@ -99,8 +123,6 @@ export class Floor {
     
     controls.enableRotate = !Floor.appState.rotationLocked;
     controls.touches.TWO = Floor.appState.rotationLocked ? THREE.TOUCH.DOLLY_PAN : THREE.TOUCH.DOLLY_ROTATE;
-    
-    console.log(`Switched to floor: ${this.id}`);
   }
 
   /**
@@ -110,16 +132,18 @@ export class Floor {
     if (this.isLoaded()) {
       this.sceneModel.visible = false;
       this.textMarkers.forEach(tm => { if (tm.group) tm.group.visible = false; });
+      this.boothIDMarkers.forEach(bm => { if (bm.group) bm.group.visible = false; });
     }
   }
 
   /**
    * Populates the internal state after the GLTF model is parsed.
    */
-  attachParsedData(model, interactiveObjects, cameraConfig, textMarkers = []) {
+  attachParsedData(model, interactiveObjects, cameraConfig, textMarkers = [], boothIDMarkers = []) {
     this.sceneModel = model;
     this.interactiveObjects = interactiveObjects;
     this.cameraConfig = cameraConfig;
     this.textMarkers = textMarkers;
+    this.boothIDMarkers = boothIDMarkers;
   }
 }

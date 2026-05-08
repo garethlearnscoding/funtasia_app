@@ -35,12 +35,18 @@ export function applySelection(target, appState) {
   }
 }
 
-export function focusOnFloor(appState) {
+export function focusOnFloor(appState, preserveView = false) {
   const floor = appState.currentFloor;
   if (!floor || !appState.controls) return;
 
-  const target = floor.cameraConfig.target;
-  const newCamPos = floor.cameraConfig.initialPosition;
+  if (preserveView) {
+    // If we are preserving view, we don't move the camera to the default config.
+    // This is useful if focusOnFloor is called during a context switch.
+    return;
+  }
+
+  const target = floor.cameraConfig.target.clone();
+  const newCamPos = floor.cameraConfig.initialPosition.clone();
 
   animateCameraTo(appState, newCamPos, target);
 }

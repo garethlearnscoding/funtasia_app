@@ -1,6 +1,6 @@
 import * as THREE from "three";
 import { LocationMarker } from "@/js/marker/marker.js";
-
+import { Floor } from "@/js/floor/floor.js";
 
 export class QRMarker extends LocationMarker {
   // Static class attribute initialized in main.js
@@ -11,13 +11,16 @@ export class QRMarker extends LocationMarker {
   static allMarkers = {};
 
   /**
-   * @param {THREE.Scene} scene - Scene to add the marker to.
    * @param {THREE.Vector3} position - World position of the marker.
+   * @param {string} level - The floor/level the marker belongs to.
    * @param {number} greyDelay - Milliseconds before the marker greys out (default 5 min).
    */
-  constructor(scene, position, greyDelay = 5 * 60000, enableGreyOut = true) {
+  constructor(position, level, greyDelay = 5 * 60000, enableGreyOut = true) {
+    const floor = Floor.floors[level];
+    const parent = floor ? floor.sceneModel : null;
+
     // Always rendered with the text label
-    super(scene, position, true);
+    super(parent, position, level, true);
 
     // Grey-out materials (created lazily in greyOut())
     this.greyMaterial = new THREE.MeshBasicMaterial({ color: 0x777777 });

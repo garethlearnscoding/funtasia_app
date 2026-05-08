@@ -10,13 +10,21 @@
     </script>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <!--Trigger initial connection to google fonts for faster loading?-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <title>Funtasia 3D Map</title>
     <link rel="stylesheet" href="/src/css/main.css"/>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&icon_names=album,arrow_back,celebration,check,chevron_right,circle,close,directions_run,event,falling,festival,flashlight_off,flashlight_on,hourglass_empty,image,info_i,keyboard,keyboard_double_arrow_up,location_on,logout,map,mic_external_on,music_note,music_note_2,open_in_new,pan_tool_alt,pinch_zoom_out,qr_code_scanner,search,search_off,settings,store,swap_vert,swipe_right_2,theater_comedy,timer_off,touch_app&display=block" rel="stylesheet">
     <link href="/src/css/input.css" rel="stylesheet"/>
     <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg"/>
-    <link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" href="/favicon/favicon_60.png"/>
+    <link rel="apple-touch-icon" sizes="76x76" href="/favicon/favicon_76.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/favicon/favicon_120.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/favicon/favicon_152.png">
+    <link rel="image_src" href="/favicon/favicon_256.png">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
   </head>
   <body>
     <div id="canvas-container"></div>
@@ -145,11 +153,50 @@
           </div>
           <!-- Welcome Area -->
           <div class="modal-content" id="info-content-area">
+            
+            <!-- ── Controls Section ─────────────────── -->
+            <div class="px-2">
+              <h3 class="modal-section-title">Controls</h3>
+              <p class="text-ctp-subtext1 text-xs px-4 -mt-2 mb-4">How to interact with the map</p>
+              <div class="info-btn-list">
+
+                <div class="info-btn-row">
+                  <div class="info-btn-preview">
+                    <span class="material-symbols-outlined" style="font-size: 22px;">pan_tool_alt</span>
+                  </div>
+                  <div class="info-btn-desc">
+                    <span class="info-btn-title">Panning</span>
+                    <span class="info-btn-caption">Use 1 finger or hold down right mouse button to pan around the map.</span>
+                  </div>
+                </div>
+
+                <div class="info-btn-row">
+                  <div class="info-btn-preview">
+                    <span class="material-symbols-outlined" style="font-size: 22px;">pinch_zoom_out</span>
+                  </div>
+                  <div class="info-btn-desc">
+                    <span class="info-btn-title">Zoom</span>
+                    <span class="info-btn-caption">Pinch using 2 fingers to zoom in and out.</span>
+                  </div>
+                </div>            
+
+                <div class="info-btn-row">
+                  <div class="info-btn-preview">
+                    <span class="material-symbols-outlined" style="font-size: 22px;">swipe_right_2</span>
+                  </div>
+                  <div class="info-btn-desc">
+                    <span class="info-btn-title">Rotate</span>
+                    <span class="info-btn-caption">(DISABLED BY DEFAULT!) Use 2 fingers together to rotate the map.</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
 
             <!-- ── UI Buttons Section ─────────────────── -->
             <div class="px-2">
               <h3 class="modal-section-title">Buttons</h3>
-              <p class="text-ctp-subtext1 text-xs px-4 -mt-2 mb-4">Floating action buttons in the sidebar on the right</p>
+              <p class="text-ctp-subtext1 text-xs px-4 -mt-2 mb-4">Floating purple buttons on the top left and top right</p>
               <div class="info-btn-list">
 
                 <div class="info-btn-row">
@@ -159,6 +206,16 @@
                   <div class="info-btn-desc">
                     <span class="info-btn-title">Information</span>
                     <span class="info-btn-caption">View this help guide explaining map icons and controls.</span>
+                  </div>
+                </div>
+
+                <div class="info-btn-row">
+                  <div class="info-btn-preview">
+                    <span class="material-symbols-outlined" style="font-size: 22px;">settings</span>
+                  </div>
+                  <div class="info-btn-desc">
+                    <span class="info-btn-title">Settings</span>
+                    <span class="info-btn-caption">Adjust accessibility options, dark mode, and app preferences.</span>
                   </div>
                 </div>
 
@@ -184,16 +241,6 @@
 
                 <div class="info-btn-row">
                   <div class="info-btn-preview">
-                    <span class="material-symbols-outlined" style="font-size: 22px;">settings</span>
-                  </div>
-                  <div class="info-btn-desc">
-                    <span class="info-btn-title">Settings</span>
-                    <span class="info-btn-caption">Adjust accessibility options, dark mode, and app preferences.</span>
-                  </div>
-                </div>
-
-                <div class="info-btn-row">
-                  <div class="info-btn-preview">
                     <span class="material-symbols-outlined" style="font-size: 22px;">store</span>
                   </div>
                   <div class="info-btn-desc">
@@ -204,45 +251,7 @@
 
               </div>
             </div>
-            
-            <!-- ── Controls Section ─────────────────── -->
-            <div class="px-2">
-              <h3 class="modal-section-title">Controls</h3>
-              <p class="text-ctp-subtext1 text-xs px-4 -mt-2 mb-4">How to interact with the map</p>
-              <div class="info-btn-list">
 
-                <div class="info-btn-row">
-                  <div class="info-btn-preview">
-                    <span class="material-symbols-outlined" style="font-size: 22px;">pan_tool_alt</span>
-                  </div>
-                  <div class="info-btn-desc">
-                    <span class="info-btn-title">Panning</span>
-                    <span class="info-btn-caption">Use 1 finger or hold down right mouse button to pan around the map.</span>
-                  </div>
-                </div>
-
-                <div class="info-btn-row">
-                  <div class="info-btn-preview">
-                    <span class="material-symbols-outlined" style="font-size: 22px;">pinch_zoom_out</span>
-                  </div>
-                  <div class="info-btn-desc">
-                    <span class="info-btn-title">Zoom</span>
-                    <span class="info-btn-caption">Check the live schedule for CCA performances, dunklist, and PA busking.</span>
-                  </div>
-                </div>            
-
-                <div class="info-btn-row">
-                  <div class="info-btn-preview">
-                    <span class="material-symbols-outlined" style="font-size: 22px;">swipe_right_2</span>
-                  </div>
-                  <div class="info-btn-desc">
-                    <span class="info-btn-title">Rotate</span>
-                    <span class="info-btn-caption">(DISABLED BY DEFAULT!) Use 2 fingers together or hold down left mouse button to rotate the map</span>
-                  </div>
-                </div>
-
-              </div>
-            </div>
                 <!-- ── Map Elements Section───────────────── -->
             <div class="px-2">
               <h3 class="modal-section-title">Map elements</h3>
@@ -255,14 +264,7 @@
                   </div>
                   <div class="info-btn-desc">
                     <span class="info-btn-title">Interactive</span>
-                    <span class="info-btn-caption">Interactive elements are of one of these colors: 
-                      <span class="text-ctp-green-300 material-symbols-outlined" style="font-size: 12px; font-variation-settings: 'FILL' 1;">circle</span>
-                      <span class="text-ctp-blue-600 material-symbols-outlined" style="font-size: 12px; font-variation-settings: 'FILL' 1;">circle</span>
-                      <span class="text-ctp-peach-400 material-symbols-outlined" style="font-size: 12px; font-variation-settings: 'FILL' 1;">circle</span>
-                      <span class="text-ctp-mauve material-symbols-outlined" style="font-size: 12px; font-variation-settings: 'FILL' 1;">circle</span>
-                      <span class="text-ctp-yellow material-symbols-outlined" style="font-size: 12px; font-variation-settings: 'FILL' 1;">circle</span>
-                      <span class="text-ctp-red-300 material-symbols-outlined" style="font-size: 12px; font-variation-settings: 'FILL' 1;">circle</span>
-                    </span>
+                    <span class="info-btn-caption">Interactive elements will have a label in their zone color above them visible only when zoomed in.</span>
                   </div>
                 </div>
                 
@@ -272,7 +274,7 @@
                   </div>
                   <div class="info-btn-desc">
                     <span class="info-btn-title">Marker icons</span>
-                    <span class="info-btn-caption">These icons are non-interactive and show locations of helpful utilities (explained below). They can be toggled in Settings</span>
+                    <span class="info-btn-caption">These icons are non-interactive and show locations of helpful utilities (explained below).</span>
                   </div>
                 </div>
 
@@ -282,7 +284,7 @@
                   </div>
                   <div class="info-btn-desc">
                     <span class="info-btn-title">Level Selector</span>
-                    <span class="info-btn-caption">Click/slide the numbers to switch levels. The highlighted level represents the current level</span>
+                    <span class="info-btn-caption">Click/slide the numbers to switch levels. The highlighted level represents the current level.</span>
                   </div>
                 </div>
 
@@ -292,7 +294,7 @@
                   </div>
                   <div class="info-btn-desc">
                     <span class="info-btn-title">Location Marker (You Are Here!)</span>
-                    <span class="info-btn-caption">The location marker shows the location of the last location QR code scanned</span>
+                    <span class="info-btn-caption">The location marker shows the location of the last location QR code scanned.</span>
                   </div>
                 </div>
 
@@ -379,22 +381,26 @@
           <!-- Content Area -->
           <div class="modal-content flex flex-col items-center p-3 scroll-smooth h-fit" id="events-content-area">
             <!-- Toggle Buttons -->
-            <div class="toggle-selector-container max-w-xl">
-              <button id="events-cca-toggle-btn" class="toggle-selector" style="background: var(--color-ctp-mauve); color: var(--color-ctp-base)">
-                <span class="material-symbols-outlined text-[18px]">theater_comedy</span>
-                CCA Performances
-              </button>
-              <button id="events-pabusking-toggle-btn" class="toggle-selector">
-                <span class="material-symbols-outlined text-[18px]">music_note_2</span>
-                Busking
-              </button>
-              <button id="events-dunklist-toggle-btn" class="toggle-selector">
-                <span class="material-symbols-outlined text-[18px]">falling</span>
-                Dunk list
-              </button>
+            <div id="fullwidth-toggle-selector-container" class="w-full m-0 bg-ctp-base pt-3 px-3 pb-2">
+              <div class="flex justify-center w-full">
+                <div class="toggle-selector-container flex gap-2 max-w-xl overflow-x-auto hide-scrollbar mx-[1rem_!important]">
+                  <button id="events-cca-toggle-btn" class="toggle-selector whitespace-nowrap" style="background: var(--color-ctp-mauve); color: var(--color-ctp-base)">
+                    <span class="material-symbols-outlined text-[18px]">theater_comedy</span>
+                    CCA Performances
+                  </button>
+                  <button id="events-pabusking-toggle-btn" class="toggle-selector whitespace-nowrap">
+                    <span class="material-symbols-outlined text-[18px]">music_note_2</span>
+                    Busking
+                  </button>
+                  <button id="events-dunklist-toggle-btn" class="toggle-selector whitespace-nowrap">
+                    <span class="material-symbols-outlined text-[18px]">falling</span>
+                    Dunk list
+                  </button>
+                </div>
+              </div>
             </div>
             <!-- Dynamic Content Area -->
-            <div id="events-list-container" class="w-full space-y-4 -z-50">
+            <div id="events-list-container" class="w-full space-y-4">
               <!-- Items injected by script -->
             </div>
           </div>
@@ -625,6 +631,40 @@
       window.hideFabButtons = hideFabButtons;
       window.showFabButtons = showFabButtons;
 
+      // Generic modal setup function
+      function setupModal(openBtn, closeBtn, backdrop, modalElement, onOpenCallback = () => {}, onCloseCallback = () => {}) {
+        if (openBtn) {
+          openBtn.addEventListener('click', () => {
+            modalElement.style.display = 'block';
+            hideFabButtons();
+            onOpenCallback();
+          });
+        }
+        if (closeBtn) {
+          closeBtn.addEventListener('click', () => {
+            modalElement.style.removeProperty('display');
+            showFabButtons();
+            onCloseCallback();
+          });
+        }
+        if (backdrop) {
+          backdrop.addEventListener('click', () => {
+            modalElement.style.removeProperty('display');
+            showFabButtons();
+            onCloseCallback();
+          });
+        }
+      }
+
+      // Function to handle toggle button styling
+      function setToggleButtonActive(activeBtn, inactiveBtn) {
+        activeBtn.style.background = 'var(--color-ctp-mauve)';
+        activeBtn.style.color = 'var(--color-ctp-base)';
+        inactiveBtn.style.background = 'transparent';
+        inactiveBtn.style.color = 'var(--color-ctp-text)';
+      }
+
+      // Function to clear QR text inputs
       function clearTextInputs() {
         const inputs = document.querySelectorAll('.qr-code-input');
         inputs.forEach(input => input.value = '');
@@ -656,41 +696,12 @@
           }
       }
 
-      closeWelcomeBtn.addEventListener('click', () => {
-        welcomeModal.style.removeProperty('display');
-        openInfoBtn.click();
-      })
-      welcomeBackdrop.addEventListener('click', () => {
-        welcomeModal.style.removeProperty('display');
-        openInfoBtn.click();
-      })
-
-      openDirBtn.addEventListener('click', () => {
-        dirModal.style.display = 'block';
-        hideFabButtons();
-      });
-      closeDirBtn.addEventListener('click', () => {
-        dirModal.style.removeProperty('display');
-        showFabButtons();
-      });
-      dirBackdrop.addEventListener('click', () => {
-        dirModal.style.removeProperty('display');
-        showFabButtons();
-      });
-
-      openSettingsBtn.addEventListener('click', () => {
-        settingsModal.style.display = 'block';
-        hideFabButtons();
-      });
-      closeSettingsBtn.addEventListener('click', () => {
-        settingsModal.style.removeProperty('display');
-        showFabButtons();
-      });
-      settingsBackdrop.addEventListener('click', () => {
-        settingsModal.style.removeProperty('display');
-        showFabButtons();
-      });
-
+      // Setup all modals using the generic handler
+      setupModal(null, closeWelcomeBtn, welcomeBackdrop, welcomeModal, () => {}, () => openInfoBtn.click());
+      setupModal(openDirBtn, closeDirBtn, dirBackdrop, dirModal);
+      setupModal(openSettingsBtn, closeSettingsBtn, settingsBackdrop, settingsModal);
+      setupModal(openInfoBtn, closeInfoBtn, infoBackdrop, infoModal);
+      
       const openEventsModal = (category = "cca") => {
         eventsModal.style.display = 'block';
         window.switchEventCategory(category);
@@ -698,62 +709,28 @@
       };
       window.openEventsModal = openEventsModal;
 
-      openEventsBtn.addEventListener('click', () => {
-        openEventsModal("cca");
-      });
-      closeEventsBtn.addEventListener('click', () => {
-        eventsModal.style.removeProperty('display');
-        showFabButtons();
-      });
-       eventsBackdrop.addEventListener('click', () => {
-        eventsModal.style.removeProperty('display');
-        showFabButtons();
-      });
+      setupModal(openEventsBtn, closeEventsBtn, eventsBackdrop, eventsModal, 
+        () => openEventsModal("cca"), 
+        () => {} // No specific action on close for events modal
+      );
 
-      openInfoBtn.addEventListener('click', () => {
-        infoModal.style.display = 'block';
-        hideFabButtons();
-      });
-      closeInfoBtn.addEventListener('click', () => {
-        infoModal.style.removeProperty('display');
-        showFabButtons();
-      });
-      infoBackdrop.addEventListener('click', () => {
-        infoModal.style.removeProperty('display');
-        showFabButtons();
-      });
-
-      openQrBtn.addEventListener('click', () => {
-        qrModal.style.display = 'block';
-        hideFabButtons();
+      setupModal(openQrBtn, closeQrBtn, qrBackdrop, qrModal,
+        () => { // onOpenCallback for QR modal
         if (qrScannerView.style.display !== 'none') {
             startScanner(handleQRSuccess);
         }
-      });
-      closeQrBtn.addEventListener('click', () => {
-        qrModal.style.removeProperty('display');
-        showFabButtons();
+        },
+        () => { // onCloseCallback for QR modal
         stopScanner();
         clearTextInputs();
-      });
-      qrBackdrop.addEventListener('click', () => {
-        qrModal.style.removeProperty('display');
-        showFabButtons();
-        stopScanner();
-        clearTextInputs();
-      });
-
+        }
+      );
 
       // QR / Text Toggles
       qrToggleBtn.addEventListener('click', () => {
         qrScannerView.style.display = 'flex';
         textInputView.style.display = 'none';
-        
-        qrToggleBtn.style.background = 'var(--color-ctp-mauve)';
-        qrToggleBtn.style.color = 'var(--color-ctp-base)';
-
-        textToggleBtn.style.background = 'transparent';
-        textToggleBtn.style.color = 'var(--color-ctp-text)';
+        setToggleButtonActive(qrToggleBtn, textToggleBtn);
         startScanner(handleQRSuccess);
         clearTextInputs();
       });
@@ -761,12 +738,7 @@
       textToggleBtn.addEventListener('click', () => {
         qrScannerView.style.display = 'none';
         textInputView.style.display = 'flex';
-
-        textToggleBtn.style.background = 'var(--color-ctp-mauve)';
-        textToggleBtn.style.color = 'var(--color-ctp-base)';
-
-        qrToggleBtn.style.background = 'transparent';
-        qrToggleBtn.style.color = 'var(--color-ctp-text)';
+        setToggleButtonActive(textToggleBtn, qrToggleBtn);
         stopScanner();
       });
       
@@ -777,9 +749,9 @@
         });
       }
 
-      // Auto-focus logic for manual input
-      const inputs = document.querySelectorAll('.qr-code-input');
-      inputs.forEach((input, index) => {
+      // Generic input group navigation logic
+      function setupInputGroupNavigation(inputs) {
+        inputs.forEach((input, index) => {
         input.addEventListener('input', (e) => {
           // Allow only numbers
           e.target.value = e.target.value.replace(/[^0-9]/g, '');
@@ -794,58 +766,54 @@
           }
         });
       });
+      }
+
+      const qrCodeInputs = document.querySelectorAll('.qr-code-input');
+      setupInputGroupNavigation(qrCodeInputs);
       
       // Continue Button Logic for manual input
       const continueBtn = document.getElementById('qr-go-btn');
+
+      async function handleManualQRInput() {
+        const firstVal = qrCodeInputs[0].value.trim();
+        const secondVal = qrCodeInputs[1].value.trim();
+        
+        if (!firstVal || !secondVal) {
+          showToast("Please enter both parts of the code.", 2000);
+          return;
+        }
+
+        // Transform first input: leading 0 → "b", leading 1 → "l"
+        const markerID = secondVal.charAt(0) === '0' ? secondVal.slice(1) : secondVal;
+        const firstDigit = firstVal.charAt(0);
+        const restDigits = firstVal.slice(1);
+        const prefix = firstDigit === '0' ? 'b' : firstDigit === '1' ? 'l' : firstDigit;
+        const floorPart = `${prefix}${restDigits}`;
+        let qrID = `${floorPart}-m${markerID}`;
+        console.log(`Manual input qrID: ${qrID}`);
+        
+        // Fallback: If exact match fails, check if there's a marker that counts as a "match" (e.g. l1-m2-tc)
+        const fuzzyMatch = Object.keys(QRMarker.allMarkers).find(id => id.startsWith(qrID + '-'));
+        if (fuzzyMatch) {
+          qrID = fuzzyMatch;
+        }
+
+        if (!QRMarker.allMarkers[qrID]) {
+          showToast(`Marker ${qrID} not found.`, 2000);
+          return;
+        }
+
+        clearStoredBottomSheet();
+        const success = await Navigation.handleQRID(qrID);
+        if (success) {
+          qrModal.style.removeProperty('display');
+          showFabButtons();
+          stopScanner();
+        }
+      }
+
       if (continueBtn) {
-        continueBtn.addEventListener('click', async () => {
-          const firstVal = inputs[0].value.trim();
-          const secondVal = inputs[1].value.trim();
-          
-          if (firstVal && secondVal) {
-            // Transform first input: leading 0 → "b", leading 1 → "l"
-            const markerID = secondVal.charAt(0) === '0' ? secondVal.slice(1) : secondVal;
-            const firstDigit = firstVal.charAt(0);
-            const restDigits = firstVal.slice(1);
-            const prefix = firstDigit === '0' ? 'b' : firstDigit === '1' ? 'l' : firstDigit;
-            const floorPart = `${prefix}${restDigits}`;
-            const qrID = `${floorPart}-m${markerID}`;
-            console.log(`Manual input qrID: ${qrID}`);
-            
-            try {
-              
-              let targetID = qrID;
-              
-              // Fallback: If exact match fails, check if there's a marker that counts as a "match" (e.g. l1-m2-tc)
-              // (Checking against the current floor's markers if loaded)
-              const fuzzyMatch = Object.keys(QRMarker.allMarkers).find(id => id.startsWith(qrID + '-'));
-              if (fuzzyMatch) {
-                targetID = fuzzyMatch;
-              }
-
-              if (!QRMarker.allMarkers[targetID]) {
-                showToast(`Marker ${qrID} not found.`, 2000);
-                return;
-              }
-
-              // Update URL via pushState to avoid page reload
-              const currentUrl = new URL(window.location.href);
-              currentUrl.searchParams.set('qrID', targetID);
-              window.history.pushState({}, '', currentUrl.toString());
-              
-              clearStoredBottomSheet();
-              const success = await Navigation.handleQRID(targetID);
-              if (success) {
-                document.getElementById('qr-modal-wrapper').style.display = 'none';
-                showFabButtons();
-                stopScanner();
-              }
-              
-            } catch (err) {
-              console.error("Failed to process manual QR input:", err);
-            }
-          }
-        });
+        continueBtn.addEventListener('click', handleManualQRInput);
       }
     </script>
     <script type="module" src="/src/js/base/main.js"></script>

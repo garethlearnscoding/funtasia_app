@@ -42,3 +42,38 @@ export function getInteractionTarget(event, appState) {
 
   return performRaycast(appState);
 }
+
+export function setFloorOpacity(group, opacity) {
+  const isTransparent = opacity < 1;
+  
+  // Optimization: If the group is already at this opacity state, skip traversal
+  if (group.userData.currentOpacity === opacity) return;
+  group.userData.currentOpacity = opacity;
+
+  group.traverse((child) => {
+    if (child.isMesh || child.isSprite) {
+      // CRITICAL: Do not override opacity for structural/invisible meshes
+      if (child.userData.ROLE === "GREY") return;
+
+      // Cache the original material so we can restore it later
+      if (!child.userData.originalMaterial) {
+        child.userData.originalMaterial = child.material;
+      }
+
+      if (isTransparent) {
+        // If ghosting, use a unique cloned material to avoid affecting other floors
+        if (!child.userData.ghostMaterial) {
+          child.userData.ghostMaterial = child.material.clone();
+          child.userData.ghostMaterial.transparent = true;
+        }
+        child.material = child.userData.ghostMaterial;
+        child.material.opacity = opacity;
+        child.material.depthWrite = false; // Prevents "box" outlines and clipping
+      } else {
+        // Restore the original solid material
+        child.material = child.userData.originalMaterial;
+      }
+      child.material.needsUpdate = true;
+    }
+  });
+}

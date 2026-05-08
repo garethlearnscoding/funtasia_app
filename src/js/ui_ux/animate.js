@@ -3,7 +3,9 @@ Function: animate() -> Main animation loop
 */
 
 import { Icon } from "@/js/marker/icon.js";
-import { TextMarker } from "@/js/marker/textmarker.js";
+import { Floor } from "@/js/floor/floor.js";
+import { TextMarker, BoothIDMarker } from "@/js/marker/textmarker.js";
+import { Navigation, floorOrder } from "@/js/events/navigation.js";
 
 export function animateCameraTo(appState, cameraTarget, controlsTarget, isSystemAction = false, lerpFactor = 0.05) {
   appState.cameraAnim.controlsTarget.copy(controlsTarget);
@@ -51,7 +53,26 @@ export function startAnimationLoop(appState) {
 
     appState.controls.update();
     
-    
+    /*
+    Animate floor transitions (Ghost Layers sliding)
+    */
+    const activeFloorId = Navigation.appState?.currentFloor?.id;
+    Object.values(Floor.floors).forEach((floor) => {
+      if (floor.sceneModel && floor.sceneModel.visible) {
+        const dist = floor.targetY - floor.sceneModel.position.y;
+        if (Math.abs(dist) > 0.01) {
+          floor.sceneModel.position.y += dist * 0.1;
+        } else {
+          // Hide floors that are ABOVE the current active floor once they finish flying out
+          const floorIdx = floorOrder.indexOf(floor.id);
+          const targetIdx = floorOrder.indexOf(activeFloorId);
+          if (floorIdx > targetIdx && floorIdx !== -1 && targetIdx !== -1) {
+            floor.sceneModel.visible = false;
+          }
+        }
+      }
+    });    
+
     const time = performance.now();
     /*
     Animate markers
@@ -67,13 +88,16 @@ export function startAnimationLoop(appState) {
       levelIcons.forEach(icon => icon.animate(time, appState.camera));
     });
 
-    /*
-    Animate text markers
-    */
+    // Animate text markers
     Object.values(TextMarker.textMarkersByLevel).forEach(levelMarkers => {
       levelMarkers.forEach(marker => marker.animate(time, appState.camera));
     });
-    
+
+    // Animate booth ID markers
+    Object.values(BoothIDMarker.boothMarkersByLevel).forEach(levelMarkers => {
+      levelMarkers.forEach(marker => marker.animate(time, appState.camera));
+    });
+
     appState.renderer.render(appState.scene, appState.camera);
   }
 

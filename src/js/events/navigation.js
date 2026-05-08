@@ -5,15 +5,24 @@ import { Floor } from "@/js/floor/floor.js";
 import { focusOnObject, focusOnFloor } from "@/js/ui_ux/cameraUtils.js";
 import { Icon } from "@/js/marker/icon.js";
 import { QRMarker } from "@/js/marker/qrmarker.js";
-import { TextMarker } from "@/js/marker/textmarker.js";
+import { TextMarker, BoothIDMarker } from "@/js/marker/textmarker.js";
 import { hideBottomSheet, hideToast, showToast, updateFloorUI, showBottomSheet } from "@/js/ui_ux/ui.js";
 import { animateCameraTo } from "@/js/ui_ux/animate.js";
+import { setFloorOpacity } from "@/js/helper/util.js";
+
+export const floorOrder = ['b3', 'b2', 'b1', 'l1', 'l2'];
+const GHOST_SPACING = 1.234567; // Tighter spacing for better visual stacking
 
 export class Navigation {
   static appState = null;
 
   static init(appState) {
     Navigation.appState = appState;
+    window.updateFloorVisibilities = () => {
+      if (Navigation.appState && Navigation.appState.currentFloor) {
+        Navigation.applyGhostLayers(Navigation.appState.currentFloor.id);
+      }
+    };
     
     // Sync preloaded status from localStorage
     try {
@@ -46,11 +55,91 @@ export class Navigation {
       const now = performance.now();
       
       if (now - startTime < greyDelay) {
-        const marker = new QRMarker(appState.scene, appState.lastScannedInfo.pos, greyDelay);
+        const marker = new QRMarker(appState.lastScannedInfo.pos, floorId, greyDelay);
         marker.startTime = startTime;
         appState.activeMarkers.push(marker);
       }
     }
+  }
+
+  /**
+   * Updates the visibility and opacity of all floors based on the active floor.
+   * Lower floors become translucent if Ghost Layers is enabled.
+   */
+  static applyGhostLayers(activeFloorId) {
+    const appState = Navigation.appState;
+    
+    // Determine the "Reference" floor. If we are in a child model (like Canteen), 
+    // we use its parent (L1) to determine the ghost stack.
+    const activeFloor = Floor.floors[activeFloorId];
+    const referenceFloorId = (activeFloor && activeFloor.parentFloorId) ? activeFloor.parentFloorId : activeFloorId;
+    const isViewingChild = !!activeFloor?.parentFloorId;
+    
+    const targetIdx = floorOrder.indexOf(referenceFloorId);
+
+    floorOrder.forEach((id, index) => {
+      const floor = Floor.floors[id];
+      if (!floor) return;
+
+      // Case 1: The current view is either this floor or a child of this floor
+      if (id === referenceFloorId) {
+        if (floor.sceneModel) {
+          // Hide main floor if we are inside one of its child areas
+          floor.sceneModel.visible = !isViewingChild;
+          floor.targetY = 0;
+          floor.sceneModel.renderOrder = 10; // Ensure it renders on top
+          floor.currentOpacity = 1.0;
+          setFloorOpacity(floor.sceneModel, 1.0);
+        }
+      } else if (!isViewingChild && index < targetIdx && window.ghostLayersEnabled) {
+        // Case 2: Lower Floors (Translucent "Ghost" stack beneath current)
+        if (!floor.isLoaded()) {
+          if (!floor._loading) {
+            floor.load(appState, appState.rawData).then(() => {
+              if (floor.sceneModel) floor.sceneModel.position.y = 1; // Start above to animate down
+              Navigation.applyGhostLayers(activeFloorId);
+            });
+          }
+        } else if (floor.sceneModel) {
+          const depth = targetIdx - index;
+          floor.targetY = -depth * GHOST_SPACING;
+
+          floor.sceneModel.visible = true;
+          floor.sceneModel.renderOrder = index; // Lower floors render first
+
+          // Decreasing opacity based on depth (0.2 -> 0.1 -> 0.05...)
+          const opacity = Math.max(0.02, 0.3 * Math.pow(0.4, depth - 1));
+          floor.currentOpacity = opacity;
+          setFloorOpacity(floor.sceneModel, opacity);
+        }
+      } else {
+        // Case 3: Upper Floors (Fly out to top) or hide ghosts if child is active
+        if (floor.sceneModel) {
+          const depthAbove = index - targetIdx;
+          floor.targetY = depthAbove * GHOST_SPACING;
+          
+          // Fade out as it flies away
+          floor.currentOpacity = 0;
+          setFloorOpacity(floor.sceneModel, 0); 
+          // Hide main floors that are "above" or "ghosts" when a child model is active
+          floor.sceneModel.visible = !isViewingChild;
+        }
+      }
+    });
+
+    // CRITICAL: Ensure all other child models are hidden
+    Object.keys(Floor.floors).forEach(id => {
+      const f = Floor.floors[id];
+      if (f.parentFloorId) {
+        if (id === activeFloorId) {
+          f.sceneModel.visible = true;
+          f.targetY = 0;
+          setFloorOpacity(f.sceneModel, 1.0);
+        } else if (f.sceneModel) {
+          f.hide();
+        }
+      }
+    });
   }
 
   static async switchFloor(floorId) {
@@ -133,9 +222,6 @@ export class Navigation {
         }
       }
 
-      // Hide all floors first
-      Object.values(Floor.floors).forEach((floor) => floor.hide());
-
       // Lazy load
       if (!targetFloor.isLoaded()) {
         const isPreloaded = appState.loadedAssets.has(targetFloor.modelPath);
@@ -144,6 +230,11 @@ export class Navigation {
         try {
           await targetFloor.load(appState, appState.rawData);
           appState.loadedAssets.add(targetFloor.modelPath);
+          
+          // Initialize at top for "fly in from up" effect
+          if (targetFloor.sceneModel) {
+            targetFloor.sceneModel.position.y = GHOST_SPACING;
+          }
           
           // Once all main floors are loaded (or as they load), cache the data
           // Actually, we can just cache it immediately after parsing since the data object is shared
@@ -157,6 +248,9 @@ export class Navigation {
         }
       }
 
+      // Update Ghost Layer visibilities
+      Navigation.applyGhostLayers(floorId);
+
       targetFloor.activate(appState.camera, appState.controls);
 
       // Update state
@@ -165,6 +259,7 @@ export class Navigation {
       appState.currentFloor = targetFloor;
       Icon.setLevel(floorId);
       TextMarker.setLevel(floorId);
+      BoothIDMarker.setLevel(floorId);
       console.log(`Switched to floor: ${floorId}`);
     }
 

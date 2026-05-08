@@ -202,9 +202,10 @@ body {
 /* === Floor Selector UI (Floating — Glassmorphism per §2) === */
 #floor-selector {
   position: fixed;
+  /* top: 180px; */
   top: 50%;
+  transform: translateY(-50%); 
   right: 8px;
-  transform: translateY(-50%);
   z-index: 10;
   display: flex;
   flex-direction: column;
@@ -325,32 +326,27 @@ body {
 }
 
 #open-directory-btn {
-  bottom: 20px;
+  top: 20px;
   right: 16px;
 }
 
 #open-settings-btn {
-  bottom: 74px;
-  right: 16px;
+  top: 74px;
+  left: 16px;
 }
 
 #open-qr-btn {
-  bottom: 128px;
+  top: 128px;
   right: 16px;
 }
 
 #open-info-btn {
   top: 20px;
-  right: 16px;
+  left: 16px;
 }
 
 #open-events-btn {
   top: 74px;
-  right: 16px
-}
-
-#open-queue-btn {
-  top: 128px;
   right: 16px
 }
 
@@ -373,7 +369,7 @@ body {
 
 #exit-child-btn {
   position: fixed;
-  top: 16px;
+  top: 20px;
   left: 50%;
   align-items: center;
   justify-content: center;
@@ -381,9 +377,10 @@ body {
   cursor: pointer;
   z-index: 200;
   transform: translateX(-50%);
-  padding: 12px;
+  padding-inline: 16px;
+  padding-block: 8px;
   font-weight: bold;
-  font-size: 14px;
+  font-size: 16px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   border-radius: 24px; 
 }
@@ -404,7 +401,7 @@ body {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   /* Ambient tinted shadow */
-  box-shadow: 0 8px 40px color-mix(in srgb, var(--color-ctp-text) 10%, transparent);
+  box-shadow: 0 0 8px var(--color-ctp-surface1);
   z-index: 1000;
   opacity: 0;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -425,11 +422,11 @@ body {
   background: var(--color-ctp-surface0); 
   padding: 6px; 
   border-radius: 12px; 
-  margin-bottom: 32px; 
+  margin-bottom: 16px; 
   border: 1px solid var(--color-ctp-surface0);
 }
 
-@media (max-width: 400px) { /* 400px is smallest for events tab to not break */
+@media (max-width: 530px) { /* 530px is smallest for events tab to not break */
   .toggle-selector-container {
     flex-direction: column;
   }

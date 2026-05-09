@@ -18,8 +18,8 @@ export default defineConfig({
     compression(),
   ],
   define: {
-    ASSETS_BASE_URL: JSON.stringify('https://cdn.jsdelivr.net/gh/garethlearnscoding/funtasia_assets@0.2.0'),
-    VERSION: JSON.stringify('v5-30-4')
+    ASSETS_BASE_URL: JSON.stringify('https://cdn.jsdelivr.net/gh/garethlearnscoding/funtasia_assets@0.2.1'),
+    VERSION: JSON.stringify('v6-8-5')
   },
   resolve: {
     alias: {

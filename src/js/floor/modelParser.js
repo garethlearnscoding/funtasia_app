@@ -4,7 +4,6 @@ import { Icon } from "@/js/marker/icon.js";
 import { QRMarker } from "@/js/marker/qrmarker.js";
 import { TextMarker, BoothIDMarker } from "@/js/marker/textmarker.js";
 
-// Add names of interactive objects here to display a TextMarker above them
 export const textMarkerMap = {
   l1: {
     "Canteen": "Canteen",
@@ -16,7 +15,8 @@ export const textMarkerMap = {
     "Hall": "Hall",
     "LT5": "LT5",
     "LT1": "LT1",
-    "Amphitheatre": "Amphitheatre"
+    "Amphitheatre": "Amphitheatre",
+    "Pasar Malam Food Street": "Pasar Malam Food Street"
   },
   b2: {
     "Gym": "Gymnasium"

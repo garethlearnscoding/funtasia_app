@@ -16,6 +16,7 @@ export const textMarkerMap = {
     "LT5": "LT5",
     "LT1": "LT1",
     "Amphitheatre": "Amphitheatre",
+    "NJCLOGO":"Plaza",
     "Pasar Malam Food Street": "Pasar Malam Food Street"
   },
   b2: {
@@ -24,8 +25,11 @@ export const textMarkerMap = {
   b3: {
     "Field": "Field",
     "ISH": "ISH",
-    "njcentrance": "Dunearn Road Entrance",
+    "njcentrance": "Funtasia Entrance",
     "njcexit":"Funtasia Exit"
+  },
+  hall:{
+    "Stage":"Stage"
   }
 };
 
@@ -309,6 +313,8 @@ export function parseModel(gltf, floorId, scene, funtasiaData, dataFloorId = flo
 
     // 10. Data attribution for interactive objects
     if (child.userData.ZONE === "NONE") return;
+    if (child.userData.skip) return;
+    
     const lookupName = logicalNode.name;
     if (!logicalNode.name || logicalNode.name === "") {
       logicalNode.name = `${floorId}_Object_${objects.length + 1}`;

@@ -2,101 +2,92 @@ level,booth_id,booth_name,tags,invis_tags,zone,booth_oneline_description,booth_d
 B3,BG1,Minigames,Game,25SH21,Green,,Dive into thrilling mini-games where every challenge is a chance to rack up epic points and beat the competition!,,1
 B3,BG2,Human Slot Machine,Game,25SH14,Green,,Have you ever seen a human slot machine? No? Now is your chance!,,1
 B3,BG3,Nerf N' Mosh,Game,JH301,Green,,"Put your hand-eye coordination to the test with our Nerf battle zone, where accuracy and speed are key to victory!",,1
-B3,BG4,Knock the Teeth,,JH204,Green,,"Do you find clowns creepy? Well, here is your chance to take revenge by breaking the clown's teeth!",,1
+B3,BG4,Knock the Teeth!,Game,JH204,Green,,"Do you find clowns creepy? Well, here is your chance to take revenge by breaking the clown's teeth! Test your aiming skills by seeing just how many teeth you can break!",,1
 B3,BG5,The Fizzy Leaf,Drinks,25SH12,Green,,"Enjoy a refreshing selection of bottled water, carbonated drinks, and packet teas and juices, all kept perfectly chilled in ice-filled coolers.",,1
 B3,BG6,Skeeball,Game,JH202,Green,,Show off your skill by rolling balls into numbered slots to earn points and unlock amazing rewards!,,1
-B3,BG7,Info Counter,Info,26SH10,Green,,,,1
+B3,BG7,Info Counter,Info,26SH10,Green,Get your info here!,,,1
 B3,BG8,Ticket Counter,Tickets,,Green,,,,1
 B3,CG1,Sky Wars,Game,25SH13,Green,,Test your engineering skills by folding and launching paper airplanes to conquer the skies with the longest flight or furthest distance!,,1
-B3,CG2,Rubber Duck Racing,Game,JH306,Green,,Race rubber ducks down a wobbly track and cheer on your favorite floaters in this hilarious aquatic competition!,,1
-B3,CG3,Guess & Chuck,,25SH07,Green,,Good at guessing items at touch? Have good aim? Here is a chance for you to combine both your skills and shine!,,1
+B3,CG2,Rubber Duck Racing,Game,JH306,Green,,Race rubber ducks down a fun pool and cheer on your favorite floaters in this hilarious aquatic competition!,,1
+B3,CG3,Guess & Chuck,Game,25SH07,Green,,Good at guessing items at touch? Have good aim? Here is a chance for you to combine both your skills and shine!,,1
 B3,CG4,Catch That Dough!,Game,25SH11,Green,,Test your aim at tossing bouncy cookie dough balls into a Cookie Monster-themed bucket without them bouncing out!,,1
 B3,CG5,B(A)verage Baller,"Game, Drinks",JH302,Green,,Test your aim at flicking balls to knock down pins and grab a refreshing drink while you're at it,,1
-B3,ISH1,Punching Machine,Game,26SH09,Green,,Test your strength!,,1
-B3,ISH2,Naughty Bean,Game,26SH01,Green,Fast fingers? Give it a go!,,,1
+B3,ISH1,Punching Machine,Game,26SH09,Green,Put your strength to the test!,,,1
+B3,ISH2,Naughty Bean,Game,26SH01,Green,Fast fingers? Give it a Go!,,,1
 B3,ISH3,Gladiator Dome,Game,26SH09,Green,,"Compete with your friend and try to knock them off balance—first one down loses. It’s all about timing, balance, and a bit of chaos.",,1
-B3,ISH4,Inflatable Human Bowling Pin,Game,26SH01,Green,,Tired of normal bowling? Try your hand with human sized pins!,,1
-B3,ISH5,Ball Throwing,Game,26SH09,Green,Come test your aim!,,,1
-B3,ISH6,First Aid Station 1,First Aid,"medical, injured, injury",Green,,,,1
-B2,Gym,Laser Tag,Game,26SH12,Green,,"Outplay your friends in an adrenaline-pumping laser tag showdown. Dodge, aim, and score your way to victory — fast-paced, competitive, and seriously fun!",,2
-L1,Amphi,Water Dunk Tank,Game,JH206,Blue,,"Stand a chance to dunk one of the following teachers at our dunk tank!
-
-Mrs Lucy Toh
-Mr Haresh Sivaram
-Mr Wang Muran
-Mr Terence Yap
-Mr Deon Chen
-Ms Chin Kai Qing
-Mr See Yeow Hoe
-Mr Lee Zhe Feng
-Mdm Ong Theng Choo",,4
+B3,ISH4,Human Bowling Pin,Game,26SH01,Green,,Tired of normal bowling? Try your hand with human sized pins!,,1
+B3,ISH5,Ball Throwing,Game,26SH09,Green,Think you've got the aim? Prove it to us and gain some bragging rights!,,,1
+B3,ISH6,First Aid Station 1,First Aid,"medical, injured, injury, help",Green,,,,1
+B2,Gym,Laser Tag,Game,26SH12,Green,May the pew pew be with you,"Outplay your friends in an adrenaline-pumping laser tag showdown. Dodge, aim, and score your way to victory — fast-paced, competitive, and seriously fun!",,2
+L1,Amphi,Water Dunk Tank,Game,JH206,Blue,,"Stand a chance to dunk our teachers and students, including our Principal and Vice Principal, at our dunk tank!
+",,4
 L1,S1,Drawn For You: Caricature Photobooth,Photos,25SH05,Blue,,Get your very own caricature potrait drawn at our booth!,,4
 L1,S2,Photomania,Photos,25SH06,Blue,,Strike up some poses with props and capture these memories with a photostrip to bring home!,,4
 L1,S3,Keychain Corner,Merch,25SH17,Blue,,"Unleash your inner artist at our keychain customization station, where you can create one-of-a-kind keychains",,4
 L1,S4,Gem it Up!: Face Gems,Glam Up,25SH20,Blue,,Get a unique face gem design with options to choose from a variety of styles!,,4
-L1,S5,"Revibe: Hairstyling, Body Paint",Glam Up,25SH16,Blue,,"Transform your look with hair braiding, simple buns, temporary hair color, face/body painting, and optional henna art, plus handcrafted accessories to take home.",,4
+L1,S5,"Revibe: Hairstyling,Henna",Glam Up,25SH16,Blue,,"Transform your look with hair braiding, simple buns, temporary hair color, face/body painting, and optional henna art, plus handcrafted accessories to take home.",,4
 L1,S6,Face Painting & Hair Tinsels,Glam Up,JH207,Blue,,"Get creative with face painting and dazzling hair tinsels, with design examples to inspire your look!",,4
 L1,S7,Bedazzle: Bracelet Making,Merch,25SH08,Blue,,Create your own anime-themed bracelet by selecting charms and assembling them!,,4
-L1,AB1,Astro,Game,astronomy,Orange,,"From 4: 00 - 6: 00 pm:
+L1,AB1,Astro,Game,astronomy,Orange,Discover the wonders of the universe with YOUR own eyes!,"From 4: 00 - 6: 00 pm:
 Discover cosmic vents tied to your birthday or special dates through engaging astronomy activities
 
 From 6:00 - 8:00 pm:
 Explore the night sky up close with hands-on telescope viewing of the Moon, planets, and distant stars.",,4
 L1,AB2,Soccer Dart,Game,26SH01,Orange,,Love football? Love throwing darts? This game is a combination of both!,,4
 L1,C1,Big Wok,Food,26SH13,Orange,,"Come try out NJC's own canteen food! Selling: Laksa, Chicken Wrap, Popcorn Chicken and more!",,4
-L1,C11,Mambo,Food,26SH07,Orange,,"Come try out NJC's own canteen food! Selling: Waffles, Sandwiches, Baos and other small snacks!",,4
+L1,C11,Mumbo Time,Food,26SH07,Orange,,"Come try out NJC's own canteen food! Selling: Waffles, Sandwiches, Baos and other small snacks!",,4
 L1,C12,Prata Hut,Food,26SH07,Orange,,"Come try out NJC's own canteen food! Selling: Chicken Biryani, Murtabak and Samosas!",,4
-L1,C13,Ramly Style Burger Live Station,Food,26SH19,Orange,,Want to try those trendy smash burgers? Look no further!,,4
-L1,C14,"Malaysia Boleh, Eureka Popcorn",Food,26SH11,Orange,,Your favourite staples here at NJC's Funtasia!,,4
-L1,C15,"Yakun, Polar, Bakery Bera",Food,26SH08,Orange,,Hungry for those baked goods? Time to stop your stomach from grumbling and stop by!,,4
+L1,C13,"Ramly, Set, Go!",Food,26SH19,Orange,Your pit stop for the perfect burger!,Want to try those trendy smash burgers? Look no further!,,4
+L1,C14,Finger Foods,Food,26SH11,Orange,Popcorn & Crackers; Pancake Mania and much more!,Your favourite staples here at NJC's Funtasia!,,4
+L1,C15,Cakes & Puffs,Food,26SH08,Orange,Eat Sweet   Look Sweet,Hungry for those baked goods? Time to stop your stomach from grumbling and stop by!,,4
 L1,C16,Takoyaki,Food,26SH14,Orange,,"Well if your looking for takoyaki, you found it!",,4
-L1,C2,Chicken Rice,Food,26SH13,Orange,,Come try out NJC's own canteen food! Selling: Different types of Chicken Rice!,,4
-L1,C4,Western,Food,26SH05,Orange,,"Come try out NJC's own canteen food! Selling: Shepard's Pie, Beef Stew and More! ",,4
-L1,C6,Hot Drinks,Drinks,26SH05,Orange,,"Come try out NJC's own canteen food! Selling: Tiramisu, and assorted Hand-made drinks!",,4
-L1,C7,Cold Drinks,Drinks,26SH05,Orange,,"Come try out NJC's own canteen food! Selling: Cold drinks, Ice-pops and more!",,4
+L1,C2,Iconic Flavors,Food,26SH13,Orange,,Come try out NJC's own canteen food! Selling: Different types of Chicken Rice!,,4
+L1,C4,"Bites, Brews Bliss - Western",Food,26SH05,Orange,,"Come try out NJC's own canteen food! Selling: Shepard's Pie, Beef Stew and More! ",,4
+L1,C6,"Bites, Brews Bliss - Hot Drinks",Drinks,26SH05,Orange,,"Come try out NJC's own canteen food! Selling: Tiramisu, and assorted Hand-made drinks!",,4
+L1,C7,"Bites, Brews Bliss - Cold Drinks",Drinks,26SH05,Orange,,"Come try out NJC's own canteen food! Selling: Cold drinks, Ice-pops and more!",,4
 L1,C8,Drinks stall : Herbal Tea (ZTP),Drinks,26SH14,Orange,,Feeling a bit heaty? Have a herbal drink to cool yourself down!,,4
 L1,C9,Noodle,Food,26SH03,Orange,,"Come try out NJC's own canteen food! Selling: Wanton Mee, Prawn Mee, and other Singaporean staples!",,4
 L1,CB1,Popcorn and Candy Floss,Food,26SH14,Orange,,Well it won't be a funfair without popcorn and candy floss right? Come get yours right now!,,4
-L1,CB2,Seaweed Fries,Food,26SH16,Orange,,"Craving seaweed fries? Well, come make your way here!",,4
+L1,CB2,Seaweed Fries,Food,26SH16,Orange,"Buy it, Share it, Love it!","Craving seaweed fries? Well, come make your way here!",,4
 L1,CE1,Heyya Duck Rice,Food,26SH03,Orange,,I love duck rice and so should you. Come buy it right now!,,4
-L1,CE2,Buldak Noodles,Food,26SH16,Orange,,Are you coming? No? You are missing out on the most fire noodles ever!,,4
+L1,CE2,Korean Fire Noodles,Food,26SH16,Orange,Seoul Spicy! Soul Satisfied!,Are you coming? No? You are missing out on the most fire noodles ever!,,4
 L1,DS3,Gatecrash: Escape Room,Game,JH203,Orange,,Step into a thrilling escape room experience where you'll solve puzzles and unravel mysteries to escape before time runs out!,,4
 L1,O1,Go Kart,Game,26SH06,Orange,,Don't have a driving license? Well fret not! You get to drive here as well!,,4
 L1,O2,Busking @ Linkway,Performance,"PA, HCWeyoung, Nunyuh Business, Phyllis, Phyllzx, Blueforms, Updawg, Thaarmin, Mirage!",Orange,,,,4
 L1,O3,First Aid Station 2,First Aid,"medical, injured, injury",Orange,,,,4
-L1,O4,Info Counter,Info,26SH10,Orange,,,,4
+L1,O4,Info Counter,Info,26SH10,Orange,Get your info here!,,,4
 L1,O5,Ticket Counter,Tickets,,Orange,,,,4
-L1,A1,Info Counter,Info,,Red,,,,4
+L1,A1,Info Counter,Info,26SH10,Red,Get your info here!,,,4
 L1,A2,Ticket Counter,Tickets,,Red,,,,4
 L1,A34a,PAACT: NJC Merch,Merch,26SH18,Red,,Merch made by our very own Parents in Action team! Come get your cute exclusive NJ merch now!,,4
-L1,A4b,Slushie,Drinks,26SH07,Red,,Get a refreshing cup of slushie at our booth!,,4
-L1,A5,NJC Heritage,,26Sh18,Red,,Wondering what is the history behind Singapore's first junior college? Look no further! Come visit us at NJC's Heritage Room to learn more!,,4
+L1,A4b,Slushie,Drinks,26SH07,Red,Get a refreshing cup of slushie at our booth!,,,4
+L1,A5,NJC Heritage,Merch,26Sh18,Red,,Wondering what is the history behind Singapore's first junior college? Look no further! Come visit us at NJC's Heritage Room to learn more!,,4
 L1,AC1,Lucky Pop Shootout,Game,JH307,Red,,Test your aim and pop balloons to earn exciting stickers!,,4
 L1,AC2,Hypercrate Co,Game,JH303,Red,,"Test your luck at Hypercrate Co, where you can win amazing prizes by selecting mystery boxes filled with surprises!",,4
 L1,AC3,"Made With Love: Nails, Bracelets, Keychains",Merch,25SH15,Red,,"Dive into a treasure trove of trendy press-on nails, shimmering keychains, quirky shrinky art, and sparkling bracelets for every style!",,4
-L1,AC456,Alumni Supermarket,,26SH18,Red,,I don't know why but I kind of want to go shopping at a supermarket at a Funfair!,,4
+L1,AC456,Alumni Supermarket,"Food, Drinks",26SH18,Red,,I don't know why but I kind of want to go shopping at a supermarket at a Funfair!,,4
 L1,AC7,Flower Fantasy,Merch,25SH19,Red,,"Create and sell beautiful pipe cleaner flowers, offering both pre-made bouquets and DIY bouquet options with free wrapping.",,4
 L1,AC8,Shoot the Target,Game,25SH01,Red,,Test your aim and earn points by shooting colorful cardboard targets with a Nerf gun—perfect for friendly competition and prizes!,,4
-L1,AC9,Is 2026 The New 2016,Merch,25Sh02,Red,,Create your own slime or design a rainbow loom bracelet with ready-made materials and fun accessories.,,4
-L2,LBCP1,Corndog Live station,Food,26SH19,Brown,,"Freshly battered and fried corndogs made on the spot, crispy outside and juicy inside.",,5
-L2,LBCP2,Tteokbokki,Food,26SH15,Brown,,"Chewy rice cakes simmered in a rich, spicy-sweet Korean sauce.",,5
-L2,LBCP3,Each a Cup,Drinks,26SH02,Brown,,Refreshing bubble tea and drinks with fun toppings for every taste.,,5
+L1,AC9,Is 2026 The New 2016?,Merch,25Sh02,Red,,Create your own slime or design a rainbow loom bracelet with ready-made materials and fun accessories.,,4
+L2,LBCP1,Corndog Stall,Food,26SH19,Brown,,"Freshly battered and fried corndogs made on the spot, crispy outside and juicy inside.",,5
+L2,LBCP2,Tteokbokki,Food,26SH15,Brown,tteo-tally get some ttekbokki!!,"Chewy rice cakes simmered in a rich, spicy-sweet Korean sauce.",,5
+L2,LBCP3,Each a Cup,Drinks,26SH02,Brown,"Drink Good, Feel Good",Refreshing bubble tea and drinks with fun toppings for every taste.,,5
 L2,LBCP4,Ice Cream Cart,Food,,Brown,,Classic cold treats served fresh to cool you down instantly.,,5
-L2,LBCP5,Crepe,Food,26SH15,Brown,,"Thin, soft crepes filled with sweet or savoury delights, made to order.",,5
-L2,LBCP6,Grilled Satay Live Station,Food,26SH17,Brown,,"Smoky, flame-grilled skewers served with rich peanut sauce.",,5
-L2,LBCP7,Taiwanese-style Fried Chicken Chop,Food,26SH17,Brown,,"Crispy, oversized chicken cutlet packed with bold seasoning.",,5
+L2,LBCP5,Crepe,Food,26SH15,Brown,"Crepe happens, eat anyways","Thin, soft crepes filled with sweet or savoury delights, made to order.",,5
+L2,LBCP6,Live Grilled Satay,Food,26SH17,Brown,,"Smoky, flame-grilled skewers served with rich peanut sauce.",,5
+L2,LBCP7,Taiwanese Fried Chicken Chop,Food,26SH17,Brown,,"Crispy, oversized chicken cutlet packed with bold seasoning.",,5
 L2,LBCP8910,Old Chang Kee Food Truck,Food,26SH11,Brown,,Local favourites like curry puffs and snacks served hot and fast.,,5
 L2,H1,Minute to Squash,"CCA, Game",Squash,Purple,,Test your speed and accuracy by smashing targets with a squash racket in a fast-paced one-minute challenge!,,5
 L2,H10,"Blow, Blow, Blow Your Boat","CCA, Game",Canoeing,Purple,,Race your paper boat across the waters to earn points!,,5
 L2,H11,Beat Dominion,"CCA, Game",Choir,Purple,,Good at tongue twisters? Challenge youself by staying on beat!,,5
 L2,H12,Running With Style,"CCA, Glam Up",Track,Purple,,Tired of dazzling your wrists? Add charms and sparkles to your shoelaces here!,,5
 L2,H13,Henna Haven,"CCA, Glam Up",Indian Dance,Purple,,"Experience the art of henna with intricate designs, offering customizable patterns and varying levels of complexity.",,5
-L2,H14,Cover Your Ears,"CCA, Game",Symphonic Band,Purple,,Test your music knowledge with a fun game where you guess the song in a recording by Symphonic Band!,,5
+L2,H14,Name that Tune!,"CCA, Game",Symphonic Band,Purple,,Test your music knowledge with a fun game where you guess the song in a recording by Symphonic Band!,,5
 L2,H15,Fire in the Hole,"CCA, Game",Softball,Purple,,Show off your throwing precision by launching balls into holes at varying distances for rewards!,,5
 L2,H16,Second Hand Thrift,"CCA, Merch",Greenlink,Purple,,"Explore a vibrant marketplace filled with donated clothes, accessories, K-pop/Anime merch, and collectibles from NJCians!",,5
-L2,H1718,Ticket & Info Counter,"Tickets, Info",,Purple,,,,5
-L2,H18,Info Counter,Info,26SH10,Purple,,,,5
-L2,H19,Makers,"CCA, Merch",Makers,Purple,,"Explore a vibrant marketplace filled with donated clothes, accessories, K-pop/Anime merch, and collectibles from NJCians!",,5
+L2,H17,Ticket Counter,Tickets,,Purple,,,,5
+L2,H18,Info Counter,Info,26SH10,Purple,Get your info here!,,,5
+L2,H19,Makers,"CCA, Merch",Makers,Purple,,Take a peek into Makers Society bread and butter!,,5
 L2,H2,Strings Attached,"CCA, Game",Strings,Purple,,Want a challenge? Well this game is for you! Try your mighty best to balance ping pong balls on cups with string!,,5
 L2,H3,Just Dance,"CCA, Game",Western Dance,Purple,,"Dance the night away with friends in an interactive Just Dance mini-game, where you can groove to popular hits in a fun, social setting that's perfect for all ages!",,5
 L2,H4,Saturday Night Funtasia,"CCA, Game",Guitar,Purple,,Test your skills in a high-energy rhythm-based rap battle against an opponent or tackle a challenging single-player mode.,,5
@@ -105,25 +96,25 @@ L2,H6,Basketball showdown,CCA,Basketball,Purple,,Compete in a thrilling 1v1 bask
 L2,H7,"Balik Kampung, Batik Kampung","CCA, Merch",Malay Dance,Purple,,"Create your own batik-designed pencil cases and keychains, or browse our collection of handmade batik merchandise, including customizable pouches and accessories.",,5
 L2,H8,No Bad Hair Day,"CCA, Merch",Chinese Dance,Purple,,Browse our collection of handcrafted hair accessories — from delicate floral clips to ornate chopstick hairpins! Make a request and we can style your hair with your chosen accessories!,,5
 L2,H9,Hot Shots,CCA,Shooting,Purple,,"Test your aim with Nerf guns as you try to shoot darts into holes of varying sizes on a board – the more precise, the better!",,5
-L2,LB1,Info Counter,Info,26SH10,Yellow,,,,5
-L2,LB2,Ticket Counter,Tickets,,Yellow,,,,5
-L2,LIB1,Central Prize Booth,Merch,,Yellow,,Redeem your prizes here!,,5
-L2,LIB2,Photo Booth,Game,26SH04,Yellow,,Not enough photostrips? Take your photobooth pictures here!,,5
+L2,LB1,Info Counter,Info,26SH10,Yellow,Get your info here!,,,5
+L2,LB2,Ticket Counter,Tickets,,Yellow,Get your tickets here!,,,5
+L2,LIB1,Central Prize Booth,Merch,,Yellow,Redeem your prizes here!,,,5
+L2,LIB2,Photo Booth,Game,26SH04,Yellow,,Not enough photostrips? Capture your Funtasia 2026 memories in a photostrip with us!,,5
 L2,LT1,Rest Zone,,"sit, aircon",Yellow,,,,5
 L2,LT12A,Build a Doll,Merch,25SH03,Yellow,,"Create your own custom peg doll with a variety of crafting supplies and accessories, or choose from pre-made dolls featuring popular characters and NJC-themed merchandise.",,5
-L2,LT12B,Strike a Pose!,Photos,JH304,Yellow,,"Choose your props, snap a shot against a decorated backdrop, and walk away with a printed polaroid to capture these memories forever!",,5
-L2,LT1A,Balloonatics,Merch,JH201,Yellow,,"Create and take home adorable balloon sculptures like ducks, bunnies, and minions from our vibrant display!",,5
+L2,LT12B,Strike a Pose!,Photos,JH304,Yellow,,"Choose your props, snap a shot against a decorated backdrop, and walk away with a printed photostrip to capture these memories forever!",,5
+L2,LT1A,Balloonatics,Merch,JH201,Yellow,,"Take home adorable balloon sculptures like ducks, bunnies, and minions from our vibrant display!",,5
 L2,LT1B,Get Slimed!,Merch,25Sh18,Yellow,,"Dive into a world of squishy fun with customizable DIY slime-making sessions, themed slimes, and playful sensory experiences.",,5
-L2,LT1C,JH205 Tuckshop,"Food, Drinks",JH205,Yellow,,"Relive your childhood, one snack at a time! Join us on a trip down memory lane with a massive spread of old-school favourites — think WangWang, Eyeglass Candy, Mamee, Coco Jelly, and more",,5
+L2,LT1C,JH205 Tuckshop,"Food, Drinks",JH205,Yellow,,"Relive your childhood, one snack at a time! Join us on a trip down memory lane with a massive spread of old-school favourites — think WangWang, Eyeglass Candy, Mamee, Coco Jelly, and more!",,5
 L2,LT5,CCA Performances @ LT5,Performance,"Malay Dance, Chinese Dance, Indian Dance, Western Dance, Choir, String Orchestra, Guitar Ensemble, Chinese Orchestra, Symphonic Band, Guzheng Ensemble, COGZ",Yellow,,Excited to see how NJC's performing arts are like? Do come check out the CCA performances here!,,5
-L2,LT5A,Gachapon,Merch,26SH04,Yellow,,"Well, I love me some cheap and cute Gachapons! Come here as soon as possible before our prizes run out! Prizes include smiskis, sonny angels and more!!",,5
-L2,LT5A,Jang and Fox Postcard,Merch,26Sh04,Yellow,,Want some cute postcards? Come check us out!,,5
+L2,LT5A,Gashapon,Merch,26SH04,Yellow,,"Wow, cheap and cute Gachapons! Come here as soon as possible before our prizes run out! Prizes include smiskis, sonny angels and more!!",,5
+L2,LT5A,Jang and Fox Postcard,Merch,26Sh04,Yellow,,Want some cute postcards to gift your friends? Come check us out!,,5
 L2,LT5B,Pipe cleaner flowers and animals,Merch,25SH04,Yellow,,Join us in creating cute pocket creatures with vibrant pipecleaners!,,5
 L2,TA11,Karaoke & Just Dance,Game,JH305,Yellow,,Visit us with your friends to enjoy some karoake or join a game of Just Dance,,5
-L2,TA12,Language Arts Booth,Academic,JH401,Yellow,,Put your word skills to the test by solving a real-life Wordle puzzle in just 6 guesses!,,5
-L2,TA13,Mathematics Booth,Academic,JH402,Yellow,,Challenge your math skills with fast-paced problem-solving games!,,5
+L2,TA12,Language Arts Booth,"Academic, Merch, Game",JH401,Yellow,,Put your word skills to the test by solving a real-life Wordle puzzle in just 6 guesses!,,5
+L2,TA13,Mathematics Booth,"Academic, Game, Merch",JH402,Yellow,,Challenge your math skills with fast-paced problem-solving games!,,5
 L2,TA14,Aesthetics Booth,"Academic, Glam Up",JH404,Yellow,,"Dive into a splash of fun by painting and spraying personalized designs onto wearable art, turning ordinary clothes into vibrant masterpieces!",,5
-L2,TA15,Humanities Booth,Academic,JH405,Yellow,,Test your knowledge and aim for glory by tossing a ball into the correct hole after answering a question!,,5
-L2,TA16,Science Booth,Academic,JH406,Yellow,,"Guide a ball through a simplified eukaryotic cell board, helping a protein reach its target organelle while avoiding other organelles, suitable for younger children.",,5
-L2,TA17,Mother Tongue Booth,Academic,JH407,Yellow,,Create your own unique character with customizable accessories and designs.,,5
+L2,TA15,Humanities Booth,"Academic, Game, Merch",JH405,Yellow,,Test your knowledge and aim for glory by tossing a ball into the correct hole after answering a question!,,5
+L2,TA16,Science Booth,"Academic, Game",JH406,Yellow,,"Guide a ball through a simplified eukaryotic cell board, helping a protein reach its target organelle while avoiding other organelles, suitable for younger children.",,5
+L2,TA17,Mother Tongue Booth,"Academic, Merch",JH407,Yellow,,Create your own unique character with customizable accessories and designs.,,5
 L2,TA18,On Cloud 9 & 10,"Merch, Drinks, Food","25SH09,25SH10",Yellow,,"Get your skin adorned with intricate henna art, vibrant body paint, or trendy temporary tattoos at our creative station! Grab a refreshing ice pop while you are at our booth too!",,5
